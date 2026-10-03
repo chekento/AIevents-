@@ -11,7 +11,7 @@ import java.time.Instant
 private val Context.dataStore by preferencesDataStore(name = "aievents_settings")
 
 data class AppSettings(
-    val place: String = "Ahrensburg, Schleswig-Holstein, Germany",
+    val place: String = "",
     val radiusKm: Int = 45,
     val language: String = "de",
     val includeOnline: Boolean = true,
@@ -49,13 +49,17 @@ class SettingsStore(private val context: Context) {
         val notificationHours = intPreferencesKey("notification_hours")
         val notifyOnlyNew = booleanPreferencesKey("notify_only_new")
         val sources = stringSetPreferencesKey("sources")
+        val legacyDefaultMigrated = booleanPreferencesKey("legacy_default_migrated")
         val favorites = stringSetPreferencesKey("favorites")
         val favoriteEvents = stringSetPreferencesKey("favorite_events")
     }
 
     val flow: Flow<AppSettings> = context.dataStore.data.map { p ->
         AppSettings(
-            place = p[Keys.place] ?: "Ahrensburg, Schleswig-Holstein, Germany",
+            place = if (
+                p[Keys.legacyDefaultMigrated] != true &&
+                p[Keys.place] == "Ahrensburg, Schleswig-Holstein, Germany"
+            ) "" else (p[Keys.place] ?: ""),
             radiusKm = p[Keys.radius] ?: 45,
             language = p[Keys.language] ?: "de",
             includeOnline = p[Keys.online] ?: true,
@@ -79,6 +83,7 @@ class SettingsStore(private val context: Context) {
     suspend fun save(s: AppSettings) {
         context.dataStore.edit { p ->
             p[Keys.place] = s.place
+            p[Keys.legacyDefaultMigrated] = true
             p[Keys.radius] = s.radiusKm
             p[Keys.language] = s.language
             p[Keys.online] = s.includeOnline
