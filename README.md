@@ -157,3 +157,21 @@ The backend directly monitors event hubs including OpenAI community/forum source
 Local discovery now uses a fast core pass and an automatic **Deep Search** pass when coverage is thin. Additional platforms include Devpost, HackerEarth, LinkedIn Events, Airmeet, Livestorm, Zoom Events, Cvent, Whova, Bizzabo, Goldcast, RingCentral Events, Swapcard and Brella, in addition to Meetup, Eventbrite, Luma, Partiful, Bevy, Sched, Splash, AllEvents, Sessionize and Pretalx.
 
 The local and provider search systems remain deliberately separate: **city/radius relevance in Discover, global provider intelligence in Provider Radar.**
+
+
+## v0.5.1 — global adaptive local discovery
+
+The local Discover tab is now explicitly **location-agnostic and worldwide**. Hamburg, New York and other previously used cities are only test examples; no city is a privileged search target.
+
+### How worldwide local discovery works
+1. The user selects any place worldwide through autocomplete. AIevents stores the exact coordinates and country code.
+2. Search language is derived from **English + the app language + the selected country's local language(s)** where known.
+3. Queries combine AI-topic terms with participatory event forms such as meetup, conference, workshop, webinar, seminar, symposium, congress, forum, hackathon, datathon, bootcamp, masterclass, developer day, tech talk, panel, roundtable, fireside chat, networking, user group, study group, research seminar, demo day, roadshow, expo, showcase, build day, lab, office hours, AMA, livestream, launch event, community night and similar formats.
+4. Registration/participation signals such as register, RSVP, tickets, attend, join, sign-up and admission are used as additional ranking evidence.
+5. If the selected radius covers nearby cities or towns, AIevents resolves those places dynamically from OpenStreetMap/Overpass and searches them too. This allows a small town to discover relevant events in a nearby larger city without hard-coding any metropolitan area.
+6. All candidates are finally checked against exact coordinates/radius when coordinates are available.
+7. Events must have a strong AI focus; generic technology events with only incidental AI mentions are suppressed.
+8. If the first source pass is thin, the app automatically performs a deeper source pass.
+
+### Central index vs live coverage
+The rotating central index is a **warm cache**, not a coverage boundary. Its global city list is geographically diverse and has no priority-city logic. A place does not need to be present in that list for the Android app to search it: live discovery is generated directly from the user's selected place anywhere in the world.
