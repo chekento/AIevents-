@@ -58,5 +58,8 @@ data class SearchSnapshot(
     val searchedSources: Int,
     val discoveredPages: Int,
     val warnings: List<String>,
-    val updatedAt: Instant = Instant.now()
+    val updatedAt: Instant = Instant.now(),
+    val indexedEvents: Int = 0,
+    val indexGeneratedAt: Instant? = null,
+    val phase: String = "live"
 )
