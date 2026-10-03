@@ -1,22 +1,22 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-03T14:39:20.485161Z",
-  "cursor": 60,
+  "generated_at": "2026-10-03T14:41:41.366321Z",
+  "cursor": 72,
   "regions_processed": [
-    "Bogotá, Colombia",
-    "Cape Town, South Africa",
-    "Johannesburg, South Africa",
-    "Nairobi, Kenya",
-    "Lagos, Nigeria",
-    "Dubai, United Arab Emirates",
-    "Tel Aviv, Israel",
-    "Bengaluru, India",
-    "Mumbai, India",
-    "Delhi, India",
-    "Singapore",
-    "Kuala Lumpur, Malaysia"
+    "Bangkok, Thailand",
+    "Jakarta, Indonesia",
+    "Hong Kong",
+    "Taipei, Taiwan",
+    "Seoul, South Korea",
+    "Tokyo, Japan",
+    "Osaka, Japan",
+    "Beijing, China",
+    "Shanghai, China",
+    "Shenzhen, China",
+    "Sydney, Australia",
+    "Melbourne, Australia"
   ],
-  "event_count": 45,
+  "event_count": 54,
   "events": [
     {
       "title": "Dev Days | Amravati, India",
@@ -408,6 +408,28 @@
       "key": "4962929474edd60dcd762968"
     },
     {
+      "title": "GitHub Copilot Dev Day 2026",
+      "start": "2026-10-08T21:00:00Z",
+      "end": "2026-10-09T01:00:00Z",
+      "venue": "",
+      "locality": "",
+      "description": "¡Es momento de explorar **GitHub Copilot**! En este evento de comunidad exploraremos diferentes herramientas y experiencias de GitHub Copilot aplicadas al",
+      "organizer": "Virtual DEV Show (Microsoft)",
+      "sourceName": "meetup.com",
+      "sourceUrl": "https://www.meetup.com/virtualdevshow/events/316451062",
+      "eventUrl": "https://www.meetup.com/virtualdevshow/events/316451062/",
+      "price": "",
+      "language": "",
+      "online": true,
+      "geo": null,
+      "confidence": 90,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:41.059961Z",
+      "key": "c0dd7dd223e8a6bdeb92b839"
+    },
+    {
       "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
       "start": "2026-10-09T14:00:00Z",
       "end": "2026-10-09T21:00:00Z",
@@ -453,6 +475,31 @@
       ],
       "indexedAt": "2026-10-03T14:25:19.558808Z",
       "key": "23fd3b7405a311b4a94ea46f"
+    },
+    {
+      "title": "TECHIE IMPACT SUMMIT 3.0 AI FOR GOOD; SHAPING AFRICA",
+      "start": "2026-10-10T09:00:00Z",
+      "end": "2026-10-10T13:30:00Z",
+      "venue": "8 Montgomery Rd",
+      "locality": "8 Montgomery Rd, 8 Montgomery Rd, Lagos, Lagos, NG",
+      "description": "What happens when Africa’s brightest minds stop talking about AI — and start building with it? Find out at Techie Impact Summit 3.0. Bankable Wisdom, in support with the Western Union Foundation and Watson Institute, USA, is bringing together founders, innovators, creators, tech professionals, entrepreneurs and young leaders for a high-energy day focused on one big question: How can we turn AI ideas into real African impact? This isn't an event you want to simply hear about afterwards. 🎤 KEYNOTE SPEAKERS Terhile Ikyo — Senior Project Manager, FCMB Nigeria From AI Ideas to AI Impact: Building the AI-Powered African Business Jennifer Chukwuma — Co-Founder, GENZ Agency & Socialitik The Future of Content Creation: How AI Is Changing What We Create and How We Create It Muheez Okunade — Growth and Insight Executive @ Interswitch Building Smarter: Leveraging AI to Build Startups Precious Azuonwu — CEO, Bankable Wisdom & Western Union Global Fellow Raising Funding for Your AI Innovations 🔥 AND THERE'S MORE! 🚀 Live Startup Pitches — discover innovative businesses building with AI. 🤖 Real AI Conversations — practical insights you can take back to your business, career or startup. 🎮 AI Games ",
+      "organizer": "Precious Azuonwu, Precious Azuonwu",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/qjrulkme",
+      "eventUrl": "https://luma.com/qjrulkme",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 6.5085174,
+        "lon": 3.3735372
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:41.409218Z",
+      "key": "7a17c6ea4ccf24c748a890e5"
     },
     {
       "title": "Global AI on Tour - Dallas",
@@ -547,6 +594,53 @@
       ],
       "indexedAt": "2026-10-03T14:38:03.347032Z",
       "key": "420c48c9738c77bce955fbed"
+    },
+    {
+      "title": "Hamburg | Claude Code Meetup",
+      "start": "2026-10-15T16:00:00Z",
+      "end": "2026-10-15T20:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, House of AI Hamburg, Hamburg, Hamburg, DE",
+      "description": "A casual meetup for people using Claude or interested in Claude. Speakers TBD.",
+      "organizer": "Claude Community Events, Vladyslav Nyzhashchyy",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/claude-vb6t",
+      "eventUrl": "https://luma.com/claude-vb6t",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.5429119,
+        "lon": 10.000962699999999
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:36.082719Z",
+      "key": "74dea16068f060bf37b1a235"
+    },
+    {
+      "title": "Microsoft Fabric Community Day 2026",
+      "start": "2026-10-15T21:00:00Z",
+      "end": "2026-10-16T02:00:00Z",
+      "venue": "",
+      "locality": "",
+      "description": "¡Es momento de explorar **Microsoft Fabric**! En este encuentro de comunidad conoceremos Microsoft Fabric y exploraremos cómo integra diferentes capacidad",
+      "organizer": "Virtual DEV Show (Microsoft)",
+      "sourceName": "meetup.com",
+      "sourceUrl": "https://www.meetup.com/virtualdevshow/events/314153677",
+      "eventUrl": "https://www.meetup.com/virtualdevshow/events/314153677/",
+      "price": "",
+      "language": "",
+      "online": true,
+      "geo": null,
+      "confidence": 90,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:42.792919Z",
+      "key": "5a7bb3e7fdf79efb5cdf0150"
     },
     {
       "title": "Copilot, Cowork, Ai Agents Data Governance",
@@ -772,6 +866,31 @@
       "key": "8f8bfcd6c7ac4bac612e1c73"
     },
     {
+      "title": "Dev Days | Lecce, Italy",
+      "start": "2026-10-23T15:30:00Z",
+      "end": "2026-10-23T19:00:00Z",
+      "venue": "Officine Cantelmo",
+      "locality": "Officine Cantelmo, Officine Cantelmo, Lecce, Apulia, IT",
+      "description": "✨ Dev Days is a global, in-person community-led initiative taking place from September 1st - October 31st, 2026. The series brings together developers, enthusiasts, and local tech communities to explore the power of GitHub Copilot through practical, hands-on experiences. Open to all developers, each session runs for approximately 2-3 hours and focuses on real-world workflows, hands-on activities, and workshops centered on GitHub Copilot in the Copilot app and the CLI. During the registration, you'll be asked to provide your GitHub alias. If you don't have a GitHub account yet, create one for free today: https://github.com/. Code of Conduct We are committed to providing a welcoming and inclusive environment for all participants. Please review the event Code of Conduct before attending. 👉 Event Code of Conduct: https://github.com/github/dev-days/blob/main/EVENT_CODE_OF_CONDUCT.md",
+      "organizer": "Dev Days, Dev Days, Carlotta Castelluccio",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/uyyudkfu",
+      "eventUrl": "https://luma.com/uyyudkfu",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 40.3577793,
+        "lon": 18.173339
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:47.259566Z",
+      "key": "b7e2fc99c7a69ecc427a6bcb"
+    },
+    {
       "title": "Global AI Kochi - Chapter Meet - October 2026",
       "start": "2026-10-24T04:30:00Z",
       "end": "2026-10-24T07:30:00Z",
@@ -951,6 +1070,31 @@
       "key": "8ade51fba6c642d3b5a57b64"
     },
     {
+      "title": "Vue.js Hamburg Meetup #23",
+      "start": "2026-11-11T17:30:00Z",
+      "end": "2026-11-11T21:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, House of AI Hamburg, Hamburg, Hamburg, DE",
+      "description": "Join us for the 23rd Vue.js Hamburg Meetup and our last meetup of the year! We're heading to House of AI, a curated space for AI founders in Hamburg's HafenCity, to close out the year with talks, snacks, and good conversation. This evening features two exciting talks: Revanth, the founder of VueVerse, will show us how to make Vue apps leaner and faster by cutting unnecessary weight. In a special premiere for our meetup, Revanth will be joining us live and remote all the way from India. Then Miroslav shares how he built a full office suite in Vue using an agentic, no-hand-coding workflow. Agenda 🤝 18:30 – Arrival, networking & casual get-together (Snacks provided, drinks available for purchase) 🚀 19:00 – Opening 📈 19:15 – Revanth Kumar Patha (remote from India): Vue on a Diet: Ship Less, Render Faster 🧪 20:00 – Miroslav Dzunic: The Agentic Factory: How I Shipped an Office Suite in Vue Without Writing a Single Line of Code 💬 20:45 – Networking & open conversations Who Should Attend? Whether you're a Vue veteran or just getting started, your perspective matters. This meetup thrives on diverse experiences and ideas from all skill levels. Come to share, come to learn, or come to just co",
+      "organizer": "Denis Lugowski, Denis Lugowski",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/ds1wpe2x",
+      "eventUrl": "https://luma.com/ds1wpe2x",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.5429119,
+        "lon": 10.000962699999999
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:34.481185Z",
+      "key": "bac9728aa224490423137ab9"
+    },
+    {
       "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
       "start": "2026-11-12T17:30:00Z",
       "end": "2026-11-12T21:00:00Z",
@@ -974,6 +1118,31 @@
       ],
       "indexedAt": "2026-10-03T14:38:03.347424Z",
       "key": "970269b1c715237db7aa9a65"
+    },
+    {
+      "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
+      "start": "2026-11-12T17:30:00Z",
+      "end": "2026-11-12T21:00:00Z",
+      "venue": "Hamburg, Germany",
+      "locality": "Hamburg, Germany, Hamburg, Hamburg, DE",
+      "description": "The future is now. Autonomous driving is approaching fast and will transform mobility for good. Artificial intelligence, growing connectivity, ever more powerful sensors, and new model architectures are all evolving at once, together pushing the field forward. Tonight we put the spotlight on one of the most exciting developments among them. Join us for an evening on: End-to-End AI Models - Challenges and Opportunities This edition of the Autonomous Driving Meetup brings together engineers, researchers, and industry voices to explore what these models change, where they already deliver, and which problems remain open. You'll hear perspectives from companies and academia, across both the technical and business sides, followed by open discussion and time to connect over drinks and food. Come for the talks, stay for the conversations. ____ Agenda ____ 18:30 Doors Open – Drinks & Mingle 19:00 Talks & Q&A 20:15 Get together, Food & Drinks Speakers Status Quo of E2E Models for Autonomous Driving __ Prof. Dr. Andreas Look, Hochschule Coburg How to Ensure Safety for End-to-End Models in Autonomous Cars __ Dr. Ulrich Wurstbauer, Capgemini Engineering & Founder of QuanIT __ Critiquing End-to-",
+      "organizer": "House of AI Hamburg, Miriam, Maks, Tin",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/i7am4yom",
+      "eventUrl": "https://luma.com/i7am4yom",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.54097318136013,
+        "lon": 9.999650005700754
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:34.814416Z",
+      "key": "ad827f3535ca725019209476"
     },
     {
       "title": "Wunder Mobility Meetup: AI in Fleet Management",
@@ -1001,6 +1170,31 @@
       "key": "690f81e602a30f0a4217177e"
     },
     {
+      "title": "Wunder Mobility Meetup: AI in Fleet Management",
+      "start": "2026-11-19T17:00:00Z",
+      "end": "2026-11-19T23:00:00Z",
+      "venue": "Wunder Mobility",
+      "locality": "Wunder Mobility, Wunder Mobility, Hamburg, Hamburg, DE",
+      "description": "AI in Fleet Management A Wunder Mobility Meetup — Hamburg Every operator is being told that AI will transform fleet operations. Far fewer people can tell you which parts already work and which are still a demo with good lighting. That is what this evening is for. We will show what we have actually shipped — where AI is already taking real work out of dispatch, maintenance, pricing and customer support — and we will be just as clear about where it is not ready yet. Then we hand the room over to the operators and builders running their own experiments, so you leave knowing what to adopt now, what to pilot, and what you cannot afford to miss right now while everyone else is still debating it. No product pitch dressed up as a talk. A room of people who run fleets, comparing notes on the tools that are actually moving the numbers. This is an invite-only event for senior leaders and builders in shared mobility. If you are in the room, it is because you belong in the conversation. Agenda Optional afternoon classes — 15:00 to 18:00 Ahead of the meetup we run three parallel tracks of hands-on classes on AI in fleet management, from beginner to advanced. The afternoon is optional and places ",
+      "organizer": "Wunder Mobility Meetup, Gunnar Froh, Oscar Nilsson Hallgren",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/5ztd6180",
+      "eventUrl": "https://luma.com/5ztd6180",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542871399999996,
+        "lon": 10.0007517
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:35.182319Z",
+      "key": "c24a41ee4a44aefe4de0bb92"
+    },
+    {
       "title": "AI & Matcha: FrÃ¼hstÃ¼cksevent",
       "start": "2026-11-20T09:00:00Z",
       "end": "2026-11-20T11:00:00Z",
@@ -1024,6 +1218,31 @@
       ],
       "indexedAt": "2026-10-03T14:38:03.347659Z",
       "key": "430df5628096af1eb6e80627"
+    },
+    {
+      "title": "AI & Matcha: Frühstücksevent",
+      "start": "2026-11-20T09:00:00Z",
+      "end": "2026-11-20T11:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, House of AI Hamburg, Hamburg, Hamburg, DE",
+      "description": "by AI Curious Collective und Mom Hunting / Female Leaders of AI",
+      "organizer": "House of AI Hamburg, Lilian Madaras, House of AI Hamburg, Lena Harnisch, Virginia Thrun, Karoline",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/8l89hq5n",
+      "eventUrl": "https://luma.com/8l89hq5n",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.5429119,
+        "lon": 10.000962699999999
+      },
+      "confidence": 100,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T14:40:36.681490Z",
+      "key": "ec5535e770cc99b3a76fc939"
     },
     {
       "title": "AI Mavericks #2 â Wo KI-Transformation ehrlich verhandelt wird (House of AI Ã etribes)",
