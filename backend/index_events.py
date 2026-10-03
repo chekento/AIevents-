@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGIONS_PATH = ROOT / "backend" / "regions.json"
 INDEX_PATH = ROOT / "data" / "events-index.json"
 UA = "AIevents-indexer/0.3 (+https://github.com/chekento/AIevents-)"
+BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 TIMEOUT = 18
 
 SOURCE_DOMAINS = [
@@ -64,19 +65,71 @@ def likely_event_url(url):
     return any(h in u for h in EVENT_HINTS) or any(d in u for d in SOURCE_DOMAINS)
 
 
-def discover(query, limit=10):
-    url = "https://html.duckduckgo.com/html/?q=" + quote_plus(query)
-    r = session.get(url, timeout=TIMEOUT)
-    r.raise_for_status()
-    soup = BeautifulSoup(r.text, "html.parser")
+def _collect_links(soup, selector, normalizer=lambda x: x, limit=10):
     out = []
-    for a in soup.select("a.result__a, a[data-testid='result-title-a']"):
-        u = normalize_ddg(a.get("href", ""))
+    for a in soup.select(selector):
+        u = normalizer(a.get("href", ""))
         if u and u.startswith("https://") and likely_event_url(u) and u not in out:
             out.append(u)
         if len(out) >= limit:
             break
     return out
+
+
+def discover(query, limit=10):
+    errors = []
+
+    # DuckDuckGo first; some cloud runner IPs are rate-limited, so never rely on it alone.
+    try:
+        url = "https://html.duckduckgo.com/html/?q=" + quote_plus(query)
+        r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
+        r.raise_for_status()
+        links = _collect_links(
+            BeautifulSoup(r.text, "html.parser"),
+            "a.result__a, a[data-testid='result-title-a']",
+            normalize_ddg,
+            limit
+        )
+        if links:
+            return links
+    except Exception as exc:
+        errors.append("ddg=" + str(exc))
+
+    # Bing HTML is a practical no-key fallback for scheduled public-web discovery.
+    try:
+        url = "https://www.bing.com/search?q=" + quote_plus(query) + "&count=" + str(max(10, limit))
+        r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
+        r.raise_for_status()
+        links = _collect_links(
+            BeautifulSoup(r.text, "html.parser"),
+            "li.b_algo h2 a, a.tilk",
+            lambda x: x,
+            limit
+        )
+        if links:
+            return links
+    except Exception as exc:
+        errors.append("bing=" + str(exc))
+
+    # Last-resort Google HTML fallback. CAPTCHA/consent pages simply yield no results.
+    try:
+        url = "https://www.google.com/search?q=" + quote_plus(query) + "&num=" + str(max(10, limit))
+        r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
+        r.raise_for_status()
+        links = _collect_links(
+            BeautifulSoup(r.text, "html.parser"),
+            "div.yuRUbf a, a[jsname='UWckNb']",
+            lambda x: x,
+            limit
+        )
+        if links:
+            return links
+    except Exception as exc:
+        errors.append("google=" + str(exc))
+
+    if errors:
+        raise RuntimeError("; ".join(errors))
+    return []
 
 
 def iter_nodes(node):
