@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class Screen { DISCOVER, MAP, FAVORITES, SETTINGS }
+enum class Screen { DISCOVER, PROVIDERS, MAP, FAVORITES, SETTINGS }
 
 data class UiState(
     val loading: Boolean = false,
@@ -61,10 +61,22 @@ data class UiState(
     val error: String? = null
 )
 
+data class ProviderUiState(
+    val loading: Boolean = false,
+    val events: List<EventItem> = emptyList(),
+    val indexedCount: Int = 0,
+    val generatedAt: java.time.Instant? = null,
+    val selectedProviderId: String? = null,
+    val error: String? = null
+)
+
 class EventViewModel : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
     private var searchJob: Job? = null
+    private val _providerState = MutableStateFlow(ProviderUiState())
+    val providerState: StateFlow<ProviderUiState> = _providerState.asStateFlow()
+    private var providerJob: Job? = null
 
     fun search(config: SearchConfig) {
         searchJob?.cancel()
@@ -125,6 +137,76 @@ class EventViewModel : ViewModel() {
                     }
                 }
         }
+    }
+
+    fun loadProviderRadar(force: Boolean = false) {
+        if (_providerState.value.loading) return
+        if (!force && _providerState.value.events.isNotEmpty()) return
+        providerJob?.cancel()
+        _providerState.value = _providerState.value.copy(loading = true, error = null)
+        providerJob = viewModelScope.launch {
+            runCatching { CentralEventIndex.providerEvents() }
+                .onSuccess { result ->
+                    _providerState.value = ProviderUiState(
+                        loading = false,
+                        events = result.events,
+                        indexedCount = result.indexedCount,
+                        generatedAt = result.generatedAt,
+                        error = result.warning
+                    )
+                }
+                .onFailure {
+                    if (it is kotlinx.coroutines.CancellationException) return@onFailure
+                    _providerState.value = ProviderUiState(
+                        loading = false,
+                        error = it.message ?: "Provider radar failed"
+                    )
+                }
+        }
+    }
+
+    fun searchProvider(provider: ProviderEntry, language: String) {
+        providerJob?.cancel()
+        _providerState.value = _providerState.value.copy(
+            loading = true,
+            selectedProviderId = provider.id,
+            error = null
+        )
+        providerJob = viewModelScope.launch {
+            val indexed = runCatching { CentralEventIndex.providerEvents() }
+                .getOrElse { CentralEventIndex.ProviderResult(emptyList(), 0, null, it.message) }
+            val indexedForProvider = indexed.events.filter {
+                ProviderCatalog.detect(it)?.id == provider.id ||
+                    it.providerName.equals(provider.name, ignoreCase = true)
+            }
+            runCatching { LiveEventSearch.searchProvider(provider, language) }
+                .onSuccess { live ->
+                    _providerState.value = ProviderUiState(
+                        loading = false,
+                        events = EventMerger.merge(indexedForProvider + live)
+                            .sortedBy { it.start ?: java.time.Instant.MAX },
+                        indexedCount = indexed.indexedCount,
+                        generatedAt = indexed.generatedAt,
+                        selectedProviderId = provider.id,
+                        error = indexed.warning
+                    )
+                }
+                .onFailure {
+                    _providerState.value = ProviderUiState(
+                        loading = false,
+                        events = indexedForProvider,
+                        indexedCount = indexed.indexedCount,
+                        generatedAt = indexed.generatedAt,
+                        selectedProviderId = provider.id,
+                        error = "Live provider search unavailable: " + (it.message ?: "network error")
+                    )
+                }
+        }
+    }
+
+    fun clearProviderSelection() {
+        _providerState.value = _providerState.value.copy(selectedProviderId = null)
+        loadProviderRadar(force = true)
     }
 
     private fun sortEvents(events: List<EventItem>, mode: SortMode, config: SearchConfig? = null): List<EventItem> {
