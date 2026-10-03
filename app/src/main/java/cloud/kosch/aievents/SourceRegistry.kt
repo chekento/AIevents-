@@ -66,6 +66,9 @@ object SourceRegistry {
             EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
         }
         val extra = config.keywords.trim()
+        val aliases = LocationMatcher.searchAliases(place)
+            .filter { it.length >= 3 && !it.equals(place.substringBefore(",").trim(), ignoreCase = true) }
+            .take(3)
         val localAi = when (config.language) {
             "de" -> "KI Künstliche Intelligenz"
             "fr" -> "IA intelligence artificielle"
@@ -92,6 +95,10 @@ object SourceRegistry {
             "\"" + place + "\" KI Veranstaltung Termine Stammtisch Konferenz Workshop " + year + " " + extra,
             "\"" + place + "\" House of AI AI hub community events " + year + " " + extra
         )
+        val aliasQueries = if (aliases.isEmpty()) emptyList() else listOf(
+            aliases.joinToString(" OR ") { "\"" + it + "\"" } +
+                " " + category + " meetup conference workshop event " + year + " " + extra
+        )
         val siteQueries = sources
             .filter { source -> source.id in config.enabledSourceIds && source.directQuery && source.domain.isNotBlank() }
             .map { source ->
@@ -99,6 +106,6 @@ object SourceRegistry {
                     " event meetup conference upcoming " + year + " " + extra
             }
         val officialQueries = OfficialProviders.globalQueries(year, config.enabledSourceIds)
-        return (base + siteQueries + officialQueries).distinct()
+        return (base + aliasQueries + siteQueries + officialQueries).distinct()
     }
 }
