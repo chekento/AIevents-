@@ -36,6 +36,19 @@ object SourceRegistry {
         EventSource("confs", "confs.tech", "confs.tech"),
         EventSource("dev-events", "DEV Events", "dev.events"),
         EventSource("eventyay", "eventyay", "eventyay.com"),
+        EventSource("devpost", "Devpost Hackathons", "devpost.com"),
+        EventSource("hackerearth", "HackerEarth", "hackerearth.com"),
+        EventSource("linkedin-events", "LinkedIn Events", "linkedin.com"),
+        EventSource("airmeet", "Airmeet", "airmeet.com"),
+        EventSource("livestorm", "Livestorm", "livestorm.co"),
+        EventSource("zoom-events", "Zoom Events", "events.zoom.us"),
+        EventSource("cvent", "Cvent", "cvent.com"),
+        EventSource("whova", "Whova", "whova.com"),
+        EventSource("bizzabo", "Bizzabo", "bizzabo.com"),
+        EventSource("goldcast", "Goldcast", "goldcast.io"),
+        EventSource("ringcentral-events", "RingCentral Events", "events.ringcentral.com"),
+        EventSource("swapcard", "Swapcard", "swapcard.com"),
+        EventSource("brella", "Brella", "brella.io"),
         EventSource("aicamp", "AI Camp", "aicamp.ai"),
         EventSource("aisummit", "The AI Summit", "theaisummit.com"),
         EventSource("odsc", "ODSC", "odsc.com"),
@@ -97,12 +110,50 @@ object SourceRegistry {
             aliases.joinToString(" OR ") { "\"" + it + "\"" } +
                 " " + category + " meetup conference workshop event " + year + " " + extra
         )
-        val siteQueries = sources
-            .filter { source -> source.id in config.enabledSourceIds && source.directQuery && source.domain.isNotBlank() }
-            .map { source ->
-                "site:" + source.domain + " \"" + place + "\" " + category +
-                    " event meetup conference upcoming " + year + " " + extra
-            }
+        val eligible = eligibleSources(config)
+        val siteQueries = eligible.take(20).map { source ->
+            "site:" + source.domain + " \"" + place + "\" " + category +
+                " event meetup conference upcoming " + year + " " + extra
+        }
         return (base + aliasQueries + siteQueries).distinct()
+    }
+
+    fun deepQueries(config: SearchConfig): List<String> {
+        val place = config.place.trim()
+        val year = java.time.Year.now().value
+        val category = when (config.category) {
+            EventCategory.AGENTS -> "AI agents agentic MCP"
+            EventCategory.GENAI -> "generative AI LLM"
+            EventCategory.ML -> "machine learning ML"
+            EventCategory.DATA -> "data AI analytics"
+            EventCategory.ROBOTICS -> "robotics physical AI computer vision"
+            EventCategory.BUSINESS -> "AI business transformation enterprise"
+            EventCategory.GOVERNANCE -> "AI governance responsible AI regulation"
+            EventCategory.DEVELOPER -> "AI developer coding engineering"
+            EventCategory.RESEARCH -> "AI research conference"
+            EventCategory.COMMUNITY -> "AI meetup community user group"
+            EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
+        }
+        return eligibleSources(config).drop(20).map { source ->
+            "site:" + source.domain + " \"" + place + "\" " + category +
+                " event meetup webinar workshop conference " + year
+        }
+    }
+
+    private fun eligibleSources(config: SearchConfig): List<EventSource> {
+        val p = config.place.lowercase()
+        return sources.filter { source ->
+            if (source.id !in config.enabledSourceIds || !source.directQuery || source.domain.isBlank()) {
+                false
+            } else {
+                when (source.id) {
+                    "houseofai", "aihamburg" ->
+                        "hamburg" in p || "ahrensburg" in p || "schleswig" in p
+                    "pulse-nyc" ->
+                        "new york" in p || "nyc" in p
+                    else -> true
+                }
+            }
+        }
     }
 }
