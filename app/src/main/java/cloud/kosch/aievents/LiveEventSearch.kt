@@ -38,8 +38,8 @@ object LiveEventSearch {
 
     suspend fun search(config: SearchConfig): SearchSnapshot = withContext(Dispatchers.IO) {
         val warnings = mutableListOf<String>()
-        val center = runCatching { geocode(config.place) }.getOrNull()
-        if (center == null) warnings += "Center coordinates unavailable; strict radius filtering is only possible for events with coordinates."
+        val center = config.center ?: runCatching { geocode(config.place) }.getOrNull()
+        if (center == null) warnings += "Center coordinates unavailable; location matching falls back to verified place text."
 
         val queries = SourceRegistry.queries(config)
         val links = linkedSetOf<String>()
@@ -76,7 +76,29 @@ object LiveEventSearch {
         val now = Instant.now()
 
         val geoEnriched = enrichMissingGeo(events)
-        val filtered = geoEnriched.map { event ->
+            .map(OfficialProviders::enrich)
+
+        val dated = geoEnriched.filter { event ->
+            EventDateRules.isVisible(
+                event = event,
+                now = now,
+                zone = zone,
+                futureDays = config.futureDays,
+                includeUnverifiedDates = config.includeUnverifiedDates
+            )
+        }
+
+        val featuredOfficial = EventMerger.merge(
+            dated.filter { it.officialProvider }
+        ).map { event ->
+            val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
+            EventRanker.rank(event.copy(distanceKm = d), config)
+        }.sortedWith(
+            compareByDescending<EventItem> { it.relevanceScore }
+                .thenBy { it.start ?: Instant.MAX }
+        ).take(12)
+
+        val localCandidates = dated.map { event ->
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
         }.filter { config.includeOnline || !it.online }
@@ -89,25 +111,29 @@ object LiveEventSearch {
             }
             .filter { it.confidence >= config.minConfidence }
             .filter { event ->
-                EventDateRules.isVisible(
-                    event = event,
-                    now = now,
-                    zone = zone,
-                    futureDays = config.futureDays,
-                    includeUnverifiedDates = config.includeUnverifiedDates
-                )
-            }
-            .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
-            .distinctBy { it.stableKey }
-            .let { list ->
-                when (config.sortMode) {
-                    SortMode.DISTANCE -> list.sortedWith(compareBy<EventItem> { it.distanceKm == null }.thenBy { it.distanceKm ?: Double.MAX_VALUE }.thenBy { it.start ?: Instant.MAX })
-                    SortMode.CONFIDENCE -> list.sortedWith(compareByDescending<EventItem> { it.confidence }.thenBy { it.start ?: Instant.MAX })
-                    SortMode.DATE -> list.sortedWith(compareBy<EventItem> { it.start == null }.thenBy { it.start ?: Instant.MAX }.thenByDescending { it.confidence })
+                when {
+                    center != null && event.geo != null ->
+                        event.distanceKm != null && event.distanceKm <= config.radiusKm + 0.5
+                    event.online ->
+                        textualPlaceMatch(event, config.place)
+                    else ->
+                        textualPlaceMatch(event, config.place)
                 }
             }
 
-        SearchSnapshot(config, filtered, queries.size, candidateLinks.size, warnings.distinct())
+        val filtered = EventRanker.sort(
+            EventMerger.merge(localCandidates),
+            config
+        )
+
+        SearchSnapshot(
+            config = config,
+            events = filtered,
+            searchedSources = queries.size,
+            discoveredPages = candidateLinks.size,
+            warnings = warnings.distinct(),
+            featuredOfficialEvents = featuredOfficial
+        )
     }
 
     private fun discover(query: String): List<String> {
@@ -397,6 +423,21 @@ object LiveEventSearch {
             if (!response.isSuccessful) error("HTTP " + response.code)
             return response.body?.string() ?: ""
         }
+    }
+
+    private fun textualPlaceMatch(event: EventItem, place: String): Boolean {
+        val primary = place.substringBefore(",").trim().lowercase()
+        if (primary.length < 2) return false
+        val haystack = listOf(event.locality, event.venue, event.title)
+            .joinToString(" ")
+            .lowercase()
+            .replace(Regex("[^\\p{L}\\p{N}]+"), " ")
+        val normalizedPrimary = primary.replace(Regex("[^\\p{L}\\p{N}]+"), " ")
+        if (normalizedPrimary in haystack) return true
+
+        val tokens = normalizedPrimary.split(" ")
+            .filter { it.length >= 3 && it !in setOf("city", "state", "county", "region") }
+        return tokens.isNotEmpty() && tokens.all { it in haystack }
     }
 
     private fun distanceKm(a: GeoPoint, b: GeoPoint): Double {
