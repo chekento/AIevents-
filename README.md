@@ -8,7 +8,7 @@
 - Ahrensburg preset remains a practical default for southern Schleswig-Holstein + Hamburg
 - Live federated web discovery instead of a bundled static catalogue
 - Search categories: Agents, GenAI, ML, Data, Robotics, Business, Governance, Developer, Research, Community
-- Keyword search plus date horizon, free-only, online, confidence and sorting filters
+- Keyword search plus Today/Week/Month/90-day presets, custom date horizon, free/paid/any pricing, online, confidence and sorting filters
 - Sort by date, distance or source-data confidence
 - Persistent full event favourites
 - Internal OpenStreetMap view for events that publish coordinates
@@ -17,7 +17,7 @@
 - Per-source enable/disable controls
 - Compact or comfortable result cards
 - Light/dark system theme
-- UI languages: German, English, French, Spanish, Italian and Polish
+- UI languages: German, English, French, Spanish, Italian, Polish, Portuguese, Dutch, Swedish, Danish, Finnish, Turkish, Czech, Japanese, Korean and Chinese
 - GitHub Actions APK builds on every push to main
 
 ## Discovery sources
@@ -49,7 +49,7 @@ AIevents uses public search discovery and parses schema.org/Event / JSON-LD when
 Searches run against the live web on demand. Optional periodic WorkManager jobs can refresh event discovery in the background when notifications are enabled.
 
 ## Data quality
-Not every publisher provides precise date, venue, price or coordinates. AIevents shows a confidence score rather than silently treating incomplete metadata as certain. Radius filtering is exact for events with published coordinates; otherwise the original source remains available for verification.
+Not every publisher provides precise date, venue, price or coordinates. AIevents shows a confidence score rather than silently treating incomplete metadata as certain. Radius filtering is exact for events with published coordinates. AIevents also performs a bounded, cached venue-geocoding pass for a small number of missing coordinates; unresolved locations remain visibly unverifiable and retain their original source.
 
 ## Calendar export
 Every event with a verified start date can be inserted into the user's Android calendar through the system calendar UI. AIevents does not require direct calendar-write permission.
