@@ -173,8 +173,15 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
         ActivityResultContracts.RequestMultiplePermissions()
     ) {
         LocationUtils.bestLocation(context)?.let { loc ->
-            commit(settings.copy(place = LocationUtils.describe(context, loc)))
-            vm.search(settings.copy(place = LocationUtils.describe(context, loc)).toSearchConfig())
+            val place = LocationUtils.describe(context, loc)
+            val next = settings.copy(
+                place = place,
+                placeLat = loc.latitude,
+                placeLon = loc.longitude,
+                placeId = "device:" + loc.latitude + ":" + loc.longitude
+            )
+            commit(next)
+            vm.search(next.toSearchConfig())
         }
     }
 
@@ -245,7 +252,12 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                             if (coarse == android.content.pm.PackageManager.PERMISSION_GRANTED) {
                                 LocationUtils.bestLocation(context)?.let { loc ->
                                     val place = LocationUtils.describe(context, loc)
-                                    val next = settings.copy(place = place)
+                                    val next = settings.copy(
+                                        place = place,
+                                        placeLat = loc.latitude,
+                                        placeLon = loc.longitude,
+                                        placeId = "device:" + loc.latitude + ":" + loc.longitude
+                                    )
                                     commit(next)
                                     vm.search(next.toSearchConfig())
                                 }
@@ -308,18 +320,88 @@ private fun DiscoverScreen(
     onFavorite: (EventItem) -> Unit
 ) {
     var filtersOpen by remember { mutableStateOf(false) }
+    var suggestions by remember { mutableStateOf<List<PlaceSuggestion>>(emptyList()) }
+    var placeLookupBusy by remember { mutableStateOf(false) }
+
+    LaunchedEffect(settings.place, settings.placeId, settings.language) {
+        if (settings.placeId.isNotBlank() || settings.place.trim().length < 2) {
+            suggestions = emptyList()
+            return@LaunchedEffect
+        }
+        delay(250)
+        placeLookupBusy = true
+        suggestions = runCatching {
+            LocationAutocomplete.search(settings.place, settings.language, 8)
+        }.getOrDefault(emptyList())
+        placeLookupBusy = false
+    }
+
     Column(Modifier.fillMaxSize()) {
         ElevatedCard(Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxWidth()) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
                 OutlinedTextField(
                     value = settings.place,
-                    onValueChange = { onSettings(settings.copy(place = it)) },
+                    onValueChange = {
+                        onSettings(
+                            settings.copy(
+                                place = it,
+                                placeLat = null,
+                                placeLon = null,
+                                placeId = ""
+                            )
+                        )
+                    },
                     label = { Text(t(settings.language, "place")) },
                     placeholder = { Text(t(settings.language, "place_hint")) },
                     leadingIcon = { Icon(Icons.Default.Place, null) },
+                    trailingIcon = {
+                        if (placeLookupBusy) {
+                            CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp)
+                        } else if (settings.placeId.isNotBlank()) {
+                            Icon(Icons.Default.CheckCircle, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        }
+                    },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
+
+                if (suggestions.isNotEmpty()) {
+                    ElevatedCard(Modifier.fillMaxWidth()) {
+                        Column {
+                            suggestions.take(8).forEach { suggestion ->
+                                Row(
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            onSettings(
+                                                settings.copy(
+                                                    place = suggestion.displayName,
+                                                    placeLat = suggestion.point.lat,
+                                                    placeLon = suggestion.point.lon,
+                                                    placeId = suggestion.id
+                                                )
+                                            )
+                                            suggestions = emptyList()
+                                        }
+                                        .padding(horizontal = 14.dp, vertical = 10.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(Icons.Default.LocationOn, null, tint = MaterialTheme.colorScheme.primary)
+                                    Spacer(Modifier.width(10.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text(suggestion.displayName, fontWeight = FontWeight.SemiBold)
+                                        val meta = listOf(suggestion.type, suggestion.countryCode)
+                                            .filter { it.isNotBlank() }.joinToString(" · ")
+                                        if (meta.isNotBlank()) {
+                                            Text(meta, style = MaterialTheme.typography.labelSmall)
+                                        }
+                                    }
+                                }
+                                HorizontalDivider()
+                            }
+                        }
+                    }
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilledTonalButton(onClick = onUseLocation, modifier = Modifier.weight(1f)) {
                         Icon(Icons.Default.MyLocation, null)
