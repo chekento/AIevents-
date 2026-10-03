@@ -201,7 +201,7 @@ object LiveEventSearch {
 
     private fun isLikelyEventPage(url: String): Boolean {
         val u = url.lowercase()
-        return listOf("meetup.", "luma.", "eventbrite.", "globalai.", "aitinkerers.", "mlops.", "sessionize.", "pretalx.", "gdg.", "reactor.", "huggingface.", "/event", "/events", "conference", "summit", "meetup", "stammtisch", "workshop", "hackathon", "calendar", "community")
+        return listOf("meetup.", "luma.", "lu.ma", "eventbrite.", "partiful.", "bevy.", "sched.", "splashthat.", "allevents.", "globalai.", "aitinkerers.", "mlops.", "sessionize.", "pretalx.", "gdg.", "reactor.", "huggingface.", "/event", "/events", "conference", "summit", "meetup", "stammtisch", "workshop", "hackathon", "calendar", "community")
             .any { it in u }
     }
 
