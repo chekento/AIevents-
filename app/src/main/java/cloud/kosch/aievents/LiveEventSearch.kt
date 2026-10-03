@@ -182,6 +182,11 @@ object LiveEventSearch {
     }
 
     private fun parseEventObject(obj: JSONObject, doc: Document, sourceUrl: String): EventItem? {
+        val eventStatus = obj.optString("eventStatus")
+        if (eventStatus.contains("EventCancelled", ignoreCase = true) ||
+            eventStatus.contains("EventCanceled", ignoreCase = true)
+        ) return null
+
         val title = obj.optString("name").ifBlank { meta(doc, "og:title") }.trim()
         if (title.length < 3) return null
 
