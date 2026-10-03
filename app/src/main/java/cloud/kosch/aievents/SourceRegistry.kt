@@ -71,11 +71,17 @@ object SourceRegistry {
         val base = listOf(
             "\"" + place + "\" " + category + " event conference meetup workshop hackathon " + year + " " + extra,
             "\"" + place + "\" " + localAi + " meetup community user group Stammtisch " + year + " " + extra,
-            "\"" + place + "\" LLM agents RAG MCP workshop meetup " + year + " " + extra
+            "\"" + place + "\" LLM agents RAG MCP workshop meetup " + year + " " + extra,
+            "\"" + place + "\" AI events calendar upcoming " + year + " " + extra,
+            "\"" + place + "\" KI Veranstaltung Termine Stammtisch Konferenz Workshop " + year + " " + extra,
+            "\"" + place + "\" House of AI AI hub community events " + year + " " + extra
         )
         val siteQueries = sources
             .filter { source -> source.id in config.enabledSourceIds && source.directQuery && source.domain.isNotBlank() }
-            .map { source -> "site:" + source.domain + " \"" + place + "\" " + category + " event " + year + " " + extra }
+            .flatMap { source -> listOf(
+                "site:" + source.domain + " \"" + place + "\" " + category + " event " + year + " " + extra,
+                "site:" + source.domain + " \"" + place + "\" upcoming AI meetup " + year
+            ) }
         return (base + siteQueries).distinct()
     }
 }
