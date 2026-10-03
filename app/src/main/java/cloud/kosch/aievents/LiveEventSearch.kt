@@ -101,7 +101,8 @@ object LiveEventSearch {
         val localCandidates = dated.map { event ->
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
-        }.filter { config.includeOnline || !it.online }
+        }.filter { !it.officialProvider }
+            .filter { config.includeOnline || !it.online }
             .filter {
                 when (config.priceMode) {
                     PriceMode.ANY -> true
