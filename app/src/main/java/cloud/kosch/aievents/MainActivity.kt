@@ -305,11 +305,18 @@ private fun FilterPanel(settings: AppSettings, onSettings: (AppSettings) -> Unit
         Switch(settings.includeOnline, { onSettings(settings.copy(includeOnline = it)) })
         Spacer(Modifier.width(8.dp))
         Text(t(settings.language, "online"))
-        Spacer(Modifier.weight(1f))
-        Checkbox(settings.freeOnly, { onSettings(settings.copy(freeOnly = it)) })
-        Text(t(settings.language, "free"))
     }
+    PriceMenu(settings.priceMode, settings.language) { onSettings(settings.copy(priceMode = it)) }
     Text(t(settings.language, "time_horizon") + ": " + settings.futureDays + " d")
+    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        listOf(1 to t(settings.language, "today"), 7 to t(settings.language, "week"), 30 to t(settings.language, "month"), 90 to "90d").forEach { pair ->
+            FilterChip(
+                selected = settings.futureDays == pair.first,
+                onClick = { onSettings(settings.copy(futureDays = pair.first)) },
+                label = { Text(pair.second) }
+            )
+        }
+    }
     Slider(
         value = settings.futureDays.toFloat(),
         onValueChange = { onSettings(settings.copy(futureDays = it.toInt())) },
@@ -335,6 +342,28 @@ private fun CategoryMenu(value: EventCategory, language: String, onChange: (Even
             EventCategory.entries.forEach { cat ->
                 DropdownMenuItem(text = { Text(cat.name.replace("_", " ")) }, onClick = { onChange(cat); open = false })
             }
+        }
+    }
+}
+
+@Composable
+private fun PriceMenu(value: PriceMode, language: String, onChange: (PriceMode) -> Unit) {
+    var open by remember { mutableStateOf(false) }
+    OutlinedButton(onClick = { open = true }, modifier = Modifier.fillMaxWidth()) {
+        Text(t(language, "price") + ": " + when (value) {
+            PriceMode.ANY -> t(language, "any")
+            PriceMode.FREE -> t(language, "free")
+            PriceMode.PAID -> t(language, "paid")
+        })
+    }
+    DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+        PriceMode.entries.forEach { mode ->
+            val label = when (mode) {
+                PriceMode.ANY -> t(language, "any")
+                PriceMode.FREE -> t(language, "free")
+                PriceMode.PAID -> t(language, "paid")
+            }
+            DropdownMenuItem(text = { Text(label) }, onClick = { onChange(mode); open = false })
         }
     }
 }
@@ -531,7 +560,12 @@ private fun SettingsToggle(label: String, value: Boolean, onChange: (Boolean) ->
 @Composable
 private fun LanguageMenu(language: String, onChange: (String) -> Unit) {
     var open by remember { mutableStateOf(false) }
-    val languages = listOf("de" to "Deutsch", "en" to "English", "fr" to "Français", "es" to "Español", "it" to "Italiano", "pl" to "Polski")
+    val languages = listOf(
+        "de" to "Deutsch", "en" to "English", "fr" to "Français", "es" to "Español",
+        "it" to "Italiano", "pl" to "Polski", "pt" to "Português", "nl" to "Nederlands",
+        "sv" to "Svenska", "da" to "Dansk", "fi" to "Suomi", "tr" to "Türkçe",
+        "cs" to "Čeština", "ja" to "日本語", "ko" to "한국어", "zh" to "中文"
+    )
     OutlinedButton(onClick = { open = true }, modifier = Modifier.fillMaxWidth()) {
         Icon(Icons.Default.Language, null)
         Spacer(Modifier.width(8.dp))
@@ -569,7 +603,7 @@ private fun t(lang: String, key: String): String {
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
         "events" to "events", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
-        "online" to "Online", "free" to "Free only", "time_horizon" to "Time horizon", "confidence" to "Data quality",
+        "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality",
         "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
         "no_map" to "No coordinates are available for the current results.", "preferences" to "Preferences",
@@ -583,7 +617,7 @@ private fun t(lang: String, key: String): String {
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
         "events" to "Events", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
-        "online" to "Online", "free" to "Nur kostenlos", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität",
+        "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität",
         "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
         "no_map" to "Für die aktuellen Treffer liegen keine Koordinaten vor.", "preferences" to "Einstellungen",
@@ -596,5 +630,18 @@ private fun t(lang: String, key: String): String {
     val es = en + mapOf("discover" to "Descubrir", "map" to "Mapa", "favorites" to "Guardados", "settings" to "Ajustes", "place" to "Lugar / región", "search" to "Buscar", "calendar" to "Calendario", "source" to "Fuente")
     val it = en + mapOf("discover" to "Scopri", "map" to "Mappa", "favorites" to "Salvati", "settings" to "Impostazioni", "place" to "Luogo / regione", "search" to "Cerca", "calendar" to "Calendario", "source" to "Fonte")
     val pl = en + mapOf("discover" to "Odkrywaj", "map" to "Mapa", "favorites" to "Zapisane", "settings" to "Ustawienia", "place" to "Miejsce / region", "search" to "Szukaj", "calendar" to "Kalendarz", "source" to "Źródło")
-    return when (lang) { "de" -> de; "fr" -> fr; "es" -> es; "it" -> it; "pl" -> pl; else -> en }[key] ?: key
+    val pt = en + mapOf("discover" to "Descobrir", "map" to "Mapa", "favorites" to "Guardados", "settings" to "Definições", "place" to "Local / região", "search" to "Pesquisar", "calendar" to "Calendário", "source" to "Fonte")
+    val nl = en + mapOf("discover" to "Ontdekken", "map" to "Kaart", "favorites" to "Opgeslagen", "settings" to "Instellingen", "place" to "Plaats / regio", "search" to "Zoeken", "calendar" to "Agenda", "source" to "Bron")
+    val sv = en + mapOf("discover" to "Upptäck", "map" to "Karta", "favorites" to "Sparade", "settings" to "Inställningar", "place" to "Plats / region", "search" to "Sök", "calendar" to "Kalender", "source" to "Källa")
+    val da = en + mapOf("discover" to "Opdag", "map" to "Kort", "favorites" to "Gemte", "settings" to "Indstillinger", "place" to "Sted / region", "search" to "Søg", "calendar" to "Kalender", "source" to "Kilde")
+    val fi = en + mapOf("discover" to "Löydä", "map" to "Kartta", "favorites" to "Tallennetut", "settings" to "Asetukset", "place" to "Paikka / alue", "search" to "Hae", "calendar" to "Kalenteri", "source" to "Lähde")
+    val tr = en + mapOf("discover" to "Keşfet", "map" to "Harita", "favorites" to "Kaydedilenler", "settings" to "Ayarlar", "place" to "Yer / bölge", "search" to "Ara", "calendar" to "Takvim", "source" to "Kaynak")
+    val cs = en + mapOf("discover" to "Objevit", "map" to "Mapa", "favorites" to "Uložené", "settings" to "Nastavení", "place" to "Místo / region", "search" to "Hledat", "calendar" to "Kalendář", "source" to "Zdroj")
+    val ja = en + mapOf("discover" to "探す", "map" to "地図", "favorites" to "保存済み", "settings" to "設定", "place" to "場所 / 地域", "search" to "検索", "calendar" to "カレンダー", "source" to "情報源")
+    val ko = en + mapOf("discover" to "탐색", "map" to "지도", "favorites" to "저장됨", "settings" to "설정", "place" to "장소 / 지역", "search" to "검색", "calendar" to "캘린더", "source" to "출처")
+    val zh = en + mapOf("discover" to "发现", "map" to "地图", "favorites" to "已保存", "settings" to "设置", "place" to "地点 / 地区", "search" to "搜索", "calendar" to "日历", "source" to "来源")
+    return when (lang) {
+        "de" -> de; "fr" -> fr; "es" -> es; "it" -> it; "pl" -> pl; "pt" -> pt; "nl" -> nl;
+        "sv" -> sv; "da" -> da; "fi" -> fi; "tr" -> tr; "cs" -> cs; "ja" -> ja; "ko" -> ko; "zh" -> zh; else -> en
+    }[key] ?: key
 }
