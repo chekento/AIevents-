@@ -15,7 +15,7 @@ HINTS = ("event","events","meetup","conference","summit","workshop","hackathon",
 session = requests.Session()
 session.headers.update({"User-Agent": BROWSER_UA, "Accept-Language": "en,de;q=0.9,*;q=0.5"})
 
-def hub_links(url, limit=120):
+def hub_links(url, limit=50):
     try:
         r = session.get(url, timeout=18)
         r.raise_for_status()
@@ -49,7 +49,7 @@ def collect(parse_page):
         print("Direct hub:", hub)
         links.extend(hub_links(hub))
         time.sleep(0.4)
-    links = list(dict.fromkeys(links))[:220]
+    links = list(dict.fromkeys(links))[:60]
     print("Direct hub candidate links:", len(links))
     events = []
     for url in links:
