@@ -105,8 +105,8 @@ object OfficialProviders {
         )
     }
 
-    fun globalQueries(year: Int): List<String> = providers.flatMap { provider ->
-        provider.domains.take(2).map { domain ->
+    fun globalQueries(year: Int): List<String> = providers.take(8).mapNotNull { provider ->
+        provider.domains.firstOrNull()?.let { domain ->
             "site:" + domain + " " + provider.queryTerms + " " + year + " upcoming"
         }
     }.distinct()
