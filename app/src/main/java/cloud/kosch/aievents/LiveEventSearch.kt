@@ -41,7 +41,13 @@ object LiveEventSearch {
         val center = config.center ?: runCatching { geocode(config.place) }.getOrNull()
         if (center == null) warnings += "Center coordinates unavailable; location matching falls back to verified place text."
 
-        val queries = SourceRegistry.queries(config)
+        val nearbyPlaces = if (center != null && config.radiusKm >= 15) {
+            runCatching {
+                NearbyPlaceResolver.resolve(center, config.radiusKm, 8).map { it.name }
+            }.getOrDefault(emptyList())
+        } else emptyList()
+
+        val queries = SourceRegistry.queries(config, nearbyPlaces)
         var queryCount = queries.size
         val links = linkedSetOf<String>()
         val querySemaphore = Semaphore(4)
@@ -58,7 +64,7 @@ object LiveEventSearch {
         }
 
         if (links.size < 24) {
-            val deepQueries = SourceRegistry.deepQueries(config).take(24)
+            val deepQueries = SourceRegistry.deepQueries(config, nearbyPlaces).take(32)
             queryCount += deepQueries.size
             coroutineScope {
                 deepQueries.map { query ->
