@@ -18,6 +18,7 @@ data class AppSettings(
     val priceMode: PriceMode = PriceMode.ANY,
     val minConfidence: Int = 35,
     val futureDays: Int = 365,
+    val includeUnverifiedDates: Boolean = false,
     val category: EventCategory = EventCategory.ALL,
     val sortMode: SortMode = SortMode.DATE,
     val keywords: String = "",
@@ -39,6 +40,7 @@ class SettingsStore(private val context: Context) {
         val priceMode = stringPreferencesKey("price_mode")
         val confidence = intPreferencesKey("confidence")
         val futureDays = intPreferencesKey("future_days")
+        val includeUnverifiedDates = booleanPreferencesKey("include_unverified_dates")
         val category = stringPreferencesKey("category")
         val sort = stringPreferencesKey("sort")
         val keywords = stringPreferencesKey("keywords")
@@ -60,6 +62,7 @@ class SettingsStore(private val context: Context) {
             priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
             minConfidence = p[Keys.confidence] ?: 35,
             futureDays = p[Keys.futureDays] ?: 365,
+            includeUnverifiedDates = p[Keys.includeUnverifiedDates] ?: false,
             category = runCatching { EventCategory.valueOf(p[Keys.category] ?: "ALL") }.getOrDefault(EventCategory.ALL),
             sortMode = runCatching { SortMode.valueOf(p[Keys.sort] ?: "DATE") }.getOrDefault(SortMode.DATE),
             keywords = p[Keys.keywords] ?: "",
@@ -82,6 +85,7 @@ class SettingsStore(private val context: Context) {
             p[Keys.priceMode] = s.priceMode.name
             p[Keys.confidence] = s.minConfidence
             p[Keys.futureDays] = s.futureDays
+            p[Keys.includeUnverifiedDates] = s.includeUnverifiedDates
             p[Keys.category] = s.category.name
             p[Keys.sort] = s.sortMode.name
             p[Keys.keywords] = s.keywords
