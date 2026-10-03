@@ -10,6 +10,8 @@ data class EventSource(
 object SourceRegistry {
     val sources = listOf(
         EventSource("globalai", "Global AI Community", "globalai.community"),
+        EventSource("houseofai", "House of AI", "house-of-ai.org"),
+        EventSource("aihamburg", "AI.HAMBURG", "ai.hamburg"),
         EventSource("aitinkerers", "AI Tinkerers", "aitinkerers.org"),
         EventSource("mlops", "MLOps Community", "mlops.community"),
         EventSource("meetup", "Meetup", "meetup.com"),
