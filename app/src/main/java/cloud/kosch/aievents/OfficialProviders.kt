@@ -109,9 +109,20 @@ object OfficialProviders {
         .firstOrNull { it.name.equals(providerName, ignoreCase = true) }
         ?.domains?.firstOrNull()
 
-    fun globalQueries(year: Int): List<String> = providers.take(8).mapNotNull { provider ->
-        provider.domains.firstOrNull()?.let { domain ->
-            "site:" + domain + " " + provider.queryTerms + " " + year + " upcoming"
-        }
-    }.distinct()
+    fun globalQueries(year: Int, enabledSourceIds: Set<String>): List<String> =
+        providers.take(8)
+            .filter { provider ->
+                val sourceId = when (provider.id) {
+                    "aws" -> "aws-official"
+                    "nvidia" -> "nvidia-official"
+                    "huggingface" -> "huggingface-official"
+                    else -> provider.id
+                }
+                sourceId in enabledSourceIds
+            }
+            .mapNotNull { provider ->
+                provider.domains.firstOrNull()?.let { domain ->
+                    "site:" + domain + " " + provider.queryTerms + " " + year + " upcoming"
+                }
+            }.distinct()
 }
