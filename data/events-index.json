@@ -1,8 +1,21 @@
 {
   "schema": 1,
-  "generated_at": null,
-  "cursor": 0,
-  "regions_processed": [],
+  "generated_at": "2026-10-03T14:13:20.852435Z",
+  "cursor": 12,
+  "regions_processed": [
+    "Ahrensburg, Schleswig-Holstein, Germany",
+    "Hamburg, Germany",
+    "Kiel, Germany",
+    "Lübeck, Germany",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Frankfurt, Germany",
+    "Cologne, Germany",
+    "Düsseldorf, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria",
+    "Zurich, Switzerland"
+  ],
   "event_count": 0,
   "events": []
 }
