@@ -15,7 +15,7 @@ data class AppSettings(
     val radiusKm: Int = 45,
     val language: String = "de",
     val includeOnline: Boolean = true,
-    val freeOnly: Boolean = false,
+    val priceMode: PriceMode = PriceMode.ANY,
     val minConfidence: Int = 35,
     val futureDays: Int = 365,
     val category: EventCategory = EventCategory.ALL,
@@ -36,7 +36,7 @@ class SettingsStore(private val context: Context) {
         val radius = intPreferencesKey("radius")
         val language = stringPreferencesKey("language")
         val online = booleanPreferencesKey("online")
-        val free = booleanPreferencesKey("free")
+        val priceMode = stringPreferencesKey("price_mode")
         val confidence = intPreferencesKey("confidence")
         val futureDays = intPreferencesKey("future_days")
         val category = stringPreferencesKey("category")
@@ -57,7 +57,7 @@ class SettingsStore(private val context: Context) {
             radiusKm = p[Keys.radius] ?: 45,
             language = p[Keys.language] ?: "de",
             includeOnline = p[Keys.online] ?: true,
-            freeOnly = p[Keys.free] ?: false,
+            priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
             minConfidence = p[Keys.confidence] ?: 35,
             futureDays = p[Keys.futureDays] ?: 365,
             category = runCatching { EventCategory.valueOf(p[Keys.category] ?: "ALL") }.getOrDefault(EventCategory.ALL),
@@ -79,7 +79,7 @@ class SettingsStore(private val context: Context) {
             p[Keys.radius] = s.radiusKm
             p[Keys.language] = s.language
             p[Keys.online] = s.includeOnline
-            p[Keys.free] = s.freeOnly
+            p[Keys.priceMode] = s.priceMode.name
             p[Keys.confidence] = s.minConfidence
             p[Keys.futureDays] = s.futureDays
             p[Keys.category] = s.category.name
