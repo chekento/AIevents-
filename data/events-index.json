@@ -1,52 +1,30 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-03T14:41:41.366321Z",
-  "cursor": 72,
+  "generated_at": "2026-10-03T14:44:11.467787Z",
+  "cursor": 11,
   "regions_processed": [
-    "Bangkok, Thailand",
-    "Jakarta, Indonesia",
-    "Hong Kong",
-    "Taipei, Taiwan",
-    "Seoul, South Korea",
-    "Tokyo, Japan",
-    "Osaka, Japan",
-    "Beijing, China",
-    "Shanghai, China",
-    "Shenzhen, China",
-    "Sydney, Australia",
-    "Melbourne, Australia"
+    "Auckland, New Zealand",
+    "Ahrensburg, Schleswig-Holstein, Germany",
+    "Hamburg, Germany",
+    "Kiel, Germany",
+    "Lübeck, Germany",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Frankfurt, Germany",
+    "Cologne, Germany",
+    "Düsseldorf, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria"
   ],
-  "event_count": 54,
+  "event_count": 53,
   "events": [
-    {
-      "title": "Dev Days | Amravati, India",
-      "start": "2026-10-03T04:30:00Z",
-      "end": "2026-10-03T12:00:00Z",
-      "venue": "",
-      "locality": "",
-      "description": "Dev Days | Amravati, India",
-      "organizer": "Global AI Amravati",
-      "sourceName": "globalai.community",
-      "sourceUrl": "https://globalai.community/e/cl7i97m1",
-      "eventUrl": "https://globalai.community/e/cl7i97m1",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 68,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:25:17.899166Z",
-      "key": "48024d23eae87a33522bf694"
-    },
     {
       "title": "Towards AI-native: Building the capabilities for the future of work",
       "start": "2026-10-03T07:00:00Z",
       "end": "2026-10-03T15:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "KI verÃ¤ndert, wie wir Wissen organisieren, Aufgaben delegieren und mit digitalen Systemen zusammenarbeiten. Chatten war der Anfang. Die nÃ¤chste Generation von KI arbeitet mit unserem Wissen, kennt den Kontext unserer Projekte, nutzt Tools und Ã¼bernimmt ganze Aufgaben. Damit verÃ¤ndert sich auch unsere Rolle: Wir mÃ¼ssen lernen, Wissen, Workflows und Arbeitsumgebungen so aufzubauen, dass Menschen und KI darin gemeinsam arbeiten kÃ¶nnen. AI-native ist eine Entwicklungsrichtung.",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "KI verändert, wie wir Wissen organisieren, Aufgaben delegieren und mit digitalen Systemen zusammenarbeiten. Chatten war der Anfang. Die nächste Generation von KI arbeitet mit unserem Wissen, kennt den Kontext unserer Projekte, nutzt Tools und übernimmt ganze Aufgaben. Damit verändert sich auch unsere Rolle: Wir müssen lernen, Wissen, Workflows und Arbeitsumgebungen so aufzubauen, dass Menschen und KI darin gemeinsam arbeiten können. AI-native ist eine Entwicklungsrichtung.",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -63,7 +41,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346043Z",
-      "key": "bebdd20d0389287e08036977"
+      "key": "5f9e300f217d2b387753be7e"
     },
     {
       "title": "Cofounder Speed Dating: Consumer and Prosumer AI",
@@ -202,7 +180,7 @@
       "start": "2026-10-07T09:30:00Z",
       "end": "2026-10-07T10:30:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "Founders at the House of AI meet to share what they are working on and what works what doesn't work.",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -220,7 +198,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346244Z",
-      "key": "6f3cc11daec4e7a0260443c0"
+      "key": "2bcc80e63c01c613580d57ad"
     },
     {
       "title": "AI Tinkerers Seoul × Kiro: Demo Night with Joe.",
@@ -249,7 +227,7 @@
       "start": "2026-10-07T10:30:00Z",
       "end": "2026-10-07T11:30:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "Lunch for House of AI residents (internal only). Socialise and share learnings over a nice lunch :)",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -267,7 +245,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346381Z",
-      "key": "074744b5dabf508d519998bb"
+      "key": "a9f925d3af61d166635d940e"
     },
     {
       "title": "Women in AI - Interview with Femke",
@@ -292,11 +270,11 @@
       "key": "7445760fe2fb95f0b8e9f2c3"
     },
     {
-      "title": "AI Builders Hamburg â¢ Oct 7",
+      "title": "AI Builders Hamburg • Oct 7",
       "start": "2026-10-07T16:00:00Z",
       "end": "2026-10-07T19:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "Join our informal meetup for the biggest AI nerds! We share the latest insights about: AI dev tools, Agent frameworks, RAG, vibe coding, OpenClaw, Claude Code and more! // FOR WHO â Devs, Product peeps, Data lovers, ML engineers, Founders â Anyone building with AI â ï¸ Some LLM knowledge required!* // FORMAT ð¤ Innovative AI Demos â from EU + Silicon Valley leaders ð» Builder Tool Demos â ship fast, explain faster ð¤ ð» A LOT of time for informal networking ð Yummy Pizza &",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -314,7 +292,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346523Z",
-      "key": "95fc8fc211b22c383f832748"
+      "key": "c534de1a009bb7ddf352f322"
     },
     {
       "title": "AI Tinkerers Antwerp: Agentic Knowledge Management",
@@ -387,8 +365,8 @@
       "start": "2026-10-08T16:00:00Z",
       "end": "2026-10-08T18:30:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "ð¹ House of AI Community Happy Hour Time to kick back and unwind at House of AI Hamburg! Grab a drink, settle into a comfy corner, and enjoy a relaxed evening away from screens and schedules. Whether youâre catching up with familiar faces or meeting new ones, this is the perfect chance to slow down and just chat. Weâll have a nice mix of drinks on hand, both alcoholic and non-alcoholic, so thereâs something for everyone. Thereâs no agenda to follow and nothing you need to",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "🍹 House of AI Community Happy Hour Time to kick back and unwind at House of AI Hamburg! Grab a drink, settle into a comfy corner, and enjoy a relaxed evening away from screens and schedules. Whether you’re catching up with familiar faces or meeting new ones, this is the perfect chance to slow down and just chat. We’ll have a nice mix of drinks on hand, both alcoholic and non-alcoholic, so there’s something for everyone. There’s no agenda to follow and nothing you need to",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -405,7 +383,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346653Z",
-      "key": "4962929474edd60dcd762968"
+      "key": "21b2db5d7b2ee59170f7a438"
     },
     {
       "title": "GitHub Copilot Dev Day 2026",
@@ -434,8 +412,8 @@
       "start": "2026-10-09T14:00:00Z",
       "end": "2026-10-09T21:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "build fridays hamburg every week, fridays, 4-11pm. bring your laptop. what it is: a bi-weekly gathering for people building startups. come work on your thing alongside others doing the same. network while you actually ship. who comes: anyone thinking about starting something â actively building â startup veterans. from first-time founders to serial entrepreneurs. what happens: build your product/project demo what you shipped the last weeks talk through your blockers get help",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "build fridays hamburg every week, fridays, 4-11pm. bring your laptop. what it is: a bi-weekly gathering for people building startups. come work on your thing alongside others doing the same. network while you actually ship. who comes: anyone thinking about starting something → actively building → startup veterans. from first-time founders to serial entrepreneurs. what happens: build your product/project demo what you shipped the last weeks talk through your blockers get help",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -452,7 +430,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346779Z",
-      "key": "645265ada628fbecfae01f65"
+      "key": "0a4bd5467ca0f444a11cb620"
     },
     {
       "title": "IBM Tech Connect: AI, Cloud & The Future of Technology",
@@ -528,7 +506,7 @@
       "start": "2026-10-14T16:00:00Z",
       "end": "2026-10-14T20:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "robotics & physical ai hamburg - bring your hardware (or just yourself) hamburg has world-class hardware people. accelerator instrumentation, maritime, aerospace, labs full of machines that move. what it doesn't have is a room where those people show up together on a Wednesday evening with the thing they've been building. so we're making one. low-key, no strict agenda beyond people meeting people. we're going wider than traditional robotics on purpose. the full spectrum of",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -546,7 +524,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346910Z",
-      "key": "ecb60ec09bbbca67b2991f92"
+      "key": "c3af9e8d3cf3710ffc399f68"
     },
     {
       "title": "Technical Meetup: Leveraging AI across Software Development Life Cycle",
@@ -575,7 +553,7 @@
       "start": "2026-10-15T16:00:00Z",
       "end": "2026-10-15T20:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "A casual meetup for people using Claude or interested in Claude. Speakers TBD.",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -593,7 +571,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347032Z",
-      "key": "420c48c9738c77bce955fbed"
+      "key": "4b23dcb7aec1a9166ad4dba5"
     },
     {
       "title": "Hamburg | Claude Code Meetup",
@@ -797,12 +775,12 @@
       "key": "f788b1ddf234c11b9d728d0a"
     },
     {
-      "title": "MAKE AI WORK - The Human vs. Maschine Edition Â´26",
+      "title": "MAKE AI WORK - The Human vs. Maschine Edition ´26",
       "start": "2026-10-23T10:00:00Z",
       "end": "2026-10-24T16:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "Schluss mit dem Hype, letÂ´s make AI work! KI-Konferenzen gibt es viele . Was uns aber fehlte war eine Veranstaltung, die den ganz klaren Fokus auf ungeschÃ¶nte Case Studies und sofort anwendbares Praxiswissen legt. Ohne SchaumschlÃ¤ger und Selbstdarsteller. DafÃ¼r mit Anwendern, die aus eigener Erfahrung sprechen und Experten, die wirklich Wissen (und nicht vorrangig sich selbst) vermitteln wollen. Kurz: Wir wollen die konkreteste KI-Konferenz der Welt auf die Beine stellen .",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "Schluss mit dem Hype, let´s make AI work! KI-Konferenzen gibt es viele . Was uns aber fehlte war eine Veranstaltung, die den ganz klaren Fokus auf ungeschönte Case Studies und sofort anwendbares Praxiswissen legt. Ohne Schaumschläger und Selbstdarsteller. Dafür mit Anwendern, die aus eigener Erfahrung sprechen und Experten, die wirklich Wissen (und nicht vorrangig sich selbst) vermitteln wollen. Kurz: Wir wollen die konkreteste KI-Konferenz der Welt auf die Beine stellen .",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -819,7 +797,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347163Z",
-      "key": "c0ee2e1b44622fd51766ba7e"
+      "key": "87a772cef7c071c229105506"
     },
     {
       "title": "Graphs Gone Wild",
@@ -1049,7 +1027,7 @@
       "start": "2026-11-11T17:30:00Z",
       "end": "2026-11-11T21:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "Join us for the 23rd Vue.js Hamburg Meetup and our last meetup of the year! We're heading to House of AI , a curated space for AI founders in Hamburg's HafenCity, to close out the year with talks, snacks, and good conversation. This evening features two exciting talks: Revanth, the founder of VueVerse , will show us how to make Vue apps leaner and faster by cutting unnecessary weight. In a special premiere for our meetup, Revanth will be joining us live and remote all the",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -1067,7 +1045,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347302Z",
-      "key": "8ade51fba6c642d3b5a57b64"
+      "key": "2ffcd4a1281df3013fc68b23"
     },
     {
       "title": "Vue.js Hamburg Meetup #23",
@@ -1099,7 +1077,7 @@
       "start": "2026-11-12T17:30:00Z",
       "end": "2026-11-12T21:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "The future is now. Autonomous driving is approaching fast and will transform mobility for good. Artificial intelligence, growing connectivity, ever more powerful sensors, and new model architectures are all evolving at once, together pushing the field forward. Tonight we put the spotlight on one of the most exciting developments among them. Join us for an evening on: End-to-End AI Models - Challenges and Opportunities This edition of the Autonomous Driving Meetup brings",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -1117,7 +1095,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347424Z",
-      "key": "970269b1c715237db7aa9a65"
+      "key": "ac132edd73514cee22033aad"
     },
     {
       "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
@@ -1149,8 +1127,8 @@
       "start": "2026-11-19T17:00:00Z",
       "end": "2026-11-19T23:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "AI in Fleet Management A Wunder Mobility Meetup â Hamburg Every operator is being told that AI will transform fleet operations. Far fewer people can tell you which parts already work and which are still a demo with good lighting. That is what this evening is for. We will show what we have actually shipped â where AI is already taking real work out of dispatch, maintenance, pricing and customer support â and we will be just as clear about where it is not ready yet. Then we",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "AI in Fleet Management A Wunder Mobility Meetup — Hamburg Every operator is being told that AI will transform fleet operations. Far fewer people can tell you which parts already work and which are still a demo with good lighting. That is what this evening is for. We will show what we have actually shipped — where AI is already taking real work out of dispatch, maintenance, pricing and customer support — and we will be just as clear about where it is not ready yet. Then we",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -1167,7 +1145,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347546Z",
-      "key": "690f81e602a30f0a4217177e"
+      "key": "b60a6393086ff6b8c5ba4622"
     },
     {
       "title": "Wunder Mobility Meetup: AI in Fleet Management",
@@ -1195,11 +1173,11 @@
       "key": "c24a41ee4a44aefe4de0bb92"
     },
     {
-      "title": "AI & Matcha: FrÃ¼hstÃ¼cksevent",
+      "title": "AI & Matcha: Frühstücksevent",
       "start": "2026-11-20T09:00:00Z",
       "end": "2026-11-20T11:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
       "description": "by AI Curious Collective und Mom Hunting / Female Leaders of AI",
       "organizer": "",
       "sourceName": "house-of-ai.org",
@@ -1217,7 +1195,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347659Z",
-      "key": "430df5628096af1eb6e80627"
+      "key": "e76827d62f86fccd313ced25"
     },
     {
       "title": "AI & Matcha: Frühstücksevent",
@@ -1245,12 +1223,12 @@
       "key": "ec5535e770cc99b3a76fc939"
     },
     {
-      "title": "AI Mavericks #2 â Wo KI-Transformation ehrlich verhandelt wird (House of AI Ã etribes)",
+      "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
       "start": "2027-01-27T17:00:00Z",
       "end": "2027-01-27T20:30:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, HongkongstraÃe 2â4, 20457, Hamburg, Hamburg, DE",
-      "description": "Der Treffpunkt fÃ¼r FÃ¼hrungskrÃ¤fte und Change-Agents, die KI in echte Organisationen bringen â nicht in Pilotfolien. Am 27.01.2027 geht AI Mavericks in die nÃ¤chste Runde. Neues Jahr, gleiche Frage: Wird 2027 das Jahr, in dem KI in deinem Unternehmen wirklich ankommt? Die Budgets sind freigegeben, die Strategiepapiere geschrieben, die ersten Piloten laufen. Und trotzdem entscheidet sich der Erfolg nicht in der Roadmap, sondern im Alltag: bei den Menschen, die Teams mitnehmen,",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "Der Treffpunkt für Führungskräfte und Change-Agents, die KI in echte Organisationen bringen – nicht in Pilotfolien. Am 27.01.2027 geht AI Mavericks in die nächste Runde. Neues Jahr, gleiche Frage: Wird 2027 das Jahr, in dem KI in deinem Unternehmen wirklich ankommt? Die Budgets sind freigegeben, die Strategiepapiere geschrieben, die ersten Piloten laufen. Und trotzdem entscheidet sich der Erfolg nicht in der Roadmap, sondern im Alltag: bei den Menschen, die Teams mitnehmen,",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -1267,7 +1245,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347781Z",
-      "key": "6d8f41c67df189e0af3cb685"
+      "key": "0942d223af97234caf972afd"
     }
   ]
 }
