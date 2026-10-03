@@ -53,6 +53,8 @@ object CentralEventIndex {
             ) return@mapNotNull null
             if (!config.includeOnline && event.online) return@mapNotNull null
             if (event.confidence < config.minConfidence) return@mapNotNull null
+            if (config.officialOnly && !event.officialProvider) return@mapNotNull null
+            if (!EventClassifier.matchesType(event, config.eventType)) return@mapNotNull null
             when (config.priceMode) {
                 PriceMode.FREE -> if (!event.isFree()) return@mapNotNull null
                 PriceMode.PAID -> if (event.isFree()) return@mapNotNull null
@@ -61,13 +63,9 @@ object CentralEventIndex {
 
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             val regionMatch = indexed.regions.any { region ->
-                val rt = tokens(region)
-                placeTokens.isNotEmpty() && placeTokens.any { token -> token in rt }
-            } || tokens(event.locality).let { lt ->
-                placeTokens.isNotEmpty() && placeTokens.any { token -> token in lt }
-            } || tokens(event.title).let { tt ->
-                placeTokens.isNotEmpty() && placeTokens.any { token -> token in tt }
-            }
+                strictPlaceTextMatch(region, config.place)
+            } || strictPlaceTextMatch(event.locality, config.place) ||
+                strictPlaceTextMatch(event.title, config.place)
 
             val geographicallyRelevant = when {
                 d != null -> d <= config.radiusKm + 0.5
@@ -192,6 +190,22 @@ object CentralEventIndex {
         }
         val o = arr.optJSONObject(0) ?: return null
         return GeoPoint(o.getString("lat").toDouble(), o.getString("lon").toDouble())
+    }
+
+    private fun strictPlaceTextMatch(value: String, place: String): Boolean {
+        if (value.isBlank() || place.isBlank()) return false
+        val normalizedValue = value.lowercase()
+            .replace(Regex("[^\\p{L}\\p{N}]+"), " ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
+        val primary = place.substringBefore(",").lowercase()
+            .replace(Regex("[^\\p{L}\\p{N}]+"), " ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
+        if (primary.length >= 2 && primary in normalizedValue) return true
+        val pieces = primary.split(" ")
+            .filter { it.length >= 3 && it !in setOf("city", "state", "county", "region") }
+        return pieces.size >= 2 && pieces.all { it in normalizedValue }
     }
 
     private fun tokens(value: String): Set<String> =
