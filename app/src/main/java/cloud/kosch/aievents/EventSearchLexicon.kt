@@ -29,7 +29,12 @@ object EventSearchLexicon {
         "demo day", "roadshow", "expo", "festival", "showcase", "build day",
         "hands-on lab", "lab", "office hours", "AMA", "livestream",
         "launch event", "product launch", "community night", "breakfast meetup",
-        "lunch and learn", "open house", "training", "course", "session"
+        "lunch and learn", "open house", "training", "course", "session",
+        "local chapter", "chapter meeting", "club", "society", "association",
+        "regulars table", "informal meetup", "community calendar", "journal club",
+        "student group", "student society", "research group", "research lab",
+        "colloquium", "brown bag", "coworking meetup", "makerspace meetup",
+        "innovation hub", "startup hub", "tech hub", "community gathering"
     )
 
     private val aiCore = listOf(
@@ -68,7 +73,7 @@ object EventSearchLexicon {
     )
 
     private val localizedParticipation = mapOf(
-        "de" to listOf("Veranstaltung", "Treffen", "Stammtisch", "Konferenz", "Workshop", "Seminar", "Webinar", "Vortrag", "Hackathon", "Netzwerktreffen"),
+        "de" to listOf("Veranstaltung", "Treffen", "Stammtisch", "KI-Stammtisch", "Runde", "Arbeitskreis", "Ortsgruppe", "Nutzergruppe", "Konferenz", "Workshop", "Seminar", "Webinar", "Vortrag", "Hackathon", "Netzwerktreffen"),
         "fr" to listOf("événement", "rencontre", "conférence", "atelier", "séminaire", "webinaire", "hackathon"),
         "es" to listOf("evento", "encuentro", "conferencia", "taller", "seminario", "webinar", "hackathon"),
         "it" to listOf("evento", "incontro", "conferenza", "workshop", "seminario", "webinar", "hackathon"),
