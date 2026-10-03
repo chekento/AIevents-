@@ -23,6 +23,15 @@ class LocationMatcherTest {
         )
     }
 
+    @Test fun new_york_matches_nyc_acronym() {
+        assertTrue(
+            LocationMatcher.textMatches(
+                "Google Agentic AI Builder Lab - NYC",
+                "New York City, New York, United States"
+            )
+        )
+    }
+
     @Test fun hamburg_matches_hamburg() {
         assertTrue(
             LocationMatcher.textMatches(
