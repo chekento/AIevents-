@@ -105,6 +105,10 @@ object OfficialProviders {
         )
     }
 
+    fun logoDomain(providerName: String): String? = providers
+        .firstOrNull { it.name.equals(providerName, ignoreCase = true) }
+        ?.domains?.firstOrNull()
+
     fun globalQueries(year: Int): List<String> = providers.take(8).mapNotNull { provider ->
         provider.domains.firstOrNull()?.let { domain ->
             "site:" + domain + " " + provider.queryTerms + " " + year + " upcoming"
