@@ -65,13 +65,64 @@ class EventViewModel : ViewModel() {
         searchJob?.cancel()
         _state.value = _state.value.copy(loading = true, error = null)
         searchJob = viewModelScope.launch {
+            val indexed = runCatching { CentralEventIndex.search(config) }
+                .getOrElse { CentralEventIndex.Result(emptyList(), 0, null, it.message) }
+
+            if (indexed.events.isNotEmpty()) {
+                _state.value = UiState(
+                    loading = true,
+                    snapshot = SearchSnapshot(
+                        config = config,
+                        events = sortEvents(indexed.events, config.sortMode),
+                        searchedSources = 0,
+                        discoveredPages = 0,
+                        warnings = listOfNotNull(indexed.warning),
+                        indexedEvents = indexed.indexedCount,
+                        indexGeneratedAt = indexed.generatedAt,
+                        phase = "index"
+                    )
+                )
+            }
+
             runCatching { LiveEventSearch.search(config) }
-                .onSuccess { _state.value = UiState(snapshot = it) }
+                .onSuccess { live ->
+                    val merged = (indexed.events + live.events).distinctBy { it.stableKey }
+                    _state.value = UiState(
+                        loading = false,
+                        snapshot = live.copy(
+                            events = sortEvents(merged, config.sortMode),
+                            warnings = (listOfNotNull(indexed.warning) + live.warnings).distinct(),
+                            indexedEvents = indexed.indexedCount,
+                            indexGeneratedAt = indexed.generatedAt,
+                            phase = "hybrid"
+                        )
+                    )
+                }
                 .onFailure {
                     if (it is kotlinx.coroutines.CancellationException) return@onFailure
-                    _state.value = _state.value.copy(loading = false, error = it.message ?: "Search failed")
+                    if (indexed.events.isNotEmpty()) {
+                        _state.value = UiState(
+                            loading = false,
+                            snapshot = _state.value.snapshot,
+                            error = "Live supplement unavailable: " + (it.message ?: "network error")
+                        )
+                    } else {
+                        _state.value = UiState(loading = false, error = it.message ?: "Search failed")
+                    }
                 }
         }
+    }
+
+    private fun sortEvents(events: List<EventItem>, mode: SortMode): List<EventItem> = when (mode) {
+        SortMode.DISTANCE -> events.sortedWith(
+            compareBy<EventItem> { it.distanceKm == null }
+                .thenBy { it.distanceKm ?: Double.MAX_VALUE }
+                .thenBy { it.start ?: java.time.Instant.MAX }
+        )
+        SortMode.CONFIDENCE -> events.sortedWith(
+            compareByDescending<EventItem> { it.confidence }.thenBy { it.start ?: java.time.Instant.MAX }
+        )
+        SortMode.DATE -> events.sortedBy { it.start ?: java.time.Instant.MAX }
     }
 }
 
@@ -261,8 +312,9 @@ private fun DiscoverScreen(
         ui.snapshot?.let { snap ->
             Text(
                 snap.events.size.toString() + " " + t(settings.language, "events") + " · " +
+                    (if (snap.indexedEvents > 0) snap.indexedEvents.toString() + " " + t(settings.language, "indexed") + " · " else "") +
                     snap.discoveredPages + " pages · " + snap.searchedSources + " queries · " +
-                    t(settings.language, "updated") + " " +
+                    t(settings.language, if (snap.phase == "index") "index_loading" else "updated") + " " +
                     snap.updatedAt.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("HH:mm")),
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
@@ -611,7 +663,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Live AI events worldwide", "discover" to "Discover", "map" to "Map", "favorites" to "Saved",
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
-        "events" to "events", "updated" to "updated", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
+        "events" to "events", "updated" to "updated", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
         "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality", "unverified_dates" to "Show events with unverified date",
         "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
@@ -625,7 +677,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Aktuelle KI-Events weltweit", "discover" to "Entdecken", "map" to "Karte", "favorites" to "Gespeichert",
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
-        "events" to "Events", "updated" to "aktualisiert", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
+        "events" to "Events", "updated" to "aktualisiert", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
         "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität", "unverified_dates" to "Events ohne verifiziertes Datum anzeigen",
         "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
