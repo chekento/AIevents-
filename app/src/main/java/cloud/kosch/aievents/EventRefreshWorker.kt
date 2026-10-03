@@ -19,7 +19,10 @@ class EventRefreshWorker(
         val settings = SettingsStore(applicationContext).flow.first()
         if (!settings.notificationsEnabled) return Result.success()
         return runCatching {
-            val snapshot = LiveEventSearch.search(settings.toSearchConfig())
+            val config = settings.toSearchConfig()
+            val indexed = CentralEventIndex.search(config)
+            val live = LiveEventSearch.search(config)
+            val snapshot = live.copy(events = (indexed.events + live.events).distinctBy { it.stableKey })
             val prefs = applicationContext.getSharedPreferences("notification_state", Context.MODE_PRIVATE)
             val seen = prefs.getStringSet("seen_keys", emptySet()) ?: emptySet()
             val currentKeys = snapshot.events.map { it.stableKey }.toSet()
