@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIevents central event index",
+  "type": "object",
+  "required": ["schema", "generated_at", "cursor", "event_count", "events"],
+  "properties": {
+    "schema": { "const": 1 },
+    "generated_at": { "type": ["string", "null"], "format": "date-time" },
+    "cursor": { "type": "integer", "minimum": 0 },
+    "regions_processed": { "type": "array", "items": { "type": "string" } },
+    "event_count": { "type": "integer", "minimum": 0 },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "title", "start", "sourceUrl", "eventUrl", "confidence", "regions"],
+        "properties": {
+          "key": { "type": "string" },
+          "title": { "type": "string", "minLength": 1 },
+          "start": { "type": "string", "format": "date-time" },
+          "end": { "type": ["string", "null"], "format": "date-time" },
+          "venue": { "type": "string" },
+          "locality": { "type": "string" },
+          "description": { "type": "string" },
+          "organizer": { "type": "string" },
+          "sourceName": { "type": "string" },
+          "sourceUrl": { "type": "string", "format": "uri" },
+          "eventUrl": { "type": "string", "format": "uri" },
+          "price": { "type": "string" },
+          "language": { "type": "string" },
+          "online": { "type": "boolean" },
+          "geo": {
+            "type": ["object", "null"],
+            "properties": {
+              "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+              "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+            },
+            "required": ["lat", "lon"]
+          },
+          "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "regions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "indexedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
