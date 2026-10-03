@@ -1,0 +1,63 @@
+package cloud.kosch.aievents
+
+data class EventSource(
+    val id: String,
+    val name: String,
+    val domain: String,
+    val directQuery: Boolean = true
+)
+
+object SourceRegistry {
+    val sources = listOf(
+        EventSource("globalai", "Global AI Community", "globalai.community"),
+        EventSource("aitinkerers", "AI Tinkerers", "aitinkerers.org"),
+        EventSource("mlops", "MLOps Community", "mlops.community"),
+        EventSource("meetup", "Meetup", "meetup.com"),
+        EventSource("luma", "Luma", "luma.com"),
+        EventSource("eventbrite", "Eventbrite", "eventbrite.com"),
+        EventSource("sessionize", "Sessionize", "sessionize.com"),
+        EventSource("pretalx", "Pretalx", "pretalx.com"),
+        EventSource("gdg", "Google Developer Groups", "gdg.community.dev"),
+        EventSource("reactor", "Microsoft Reactor", "reactor.microsoft.com"),
+        EventSource("aws", "AWS Events", "aws.amazon.com"),
+        EventSource("nvidia", "NVIDIA Events", "nvidia.com"),
+        EventSource("huggingface", "Hugging Face", "huggingface.co"),
+        EventSource("ieee", "IEEE", "ieee.org"),
+        EventSource("acm", "ACM", "acm.org"),
+        EventSource("10times", "10times", "10times.com"),
+        EventSource("confs", "confs.tech", "confs.tech"),
+        EventSource("dev-events", "DEV Events", "dev.events"),
+        EventSource("eventyay", "eventyay", "eventyay.com"),
+        EventSource("community", "Community / Stammtisch web", "", directQuery = false)
+    )
+
+    fun byId(id: String) = sources.firstOrNull { source -> source.id == id }
+
+    fun queries(config: SearchConfig): List<String> {
+        val place = config.place.trim()
+        val year = java.time.Year.now().value
+        val category = when (config.category) {
+            EventCategory.AGENTS -> "AI agents agentic MCP"
+            EventCategory.GENAI -> "generative AI LLM"
+            EventCategory.ML -> "machine learning ML"
+            EventCategory.DATA -> "data AI analytics"
+            EventCategory.ROBOTICS -> "robotics physical AI computer vision"
+            EventCategory.BUSINESS -> "AI business transformation enterprise"
+            EventCategory.GOVERNANCE -> "AI governance responsible AI regulation"
+            EventCategory.DEVELOPER -> "AI developer coding engineering"
+            EventCategory.RESEARCH -> "AI research conference"
+            EventCategory.COMMUNITY -> "AI meetup community Stammtisch user group"
+            EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
+        }
+        val extra = config.keywords.trim()
+        val base = listOf(
+            "\"" + place + "\" " + category + " event conference meetup workshop hackathon " + year + " " + extra,
+            "\"" + place + "\" KI Stammtisch KI Meetup AI Community " + year + " " + extra,
+            "\"" + place + "\" LLM agents RAG MCP workshop meetup " + year + " " + extra
+        )
+        val siteQueries = sources
+            .filter { source -> source.id in config.enabledSourceIds && source.directQuery && source.domain.isNotBlank() }
+            .map { source -> "site:" + source.domain + " \"" + place + "\" " + category + " event " + year + " " + extra }
+        return (base + siteQueries).distinct()
+    }
+}
