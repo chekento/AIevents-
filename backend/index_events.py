@@ -164,13 +164,24 @@ def parse_dt(value):
 
 
 def current_or_future(start, end):
-    # Central index is intentionally strict: no undated events.
+    # Central index is intentionally strict: no undated or already-ended events.
     if start is None:
         return False
-    today = datetime.now(timezone.utc).date()
-    if end is not None and end.date() >= today:
-        return True
-    return start.date() >= today
+    now = datetime.now(timezone.utc)
+    if end is not None:
+        return end > now
+    return start >= now
+
+
+def repair_text(value):
+    if not isinstance(value, str):
+        return value
+    if any(marker in value for marker in ("Ã", "Â", "â", "ð")):
+        try:
+            return value.encode("latin1").decode("utf-8")
+        except Exception:
+            return value
+    return value
 
 
 def clean_text(value):
@@ -329,7 +340,7 @@ def parse_page(url, region):
     r = session.get(url, timeout=TIMEOUT)
     if r.status_code >= 400:
         return []
-    soup = BeautifulSoup(r.text, "html.parser")
+    soup = BeautifulSoup(r.content, "html.parser")
     events = []
     for script in soup.select("script[type='application/ld+json']"):
         raw = script.string or script.get_text()
@@ -399,11 +410,14 @@ def parse_page(url, region):
 def merge_events(existing, incoming):
     merged = {}
     for e in existing + incoming:
+        for field in ("title", "venue", "locality", "description", "organizer", "sourceName", "price", "language"):
+            if field in e:
+                e[field] = repair_text(e.get(field))
         start = parse_dt(e.get("start"))
         end = parse_dt(e.get("end"))
         if not current_or_future(start, end):
             continue
-        key = e.get("key") or event_key(e)
+        key = event_key(e)
         e["key"] = key
         if key not in merged:
             merged[key] = e
