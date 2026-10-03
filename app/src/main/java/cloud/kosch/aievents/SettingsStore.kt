@@ -53,6 +53,7 @@ class SettingsStore(private val context: Context) {
         val includeUnverifiedDates = booleanPreferencesKey("include_unverified_dates")
         val category = stringPreferencesKey("category")
         val sort = stringPreferencesKey("sort")
+        val relevanceMigrated = booleanPreferencesKey("relevance_migrated")
         val keywords = stringPreferencesKey("keywords")
         val compact = booleanPreferencesKey("compact")
         val notifications = booleanPreferencesKey("notifications")
@@ -83,7 +84,11 @@ class SettingsStore(private val context: Context) {
             futureDays = p[Keys.futureDays] ?: 365,
             includeUnverifiedDates = p[Keys.includeUnverifiedDates] ?: false,
             category = runCatching { EventCategory.valueOf(p[Keys.category] ?: "ALL") }.getOrDefault(EventCategory.ALL),
-            sortMode = runCatching { SortMode.valueOf(p[Keys.sort] ?: "RELEVANCE") }.getOrDefault(SortMode.RELEVANCE),
+            sortMode = if (
+                p[Keys.relevanceMigrated] != true &&
+                (p[Keys.sort] == null || p[Keys.sort] == "DATE")
+            ) SortMode.RELEVANCE
+            else runCatching { SortMode.valueOf(p[Keys.sort] ?: "RELEVANCE") }.getOrDefault(SortMode.RELEVANCE),
             keywords = p[Keys.keywords] ?: "",
             compactCards = p[Keys.compact] ?: false,
             notificationsEnabled = p[Keys.notifications] ?: false,
@@ -113,6 +118,7 @@ class SettingsStore(private val context: Context) {
             p[Keys.includeUnverifiedDates] = s.includeUnverifiedDates
             p[Keys.category] = s.category.name
             p[Keys.sort] = s.sortMode.name
+            p[Keys.relevanceMigrated] = true
             p[Keys.keywords] = s.keywords
             p[Keys.compact] = s.compactCards
             p[Keys.notifications] = s.notificationsEnabled
