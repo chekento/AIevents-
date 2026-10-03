@@ -82,5 +82,6 @@ fun AppSettings.toSearchConfig() = SearchConfig(
     category = category,
     keywords = keywords,
     sortMode = sortMode,
+    center = if (placeLat != null && placeLon != null) GeoPoint(placeLat, placeLon) else null,
     enabledSourceIds = enabledSources
 )
