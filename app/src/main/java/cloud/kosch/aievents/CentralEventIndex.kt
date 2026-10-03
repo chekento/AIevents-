@@ -172,7 +172,8 @@ object CentralEventIndex {
             online = o.optBoolean("online"),
             geo = geo,
             distanceKm = null,
-            confidence = o.optInt("confidence", 60)
+            confidence = o.optInt("confidence", 60),
+            imageUrl = o.optString("imageUrl")
         ))
     }
 
