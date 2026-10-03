@@ -5,6 +5,13 @@ from bs4 import BeautifulSoup
 
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 HUBS = [
+    "https://developers.openai.com/community/meetups",
+    "https://forum.openai.com/public/events",
+    "https://academy.openai.com/public/events",
+    "https://developers.google.com/events",
+    "https://www.anthropic.com/events",
+    "https://www.nvidia.com/en-us/events/",
+    "https://huggingface.co/events",
     "https://www.house-of-ai.org/de/events/",
     "https://ai.hamburg/de/events",
     "https://globalai.community/events/",
@@ -21,7 +28,7 @@ EXTERNAL_EVENT_HOSTS = (
 session = requests.Session()
 session.headers.update({"User-Agent": BROWSER_UA, "Accept-Language": "en,de;q=0.9,*;q=0.5"})
 
-def hub_links(url, limit=25):
+def hub_links(url, limit=10):
     try:
         r = session.get(url, timeout=10)
         r.raise_for_status()
@@ -56,7 +63,7 @@ def collect(parse_page):
         print("Direct hub:", hub)
         links.extend(hub_links(hub))
         time.sleep(0.4)
-    links = list(dict.fromkeys(links))[:30]
+    links = list(dict.fromkeys(links))[:90]
     print("Direct hub candidate links:", len(links))
     events = []
     for url in links:
