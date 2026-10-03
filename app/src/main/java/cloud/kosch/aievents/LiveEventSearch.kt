@@ -138,6 +138,74 @@ object LiveEventSearch {
         )
     }
 
+    suspend fun searchProvider(
+        provider: ProviderEntry,
+        language: String = "en"
+    ): List<EventItem> = withContext(Dispatchers.IO) {
+        val year = Year.now().value
+        val domainQueries = provider.domains.take(3).map { domain ->
+            "site:" + domain + " \"" + provider.name +
+                "\" event webinar conference meetup workshop livestream " + year
+        }
+        val socialQueries = listOf(
+            "site:linkedin.com/events \"" + provider.name + "\" AI event " + year,
+            "site:x.com \"" + provider.name + "\" event webinar " + year,
+            "site:youtube.com \"" + provider.name + "\" livestream event " + year
+        )
+        val broadQueries = listOf(
+            "\"" + provider.name + "\" AI event webinar conference meetup " + year,
+            "\"" + provider.name + "\" online event livestream workshop " + year
+        )
+        val links = linkedSetOf<String>()
+        val semaphore = Semaphore(4)
+        coroutineScope {
+            (domainQueries + socialQueries + broadQueries).map { query ->
+                async {
+                    semaphore.withPermit {
+                        runCatching { discover(query) }
+                            .onSuccess { found -> synchronized(links) { links += found } }
+                    }
+                }
+            }.awaitAll()
+        }
+
+        val events = coroutineScope {
+            links.take(80).map { url ->
+                async {
+                    semaphore.withPermit {
+                        runCatching { extractEvents(url) }.getOrDefault(emptyList())
+                    }
+                }
+            }.awaitAll().flatten()
+        }
+
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        val enriched = EventMerger.merge(
+            events.map { ProviderCatalog.enrich(OfficialProviders.enrich(it)) }
+                .filter { event ->
+                    event.providerName.equals(provider.name, ignoreCase = true) ||
+                        ProviderCatalog.detect(event)?.id == provider.id
+                }
+                .filter {
+                    EventDateRules.isVisible(
+                        it, now, zone, 730, false
+                    )
+                }
+        )
+        EventRanker.sort(
+            enriched,
+            SearchConfig(
+                place = "",
+                radiusKm = 500,
+                language = language,
+                futureDays = 730,
+                includeOnline = true,
+                sortMode = SortMode.RELEVANCE
+            )
+        )
+    }
+
     private fun discover(query: String): List<String> {
         val encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString())
         val found = linkedSetOf<String>()
