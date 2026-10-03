@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/chekento/AIevents-/releases/latest/download/AIevents-latest.apk">
+    <img src="docs/images/aievents-apk-download.webp" alt="Download AIevents APK" width="100%">
+  </a>
+</p>
+
 # AIevents
 
 <p align="center">
@@ -6,8 +12,6 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/chekento/AIevents-/releases/latest/download/AIevents-latest.apk"><strong>⬇ Download latest APK</strong></a>
-  &nbsp;·&nbsp;
   <a href="https://github.com/chekento/AIevents-/releases/latest">Release page</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/chekento/AIevents-/actions/workflows/android.yml">Build status</a>
@@ -22,6 +26,23 @@
 AIevents is a native Android app for finding current **AI-focused events anywhere in the world**. It combines a global place search, live web discovery, a rotating central event index and a separate Provider Radar for AI/LLM ecosystems.
 
 The app is intentionally not tied to specific cities. Ahrensburg, Hamburg, New York and other places used during development are only test cases. Search logic is generated dynamically from the selected place, country, coordinates, radius, nearby cities and local language terms.
+
+## App preview
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/aievents-worldwide-search.webp" alt="Worldwide AI event search"></td>
+    <td width="50%"><img src="docs/images/aievents-discover-worldwide-1.webp" alt="Discover AI events worldwide"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/aievents-hybrid-index.webp" alt="Hybrid live search and central AI event index"></td>
+    <td width="50%"><img src="docs/images/aievents-global-ai-events.webp" alt="Global AI events discovery"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/aievents-never-miss-event.webp" alt="AIevents reminders and event discovery"></td>
+    <td width="50%"><img src="docs/images/aievents-discover-worldwide-2.webp" alt="Worldwide AI events overview"></td>
+  </tr>
+</table>
 
 ## Download
 
