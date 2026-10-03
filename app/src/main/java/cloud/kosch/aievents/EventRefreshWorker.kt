@@ -25,7 +25,7 @@ class EventRefreshWorker(
             val currentKeys = snapshot.events.map { it.stableKey }.toSet()
             val relevant = if (settings.notifyOnlyNew) snapshot.events.filter { it.stableKey !in seen } else snapshot.events
             if (relevant.isNotEmpty()) notify(relevant.size, relevant.first().title)
-            prefs.edit().putStringSet("seen_keys", (seen + currentKeys).takeLast(1000).toSet()).apply()
+            prefs.edit().putStringSet("seen_keys", (seen + currentKeys).toList().takeLast(1000).toSet()).apply()
             Result.success()
         }.getOrElse { Result.retry() }
     }
