@@ -31,19 +31,26 @@ object LiveEventSearch {
         .followRedirects(true)
         .build()
 
-    private const val UA = "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36 AIevents/0.1"
+    private const val UA = "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36 AIevents/0.2"
 
     suspend fun search(config: SearchConfig): SearchSnapshot = withContext(Dispatchers.IO) {
         val warnings = mutableListOf<String>()
         val center = runCatching { geocode(config.place) }.getOrNull()
         if (center == null) warnings += "Center coordinates unavailable; strict radius filtering is only possible for events with coordinates."
 
-        val queries = buildQueries(config)
+        val queries = SourceRegistry.queries(config)
         val links = linkedSetOf<String>()
-        for (query in queries) {
-            runCatching { discover(query) }
-                .onSuccess { links += it }
-                .onFailure { warnings += "A discovery query failed: " + (it.message ?: "network error") }
+        val querySemaphore = Semaphore(4)
+        coroutineScope {
+            queries.map { query ->
+                async {
+                    querySemaphore.withPermit {
+                        runCatching { discover(query) }
+                            .onSuccess { found -> synchronized(links) { links += found } }
+                            .onFailure { error -> synchronized(warnings) { warnings += "A discovery query failed: " + (error.message ?: "network error") } }
+                    }
+                }
+            }.awaitAll()
         }
 
         val candidateLinks = links
@@ -69,44 +76,31 @@ object LiveEventSearch {
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
         }.filter { config.includeOnline || !it.online }
+            .filter { !config.freeOnly || it.isFree() }
+            .filter { it.confidence >= config.minConfidence }
             .filter { it.start == null || (it.start.isAfter(now) && it.start.isBefore(maxDate)) }
             .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
             .distinctBy { it.stableKey }
-            .sortedWith(compareBy<EventItem> { it.start == null }.thenBy { it.start ?: Instant.MAX }.thenByDescending { it.confidence })
+            .let { list ->
+                when (config.sortMode) {
+                    SortMode.DISTANCE -> list.sortedWith(compareBy<EventItem> { it.distanceKm == null }.thenBy { it.distanceKm ?: Double.MAX_VALUE }.thenBy { it.start ?: Instant.MAX })
+                    SortMode.CONFIDENCE -> list.sortedWith(compareByDescending<EventItem> { it.confidence }.thenBy { it.start ?: Instant.MAX })
+                    SortMode.DATE -> list.sortedWith(compareBy<EventItem> { it.start == null }.thenBy { it.start ?: Instant.MAX }.thenByDescending { it.confidence })
+                }
+            }
 
         SearchSnapshot(config, filtered, queries.size, candidateLinks.size, warnings.distinct())
-    }
-
-    private fun buildQueries(config: SearchConfig): List<String> {
-        val p = config.place.trim()
-        val year = Year.now().value
-        val localized = when (config.language) {
-            "de" -> "\"Künstliche Intelligenz\" OR KI"
-            "fr" -> "\"intelligence artificielle\""
-            "es" -> "\"inteligencia artificial\""
-            "it" -> "\"intelligenza artificiale\""
-            "pl" -> "\"sztuczna inteligencja\""
-            else -> "\"artificial intelligence\""
-        }
-        return listOf(
-            "\"AI\" OR \"artificial intelligence\" OR \"generative AI\" event \"$p\" $year",
-            "$localized event OR meetup OR conference \"$p\"",
-            "site:meetup.com AI \"$p\" event",
-            "site:luma.com AI \"$p\"",
-            "site:eventbrite.com AI \"$p\"",
-            "AI summit workshop hackathon agents RAG LLM \"$p\""
-        )
     }
 
     private fun discover(query: String): List<String> {
         val encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString())
         val url = "https://html.duckduckgo.com/html/?q=" + encoded
         val doc = Jsoup.parse(get(url), url)
-        return doc.select("a.result__a")
+        return doc.select("a.result__a, a[data-testid=result-title-a]")
             .mapNotNull { normalizeDdgUrl(it.attr("href")) }
             .filter { isLikelyEventPage(it) }
             .distinct()
-            .take(20)
+            .take(12)
     }
 
     private fun normalizeDdgUrl(href: String): String? {
@@ -128,7 +122,7 @@ object LiveEventSearch {
 
     private fun isLikelyEventPage(url: String): Boolean {
         val u = url.lowercase()
-        return listOf("meetup.", "luma.", "eventbrite.", "/event", "/events", "conference", "summit", "meetup", "workshop", "hackathon", "calendar")
+        return listOf("meetup.", "luma.", "eventbrite.", "globalai.", "aitinkerers.", "mlops.", "sessionize.", "pretalx.", "gdg.", "reactor.", "huggingface.", "/event", "/events", "conference", "summit", "meetup", "stammtisch", "workshop", "hackathon", "calendar", "community")
             .any { it in u }
     }
 
@@ -316,7 +310,7 @@ object LiveEventSearch {
     private fun geocode(place: String): GeoPoint? {
         val q = URLEncoder.encode(place, StandardCharsets.UTF_8.toString())
         val url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=" + q
-        val arr = JSONArray(get(url, "AIevents/0.1 github.com/chekento/AIevents-"))
+        val arr = JSONArray(get(url, "AIevents/0.2 github.com/chekento/AIevents-"))
         val obj = arr.optJSONObject(0) ?: return null
         return GeoPoint(obj.getString("lat").toDouble(), obj.getString("lon").toDouble())
     }
