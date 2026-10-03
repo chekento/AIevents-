@@ -32,7 +32,11 @@ SOURCE_DOMAINS = [
 
 EVENT_HINTS = (
     "event", "events", "meetup", "conference", "summit", "workshop",
-    "hackathon", "calendar", "community", "stammtisch"
+    "webinar", "seminar", "symposium", "congress", "forum", "hackathon",
+    "datathon", "bootcamp", "masterclass", "developer-day", "devday",
+    "tech-talk", "roundtable", "networking", "user-group", "demo-day",
+    "roadshow", "expo", "showcase", "livestream", "calendar", "community",
+    "stammtisch", "training", "session"
 )
 
 session = requests.Session()
@@ -110,58 +114,56 @@ def _collect_links(soup, selector, normalizer=lambda x: x, limit=10):
 
 def discover(query, limit=10):
     errors = []
+    out = []
 
-    # DuckDuckGo first; some cloud runner IPs are rate-limited, so never rely on it alone.
+    def add_many(items):
+        for item in items:
+            if item and item not in out:
+                out.append(item)
+
     try:
         url = "https://html.duckduckgo.com/html/?q=" + quote_plus(query)
         r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
         r.raise_for_status()
-        links = _collect_links(
+        add_many(_collect_links(
             BeautifulSoup(r.text, "html.parser"),
             "a.result__a, a[data-testid='result-title-a']",
             normalize_ddg,
             limit
-        )
-        if links:
-            return links
+        ))
     except Exception as exc:
         errors.append("ddg=" + str(exc))
 
-    # Bing HTML is a practical no-key fallback for scheduled public-web discovery.
     try:
-        url = "https://www.bing.com/search?q=" + quote_plus(query) + "&count=" + str(max(10, limit))
+        url = "https://www.bing.com/search?q=" + quote_plus(query) + "&count=" + str(max(10, limit * 2))
         r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
         r.raise_for_status()
-        links = _collect_links(
+        add_many(_collect_links(
             BeautifulSoup(r.text, "html.parser"),
             "li.b_algo h2 a, a.tilk",
             lambda x: x,
             limit
-        )
-        if links:
-            return links
+        ))
     except Exception as exc:
         errors.append("bing=" + str(exc))
 
-    # Last-resort Google HTML fallback. CAPTCHA/consent pages simply yield no results.
-    try:
-        url = "https://www.google.com/search?q=" + quote_plus(query) + "&num=" + str(max(10, limit))
-        r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
-        r.raise_for_status()
-        links = _collect_links(
-            BeautifulSoup(r.text, "html.parser"),
-            "div.yuRUbf a, a[jsname='UWckNb']",
-            lambda x: x,
-            limit
-        )
-        if links:
-            return links
-    except Exception as exc:
-        errors.append("google=" + str(exc))
+    if len(out) < limit * 2:
+        try:
+            url = "https://www.google.com/search?q=" + quote_plus(query) + "&num=" + str(max(10, limit * 2))
+            r = session.get(url, timeout=TIMEOUT, headers={"User-Agent": BROWSER_UA})
+            r.raise_for_status()
+            add_many(_collect_links(
+                BeautifulSoup(r.text, "html.parser"),
+                "div.yuRUbf a, a[jsname='UWckNb']",
+                lambda x: x,
+                limit
+            ))
+        except Exception as exc:
+            errors.append("google=" + str(exc))
 
-    if errors:
+    if not out and errors:
         raise RuntimeError("; ".join(errors))
-    return []
+    return out[: max(limit, 1) * 2]
 
 
 def iter_nodes(node):
@@ -561,9 +563,11 @@ def main():
     for idx, region in enumerate(batch):
         print(f"[{idx+1}/{len(batch)}] {region}")
         queries = [
-            f'"{region}" AI artificial intelligence event meetup conference workshop',
-            f'"{region}" AI agents LLM RAG MCP meetup',
-            f'"{region}" AI community user group Stammtisch'
+            f'"{region}" AI artificial intelligence event meetup conference workshop webinar seminar',
+            f'"{region}" AI agents LLM RAG MCP MLOps LLMOps meetup workshop webinar',
+            f'"{region}" AI community user group networking tech talk symposium roundtable',
+            f'"{region}" AI summit congress expo hackathon datathon bootcamp masterclass demo day',
+            f'"{region}" AI developer day roadshow showcase livestream register RSVP tickets attend'
         ]
         # Rotate a small source subset to keep each run bounded.
         source_offset = (cursor + idx) % len(SOURCE_DOMAINS)
