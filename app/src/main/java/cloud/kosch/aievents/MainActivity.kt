@@ -458,7 +458,8 @@ private fun DiscoverScreen(
     onUseLocation: () -> Unit,
     onFavorite: (EventItem) -> Unit
 ) {
-    var filtersOpen by remember { mutableStateOf(false) }
+    var searchPanelOpen by rememberSaveable { mutableStateOf(ui.snapshot == null) }
+    var filtersOpen by rememberSaveable { mutableStateOf(false) }
     var suggestions by remember { mutableStateOf<List<PlaceSuggestion>>(emptyList()) }
     var placeLookupBusy by remember { mutableStateOf(false) }
 
@@ -475,137 +476,277 @@ private fun DiscoverScreen(
         placeLookupBusy = false
     }
 
-    Column(Modifier.fillMaxSize()) {
-        ElevatedCard(Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxWidth()) {
-            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
-                OutlinedTextField(
-                    value = settings.place,
-                    onValueChange = {
-                        onSettings(
-                            settings.copy(
-                                place = it,
-                                placeLat = null,
-                                placeLon = null,
-                                placeId = "",
-                                placeCountryCode = ""
-                            )
-                        )
-                    },
-                    label = { Text(t(settings.language, "place")) },
-                    placeholder = { Text(t(settings.language, "place_hint")) },
-                    leadingIcon = { Icon(Icons.Default.Place, null) },
-                    trailingIcon = {
-                        if (placeLookupBusy) {
-                            CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp)
-                        } else if (settings.placeId.isNotBlank()) {
-                            Icon(Icons.Default.CheckCircle, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                        }
-                    },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
+    // Once a search actually starts, give the screen back to the results.
+    LaunchedEffect(ui.loading) {
+        if (ui.loading && settings.place.isNotBlank()) {
+            searchPanelOpen = false
+            filtersOpen = false
+            suggestions = emptyList()
+        }
+    }
 
-                if (suggestions.isNotEmpty()) {
-                    ElevatedCard(Modifier.fillMaxWidth()) {
-                        Column {
-                            suggestions.take(8).forEach { suggestion ->
-                                Row(
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            onSettings(
-                                                settings.copy(
-                                                    place = suggestion.displayName,
-                                                    placeLat = suggestion.point.lat,
-                                                    placeLon = suggestion.point.lon,
-                                                    placeId = suggestion.id,
-                                                    placeCountryCode = suggestion.countryCode
-                                                )
+    Column(Modifier.fillMaxSize()) {
+        ElevatedCard(
+            Modifier
+                .padding(horizontal = 12.dp, vertical = 7.dp)
+                .fillMaxWidth()
+        ) {
+            Column {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { searchPanelOpen = !searchPanelOpen }
+                        .padding(horizontal = 14.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        Icons.Default.Search,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(Modifier.width(9.dp))
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            t(settings.language, "event_search"),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Black
+                        )
+                        if (!searchPanelOpen) {
+                            val location = settings.place.substringBefore(",")
+                                .ifBlank { t(settings.language, "choose_place_short") }
+                            val extras = buildList {
+                                add(location)
+                                add(settings.radiusKm.toString() + " km")
+                                if (settings.keywords.isNotBlank()) add(settings.keywords)
+                            }
+                            Text(
+                                extras.joinToString(" · "),
+                                style = MaterialTheme.typography.labelSmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+                    if (ui.loading) {
+                        CircularProgressIndicator(
+                            Modifier.size(19.dp),
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(Modifier.width(7.dp))
+                    }
+                    Icon(
+                        if (searchPanelOpen) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        contentDescription = null
+                    )
+                }
+
+                if (searchPanelOpen) {
+                    HorizontalDivider()
+                    Column(
+                        Modifier.padding(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(9.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = settings.place,
+                            onValueChange = {
+                                onSettings(
+                                    settings.copy(
+                                        place = it,
+                                        placeLat = null,
+                                        placeLon = null,
+                                        placeId = "",
+                                        placeCountryCode = ""
+                                    )
+                                )
+                            },
+                            label = { Text(t(settings.language, "place")) },
+                            placeholder = { Text(t(settings.language, "place_hint")) },
+                            leadingIcon = { Icon(Icons.Default.Place, null) },
+                            trailingIcon = {
+                                if (placeLookupBusy) {
+                                    CircularProgressIndicator(
+                                        Modifier.size(18.dp),
+                                        strokeWidth = 2.dp
+                                    )
+                                } else if (settings.placeId.isNotBlank()) {
+                                    Icon(
+                                        Icons.Default.CheckCircle,
+                                        contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                }
+                            },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        if (suggestions.isNotEmpty()) {
+                            ElevatedCard(Modifier.fillMaxWidth()) {
+                                Column {
+                                    suggestions.take(8).forEach { suggestion ->
+                                        Row(
+                                            Modifier
+                                                .fillMaxWidth()
+                                                .clickable {
+                                                    onSettings(
+                                                        settings.copy(
+                                                            place = suggestion.displayName,
+                                                            placeLat = suggestion.point.lat,
+                                                            placeLon = suggestion.point.lon,
+                                                            placeId = suggestion.id,
+                                                            placeCountryCode = suggestion.countryCode
+                                                        )
+                                                    )
+                                                    suggestions = emptyList()
+                                                }
+                                                .padding(horizontal = 14.dp, vertical = 10.dp),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Icon(
+                                                Icons.Default.LocationOn,
+                                                null,
+                                                tint = MaterialTheme.colorScheme.primary
                                             )
-                                            suggestions = emptyList()
+                                            Spacer(Modifier.width(10.dp))
+                                            Column(Modifier.weight(1f)) {
+                                                Text(
+                                                    suggestion.displayName,
+                                                    fontWeight = FontWeight.SemiBold
+                                                )
+                                                val meta = listOf(
+                                                    suggestion.type,
+                                                    suggestion.countryCode
+                                                ).filter { it.isNotBlank() }.joinToString(" · ")
+                                                if (meta.isNotBlank()) {
+                                                    Text(
+                                                        meta,
+                                                        style = MaterialTheme.typography.labelSmall
+                                                    )
+                                                }
+                                            }
                                         }
-                                        .padding(horizontal = 14.dp, vertical = 10.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Icon(Icons.Default.LocationOn, null, tint = MaterialTheme.colorScheme.primary)
-                                    Spacer(Modifier.width(10.dp))
-                                    Column(Modifier.weight(1f)) {
-                                        Text(suggestion.displayName, fontWeight = FontWeight.SemiBold)
-                                        val meta = listOf(suggestion.type, suggestion.countryCode)
-                                            .filter { it.isNotBlank() }.joinToString(" · ")
-                                        if (meta.isNotBlank()) {
-                                            Text(meta, style = MaterialTheme.typography.labelSmall)
-                                        }
+                                        HorizontalDivider()
                                     }
                                 }
-                                HorizontalDivider()
                             }
                         }
+
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            FilledTonalButton(
+                                onClick = onUseLocation,
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Icon(Icons.Default.MyLocation, null)
+                                Spacer(Modifier.width(6.dp))
+                                Text(t(settings.language, "my_location"))
+                            }
+                            FilledTonalButton(
+                                onClick = { filtersOpen = !filtersOpen },
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Icon(Icons.Default.Tune, null)
+                                Spacer(Modifier.width(6.dp))
+                                Text(t(settings.language, "filters"))
+                                Spacer(Modifier.width(4.dp))
+                                Icon(
+                                    if (filtersOpen) Icons.Default.ExpandLess
+                                    else Icons.Default.ExpandMore,
+                                    null,
+                                    Modifier.size(17.dp)
+                                )
+                            }
+                        }
+
+                        OutlinedTextField(
+                            value = settings.keywords,
+                            onValueChange = { onSettings(settings.copy(keywords = it)) },
+                            label = { Text(t(settings.language, "keywords")) },
+                            placeholder = { Text("RAG, robotics, governance…") },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        if (filtersOpen) {
+                            FilterPanel(settings, onSettings)
+                        }
+
+                        Button(
+                            onClick = {
+                                searchPanelOpen = false
+                                filtersOpen = false
+                                suggestions = emptyList()
+                                onSearch(settings)
+                            },
+                            enabled = !ui.loading && settings.place.isNotBlank(),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(Icons.Default.Search, null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                if (ui.loading) t(settings.language, "searching")
+                                else t(settings.language, "search")
+                            )
+                        }
                     }
-                }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    FilledTonalButton(onClick = onUseLocation, modifier = Modifier.weight(1f)) {
-                        Icon(Icons.Default.MyLocation, null)
-                        Spacer(Modifier.width(6.dp))
-                        Text(t(settings.language, "my_location"))
-                    }
-                    FilledTonalButton(onClick = { filtersOpen = !filtersOpen }, modifier = Modifier.weight(1f)) {
-                        Icon(Icons.Default.Tune, null)
-                        Spacer(Modifier.width(6.dp))
-                        Text(t(settings.language, "filters"))
-                    }
-                }
-                OutlinedTextField(
-                    value = settings.keywords,
-                    onValueChange = { onSettings(settings.copy(keywords = it)) },
-                    label = { Text(t(settings.language, "keywords")) },
-                    placeholder = { Text("RAG, robotics, governance…") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                if (filtersOpen) {
-                    FilterPanel(settings, onSettings)
-                }
-                Button(
-                    onClick = { onSearch(settings) },
-                    enabled = !ui.loading && settings.place.isNotBlank(),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(Icons.Default.Search, null)
-                    Spacer(Modifier.width(8.dp))
-                    Text(if (ui.loading) t(settings.language, "searching") else t(settings.language, "search"))
                 }
             }
         }
 
         ui.error?.let {
-            Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
+            Text(
+                it,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+            )
         }
+
         ui.snapshot?.let { snap ->
             val allVisible = snap.events
-            val sourceCount = allVisible.map { it.sourceName }.filter { it.isNotBlank() }.distinct().size
-            val placeLabel = settings.place.substringBefore(",").ifBlank { t(settings.language, "worldwide") }
-            Column(Modifier.padding(horizontal = 16.dp, vertical = 5.dp)) {
-                Text(
-                    allVisible.size.toString() + " " + t(settings.language, "events") + " · " +
-                        placeLabel + " · " + sourceCount + " " + t(settings.language, "sources_short") + " · " +
-                        t(settings.language, "updated") + " " +
-                        snap.updatedAt.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("HH:mm")),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(
-                    if (snap.phase == "index") t(settings.language, "live_supplement_running")
-                    else t(settings.language, "hybrid_search_done"),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
+            val sourceCount = allVisible.map { it.sourceName }
+                .filter { it.isNotBlank() }
+                .distinct()
+                .size
+            val placeLabel = settings.place.substringBefore(",")
+                .ifBlank { t(settings.language, "worldwide") }
+
+            Row(
+                Modifier.padding(horizontal = 16.dp, vertical = 5.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        allVisible.size.toString() + " " + t(settings.language, "events") + " · " +
+                            placeLabel + " · " + sourceCount + " " +
+                            t(settings.language, "sources_short") + " · " +
+                            t(settings.language, "updated") + " " +
+                            snap.updatedAt.atZone(ZoneId.systemDefault())
+                                .format(DateTimeFormatter.ofPattern("HH:mm")),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        if (snap.phase == "index") t(settings.language, "live_supplement_running")
+                        else t(settings.language, "hybrid_search_done"),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                if (!searchPanelOpen) {
+                    TextButton(onClick = { searchPanelOpen = true }) {
+                        Icon(Icons.Default.Tune, null, Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text(t(settings.language, "change_search"))
+                    }
+                }
             }
         }
 
         val events = ui.snapshot?.events.orEmpty()
         if (events.isEmpty() && !ui.loading) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(
+                Modifier.fillMaxWidth().weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(
                     if (settings.place.isBlank()) t(settings.language, "choose_place")
                     else t(settings.language, "no_events"),
@@ -614,8 +755,16 @@ private fun DiscoverScreen(
             }
         } else {
             LazyColumn(
-                contentPadding = PaddingValues(12.dp),
-                verticalArrangement = Arrangement.spacedBy(if (settings.compactCards) 6.dp else 10.dp)
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                contentPadding = PaddingValues(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = 2.dp,
+                    bottom = 18.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(
+                    if (settings.compactCards) 6.dp else 10.dp
+                )
             ) {
                 items(events, key = { it.stableKey }) { event ->
                     EventCard(
