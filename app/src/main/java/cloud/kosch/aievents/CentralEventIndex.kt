@@ -41,13 +41,13 @@ object CentralEventIndex {
         }
         val center = runCatching { geocode(config.place) }.getOrNull()
         val zone = ZoneId.systemDefault()
-        val today = java.time.LocalDate.now(zone)
+        val now = Instant.now()
         val placeTokens = tokens(config.place)
 
         val filtered = all.mapNotNull { indexed ->
             val event = indexed.event
             if (!EventDateRules.isVisible(
-                    event, today, zone, config.futureDays, config.includeUnverifiedDates
+                    event, now, zone, config.futureDays, config.includeUnverifiedDates
                 )
             ) return@mapNotNull null
             if (!config.includeOnline && event.online) return@mapNotNull null
