@@ -442,15 +442,25 @@ private fun DiscoverScreen(
             Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
         }
         ui.snapshot?.let { snap ->
-            Text(
-                snap.events.size.toString() + " " + t(settings.language, "events") + " · " +
-                    (if (snap.indexedEvents > 0) snap.indexedEvents.toString() + " " + t(settings.language, "indexed") + " · " else "") +
-                    snap.discoveredPages + " pages · " + snap.searchedSources + " queries · " +
-                    t(settings.language, if (snap.phase == "index") "index_loading" else "updated") + " " +
-                    snap.updatedAt.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("HH:mm")),
-                style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
-            )
+            val allVisible = EventMerger.merge(snap.events + snap.featuredOfficialEvents)
+            val sourceCount = allVisible.map { it.sourceName }.filter { it.isNotBlank() }.distinct().size
+            val placeLabel = settings.place.substringBefore(",").ifBlank { t(settings.language, "worldwide") }
+            Column(Modifier.padding(horizontal = 16.dp, vertical = 5.dp)) {
+                Text(
+                    allVisible.size.toString() + " " + t(settings.language, "events") + " · " +
+                        placeLabel + " · " + sourceCount + " " + t(settings.language, "sources_short") + " · " +
+                        t(settings.language, "updated") + " " +
+                        snap.updatedAt.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("HH:mm")),
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    if (snap.phase == "index") t(settings.language, "live_supplement_running")
+                    else t(settings.language, "hybrid_search_done"),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
         }
 
         val events = ui.snapshot?.events.orEmpty()
@@ -978,7 +988,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Live AI events worldwide", "place_hint" to "e.g. Hamburg, Tokyo, New York", "choose_place" to "Enter a place or use My location to start.", "discover" to "Discover", "map" to "Map", "favorites" to "Saved",
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
-        "events" to "events", "updated" to "updated", "event_type" to "Event type", "official_only" to "Official providers only", "all_types" to "All", "conference" to "Conference", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Major official AI events", "official_events_sub" to "Independently discovered from AI and LLM providers", "official_badge" to "Official AI Provider Event", "local_results" to "Events for your selected area", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
+        "events" to "events", "updated" to "updated", "sources_short" to "sources", "worldwide" to "Worldwide", "live_supplement_running" to "Central index loaded · live web search running…", "hybrid_search_done" to "Central index + live web search", "event_type" to "Event type", "official_only" to "Official providers only", "all_types" to "All", "conference" to "Conference", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Major official AI events", "official_events_sub" to "Independently discovered from AI and LLM providers", "official_badge" to "Official AI Provider Event", "local_results" to "Events for your selected area", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
         "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality", "unverified_dates" to "Show events with unverified date",
         "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite", "reminder" to "Reminder", "set_reminder" to "Set reminder", "one_day_before" to "1 day before", "one_hour_before" to "1 hour before", "fifteen_min_before" to "15 minutes before", "reminder_set" to "Reminder scheduled", "reminder_too_late" to "This reminder time has already passed", "cancel" to "Cancel",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
@@ -992,7 +1002,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Aktuelle KI-Events weltweit", "place_hint" to "z. B. Hamburg, Tokio, New York", "choose_place" to "Ort eingeben oder „Mein Standort“ verwenden.", "discover" to "Entdecken", "map" to "Karte", "favorites" to "Gespeichert",
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
-        "events" to "Events", "updated" to "aktualisiert", "event_type" to "Eventtyp", "official_only" to "Nur offizielle Anbieter", "all_types" to "Alle", "conference" to "Konferenz", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Wichtige offizielle KI-Events", "official_events_sub" to "Unabhängig bei KI- und LLM-Anbietern gefunden", "official_badge" to "Offizielles KI-Anbieter-Event", "local_results" to "Events im gewählten Gebiet", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
+        "events" to "Events", "updated" to "aktualisiert", "sources_short" to "Quellen", "worldwide" to "Weltweit", "live_supplement_running" to "Zentralindex geladen · Live-Websuche läuft…", "hybrid_search_done" to "Zentralindex + Live-Websuche", "event_type" to "Eventtyp", "official_only" to "Nur offizielle Anbieter", "all_types" to "Alle", "conference" to "Konferenz", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Wichtige offizielle KI-Events", "official_events_sub" to "Unabhängig bei KI- und LLM-Anbietern gefunden", "official_badge" to "Offizielles KI-Anbieter-Event", "local_results" to "Events im gewählten Gebiet", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
         "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität", "unverified_dates" to "Events ohne verifiziertes Datum anzeigen",
         "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit", "reminder" to "Erinnerung", "set_reminder" to "Erinnerung setzen", "one_day_before" to "1 Tag vorher", "one_hour_before" to "1 Stunde vorher", "fifteen_min_before" to "15 Minuten vorher", "reminder_set" to "Erinnerung geplant", "reminder_too_late" to "Dieser Erinnerungszeitpunkt ist bereits vorbei", "cancel" to "Abbrechen",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
