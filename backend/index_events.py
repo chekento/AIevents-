@@ -243,6 +243,88 @@ def event_key(e):
     return hashlib.sha256((title + "|" + day + "|" + place).encode()).hexdigest()[:24]
 
 
+def parse_html_event_fallback(soup, url, region):
+    title_node = soup.find("h1")
+    title = clean_text(title_node.get_text(" ", strip=True) if title_node else "")
+    if len(title) < 3:
+        return []
+
+    full_text = clean_text(soup.get_text(" ", strip=True))
+    if re.search(r"\b(cancelled|canceled)\b", full_text[:800], re.I):
+        return []
+
+    month = r"(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    pattern = re.compile(
+        r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)?\w*,?\s*"
+        r"(\d{1,2})\s+" + month + r"\s+(\d{4})\s*[·•]\s*"
+        r"(\d{1,2}:\d{2})(?:\s*[-–]\s*(\d{1,2}:\d{2}))?"
+        r"(?:.{0,100}?UTC\s*([+-]\d{2}:\d{2}))?",
+        re.I
+    )
+    match = pattern.search(full_text)
+    if not match:
+        return []
+
+    day, month_name, year, start_clock, end_clock, offset = match.groups()
+    offset = offset or "+00:00"
+    start = parse_dt(f"{day} {month_name} {year} {start_clock} {offset}")
+    end = parse_dt(f"{day} {month_name} {year} {end_clock} {offset}") if end_clock else None
+    if not current_or_future(start, end):
+        return []
+
+    locality = ""
+    lines = [clean_text(x) for x in soup.get_text("\n", strip=True).splitlines()]
+    date_idx = next((i for i, line in enumerate(lines) if pattern.search(line)), -1)
+    if date_idx >= 0:
+        for line in lines[date_idx + 1:date_idx + 7]:
+            lower = line.lower()
+            if not line or lower.startswith(("this event", "register", "about", "schedule", "agenda")):
+                continue
+            if "online" in lower or "," in line:
+                locality = line[:300]
+                break
+
+    organizer = ""
+    om = re.search(r"This event is organized by\s+(.+?)(?:\s+\.|\s+Register|\s+About)", full_text, re.I)
+    if om:
+        organizer = clean_text(om.group(1))[:160]
+
+    description = ""
+    meta = soup.find("meta", attrs={"name": "description"})
+    if meta and meta.get("content"):
+        description = clean_text(meta.get("content"))
+    if not description:
+        for para in soup.find_all("p"):
+            text = clean_text(para.get_text(" ", strip=True))
+            if len(text) >= 50:
+                description = text
+                break
+
+    online = "online" in locality.lower() or bool(re.search(r"\bOnline\b", full_text[:1200]))
+    source_name = (urlparse(url).hostname or "web").removeprefix("www.")
+    event = {
+        "title": title,
+        "start": start.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "end": end.astimezone(timezone.utc).isoformat().replace("+00:00", "Z") if end else None,
+        "venue": "",
+        "locality": locality,
+        "description": description[:1200],
+        "organizer": organizer,
+        "sourceName": source_name,
+        "sourceUrl": url,
+        "eventUrl": url,
+        "price": "",
+        "language": "",
+        "online": online,
+        "geo": None,
+        "confidence": 75 if locality else 68,
+        "regions": [region],
+        "indexedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    }
+    event["key"] = event_key(event)
+    return [event]
+
+
 def parse_page(url, region):
     r = session.get(url, timeout=TIMEOUT)
     if r.status_code >= 400:
@@ -309,6 +391,8 @@ def parse_page(url, region):
             }
             e["key"] = event_key(e)
             events.append(e)
+    if not events:
+        events.extend(parse_html_event_fallback(soup, url, region))
     return events
 
 
