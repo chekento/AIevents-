@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 HUBS = [
+    "https://llmops.space/upcoming-events/",
     "https://reactor.microsoft.com/en-us/reactor/",
     "https://www.databricks.com/events",
     "https://www.snowflake.com/en/events/",
