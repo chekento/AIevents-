@@ -98,7 +98,7 @@ class SettingsStore(private val context: Context) {
             notificationsEnabled = p[Keys.notifications] ?: false,
             notificationHours = p[Keys.notificationHours] ?: 12,
             notifyOnlyNew = p[Keys.notifyOnlyNew] ?: true,
-            enabledSources = if ((p[Keys.sourceSchemaVersion] ?: 0) < 3)
+            enabledSources = if ((p[Keys.sourceSchemaVersion] ?: 0) < 4)
                 (p[Keys.sources] ?: emptySet()) + SourceRegistry.sources.map { it.id }.toSet()
             else p[Keys.sources] ?: SourceRegistry.sources.map { it.id }.toSet(),
             favorites = p[Keys.favorites] ?: emptySet(),
@@ -132,7 +132,7 @@ class SettingsStore(private val context: Context) {
             p[Keys.notificationHours] = s.notificationHours
             p[Keys.notifyOnlyNew] = s.notifyOnlyNew
             p[Keys.sources] = s.enabledSources
-            p[Keys.sourceSchemaVersion] = 3
+            p[Keys.sourceSchemaVersion] = 4
             p[Keys.favorites] = s.favorites
             p[Keys.favoriteEvents] = s.favoriteEvents.map { event -> encodeFavorite(event) }.toSet()
         }
