@@ -322,6 +322,9 @@ private fun FilterPanel(settings: AppSettings, onSettings: (AppSettings) -> Unit
         onValueChange = { onSettings(settings.copy(futureDays = it.toInt())) },
         valueRange = 7f..730f
     )
+    SettingsToggle(t(settings.language, "unverified_dates"), settings.includeUnverifiedDates) {
+        onSettings(settings.copy(includeUnverifiedDates = it))
+    }
     Text(t(settings.language, "confidence") + ": ≥ " + settings.minConfidence + "%")
     Slider(
         value = settings.minConfidence.toFloat(),
@@ -434,14 +437,24 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
 
 @Composable
 private fun FavoritesScreen(events: List<EventItem>, language: String, onRemove: (EventItem) -> Unit) {
-    if (events.isEmpty()) {
+    val today = java.time.LocalDate.now(ZoneId.systemDefault())
+    val currentEvents = events.filter { event ->
+        val startDay = event.start?.atZone(ZoneId.systemDefault())?.toLocalDate()
+        val endDay = event.end?.atZone(ZoneId.systemDefault())?.toLocalDate()
+        when {
+            startDay == null -> false
+            endDay != null -> !endDay.isBefore(today)
+            else -> !startDay.isBefore(today)
+        }
+    }
+    if (currentEvents.isEmpty()) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(t(language, "no_favorites"), modifier = Modifier.padding(24.dp))
         }
         return
     }
     LazyColumn(contentPadding = PaddingValues(12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        items(events.sortedBy { it.start }, key = { it.stableKey }) { event ->
+        items(currentEvents.sortedBy { it.start }, key = { it.stableKey }) { event ->
             EventCard(event, language, compact = false, favorite = true, onFavorite = { onRemove(event) })
         }
     }
@@ -603,7 +616,7 @@ private fun t(lang: String, key: String): String {
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
         "events" to "events", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
-        "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality",
+        "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality", "unverified_dates" to "Show events with unverified date",
         "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
         "no_map" to "No coordinates are available for the current results.", "preferences" to "Preferences",
@@ -617,7 +630,7 @@ private fun t(lang: String, key: String): String {
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
         "events" to "Events", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
-        "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität",
+        "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität", "unverified_dates" to "Events ohne verifiziertes Datum anzeigen",
         "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
         "no_map" to "Für die aktuellen Treffer liegen keine Koordinaten vor.", "preferences" to "Einstellungen",
