@@ -177,7 +177,8 @@ def current_or_future(start, end):
 def repair_text(value):
     if not isinstance(value, str):
         return value
-    return fix_text(value)
+    decoded = unquote(value) if "%" in value else value
+    return fix_text(decoded)
 
 
 def clean_text(value):
@@ -247,7 +248,11 @@ def event_key(e):
     event_url = str(e.get("eventUrl") or "").strip()
     if event_url.startswith("http"):
         parsed = urlparse(event_url)
-        canonical = (parsed.hostname or "").lower().removeprefix("www.") + parsed.path.rstrip("/").lower()
+        host = (parsed.hostname or "").lower().removeprefix("www.")
+        path = parsed.path.rstrip("/").lower()
+        if host == "forum.openai.com":
+            path = path.replace("/home/events/", "/public/events/")
+        canonical = host + path
         if canonical:
             return hashlib.sha256(("url|" + canonical).encode()).hexdigest()[:24]
     start = e.get("start") or ""
