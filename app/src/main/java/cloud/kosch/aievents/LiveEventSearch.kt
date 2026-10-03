@@ -110,6 +110,8 @@ object LiveEventSearch {
                 }
             }
             .filter { it.confidence >= config.minConfidence }
+            .filter { !config.officialOnly || it.officialProvider }
+            .filter { EventClassifier.matchesType(it, config.eventType) }
             .filter { event ->
                 when {
                     center != null && event.geo != null ->
