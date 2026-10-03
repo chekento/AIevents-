@@ -29,7 +29,17 @@ object EventRanker {
             }
         }
 
-        if (event.officialProvider) score += 28
+        if (event.officialProvider) {
+            score += 28
+            val majorSignals = listOf(
+                "devday", "developer day", "dev days", "summit", "gtc", "ai tour",
+                "build", "i/o", "reinvent", "re:invent", "connect", "founder house",
+                "developer conference", "world tour"
+            )
+            if (majorSignals.any { it in (event.title + " " + event.description).lowercase() }) {
+                score += 15
+            }
+        }
         if (event.sourceCount > 1) score += minOf(15, (event.sourceCount - 1) * 5)
 
         val source = event.sourceName.lowercase()
