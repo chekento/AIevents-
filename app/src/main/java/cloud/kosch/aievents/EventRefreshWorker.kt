@@ -74,6 +74,7 @@ fun AppSettings.toSearchConfig() = SearchConfig(
     place = place,
     radiusKm = radiusKm,
     language = language,
+    countryCode = placeCountryCode,
     includeOnline = includeOnline,
     futureDays = futureDays,
     includeUnverifiedDates = includeUnverifiedDates,
