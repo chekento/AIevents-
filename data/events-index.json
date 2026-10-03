@@ -1,22 +1,22 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-03T14:44:11.467787Z",
-  "cursor": 11,
+  "generated_at": "2026-10-03T14:47:31.491427Z",
+  "cursor": 23,
   "regions_processed": [
-    "Auckland, New Zealand",
-    "Ahrensburg, Schleswig-Holstein, Germany",
-    "Hamburg, Germany",
-    "Kiel, Germany",
-    "Lübeck, Germany",
-    "Berlin, Germany",
-    "Munich, Germany",
-    "Frankfurt, Germany",
-    "Cologne, Germany",
-    "Düsseldorf, Germany",
-    "Stuttgart, Germany",
-    "Vienna, Austria"
+    "Zurich, Switzerland",
+    "Amsterdam, Netherlands",
+    "Brussels, Belgium",
+    "Paris, France",
+    "London, United Kingdom",
+    "Dublin, Ireland",
+    "Madrid, Spain",
+    "Barcelona, Spain",
+    "Lisbon, Portugal",
+    "Milan, Italy",
+    "Rome, Italy",
+    "Stockholm, Sweden"
   ],
-  "event_count": 53,
+  "event_count": 48,
   "events": [
     {
       "title": "Towards AI-native: Building the capabilities for the future of work",
@@ -41,7 +41,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346043Z",
-      "key": "5f9e300f217d2b387753be7e"
+      "key": "d0fdadeb73091a5cd63596ae"
     },
     {
       "title": "Cofounder Speed Dating: Consumer and Prosumer AI",
@@ -49,7 +49,7 @@
       "end": "2026-10-04T11:00:00Z",
       "venue": "Private venue",
       "locality": "Private venue, 74 Great Eastern Street, EC2A 3JL, London, England, United Kingdom",
-      "description": "We’re teaming up with Unicorn Mafia and Corgi to host a breakfast for people interested in starting a company and meeting potential cofounders. The theme is Consumer and Prosumer AI: products built for individuals, from everyday users to power users. We’re ...",
+      "description": "We're teaming up with Unicorn Mafia and Corgi to host a breakfast for people interested in starting a company and meeting potential cofounders. The theme is Consumer and Prosumer AI: products built for individuals, from everyday users to power users. We're ...",
       "organizer": "AI Tinkerers - London",
       "sourceName": "london.aitinkerers.org",
       "sourceUrl": "https://london.aitinkerers.org/p/cofounder-speed-dating-consumer-and-prosumer-ai",
@@ -63,7 +63,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:08.380185Z",
-      "key": "5e935994ca1b519bae6c6f39"
+      "key": "00c2a6b5220cb97b51ac5668"
     },
     {
       "title": "AI Tinkerers Tokyo — October 5 Meetup",
@@ -85,7 +85,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:08.893910Z",
-      "key": "bed00580242bc6cca89c42aa"
+      "key": "d1ba6e8c0b5581bf439040e5"
     },
     {
       "title": "AI Tinkerers - Columbus October Meetup",
@@ -107,7 +107,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:09.547429Z",
-      "key": "0ba92c71603a1c996741bee5"
+      "key": "eedb49c9ce9ff6db61f0b409"
     },
     {
       "title": "AI Tinkerers Boston — Agentic GTM Builders Night (Oct 5)",
@@ -129,15 +129,15 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:10.259136Z",
-      "key": "6d9a83efd7a69af9da2ce56f"
+      "key": "dcae31c76b15c289045d8a81"
     },
     {
-      "title": "AI Tinkerers Portland — What Your UX Isn’t Telling You",
+      "title": "AI Tinkerers Portland — What Your UX Isn't Telling You",
       "start": "2026-10-06T01:00:00Z",
       "end": "2026-10-06T03:15:00Z",
       "venue": "Private venue",
       "locality": "Private venue, 621 Southwest Morrison Street, 97205, Portland, OR, United States",
-      "description": "Built for engineers and technical founders shipping AI-native products Every product has a feedback inbox nobody’s caught up on, a folder of session replays nobody rewatched, and a bug report that got a thumbs-up and nothing else. This meetup is for ...",
+      "description": "Built for engineers and technical founders shipping AI-native products Every product has a feedback inbox nobody's caught up on, a folder of session replays nobody rewatched, and a bug report that got a thumbs-up and nothing else. This meetup is for ...",
       "organizer": "AI Tinkerers - Portland",
       "sourceName": "portland.aitinkerers.org",
       "sourceUrl": "https://portland.aitinkerers.org/p/ai-tinkerers-portland-what-your-ux-isn-t-telling-you",
@@ -151,7 +151,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:10.932610Z",
-      "key": "5884e387bb94579ad23a6b12"
+      "key": "769f139be177f42cc36893cb"
     },
     {
       "title": "Discover and Build with Kiro",
@@ -173,7 +173,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:11.565417Z",
-      "key": "db4822aa27a44bbc476bca5b"
+      "key": "4e024e583909c081e102a290"
     },
     {
       "title": "Show & Tell",
@@ -198,7 +198,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346244Z",
-      "key": "2bcc80e63c01c613580d57ad"
+      "key": "724dae6eb66585367c1a7717"
     },
     {
       "title": "AI Tinkerers Seoul × Kiro: Demo Night with Joe.",
@@ -220,7 +220,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:12.156692Z",
-      "key": "008a290110bf475eb9904095"
+      "key": "9afdd5f3e2c096fce0d84b0b"
     },
     {
       "title": "Community Lunch",
@@ -245,7 +245,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346381Z",
-      "key": "a9f925d3af61d166635d940e"
+      "key": "a7038cd3b30e8d80cd54a881"
     },
     {
       "title": "Women in AI - Interview with Femke",
@@ -267,7 +267,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:18.338204Z",
-      "key": "7445760fe2fb95f0b8e9f2c3"
+      "key": "952283305d134888a4a995f6"
     },
     {
       "title": "AI Builders Hamburg • Oct 7",
@@ -275,7 +275,7 @@
       "end": "2026-10-07T19:00:00Z",
       "venue": "House of AI Hamburg",
       "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "Join our informal meetup for the biggest AI nerds! We share the latest insights about: AI dev tools, Agent frameworks, RAG, vibe coding, OpenClaw, Claude Code and more! // FOR WHO â Devs, Product peeps, Data lovers, ML engineers, Founders â Anyone building with AI â ï¸ Some LLM knowledge required!* // FORMAT ð¤ Innovative AI Demos â from EU + Silicon Valley leaders ð» Builder Tool Demos â ship fast, explain faster ð¤ ð» A LOT of time for informal networking ð Yummy Pizza &",
+      "description": "Join our informal meetup for the biggest AI nerds! We share the latest insights about: AI dev tools, Agent frameworks, RAG, vibe coding, OpenClaw, Claude Code and more! // FOR WHO ✅ Devs, Product peeps, Data lovers, ML engineers, Founders ✅ Anyone building with AI ⚠️ Some LLM knowledge required!* // FORMAT 🎤 Innovative AI Demos — from EU + Silicon Valley leaders 💻 Builder Tool Demos — ship fast, explain faster 🤝 🍻 A LOT of time for informal networking 🍕 Yummy Pizza &",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -291,8 +291,8 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-03T14:38:03.346523Z",
-      "key": "c534de1a009bb7ddf352f322"
+      "indexedAt": "2026-10-03T14:46:17.482384Z",
+      "key": "7ff5311d9d1407ebd67479a2"
     },
     {
       "title": "AI Tinkerers Antwerp: Agentic Knowledge Management",
@@ -314,7 +314,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:12.689135Z",
-      "key": "9d02a0f82a5701011e67b94d"
+      "key": "4cb9b14e407e9f3b0b2af898"
     },
     {
       "title": "AI Tinkerers: Prague - October Builders Meetup",
@@ -336,7 +336,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:13.175245Z",
-      "key": "191c38c263d6c611b32f4935"
+      "key": "86246cd444f911e60fa24aad"
     },
     {
       "title": "Global AI Tallahassee - Monthly MeetUp",
@@ -358,7 +358,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:18.780800Z",
-      "key": "9d68d194d5237411c00e38d5"
+      "key": "2cb1d116bd47e6ecf6c33d4a"
     },
     {
       "title": "Happy Hour",
@@ -366,7 +366,7 @@
       "end": "2026-10-08T18:30:00Z",
       "venue": "House of AI Hamburg",
       "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "🍹 House of AI Community Happy Hour Time to kick back and unwind at House of AI Hamburg! Grab a drink, settle into a comfy corner, and enjoy a relaxed evening away from screens and schedules. Whether you’re catching up with familiar faces or meeting new ones, this is the perfect chance to slow down and just chat. We’ll have a nice mix of drinks on hand, both alcoholic and non-alcoholic, so there’s something for everyone. There’s no agenda to follow and nothing you need to",
+      "description": "🍹 House of AI Community Happy Hour Time to kick back and unwind at House of AI Hamburg! Grab a drink, settle into a comfy corner, and enjoy a relaxed evening away from screens and schedules. Whether you're catching up with familiar faces or meeting new ones, this is the perfect chance to slow down and just chat. We'll have a nice mix of drinks on hand, both alcoholic and non-alcoholic, so there's something for everyone. There's no agenda to follow and nothing you need to",
       "organizer": "",
       "sourceName": "house-of-ai.org",
       "sourceUrl": "https://house-of-ai.org/de/events/",
@@ -383,7 +383,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346653Z",
-      "key": "21b2db5d7b2ee59170f7a438"
+      "key": "0c42e1b592e8a093f8fd2ed8"
     },
     {
       "title": "GitHub Copilot Dev Day 2026",
@@ -405,7 +405,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:41.059961Z",
-      "key": "c0dd7dd223e8a6bdeb92b839"
+      "key": "ac275d7d063b644ed7647573"
     },
     {
       "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
@@ -430,7 +430,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346779Z",
-      "key": "0a4bd5467ca0f444a11cb620"
+      "key": "26fadeecba2c0c25c953f59c"
     },
     {
       "title": "IBM Tech Connect: AI, Cloud & The Future of Technology",
@@ -452,7 +452,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:19.558808Z",
-      "key": "23fd3b7405a311b4a94ea46f"
+      "key": "6dfd323b400e3a4a5506a477"
     },
     {
       "title": "TECHIE IMPACT SUMMIT 3.0 AI FOR GOOD; SHAPING AFRICA",
@@ -460,7 +460,7 @@
       "end": "2026-10-10T13:30:00Z",
       "venue": "8 Montgomery Rd",
       "locality": "8 Montgomery Rd, 8 Montgomery Rd, Lagos, Lagos, NG",
-      "description": "What happens when Africa’s brightest minds stop talking about AI — and start building with it? Find out at Techie Impact Summit 3.0. Bankable Wisdom, in support with the Western Union Foundation and Watson Institute, USA, is bringing together founders, innovators, creators, tech professionals, entrepreneurs and young leaders for a high-energy day focused on one big question: How can we turn AI ideas into real African impact? This isn't an event you want to simply hear about afterwards. 🎤 KEYNOTE SPEAKERS Terhile Ikyo — Senior Project Manager, FCMB Nigeria From AI Ideas to AI Impact: Building the AI-Powered African Business Jennifer Chukwuma — Co-Founder, GENZ Agency & Socialitik The Future of Content Creation: How AI Is Changing What We Create and How We Create It Muheez Okunade — Growth and Insight Executive @ Interswitch Building Smarter: Leveraging AI to Build Startups Precious Azuonwu — CEO, Bankable Wisdom & Western Union Global Fellow Raising Funding for Your AI Innovations 🔥 AND THERE'S MORE! 🚀 Live Startup Pitches — discover innovative businesses building with AI. 🤖 Real AI Conversations — practical insights you can take back to your business, career or startup. 🎮 AI Games ",
+      "description": "What happens when Africa's brightest minds stop talking about AI — and start building with it? Find out at Techie Impact Summit 3.0. Bankable Wisdom, in support with the Western Union Foundation and Watson Institute, USA, is bringing together founders, innovators, creators, tech professionals, entrepreneurs and young leaders for a high-energy day focused on one big question: How can we turn AI ideas into real African impact? This isn't an event you want to simply hear about afterwards. 🎤 KEYNOTE SPEAKERS Terhile Ikyo — Senior Project Manager, FCMB Nigeria From AI Ideas to AI Impact: Building the AI-Powered African Business Jennifer Chukwuma — Co-Founder, GENZ Agency & Socialitik The Future of Content Creation: How AI Is Changing What We Create and How We Create It Muheez Okunade — Growth and Insight Executive @ Interswitch Building Smarter: Leveraging AI to Build Startups Precious Azuonwu — CEO, Bankable Wisdom & Western Union Global Fellow Raising Funding for Your AI Innovations 🔥 AND THERE'S MORE! 🚀 Live Startup Pitches — discover innovative businesses building with AI. 🤖 Real AI Conversations — practical insights you can take back to your business, career or startup. 🎮 AI Games ",
       "organizer": "Precious Azuonwu, Precious Azuonwu",
       "sourceName": "luma.com",
       "sourceUrl": "https://luma.com/qjrulkme",
@@ -477,7 +477,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:41.409218Z",
-      "key": "7a17c6ea4ccf24c748a890e5"
+      "key": "a6d0e38507f16f2ab67c4d7e"
     },
     {
       "title": "Global AI on Tour - Dallas",
@@ -499,7 +499,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:20.000068Z",
-      "key": "2173b49dca87862c884089a0"
+      "key": "d485c07510234c0bb949793b"
     },
     {
       "title": "robotics & physical ai CLUB",
@@ -524,7 +524,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.346910Z",
-      "key": "c3af9e8d3cf3710ffc399f68"
+      "key": "ba12ae45aa6d673eec4cfeac"
     },
     {
       "title": "Technical Meetup: Leveraging AI across Software Development Life Cycle",
@@ -546,32 +546,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:20.424094Z",
-      "key": "4fbda9a8c527c947af0bc40f"
-    },
-    {
-      "title": "Hamburg | Claude Code Meetup",
-      "start": "2026-10-15T16:00:00Z",
-      "end": "2026-10-15T20:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "A casual meetup for people using Claude or interested in Claude. Speakers TBD.",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/claude-vb6t",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.347032Z",
-      "key": "4b23dcb7aec1a9166ad4dba5"
+      "key": "e30c967eea73070887e39004"
     },
     {
       "title": "Hamburg | Claude Code Meetup",
@@ -596,7 +571,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:36.082719Z",
-      "key": "74dea16068f060bf37b1a235"
+      "key": "2c97e7e08a03607349468a69"
     },
     {
       "title": "Microsoft Fabric Community Day 2026",
@@ -618,7 +593,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:42.792919Z",
-      "key": "5a7bb3e7fdf79efb5cdf0150"
+      "key": "c33c977a2905f58399671f98"
     },
     {
       "title": "Copilot, Cowork, Ai Agents Data Governance",
@@ -640,7 +615,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:20.844477Z",
-      "key": "a76a65e96758e7c5e0a8533f"
+      "key": "40cb5e4f7fb0cf324f2f7dcb"
     },
     {
       "title": "Build AI Agents with Vercel - Mbarara",
@@ -662,7 +637,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:21.417070Z",
-      "key": "5f12539ace41dc6d58e2bd11"
+      "key": "f175e49f279d157b15d161c1"
     },
     {
       "title": "Digital Souveränity with Blue + Delos",
@@ -684,7 +659,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:21.839708Z",
-      "key": "1bbdf57fca6483ef3889b75a"
+      "key": "d19793323eaf718574af7846"
     },
     {
       "title": "Scaling Agentic AI with Cloud Run",
@@ -706,7 +681,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:21:07.778614Z",
-      "key": "5005cb31e266b068cdfb7724"
+      "key": "7a22fd7d621f448b1cb86e29"
     },
     {
       "title": "AI Tour Germany: Community Warm-Up (Hamburg)",
@@ -728,7 +703,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:22.413023Z",
-      "key": "73c6e2b8e05125226dd017cf"
+      "key": "7fb6b3a8ce910a3e5acf98fe"
     },
     {
       "title": "Agentic AI Community Day 2026",
@@ -750,7 +725,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:22.837699Z",
-      "key": "bba9a7a5be2f0b502387dc15"
+      "key": "849fcf8b0d68019b6691a5bc"
     },
     {
       "title": "Fly with Copilot: Munich",
@@ -772,7 +747,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:23.387002Z",
-      "key": "f788b1ddf234c11b9d728d0a"
+      "key": "eabe1ff53f45d7f71e1c445b"
     },
     {
       "title": "MAKE AI WORK - The Human vs. Maschine Edition ´26",
@@ -797,7 +772,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347163Z",
-      "key": "87a772cef7c071c229105506"
+      "key": "28e7dc277d1da156baa31f98"
     },
     {
       "title": "Graphs Gone Wild",
@@ -819,7 +794,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:23.966978Z",
-      "key": "5b041ae0bf5deaa1a3ce0598"
+      "key": "a0397fa2fd71251f6e5bd4db"
     },
     {
       "title": "Global AI On Tour - Nairobi",
@@ -841,7 +816,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:24.392233Z",
-      "key": "8f8bfcd6c7ac4bac612e1c73"
+      "key": "598096af4e31f1727d1ceda4"
     },
     {
       "title": "Dev Days | Lecce, Italy",
@@ -866,7 +841,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:47.259566Z",
-      "key": "b7e2fc99c7a69ecc427a6bcb"
+      "key": "a76aca7a82687680ec173ec4"
     },
     {
       "title": "Global AI Kochi - Chapter Meet - October 2026",
@@ -888,7 +863,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:24.767666Z",
-      "key": "515a8ee74aabee23061b8f94"
+      "key": "296a2ad7e73bb87955881d98"
     },
     {
       "title": "power plat conf build a thon",
@@ -910,7 +885,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:25.143412Z",
-      "key": "0c553aa7602f5a9663c275f4"
+      "key": "eba8eac263113a8170daee75"
     },
     {
       "title": "Global AI On Tour - Gurgaon",
@@ -932,7 +907,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:25.568162Z",
-      "key": "689a9b7f1e9bde16c78b127b"
+      "key": "7be7872d1285020c047694ff"
     },
     {
       "title": "SG Agentic Nights - Exclusive Hands on Labs with Docker",
@@ -954,7 +929,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:26.141579Z",
-      "key": "7deb1ace326880aabf5b6e94"
+      "key": "7f46089e978775af6bb6ae35"
     },
     {
       "title": "Global AI night November",
@@ -976,7 +951,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:26.721303Z",
-      "key": "8f869d54c27394f5331c6e5e"
+      "key": "ff06f9b96a5ba777a86a22ff"
     },
     {
       "title": "Women in AI - Interview with Cassie",
@@ -998,7 +973,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:27.146011Z",
-      "key": "926feff868f51f3d575072f4"
+      "key": "dc2bcfb063bc78118158c6f9"
     },
     {
       "title": "Global AI Tallahassee - Monthly MeetUp",
@@ -1020,32 +995,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:25:27.717820Z",
-      "key": "1f5dfb2b8fc59f519c5e5707"
-    },
-    {
-      "title": "Vue.js Hamburg Meetup #23",
-      "start": "2026-11-11T17:30:00Z",
-      "end": "2026-11-11T21:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "Join us for the 23rd Vue.js Hamburg Meetup and our last meetup of the year! We're heading to House of AI , a curated space for AI founders in Hamburg's HafenCity, to close out the year with talks, snacks, and good conversation. This evening features two exciting talks: Revanth, the founder of VueVerse , will show us how to make Vue apps leaner and faster by cutting unnecessary weight. In a special premiere for our meetup, Revanth will be joining us live and remote all the",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/ds1wpe2x",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.347302Z",
-      "key": "2ffcd4a1281df3013fc68b23"
+      "key": "1186b3e1c23adca84f565f30"
     },
     {
       "title": "Vue.js Hamburg Meetup #23",
@@ -1070,32 +1020,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:34.481185Z",
-      "key": "bac9728aa224490423137ab9"
-    },
-    {
-      "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
-      "start": "2026-11-12T17:30:00Z",
-      "end": "2026-11-12T21:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "The future is now. Autonomous driving is approaching fast and will transform mobility for good. Artificial intelligence, growing connectivity, ever more powerful sensors, and new model architectures are all evolving at once, together pushing the field forward. Tonight we put the spotlight on one of the most exciting developments among them. Join us for an evening on: End-to-End AI Models - Challenges and Opportunities This edition of the Autonomous Driving Meetup brings",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/i7am4yom",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.347424Z",
-      "key": "ac132edd73514cee22033aad"
+      "key": "bf9e91c7102c085f29e2fd75"
     },
     {
       "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
@@ -1120,32 +1045,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:34.814416Z",
-      "key": "ad827f3535ca725019209476"
-    },
-    {
-      "title": "Wunder Mobility Meetup: AI in Fleet Management",
-      "start": "2026-11-19T17:00:00Z",
-      "end": "2026-11-19T23:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "AI in Fleet Management A Wunder Mobility Meetup — Hamburg Every operator is being told that AI will transform fleet operations. Far fewer people can tell you which parts already work and which are still a demo with good lighting. That is what this evening is for. We will show what we have actually shipped — where AI is already taking real work out of dispatch, maintenance, pricing and customer support — and we will be just as clear about where it is not ready yet. Then we",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/5ztd6180",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.347546Z",
-      "key": "b60a6393086ff6b8c5ba4622"
+      "key": "8f3a2aae4a18402fcf0795aa"
     },
     {
       "title": "Wunder Mobility Meetup: AI in Fleet Management",
@@ -1170,32 +1070,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:35.182319Z",
-      "key": "c24a41ee4a44aefe4de0bb92"
-    },
-    {
-      "title": "AI & Matcha: Frühstücksevent",
-      "start": "2026-11-20T09:00:00Z",
-      "end": "2026-11-20T11:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "by AI Curious Collective und Mom Hunting / Female Leaders of AI",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/8l89hq5n",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.347659Z",
-      "key": "e76827d62f86fccd313ced25"
+      "key": "c3a6735ea7d51bb214a7163e"
     },
     {
       "title": "AI & Matcha: Frühstücksevent",
@@ -1220,7 +1095,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:40:36.681490Z",
-      "key": "ec5535e770cc99b3a76fc939"
+      "key": "2b3a159d5f11cdf5caedac95"
     },
     {
       "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
@@ -1245,7 +1120,7 @@
         "Global"
       ],
       "indexedAt": "2026-10-03T14:38:03.347781Z",
-      "key": "0942d223af97234caf972afd"
+      "key": "aead90a6b887c658fe9af77c"
     }
   ]
 }
