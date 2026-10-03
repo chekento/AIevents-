@@ -67,3 +67,13 @@ The GitHub workflow **Build Android APK** builds and uploads:
 
 ## Stack
 Kotlin · Jetpack Compose · Material 3 · DataStore · WorkManager · OkHttp · Jsoup · schema.org/Event · JSON-LD · OpenStreetMap/osmdroid · Nominatim
+
+
+## Strict freshness policy
+AIevents v0.2.1 treats event freshness as a hard invariant:
+- Events from calendar days before today are never shown.
+- Multi-day events that started earlier remain visible only while their end date is today or later.
+- Events without a verified date are hidden by default and can only be shown through an explicit user setting.
+- Expired saved/favourite events are hidden as well.
+- Background notifications use the same freshness rules.
+- Unit tests run before every APK build to prevent regressions that could reintroduce past events.
