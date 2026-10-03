@@ -5,6 +5,7 @@ import java.net.URI
 
 enum class SortMode { RELEVANCE, DATE, DISTANCE, CONFIDENCE }
 enum class PriceMode { ANY, FREE, PAID }
+enum class EventType { ALL, CONFERENCE, MEETUP, WORKSHOP, HACKATHON }
 enum class EventCategory { ALL, AGENTS, GENAI, ML, DATA, ROBOTICS, BUSINESS, GOVERNANCE, DEVELOPER, RESEARCH, COMMUNITY }
 
 data class SearchConfig(
@@ -15,6 +16,8 @@ data class SearchConfig(
     val futureDays: Int = 365,
     val includeUnverifiedDates: Boolean = false,
     val priceMode: PriceMode = PriceMode.ANY,
+    val eventType: EventType = EventType.ALL,
+    val officialOnly: Boolean = false,
     val minConfidence: Int = 0,
     val category: EventCategory = EventCategory.ALL,
     val keywords: String = "",
