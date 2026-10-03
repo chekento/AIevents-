@@ -100,3 +100,25 @@ The index refresh workflow runs every six hours and rotates through the global r
 - `backend/event-index.schema.json` — machine-readable index contract.
 - `data/events-index.json` — generated public event index.
 - `.github/workflows/index-events.yml` — scheduled index refresh.
+
+
+## v0.4 — precision search and promo-grade UX
+AIevents v0.4 substantially rebuilds discovery and presentation:
+
+- **Worldwide place autocomplete** backed by OpenStreetMap/Photon data. Selecting a place stores its latitude/longitude, not only a text label.
+- **Strict geo relevance:** when event coordinates exist, radius matching is authoritative. Unverified off-location events no longer leak into local result lists.
+- **Location regression tests** explicitly prevent cases such as New York searches returning Tokyo events. Safe aliases such as NYC are supported.
+- **Three live search paths:** DuckDuckGo, Bing and Google discovery are merged for broad searches, with targeted source queries layered on top.
+- **Expanded event ecosystem:** Meetup, Eventbrite, Luma/lu.ma, Partiful, Bevy, Sched, Splash, AllEvents, Sessionize, Pretalx, GDG, Microsoft Reactor, Global AI Community, AI Tinkerers, ODSC, MLconf, AI Camp, The AI Summit, Data Science Salon and more.
+- **Independent official-provider discovery** for OpenAI, Google, Microsoft, Anthropic, Meta, AWS, NVIDIA and Hugging Face, with additional provider registry support.
+- **Official provider events are visually separated and badged** instead of being mixed into the selected-city results.
+- **Relevance-first ranking** combines distance, data confidence, source quality, official-provider status, keywords, freshness and corroborating sources.
+- **Cross-source deduplication** merges multiple references to the same event and preserves a source-count signal.
+- **Richer cards** display provider/source logos and event artwork when publishers expose it.
+- **Event-type filters:** conference, meetup, workshop and hackathon, plus an official-provider-only switch.
+- **Per-event reminders:** 1 day, 1 hour or 15 minutes before an event, alongside calendar insertion.
+- **New adaptive launcher icon** and a refined purple/lavender Material 3 identity.
+- Existing installs migrate automatically to relevance-first sorting and the expanded source catalogue.
+
+### Local vs global official events
+Local results remain geographically strict. Important official AI/LLM provider events are discovered independently and shown in their own clearly labeled section, so a global provider event never masquerades as a local city result.
