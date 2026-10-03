@@ -52,6 +52,7 @@ object CentralEventIndex {
         val now = Instant.now()
         val placeTokens = tokens(config.place)
 
+        val targetLanguages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
         val filtered = all.mapNotNull { indexed ->
             val event = OfficialProviders.enrich(indexed.event)
             if (!EventDateRules.isVisible(
@@ -59,6 +60,7 @@ object CentralEventIndex {
                 )
             ) return@mapNotNull null
             if (event.officialProvider) return@mapNotNull null
+            if (!EventClassifier.hasAiFocus(event, targetLanguages)) return@mapNotNull null
             if (!config.includeOnline && event.online) return@mapNotNull null
             if (event.confidence < config.minConfidence) return@mapNotNull null
             if (config.officialOnly && !event.officialProvider) return@mapNotNull null
