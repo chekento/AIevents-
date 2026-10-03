@@ -73,6 +73,7 @@ fun AppSettings.toSearchConfig() = SearchConfig(
     language = language,
     includeOnline = includeOnline,
     futureDays = futureDays,
+    includeUnverifiedDates = includeUnverifiedDates,
     priceMode = priceMode,
     minConfidence = minConfidence,
     category = category,
