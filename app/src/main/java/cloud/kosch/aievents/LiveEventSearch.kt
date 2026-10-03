@@ -117,7 +117,7 @@ object LiveEventSearch {
                     center != null && event.geo != null ->
                         event.distanceKm != null && event.distanceKm <= config.radiusKm + 0.5
                     event.online ->
-                        textualPlaceMatch(event, config.place)
+                        LocationMatcher.eventTextMatches(event, config.place)
                     else ->
                         textualPlaceMatch(event, config.place)
                 }
