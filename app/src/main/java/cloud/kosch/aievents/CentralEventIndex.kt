@@ -64,6 +64,8 @@ object CentralEventIndex {
                 placeTokens.isNotEmpty() && placeTokens.any { token -> token in rt }
             } || tokens(event.locality).let { lt ->
                 placeTokens.isNotEmpty() && placeTokens.any { token -> token in lt }
+            } || tokens(event.title).let { tt ->
+                placeTokens.isNotEmpty() && placeTokens.any { token -> token in tt }
             }
 
             val geographicallyRelevant = when {
