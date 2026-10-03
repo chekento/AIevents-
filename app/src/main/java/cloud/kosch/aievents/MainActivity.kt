@@ -739,7 +739,14 @@ private fun ProviderRadarScreen(
                 else providerQuery,
                 icon = Icons.Default.Search,
                 expanded = searchOpen,
-                onToggle = { searchOpen = !searchOpen }
+                onToggle = {
+                    val next = !searchOpen
+                    searchOpen = next
+                    if (next) {
+                        filtersOpen = false
+                        directoryOpen = false
+                    }
+                }
             ) {
                 OutlinedTextField(
                     value = providerQuery,
@@ -792,7 +799,14 @@ private fun ProviderRadarScreen(
                 },
                 icon = Icons.Default.Tune,
                 expanded = filtersOpen,
-                onToggle = { filtersOpen = !filtersOpen }
+                onToggle = {
+                    val next = !filtersOpen
+                    filtersOpen = next
+                    if (next) {
+                        searchOpen = false
+                        directoryOpen = false
+                    }
+                }
             ) {
                 Row(
                     Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
@@ -840,7 +854,14 @@ private fun ProviderRadarScreen(
                     t(settings.language, "providers_available"),
                 icon = Icons.Default.Business,
                 expanded = directoryOpen,
-                onToggle = { directoryOpen = !directoryOpen }
+                onToggle = {
+                    val next = !directoryOpen
+                    directoryOpen = next
+                    if (next) {
+                        searchOpen = false
+                        filtersOpen = false
+                    }
+                }
             ) {
                 val directoryItems = providers.take(40)
                 if (directoryItems.isEmpty()) {
