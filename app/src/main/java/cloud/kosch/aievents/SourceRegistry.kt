@@ -78,10 +78,10 @@ object SourceRegistry {
         )
         val siteQueries = sources
             .filter { source -> source.id in config.enabledSourceIds && source.directQuery && source.domain.isNotBlank() }
-            .flatMap { source -> listOf(
-                "site:" + source.domain + " \"" + place + "\" " + category + " event " + year + " " + extra,
-                "site:" + source.domain + " \"" + place + "\" upcoming AI meetup " + year
-            ) }
+            .map { source ->
+                "site:" + source.domain + " \"" + place + "\" " + category +
+                    " event meetup conference upcoming " + year + " " + extra
+            }
         return (base + siteQueries).distinct()
     }
 }
