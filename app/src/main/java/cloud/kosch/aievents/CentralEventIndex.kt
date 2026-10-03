@@ -36,6 +36,13 @@ object CentralEventIndex {
         val featuredOfficialEvents: List<EventItem> = emptyList()
     )
 
+    data class ProviderResult(
+        val events: List<EventItem>,
+        val indexedCount: Int,
+        val generatedAt: Instant?,
+        val warning: String? = null
+    )
+
     suspend fun search(config: SearchConfig): Result = withContext(Dispatchers.IO) {
         val all = runCatching { load() }.getOrElse {
             return@withContext Result(emptyList(), 0, null, "Central index unavailable: " + (it.message ?: "network error"))
@@ -102,6 +109,46 @@ object CentralEventIndex {
             .take(12)
 
         Result(sorted, all.size, generatedAt, featuredOfficialEvents = featured)
+    }
+
+    suspend fun providerEvents(
+        futureDays: Int = 730,
+        includeOnline: Boolean = true
+    ): ProviderResult = withContext(Dispatchers.IO) {
+        val all = runCatching { load() }.getOrElse {
+            return@withContext ProviderResult(
+                emptyList(), 0, null,
+                "Provider index unavailable: " + (it.message ?: "network error")
+            )
+        }
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        val events = EventMerger.merge(
+            all.map { ProviderCatalog.enrich(OfficialProviders.enrich(it.event)) }
+                .filter { it.providerName.isNotBlank() }
+                .filter {
+                    EventDateRules.isVisible(
+                        it, now, zone, futureDays, false
+                    )
+                }
+                .filter { includeOnline || !it.online }
+        ).map { event ->
+            EventRanker.rank(
+                event,
+                SearchConfig(
+                    place = "",
+                    radiusKm = 500,
+                    language = "en",
+                    futureDays = futureDays,
+                    includeOnline = includeOnline,
+                    sortMode = SortMode.RELEVANCE
+                )
+            )
+        }.sortedWith(
+            compareByDescending<EventItem> { it.relevanceScore }
+                .thenBy { it.start ?: Instant.MAX }
+        )
+        ProviderResult(events, all.size, generatedAt)
     }
 
     @Synchronized
