@@ -77,3 +77,26 @@ AIevents v0.2.1 treats event freshness as a hard invariant:
 - Expired saved/favourite events are hidden as well.
 - Background notifications use the same freshness rules.
 - Unit tests run before every APK build to prevent regressions that could reintroduce past events.
+
+
+## Hybrid central-index architecture (v0.3)
+AIevents now uses two complementary discovery layers:
+
+1. **Central index first** — a scheduled GitHub Actions job incrementally searches a rotating batch of global AI regions, parses structured Event/JSON-LD data, removes expired/cancelled/undated records, deduplicates results and writes `data/events-index.json`.
+2. **Live supplement second** — the Android app displays matching central-index results immediately, then runs its live federated discovery and merges/deduplicates the results.
+
+The index refresh workflow runs every six hours and rotates through the global region list rather than recrawling every city on every run. Pure index-data commits do not rebuild the APK.
+
+### Index safety
+- Central index never stores undated events.
+- Past and cancelled events are discarded during indexing.
+- The Android client re-applies freshness, location, price, category, keyword and confidence filters before showing indexed records.
+- Index failures do not disable the app: live discovery remains the fallback.
+- Live-search failures do not discard already loaded central-index results.
+
+### Backend files
+- `backend/regions.json` — rotating global region catalogue.
+- `backend/index_events.py` — incremental indexer.
+- `backend/event-index.schema.json` — machine-readable index contract.
+- `data/events-index.json` — generated public event index.
+- `.github/workflows/index-events.yml` — scheduled index refresh.
