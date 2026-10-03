@@ -72,8 +72,9 @@ object LiveEventSearch {
             }.awaitAll().flatten()
         }
 
-        val now = Instant.now().minus(Duration.ofHours(18))
-        val maxDate = Instant.now().plus(Duration.ofDays(config.futureDays.toLong()))
+        val zone = ZoneId.systemDefault()
+        val today = LocalDate.now(zone)
+        val maxDay = today.plusDays(config.futureDays.toLong())
 
         val geoEnriched = enrichMissingGeo(events)
         val filtered = geoEnriched.map { event ->
@@ -88,7 +89,17 @@ object LiveEventSearch {
                 }
             }
             .filter { it.confidence >= config.minConfidence }
-            .filter { it.start == null || (it.start.isAfter(now) && it.start.isBefore(maxDate)) }
+            .filter { event ->
+                val startDay = event.start?.atZone(zone)?.toLocalDate()
+                val endDay = event.end?.atZone(zone)?.toLocalDate()
+                when {
+                    startDay == null -> config.includeUnverifiedDates
+                    endDay != null && !endDay.isBefore(today) ->
+                        !startDay.isAfter(maxDay)
+                    else ->
+                        !startDay.isBefore(today) && !startDay.isAfter(maxDay)
+                }
+            }
             .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
             .distinctBy { it.stableKey }
             .let { list ->
