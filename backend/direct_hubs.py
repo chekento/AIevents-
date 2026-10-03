@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 HUBS = [
+    "https://www.house-of-ai.org/de/events/",
+    "https://ai.hamburg/de/events",
     "https://globalai.community/events/",
     "https://aitinkerers.org/events",
     "https://home.mlops.community/public/events",
