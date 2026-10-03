@@ -19,6 +19,8 @@ data class AppSettings(
     val language: String = "de",
     val includeOnline: Boolean = true,
     val priceMode: PriceMode = PriceMode.ANY,
+    val eventType: EventType = EventType.ALL,
+    val officialOnly: Boolean = false,
     val minConfidence: Int = 35,
     val futureDays: Int = 365,
     val includeUnverifiedDates: Boolean = false,
@@ -44,6 +46,8 @@ class SettingsStore(private val context: Context) {
         val language = stringPreferencesKey("language")
         val online = booleanPreferencesKey("online")
         val priceMode = stringPreferencesKey("price_mode")
+        val eventType = stringPreferencesKey("event_type")
+        val officialOnly = booleanPreferencesKey("official_only")
         val confidence = intPreferencesKey("confidence")
         val futureDays = intPreferencesKey("future_days")
         val includeUnverifiedDates = booleanPreferencesKey("include_unverified_dates")
@@ -73,6 +77,8 @@ class SettingsStore(private val context: Context) {
             language = p[Keys.language] ?: "de",
             includeOnline = p[Keys.online] ?: true,
             priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
+            eventType = runCatching { EventType.valueOf(p[Keys.eventType] ?: "ALL") }.getOrDefault(EventType.ALL),
+            officialOnly = p[Keys.officialOnly] ?: false,
             minConfidence = p[Keys.confidence] ?: 35,
             futureDays = p[Keys.futureDays] ?: 365,
             includeUnverifiedDates = p[Keys.includeUnverifiedDates] ?: false,
@@ -100,6 +106,8 @@ class SettingsStore(private val context: Context) {
             p[Keys.language] = s.language
             p[Keys.online] = s.includeOnline
             p[Keys.priceMode] = s.priceMode.name
+            p[Keys.eventType] = s.eventType.name
+            p[Keys.officialOnly] = s.officialOnly
             p[Keys.confidence] = s.minConfidence
             p[Keys.futureDays] = s.futureDays
             p[Keys.includeUnverifiedDates] = s.includeUnverifiedDates
