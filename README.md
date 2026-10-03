@@ -5,7 +5,6 @@
 ## v0.2 highlights
 - Global place/region search and 5–500 km radius
 - Privacy-respecting **My location** helper
-- Ahrensburg preset remains a practical default for southern Schleswig-Holstein + Hamburg
 - Live federated web discovery instead of a bundled static catalogue
 - Search categories: Agents, GenAI, ML, Data, Robotics, Business, Governance, Developer, Research, Community
 - Keyword search plus Today/Week/Month/90-day presets, custom date horizon, free/paid/any pricing, online, confidence and sorting filters
@@ -175,3 +174,19 @@ The local Discover tab is now explicitly **location-agnostic and worldwide**. Ha
 
 ### Central index vs live coverage
 The rotating central index is a **warm cache**, not a coverage boundary. Its global city list is geographically diverse and has no priority-city logic. A place does not need to be present in that list for the Android app to search it: live discovery is generated directly from the user's selected place anywhere in the world.
+
+
+## v0.5.2 — event-first Provider Radar
+
+The Provider Radar was redesigned around the event feed:
+- compact always-visible radar summary,
+- **Provider search**, **Filters** and **Provider directory** are independent collapsible sections,
+- all three sections start collapsed so provider events receive most of the screen,
+- provider search results remain horizontally browsable when explicitly opened,
+- filter summaries remain visible while their controls are collapsed,
+- online and in-person event counts are shown directly above the feed,
+- the event list explicitly takes the remaining screen height and scrolls independently,
+- selected-provider state remains visible without keeping the directory open,
+- narrow-screen bottom navigation uses shorter labels and smaller typography to avoid clipping.
+
+This is intended as the finishing UX pass for the current application architecture.
