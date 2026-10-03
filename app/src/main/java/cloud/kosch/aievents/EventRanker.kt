@@ -72,6 +72,9 @@ object EventRanker {
             }
         }
 
+        val languages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
+        score += EventClassifier.participationScore(event, languages)
+
         if (event.locality.isBlank() && !event.online) score -= 15
         if (event.geo == null && !event.online) score -= 8
 
