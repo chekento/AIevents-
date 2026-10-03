@@ -285,6 +285,7 @@ object LiveEventSearch {
             (obj.opt("location")?.toString()?.contains("VirtualLocation", true) == true)
         val price = priceText(obj.opt("offers"))
         val language = obj.optString("inLanguage")
+        val imageUrl = imageText(obj.opt("image")).ifBlank { meta(doc, "og:image") }
         val domain = runCatching { URI(sourceUrl).host.removePrefix("www.") }.getOrDefault("web")
 
         var confidence = 55
@@ -297,7 +298,7 @@ object LiveEventSearch {
         return EventItem(
             title, start, end, venue, locality, description, organizer, domain,
             sourceUrl, eventUrl, price, language, online, geo, null, confidence.coerceAtMost(100)
-        )
+        ).copy(imageUrl = imageUrl)
     }
 
     private fun heuristicEvent(doc: Document, url: String): EventItem? {
@@ -327,7 +328,8 @@ object LiveEventSearch {
             online = haystack.contains("online event") || haystack.contains("virtual event"),
             geo = null,
             distanceKm = null,
-            confidence = if (start != null) 55 else 35
+            confidence = if (start != null) 55 else 35,
+            imageUrl = meta(doc, "og:image")
         )
     }
 
@@ -348,6 +350,15 @@ object LiveEventSearch {
         val lat = obj.optDouble("latitude", Double.NaN)
         val lon = obj.optDouble("longitude", Double.NaN)
         return if (lat.isFinite() && lon.isFinite()) GeoPoint(lat, lon) else null
+    }
+
+    private fun imageText(value: Any?): String = when (value) {
+        is String -> value.takeIf { it.startsWith("http") }.orEmpty()
+        is JSONObject -> value.optString("url").takeIf { it.startsWith("http") }.orEmpty()
+        is JSONArray -> {
+            if (value.length() == 0) "" else imageText(value.opt(0))
+        }
+        else -> ""
     }
 
     private fun priceText(value: Any?): String {
