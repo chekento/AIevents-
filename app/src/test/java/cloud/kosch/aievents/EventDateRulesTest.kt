@@ -7,10 +7,7 @@ import java.time.*
 
 class EventDateRulesTest {
     private val zone = ZoneId.of("Europe/Berlin")
-    private val today = LocalDate.of(2026, 10, 3)
-
-    private fun instant(day: LocalDate, hour: Int = 12): Instant =
-        day.atTime(hour, 0).atZone(zone).toInstant()
+    private val now = ZonedDateTime.of(2026, 10, 3, 16, 30, 0, 0, zone).toInstant()
 
     private fun event(start: Instant?, end: Instant? = null) = EventItem(
         title = "Test AI event",
@@ -31,45 +28,44 @@ class EventDateRulesTest {
         confidence = 100
     )
 
-    @Test fun yesterday_is_never_visible() {
-        assertFalse(EventDateRules.isVisible(event(instant(today.minusDays(1))), today, zone, 365, false))
+    @Test fun already_finished_event_today_is_hidden() {
+        val start = ZonedDateTime.of(2026, 10, 3, 9, 0, 0, 0, zone).toInstant()
+        val end = ZonedDateTime.of(2026, 10, 3, 12, 0, 0, 0, zone).toInstant()
+        assertFalse(EventDateRules.isVisible(event(start, end), now, zone, 365, false))
     }
 
-    @Test fun today_is_visible_even_if_clock_time_passed() {
-        assertTrue(EventDateRules.isVisible(event(instant(today, 1)), today, zone, 365, false))
+    @Test fun upcoming_event_today_is_visible() {
+        val start = ZonedDateTime.of(2026, 10, 3, 18, 0, 0, 0, zone).toInstant()
+        assertTrue(EventDateRules.isVisible(event(start), now, zone, 365, false))
+    }
+
+    @Test fun ongoing_event_is_visible_when_end_is_future() {
+        val start = now.minusSeconds(3600)
+        val end = now.plusSeconds(3600)
+        assertTrue(EventDateRules.isVisible(event(start, end), now, zone, 365, false))
+    }
+
+    @Test fun past_event_without_end_is_hidden() {
+        assertFalse(EventDateRules.isVisible(event(now.minusSeconds(60)), now, zone, 365, false))
     }
 
     @Test fun future_event_is_visible_within_horizon() {
-        assertTrue(EventDateRules.isVisible(event(instant(today.plusDays(30))), today, zone, 365, false))
+        assertTrue(EventDateRules.isVisible(event(now.plusSeconds(30L * 86400L)), now, zone, 365, false))
     }
 
     @Test fun event_beyond_horizon_is_hidden() {
-        assertFalse(EventDateRules.isVisible(event(instant(today.plusDays(31))), today, zone, 30, false))
-    }
-
-    @Test fun ongoing_multiday_event_remains_visible() {
-        assertTrue(EventDateRules.isVisible(
-            event(instant(today.minusDays(2)), instant(today.plusDays(1))),
-            today, zone, 365, false
-        ))
-    }
-
-    @Test fun already_ended_multiday_event_is_hidden() {
-        assertFalse(EventDateRules.isVisible(
-            event(instant(today.minusDays(3)), instant(today.minusDays(1))),
-            today, zone, 365, false
-        ))
+        assertFalse(EventDateRules.isVisible(event(now.plusSeconds(31L * 86400L)), now, zone, 30, false))
     }
 
     @Test fun undated_event_is_hidden_by_default() {
-        assertFalse(EventDateRules.isVisible(event(null), today, zone, 365, false))
+        assertFalse(EventDateRules.isVisible(event(null), now, zone, 365, false))
     }
 
     @Test fun undated_event_can_be_explicitly_enabled() {
-        assertTrue(EventDateRules.isVisible(event(null), today, zone, 365, true))
+        assertTrue(EventDateRules.isVisible(event(null), now, zone, 365, true))
     }
 
     @Test fun expired_saved_event_is_hidden() {
-        assertFalse(EventDateRules.isCurrentSavedEvent(event(instant(today.minusDays(1))), today, zone))
+        assertFalse(EventDateRules.isCurrentSavedEvent(event(now.minusSeconds(60)), now, zone))
     }
 }
