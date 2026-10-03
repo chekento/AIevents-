@@ -148,6 +148,7 @@ class SettingsStore(private val context: Context) {
         put("language", event.language)
         put("online", event.online)
         put("confidence", event.confidence)
+        put("imageUrl", event.imageUrl)
         event.geo?.let { geo ->
             put("lat", geo.lat)
             put("lon", geo.lon)
@@ -173,7 +174,8 @@ class SettingsStore(private val context: Context) {
             online = o.optBoolean("online"),
             geo = geo,
             distanceKm = null,
-            confidence = o.optInt("confidence", 50)
+            confidence = o.optInt("confidence", 50),
+            imageUrl = o.optString("imageUrl")
         )
     }.getOrNull()
 }
