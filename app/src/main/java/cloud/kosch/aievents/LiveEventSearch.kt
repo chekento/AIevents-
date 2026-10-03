@@ -391,11 +391,14 @@ object LiveEventSearch {
 
     private suspend fun enrichMissingGeo(events: List<EventItem>): List<EventItem> {
         val candidates = events.filter { it.geo == null && it.locality.isNotBlank() }
-            .map { it.locality.trim() }.distinct().take(5)
+            .map { it.locality.trim() }.distinct().take(16)
         for (locality in candidates) {
             if (!geoCache.containsKey(locality)) {
-                geoCache[locality] = runCatching { geocode(locality) }.getOrNull()
-                delay(1100)
+                geoCache[locality] = runCatching {
+                    LocationAutocomplete.search(locality, "en", 1).firstOrNull()?.point
+                        ?: geocode(locality)
+                }.getOrNull()
+                delay(120)
             }
         }
         return events.map { event ->
