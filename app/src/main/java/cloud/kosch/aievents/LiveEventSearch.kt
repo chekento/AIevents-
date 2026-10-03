@@ -59,7 +59,7 @@ object LiveEventSearch {
         val candidateLinks = links
             .filter { it.startsWith("https://") }
             .filterNot { it.contains("duckduckgo.com") }
-            .take(80)
+            .take(140)
 
         val semaphore = Semaphore(6)
         val events = coroutineScope {
@@ -112,13 +112,46 @@ object LiveEventSearch {
 
     private fun discover(query: String): List<String> {
         val encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString())
-        val url = "https://html.duckduckgo.com/html/?q=" + encoded
-        val doc = Jsoup.parse(get(url), url)
-        return doc.select("a.result__a, a[data-testid=result-title-a]")
-            .mapNotNull { normalizeDdgUrl(it.attr("href")) }
-            .filter { isLikelyEventPage(it) }
-            .distinct()
-            .take(12)
+        val found = linkedSetOf<String>()
+
+        fun add(url: String?, label: String = "") {
+            if (url.isNullOrBlank() || !url.startsWith("https://")) return
+            val signal = (url + " " + label).lowercase()
+            if (isLikelyEventPage(url) || listOf(
+                    "event", "meetup", "conference", "summit", "workshop", "hackathon",
+                    "stammtisch", "community", "artificial intelligence", " ai ", " ki "
+                ).any { it in signal }
+            ) found += url
+        }
+
+        // DuckDuckGo is fast when available, but may return 403 on some networks.
+        runCatching {
+            val url = "https://html.duckduckgo.com/html/?q=" + encoded
+            val doc = Jsoup.parse(get(url), url)
+            doc.select("a.result__a, a[data-testid=result-title-a]").forEach { a ->
+                add(normalizeDdgUrl(a.attr("href")), a.text())
+            }
+        }
+
+        // Bing fallback materially improves Android/mobile-network reliability.
+        if (found.size < 8) runCatching {
+            val url = "https://www.bing.com/search?q=" + encoded + "&count=20"
+            val doc = Jsoup.parse(get(url), url)
+            doc.select("li.b_algo h2 a, a.tilk").forEach { a ->
+                add(a.absUrl("href").ifBlank { a.attr("href") }, a.text() + " " + a.parent()?.parent()?.text().orEmpty())
+            }
+        }
+
+        // Last-resort Google HTML path. Consent/CAPTCHA pages simply produce no links.
+        if (found.size < 5) runCatching {
+            val url = "https://www.google.com/search?q=" + encoded + "&num=20"
+            val doc = Jsoup.parse(get(url), url)
+            doc.select("div.yuRUbf a, a[jsname=UWckNb]").forEach { a ->
+                add(a.absUrl("href").ifBlank { a.attr("href") }, a.text())
+            }
+        }
+
+        return found.take(16)
     }
 
     private fun normalizeDdgUrl(href: String): String? {
