@@ -20,6 +20,18 @@ object LocationUtils {
         }.maxByOrNull { it.time }
     }
 
+    fun countryCode(context: Context, location: android.location.Location): String {
+        return runCatching {
+            @Suppress("DEPRECATION")
+            Geocoder(context, Locale.getDefault())
+                .getFromLocation(location.latitude, location.longitude, 1)
+                ?.firstOrNull()
+                ?.countryCode
+                ?.uppercase()
+                .orEmpty()
+        }.getOrDefault("")
+    }
+
     fun describe(context: Context, location: android.location.Location): String {
         return runCatching {
             @Suppress("DEPRECATION")
