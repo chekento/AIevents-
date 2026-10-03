@@ -84,6 +84,7 @@ object SourceRegistry {
                 "site:" + source.domain + " \"" + place + "\" " + category +
                     " event meetup conference upcoming " + year + " " + extra
             }
-        return (base + siteQueries).distinct()
+        val officialQueries = OfficialProviders.globalQueries(year)
+        return (base + siteQueries + officialQueries).distinct()
     }
 }
