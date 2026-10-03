@@ -42,8 +42,9 @@ def hub_links(url, limit=25):
         text = " ".join(a.stripped_strings).lower()
         path = urlparse(href).path.lower()
         same_network = h == host or h.endswith("." + root)
+        known_event_host = any(h == d or h.endswith("." + d) for d in EXTERNAL_EVENT_HOSTS)
         eventish = any(x in path or x in text for x in HINTS)
-        if same_network and eventish and href.rstrip("/") != url.rstrip("/") and href not in out:
+        if (same_network or known_event_host) and eventish and href.rstrip("/") != url.rstrip("/") and href not in out:
             out.append(href)
         if len(out) >= limit:
             break
