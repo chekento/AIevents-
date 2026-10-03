@@ -3,6 +3,8 @@ name: Build Android APK
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'data/events-index.json'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
