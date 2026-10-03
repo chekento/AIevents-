@@ -73,7 +73,7 @@ object LiveEventSearch {
         }
 
         val zone = ZoneId.systemDefault()
-        val today = LocalDate.now(zone)
+        val now = Instant.now()
 
         val geoEnriched = enrichMissingGeo(events)
         val filtered = geoEnriched.map { event ->
@@ -91,7 +91,7 @@ object LiveEventSearch {
             .filter { event ->
                 EventDateRules.isVisible(
                     event = event,
-                    today = today,
+                    now = now,
                     zone = zone,
                     futureDays = config.futureDays,
                     includeUnverifiedDates = config.includeUnverifiedDates
