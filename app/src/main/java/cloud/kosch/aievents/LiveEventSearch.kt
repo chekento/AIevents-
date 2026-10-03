@@ -74,7 +74,6 @@ object LiveEventSearch {
 
         val zone = ZoneId.systemDefault()
         val today = LocalDate.now(zone)
-        val maxDay = today.plusDays(config.futureDays.toLong())
 
         val geoEnriched = enrichMissingGeo(events)
         val filtered = geoEnriched.map { event ->
@@ -90,15 +89,13 @@ object LiveEventSearch {
             }
             .filter { it.confidence >= config.minConfidence }
             .filter { event ->
-                val startDay = event.start?.atZone(zone)?.toLocalDate()
-                val endDay = event.end?.atZone(zone)?.toLocalDate()
-                when {
-                    startDay == null -> config.includeUnverifiedDates
-                    endDay != null && !endDay.isBefore(today) ->
-                        !startDay.isAfter(maxDay)
-                    else ->
-                        !startDay.isBefore(today) && !startDay.isAfter(maxDay)
-                }
+                EventDateRules.isVisible(
+                    event = event,
+                    today = today,
+                    zone = zone,
+                    futureDays = config.futureDays,
+                    includeUnverifiedDates = config.includeUnverifiedDates
+                )
             }
             .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
             .distinctBy { it.stableKey }
