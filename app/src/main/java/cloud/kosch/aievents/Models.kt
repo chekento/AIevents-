@@ -2,12 +2,21 @@ package cloud.kosch.aievents
 
 import java.time.Instant
 
+enum class SortMode { DATE, DISTANCE, CONFIDENCE }
+enum class EventCategory { ALL, AGENTS, GENAI, ML, DATA, ROBOTICS, BUSINESS, GOVERNANCE, DEVELOPER, RESEARCH, COMMUNITY }
+
 data class SearchConfig(
     val place: String,
     val radiusKm: Int,
     val language: String,
     val includeOnline: Boolean = true,
-    val futureDays: Int = 365
+    val futureDays: Int = 365,
+    val freeOnly: Boolean = false,
+    val minConfidence: Int = 0,
+    val category: EventCategory = EventCategory.ALL,
+    val keywords: String = "",
+    val sortMode: SortMode = SortMode.DATE,
+    val enabledSourceIds: Set<String> = SourceRegistry.sources.map { it.id }.toSet()
 )
 
 data class GeoPoint(val lat: Double, val lon: Double)
@@ -33,8 +42,12 @@ data class EventItem(
 ) {
     val stableKey: String
         get() = (title.lowercase().replace(Regex("\\s+"), " ").trim() + "|" +
-            (start?.toString()?.take(10) ?: "") + "|" +
-            locality.lowercase()).take(300)
+            (start?.toString()?.take(10) ?: "") + "|" + locality.lowercase()).take(300)
+
+    fun isFree(): Boolean {
+        val p = price.lowercase()
+        return p.isBlank() || p == "free" || p == "kostenlos" || p == "0" || p.startsWith("0 ")
+    }
 }
 
 data class SearchSnapshot(
