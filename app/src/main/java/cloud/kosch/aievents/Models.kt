@@ -12,6 +12,7 @@ data class SearchConfig(
     val language: String,
     val includeOnline: Boolean = true,
     val futureDays: Int = 365,
+    val includeUnverifiedDates: Boolean = false,
     val priceMode: PriceMode = PriceMode.ANY,
     val minConfidence: Int = 0,
     val category: EventCategory = EventCategory.ALL,
