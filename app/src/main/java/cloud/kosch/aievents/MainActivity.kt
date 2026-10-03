@@ -270,7 +270,8 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                 place = place,
                 placeLat = loc.latitude,
                 placeLon = loc.longitude,
-                placeId = "device:" + loc.latitude + ":" + loc.longitude
+                placeId = "device:" + loc.latitude + ":" + loc.longitude,
+                placeCountryCode = LocationUtils.countryCode(context, loc)
             )
             commit(next)
             vm.search(next.toSearchConfig())
@@ -371,7 +372,8 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                                         place = place,
                                         placeLat = loc.latitude,
                                         placeLon = loc.longitude,
-                                        placeId = "device:" + loc.latitude + ":" + loc.longitude
+                                        placeId = "device:" + loc.latitude + ":" + loc.longitude,
+                                        placeCountryCode = LocationUtils.countryCode(context, loc)
                                     )
                                     commit(next)
                                     vm.search(next.toSearchConfig())
@@ -476,7 +478,8 @@ private fun DiscoverScreen(
                                 place = it,
                                 placeLat = null,
                                 placeLon = null,
-                                placeId = ""
+                                placeId = "",
+                                placeCountryCode = ""
                             )
                         )
                     },
@@ -507,7 +510,8 @@ private fun DiscoverScreen(
                                                     place = suggestion.displayName,
                                                     placeLat = suggestion.point.lat,
                                                     placeLon = suggestion.point.lon,
-                                                    placeId = suggestion.id
+                                                    placeId = suggestion.id,
+                                                    placeCountryCode = suggestion.countryCode
                                                 )
                                             )
                                             suggestions = emptyList()
