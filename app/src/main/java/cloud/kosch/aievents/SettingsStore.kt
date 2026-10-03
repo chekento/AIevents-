@@ -13,6 +13,9 @@ private val Context.dataStore by preferencesDataStore(name = "aievents_settings"
 data class AppSettings(
     val place: String = "",
     val radiusKm: Int = 45,
+    val placeLat: Double? = null,
+    val placeLon: Double? = null,
+    val placeId: String = "",
     val language: String = "de",
     val includeOnline: Boolean = true,
     val priceMode: PriceMode = PriceMode.ANY,
@@ -35,6 +38,9 @@ class SettingsStore(private val context: Context) {
     private object Keys {
         val place = stringPreferencesKey("place")
         val radius = intPreferencesKey("radius")
+        val placeLat = doublePreferencesKey("place_lat")
+        val placeLon = doublePreferencesKey("place_lon")
+        val placeId = stringPreferencesKey("place_id")
         val language = stringPreferencesKey("language")
         val online = booleanPreferencesKey("online")
         val priceMode = stringPreferencesKey("price_mode")
@@ -61,6 +67,9 @@ class SettingsStore(private val context: Context) {
                 p[Keys.place] == "Ahrensburg, Schleswig-Holstein, Germany"
             ) "" else (p[Keys.place] ?: ""),
             radiusKm = p[Keys.radius] ?: 45,
+            placeLat = p[Keys.placeLat],
+            placeLon = p[Keys.placeLon],
+            placeId = p[Keys.placeId] ?: "",
             language = p[Keys.language] ?: "de",
             includeOnline = p[Keys.online] ?: true,
             priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
@@ -68,7 +77,7 @@ class SettingsStore(private val context: Context) {
             futureDays = p[Keys.futureDays] ?: 365,
             includeUnverifiedDates = p[Keys.includeUnverifiedDates] ?: false,
             category = runCatching { EventCategory.valueOf(p[Keys.category] ?: "ALL") }.getOrDefault(EventCategory.ALL),
-            sortMode = runCatching { SortMode.valueOf(p[Keys.sort] ?: "DATE") }.getOrDefault(SortMode.DATE),
+            sortMode = runCatching { SortMode.valueOf(p[Keys.sort] ?: "RELEVANCE") }.getOrDefault(SortMode.RELEVANCE),
             keywords = p[Keys.keywords] ?: "",
             compactCards = p[Keys.compact] ?: false,
             notificationsEnabled = p[Keys.notifications] ?: false,
@@ -85,6 +94,9 @@ class SettingsStore(private val context: Context) {
             p[Keys.place] = s.place
             p[Keys.legacyDefaultMigrated] = true
             p[Keys.radius] = s.radiusKm
+            if (s.placeLat != null) p[Keys.placeLat] = s.placeLat else p.remove(Keys.placeLat)
+            if (s.placeLon != null) p[Keys.placeLon] = s.placeLon else p.remove(Keys.placeLon)
+            p[Keys.placeId] = s.placeId
             p[Keys.language] = s.language
             p[Keys.online] = s.includeOnline
             p[Keys.priceMode] = s.priceMode.name
