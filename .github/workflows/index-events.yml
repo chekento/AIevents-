@@ -1,6 +1,11 @@
 name: Refresh Global AI Event Index
 
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/index-events.yml'
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
