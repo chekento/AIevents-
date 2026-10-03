@@ -10,6 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,6 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -33,6 +35,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import org.osmdroid.config.Configuration
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
@@ -179,7 +182,28 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
         ActivityResultContracts.RequestPermission()
     ) { }
 
-    MaterialTheme(colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()) {
+    val colors = if (isSystemInDarkTheme()) {
+        darkColorScheme(
+            primary = Color(0xFFBEA1FF),
+            secondary = Color(0xFFD6C3FF),
+            tertiary = Color(0xFF9FD8FF),
+            background = Color(0xFF120D1D),
+            surface = Color(0xFF1B1428),
+            surfaceVariant = Color(0xFF2A2039)
+        )
+    } else {
+        lightColorScheme(
+            primary = Color(0xFF6F4BB2),
+            secondary = Color(0xFF7D5AC1),
+            tertiary = Color(0xFF4D75B8),
+            background = Color(0xFFFFF9FF),
+            surface = Color(0xFFFCF7FF),
+            surfaceVariant = Color(0xFFF0E6FA),
+            primaryContainer = Color(0xFFE8DDFF),
+            secondaryContainer = Color(0xFFEDE4FF)
+        )
+    }
+    MaterialTheme(colorScheme = colors) {
         Scaffold(
             topBar = {
                 TopAppBar(
