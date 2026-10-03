@@ -122,3 +122,38 @@ AIevents v0.4 substantially rebuilds discovery and presentation:
 
 ### Local vs global official events
 Local results remain geographically strict. Important official AI/LLM provider events are discovered independently and shown in their own clearly labeled section, so a global provider event never masquerades as a local city result.
+
+
+## v0.5 — Provider Radar, LLMOps/MLOps and deeper source coverage
+
+AIevents now separates local event discovery from global AI-provider monitoring.
+
+### Provider Radar
+- The **second bottom-navigation tab** is Provider Radar.
+- The provider directory contains **242 AI/LLM ecosystems** across model vendors, cloud AI, agents, developer tools, LLMOps, MLOps, data platforms, vector databases, safety/evals, media AI, communities and research.
+- Zuno is explicitly included without assigning an unverified official domain.
+- LLMOps.Space and MLOps Community are first-class monitored sources.
+- Provider events never appear above or between the normal local search results.
+- Provider Radar supports **All / Online / In-person** event views.
+- Selecting a provider triggers a deeper live search specifically for that provider.
+- Provider cards and events prefer provider logos over ticket-platform branding.
+
+### Continuous provider monitoring
+The scheduled backend rotates through the provider catalogue every four hours. Provider searches include:
+- official provider domains,
+- general public web discovery,
+- LinkedIn Events where publicly indexable,
+- public X event/webinar references,
+- YouTube livestream/event pages,
+- Meetup,
+- Luma / lu.ma.
+
+Only events that can be parsed and verified are admitted to the central event index. Social posts that cannot be validated are not promoted as events.
+
+### Direct high-value event hubs
+The backend directly monitors event hubs including OpenAI community/forum sources, Anthropic, Microsoft Reactor, Databricks, Snowflake, LangChain, Weights & Biases, Arize, Cohere, Mistral, MongoDB, MLOps Community, LLMOps.Space, Global AI Community, AI Tinkerers, House of AI Hamburg and AI.HAMBURG.
+
+### Deeper local search
+Local discovery now uses a fast core pass and an automatic **Deep Search** pass when coverage is thin. Additional platforms include Devpost, HackerEarth, LinkedIn Events, Airmeet, Livestorm, Zoom Events, Cvent, Whova, Bizzabo, Goldcast, RingCentral Events, Swapcard and Brella, in addition to Meetup, Eventbrite, Luma, Partiful, Bevy, Sched, Splash, AllEvents, Sessionize and Pretalx.
+
+The local and provider search systems remain deliberately separate: **city/radius relevance in Discover, global provider intelligence in Provider Radar.**
