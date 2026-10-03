@@ -49,6 +49,7 @@ data class EventItem(
     val providerName: String = "",
     val relevanceScore: Int = 0,
     val sourceCount: Int = 1,
+    val imageUrl: String = "",
     val discoveredAt: Instant = Instant.now()
 ) {
     val stableKey: String
