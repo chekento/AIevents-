@@ -138,7 +138,13 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(persisted) { settings = persisted }
-    LaunchedEffect(Unit) { vm.search(settings.toSearchConfig()) }
+    var bootSearchDone by remember { mutableStateOf(false) }
+    LaunchedEffect(persisted.place) {
+        if (!bootSearchDone && persisted.place.isNotBlank()) {
+            bootSearchDone = true
+            vm.search(persisted.toSearchConfig())
+        }
+    }
 
     fun commit(next: AppSettings) {
         settings = next
@@ -170,7 +176,10 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                     },
                     actions = {
                         if (ui.loading) CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
-                        IconButton(onClick = { vm.search(settings.toSearchConfig()) }, enabled = !ui.loading) {
+                        IconButton(
+                            onClick = { if (settings.place.isNotBlank()) vm.search(settings.toSearchConfig()) },
+                            enabled = !ui.loading && settings.place.isNotBlank()
+                        ) {
                             Icon(Icons.Default.Refresh, contentDescription = t(settings.language, "refresh"))
                         }
                     }
@@ -267,6 +276,7 @@ private fun DiscoverScreen(
                     value = settings.place,
                     onValueChange = { onSettings(settings.copy(place = it)) },
                     label = { Text(t(settings.language, "place")) },
+                    placeholder = { Text(t(settings.language, "place_hint")) },
                     leadingIcon = { Icon(Icons.Default.Place, null) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
@@ -296,7 +306,7 @@ private fun DiscoverScreen(
                 }
                 Button(
                     onClick = { onSearch(settings) },
-                    enabled = !ui.loading,
+                    enabled = !ui.loading && settings.place.isNotBlank(),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(Icons.Default.Search, null)
@@ -324,7 +334,11 @@ private fun DiscoverScreen(
         val events = ui.snapshot?.events.orEmpty()
         if (events.isEmpty() && !ui.loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(t(settings.language, "no_events"), modifier = Modifier.padding(24.dp))
+                Text(
+                    if (settings.place.isBlank()) t(settings.language, "choose_place")
+                    else t(settings.language, "no_events"),
+                    modifier = Modifier.padding(24.dp)
+                )
             }
         } else {
             LazyColumn(
@@ -660,7 +674,7 @@ private fun addToCalendar(context: android.content.Context, event: EventItem) {
 
 private fun t(lang: String, key: String): String {
     val en = mapOf(
-        "tagline" to "Live AI events worldwide", "discover" to "Discover", "map" to "Map", "favorites" to "Saved",
+        "tagline" to "Live AI events worldwide", "place_hint" to "e.g. Hamburg, Tokyo, New York", "choose_place" to "Enter a place or use My location to start.", "discover" to "Discover", "map" to "Map", "favorites" to "Saved",
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
         "events" to "events", "updated" to "updated", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
@@ -674,7 +688,7 @@ private fun t(lang: String, key: String): String {
         "unknown_date" to "Date not verified"
     )
     val de = en + mapOf(
-        "tagline" to "Aktuelle KI-Events weltweit", "discover" to "Entdecken", "map" to "Karte", "favorites" to "Gespeichert",
+        "tagline" to "Aktuelle KI-Events weltweit", "place_hint" to "z. B. Hamburg, Tokio, New York", "choose_place" to "Ort eingeben oder „Mein Standort“ verwenden.", "discover" to "Entdecken", "map" to "Karte", "favorites" to "Gespeichert",
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
         "events" to "Events", "updated" to "aktualisiert", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
