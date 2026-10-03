@@ -75,5 +75,9 @@
     "Sydney, Australia",
     "Melbourne, Australia",
     "Auckland, New Zealand"
+  ],
+  "priority_regions": [
+    "New York, NY, USA",
+    "Hamburg, Germany"
   ]
 }
