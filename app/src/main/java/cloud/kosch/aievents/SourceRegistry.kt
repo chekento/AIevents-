@@ -9,14 +9,6 @@ data class EventSource(
 
 object SourceRegistry {
     val sources = listOf(
-        EventSource("openai", "OpenAI Events", "openai.com", directQuery = false),
-        EventSource("google", "Google Developer / AI Events", "developers.google.com", directQuery = false),
-        EventSource("microsoft", "Microsoft AI Events", "microsoft.com", directQuery = false),
-        EventSource("anthropic", "Anthropic Events", "anthropic.com", directQuery = false),
-        EventSource("meta", "Meta AI Events", "ai.meta.com", directQuery = false),
-        EventSource("aws-official", "AWS AI Events", "aws.amazon.com", directQuery = false),
-        EventSource("nvidia-official", "NVIDIA AI Events", "nvidia.com", directQuery = false),
-        EventSource("huggingface-official", "Hugging Face Events", "huggingface.co", directQuery = false),
         EventSource("globalai", "Global AI Community", "globalai.community"),
         EventSource("houseofai", "House of AI", "house-of-ai.org"),
         EventSource("aihamburg", "AI.HAMBURG", "ai.hamburg"),
@@ -111,7 +103,6 @@ object SourceRegistry {
                 "site:" + source.domain + " \"" + place + "\" " + category +
                     " event meetup conference upcoming " + year + " " + extra
             }
-        val officialQueries = OfficialProviders.globalQueries(year, config.enabledSourceIds)
-        return (base + aliasQueries + siteQueries + officialQueries).distinct()
+        return (base + aliasQueries + siteQueries).distinct()
     }
 }
