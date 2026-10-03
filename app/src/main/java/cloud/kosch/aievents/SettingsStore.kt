@@ -80,7 +80,7 @@ class SettingsStore(private val context: Context) {
             includeOnline = p[Keys.online] ?: true,
             priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
             eventType = runCatching { EventType.valueOf(p[Keys.eventType] ?: "ALL") }.getOrDefault(EventType.ALL),
-            officialOnly = p[Keys.officialOnly] ?: false,
+            officialOnly = false,
             minConfidence = p[Keys.confidence] ?: 35,
             futureDays = p[Keys.futureDays] ?: 365,
             includeUnverifiedDates = p[Keys.includeUnverifiedDates] ?: false,
