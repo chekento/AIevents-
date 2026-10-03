@@ -28,7 +28,7 @@ def hub_links(url, limit=25):
     except Exception as exc:
         print(" hub failed:", url, exc)
         return []
-    soup = BeautifulSoup(r.text, "html.parser")
+    soup = BeautifulSoup(r.content, "html.parser")
     host = (urlparse(url).hostname or "").removeprefix("www.")
     root = ".".join(host.split(".")[-2:])
     out = []
