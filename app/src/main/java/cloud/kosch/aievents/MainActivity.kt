@@ -439,13 +439,7 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
 private fun FavoritesScreen(events: List<EventItem>, language: String, onRemove: (EventItem) -> Unit) {
     val today = java.time.LocalDate.now(ZoneId.systemDefault())
     val currentEvents = events.filter { event ->
-        val startDay = event.start?.atZone(ZoneId.systemDefault())?.toLocalDate()
-        val endDay = event.end?.atZone(ZoneId.systemDefault())?.toLocalDate()
-        when {
-            startDay == null -> false
-            endDay != null -> !endDay.isBefore(today)
-            else -> !startDay.isBefore(today)
-        }
+        EventDateRules.isCurrentSavedEvent(event, today, ZoneId.systemDefault())
     }
     if (currentEvents.isEmpty()) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
