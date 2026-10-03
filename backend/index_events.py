@@ -206,6 +206,17 @@ def first_offer(offers):
     return offers if isinstance(offers, dict) else {}
 
 
+def image_url(value):
+    if isinstance(value, str):
+        return value if value.startswith("http") else ""
+    if isinstance(value, dict):
+        candidate = value.get("url") or value.get("contentUrl") or ""
+        return str(candidate) if str(candidate).startswith("http") else ""
+    if isinstance(value, list) and value:
+        return image_url(value[0])
+    return ""
+
+
 def price_text(offers):
     o = first_offer(offers)
     p = str(o.get("price", "")).strip()
@@ -319,6 +330,8 @@ def parse_html_event_fallback(soup, url, region):
                 break
 
     online = "online" in locality.lower() or bool(re.search(r"\bOnline\b", full_text[:1200]))
+    og = soup.find("meta", attrs={"property": "og:image"})
+    image = str(og.get("content", "")) if og and og.get("content") else ""
     source_name = (urlparse(url).hostname or "web").removeprefix("www.")
     event = {
         "title": title,
@@ -336,6 +349,7 @@ def parse_html_event_fallback(soup, url, region):
         "online": online,
         "geo": None,
         "confidence": 75 if locality else 68,
+        "imageUrl": image,
         "regions": [region],
         "indexedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     }
@@ -388,6 +402,10 @@ def parse_page(url, region):
             if geo: confidence += 5
             price = price_text(obj.get("offers"))
             if price: confidence += 5
+            image = image_url(obj.get("image"))
+            if not image:
+                og = soup.find("meta", attrs={"property": "og:image"})
+                image = str(og.get("content", "")) if og and og.get("content") else ""
             e = {
                 "title": title,
                 "start": start.astimezone(timezone.utc).isoformat().replace("+00:00", "Z") if start else None,
@@ -404,6 +422,7 @@ def parse_page(url, region):
                 "online": bool(online),
                 "geo": geo,
                 "confidence": min(confidence, 100),
+                "imageUrl": image,
                 "regions": [region],
                 "indexedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
             }
