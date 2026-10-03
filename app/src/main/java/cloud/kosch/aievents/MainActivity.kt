@@ -75,6 +75,7 @@ class EventViewModel : ViewModel() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
     val context = LocalContext.current
