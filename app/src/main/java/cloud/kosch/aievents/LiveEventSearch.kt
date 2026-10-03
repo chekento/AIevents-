@@ -114,7 +114,10 @@ object LiveEventSearch {
                 .thenBy { it.start ?: Instant.MAX }
         ).take(12)
 
-        val localCandidates = dated.map { event ->
+        val targetLanguages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
+        val localCandidates = dated
+            .filter { EventClassifier.hasAiFocus(it, targetLanguages) }
+            .map { event ->
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
         }.filter { !it.officialProvider }
