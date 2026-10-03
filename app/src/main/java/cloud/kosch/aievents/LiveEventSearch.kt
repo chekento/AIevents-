@@ -7,6 +7,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.delay
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
@@ -21,9 +22,11 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.*
 
 object LiveEventSearch {
+    private val geoCache = ConcurrentHashMap<String, GeoPoint?>()
     private val http = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(20, TimeUnit.SECONDS)
@@ -72,7 +75,8 @@ object LiveEventSearch {
         val now = Instant.now().minus(Duration.ofHours(18))
         val maxDate = Instant.now().plus(Duration.ofDays(config.futureDays.toLong()))
 
-        val filtered = events.map { event ->
+        val geoEnriched = enrichMissingGeo(events)
+        val filtered = geoEnriched.map { event ->
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
         }.filter { config.includeOnline || !it.online }
@@ -311,6 +315,21 @@ object LiveEventSearch {
             }
         )
         return parsers.firstNotNullOfOrNull { runCatching { it() }.getOrNull() }
+    }
+
+    private suspend fun enrichMissingGeo(events: List<EventItem>): List<EventItem> {
+        val candidates = events.filter { it.geo == null && it.locality.isNotBlank() }
+            .map { it.locality.trim() }.distinct().take(5)
+        for (locality in candidates) {
+            if (!geoCache.containsKey(locality)) {
+                geoCache[locality] = runCatching { geocode(locality) }.getOrNull()
+                delay(1100)
+            }
+        }
+        return events.map { event ->
+            if (event.geo != null || event.locality.isBlank()) event
+            else event.copy(geo = geoCache[event.locality.trim()])
+        }
     }
 
     private fun geocode(place: String): GeoPoint? {
