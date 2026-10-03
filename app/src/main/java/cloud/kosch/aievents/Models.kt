@@ -1,6 +1,7 @@
 package cloud.kosch.aievents
 
 import java.time.Instant
+import java.net.URI
 
 enum class SortMode { DATE, DISTANCE, CONFIDENCE }
 enum class PriceMode { ANY, FREE, PAID }
@@ -43,8 +44,19 @@ data class EventItem(
     val discoveredAt: Instant = Instant.now()
 ) {
     val stableKey: String
-        get() = (title.lowercase().replace(Regex("\\s+"), " ").trim() + "|" +
-            (start?.toString()?.take(10) ?: "") + "|" + locality.lowercase()).take(300)
+        get() {
+            val urlKey = runCatching {
+                if (!eventUrl.startsWith("http")) null
+                else URI(eventUrl).let { uri ->
+                    val host = uri.host?.lowercase()?.removePrefix("www.") ?: return@let null
+                    val path = uri.path?.trimEnd('/')?.lowercase().orEmpty()
+                    host + path
+                }
+            }.getOrNull()
+            if (!urlKey.isNullOrBlank()) return "url|" + urlKey
+            return (title.lowercase().replace(Regex("\\s+"), " ").trim() + "|" +
+                (start?.toString() ?: "") + "|" + locality.lowercase()).take(300)
+        }
 
     fun isFree(): Boolean {
         val p = price.lowercase()
