@@ -76,7 +76,13 @@ object LiveEventSearch {
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             event.copy(distanceKm = d)
         }.filter { config.includeOnline || !it.online }
-            .filter { !config.freeOnly || it.isFree() }
+            .filter {
+                when (config.priceMode) {
+                    PriceMode.ANY -> true
+                    PriceMode.FREE -> it.isFree()
+                    PriceMode.PAID -> !it.isFree()
+                }
+            }
             .filter { it.confidence >= config.minConfidence }
             .filter { it.start == null || (it.start.isAfter(now) && it.start.isBefore(maxDate)) }
             .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
