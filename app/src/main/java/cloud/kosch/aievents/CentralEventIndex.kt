@@ -32,20 +32,21 @@ object CentralEventIndex {
         val events: List<EventItem>,
         val indexedCount: Int,
         val generatedAt: Instant?,
-        val warning: String? = null
+        val warning: String? = null,
+        val featuredOfficialEvents: List<EventItem> = emptyList()
     )
 
     suspend fun search(config: SearchConfig): Result = withContext(Dispatchers.IO) {
         val all = runCatching { load() }.getOrElse {
             return@withContext Result(emptyList(), 0, null, "Central index unavailable: " + (it.message ?: "network error"))
         }
-        val center = runCatching { geocode(config.place) }.getOrNull()
+        val center = config.center ?: runCatching { geocode(config.place) }.getOrNull()
         val zone = ZoneId.systemDefault()
         val now = Instant.now()
         val placeTokens = tokens(config.place)
 
         val filtered = all.mapNotNull { indexed ->
-            val event = indexed.event
+            val event = OfficialProviders.enrich(indexed.event)
             if (!EventDateRules.isVisible(
                     event, now, zone, config.futureDays, config.includeUnverifiedDates
                 )
@@ -84,20 +85,25 @@ object CentralEventIndex {
             event.copy(distanceKm = d)
         }.distinctBy { it.stableKey }
 
-        val sorted = when (config.sortMode) {
-            SortMode.DISTANCE -> filtered.sortedWith(
-                compareBy<EventItem> { it.distanceKm == null }
-                    .thenBy { it.distanceKm ?: Double.MAX_VALUE }
-                    .thenBy { it.start ?: Instant.MAX }
-            )
-            SortMode.CONFIDENCE -> filtered.sortedWith(
-                compareByDescending<EventItem> { it.confidence }
-                    .thenBy { it.start ?: Instant.MAX }
-            )
-            SortMode.DATE -> filtered.sortedBy { it.start ?: Instant.MAX }
-        }
+        val mergedLocal = EventMerger.merge(filtered)
+        val sorted = EventRanker.sort(mergedLocal, config)
 
-        Result(sorted, all.size, generatedAt)
+        val featured = EventMerger.merge(
+            all.map { OfficialProviders.enrich(it.event) }
+                .filter { it.officialProvider }
+                .filter {
+                    EventDateRules.isVisible(
+                        it, now, zone, config.futureDays, false
+                    )
+                }
+        ).map { EventRanker.rank(it, config) }
+            .sortedWith(
+                compareByDescending<EventItem> { it.relevanceScore }
+                    .thenBy { it.start ?: Instant.MAX }
+            )
+            .take(12)
+
+        Result(sorted, all.size, generatedAt, featuredOfficialEvents = featured)
     }
 
     @Synchronized
@@ -152,7 +158,7 @@ object CentralEventIndex {
             val lon = geoObj.optDouble("lon", Double.NaN)
             if (lat.isFinite() && lon.isFinite()) GeoPoint(lat, lon) else null
         } else null
-        return EventItem(
+        return OfficialProviders.enrich(EventItem(
             title = title,
             start = start,
             end = end,
@@ -169,7 +175,7 @@ object CentralEventIndex {
             geo = geo,
             distanceKm = null,
             confidence = o.optInt("confidence", 60)
-        )
+        ))
     }
 
     private fun geocode(place: String): GeoPoint? {
