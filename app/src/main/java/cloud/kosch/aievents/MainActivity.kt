@@ -668,6 +668,11 @@ private fun EventSourceLogo(event: EventItem) {
 @Composable
 private fun EventCard(event: EventItem, language: String, compact: Boolean, favorite: Boolean, onFavorite: () -> Unit) {
     val context = LocalContext.current
+    var reminderDialog by remember { mutableStateOf(false) }
+    var reminderMessage by remember { mutableStateOf<String?>(null) }
+    val reminderPermission = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { }
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.elevatedCardColors(
@@ -722,10 +727,21 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
             }
             Text(t(language, "source") + ": " + event.sourceName, style = MaterialTheme.typography.labelSmall)
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(top = 8.dp)) {
-                FilledTonalButton(onClick = { addToCalendar(context, event) }, modifier = Modifier.weight(1f)) {
-                    Icon(Icons.Default.CalendarMonth, null)
-                    Spacer(Modifier.width(4.dp))
-                    Text(t(language, "calendar"))
+                FilledTonalIconButton(
+                    onClick = {
+                        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+                            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) !=
+                            android.content.pm.PackageManager.PERMISSION_GRANTED
+                        ) {
+                            reminderPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        }
+                        reminderDialog = true
+                    }
+                ) {
+                    Icon(Icons.Default.Notifications, contentDescription = t(language, "reminder"))
+                }
+                FilledTonalIconButton(onClick = { addToCalendar(context, event) }) {
+                    Icon(Icons.Default.CalendarMonth, contentDescription = t(language, "calendar"))
                 }
                 Button(onClick = {
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(event.eventUrl.ifBlank { event.sourceUrl })))
@@ -734,6 +750,47 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
                     Spacer(Modifier.width(4.dp))
                     Text(t(language, "source"))
                 }
+            }
+            reminderMessage?.let {
+                Text(
+                    it,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(top = 6.dp)
+                )
+            }
+
+            if (reminderDialog) {
+                AlertDialog(
+                    onDismissRequest = { reminderDialog = false },
+                    title = { Text(t(language, "set_reminder")) },
+                    text = {
+                        Column {
+                            listOf(
+                                1440L to t(language, "one_day_before"),
+                                60L to t(language, "one_hour_before"),
+                                15L to t(language, "fifteen_min_before")
+                            ).forEach { option ->
+                                TextButton(
+                                    onClick = {
+                                        val ok = EventReminderWorker.schedule(context, event, option.first)
+                                        reminderMessage = if (ok) t(language, "reminder_set") else t(language, "reminder_too_late")
+                                        reminderDialog = false
+                                    },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Text(option.second)
+                                }
+                            }
+                        }
+                    },
+                    confirmButton = {},
+                    dismissButton = {
+                        TextButton(onClick = { reminderDialog = false }) {
+                            Text(t(language, "cancel"))
+                        }
+                    }
+                )
             }
         }
     }
@@ -923,7 +980,7 @@ private fun t(lang: String, key: String): String {
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
         "events" to "events", "updated" to "updated", "event_type" to "Event type", "official_only" to "Official providers only", "all_types" to "All", "conference" to "Conference", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Major official AI events", "official_events_sub" to "Independently discovered from AI and LLM providers", "official_badge" to "Official AI Provider Event", "local_results" to "Events for your selected area", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
         "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality", "unverified_dates" to "Show events with unverified date",
-        "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite",
+        "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite", "reminder" to "Reminder", "set_reminder" to "Set reminder", "one_day_before" to "1 day before", "one_hour_before" to "1 hour before", "fifteen_min_before" to "15 minutes before", "reminder_set" to "Reminder scheduled", "reminder_too_late" to "This reminder time has already passed", "cancel" to "Cancel",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
         "no_map" to "No coordinates are available for the current results.", "preferences" to "Preferences",
         "compact" to "Compact event cards", "notifications" to "Notifications", "notify_new" to "Periodic event alerts",
@@ -937,7 +994,7 @@ private fun t(lang: String, key: String): String {
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
         "events" to "Events", "updated" to "aktualisiert", "event_type" to "Eventtyp", "official_only" to "Nur offizielle Anbieter", "all_types" to "Alle", "conference" to "Konferenz", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Wichtige offizielle KI-Events", "official_events_sub" to "Unabhängig bei KI- und LLM-Anbietern gefunden", "official_badge" to "Offizielles KI-Anbieter-Event", "local_results" to "Events im gewählten Gebiet", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
         "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität", "unverified_dates" to "Events ohne verifiziertes Datum anzeigen",
-        "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit",
+        "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit", "reminder" to "Erinnerung", "set_reminder" to "Erinnerung setzen", "one_day_before" to "1 Tag vorher", "one_hour_before" to "1 Stunde vorher", "fifteen_min_before" to "15 Minuten vorher", "reminder_set" to "Erinnerung geplant", "reminder_too_late" to "Dieser Erinnerungszeitpunkt ist bereits vorbei", "cancel" to "Abbrechen",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
         "no_map" to "Für die aktuellen Treffer liegen keine Koordinaten vor.", "preferences" to "Einstellungen",
         "compact" to "Kompakte Eventkarten", "notifications" to "Benachrichtigungen", "notify_new" to "Regelmäßig nach Events suchen",
