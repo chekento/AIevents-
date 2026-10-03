@@ -236,6 +236,7 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
     val persisted by store.flow.collectAsState(initial = AppSettings(language = Locale.getDefault().language.ifBlank { "en" }))
     var settings by remember { mutableStateOf(persisted) }
     val ui by vm.state.collectAsState()
+    val providerUi by vm.providerState.collectAsState()
     var screen by remember { mutableStateOf(Screen.DISCOVER) }
     val scope = rememberCoroutineScope()
 
@@ -246,6 +247,9 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
             bootSearchDone = true
             vm.search(persisted.toSearchConfig())
         }
+    }
+    LaunchedEffect(screen) {
+        if (screen == Screen.PROVIDERS) vm.loadProviderRadar()
     }
 
     fun commit(next: AppSettings) {
@@ -322,10 +326,15 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                         }
                     },
                     actions = {
-                        if (ui.loading) CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
+                        val activeLoading = if (screen == Screen.PROVIDERS) providerUi.loading else ui.loading
+                        if (activeLoading) CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
                         IconButton(
-                            onClick = { if (settings.place.isNotBlank()) vm.search(settings.toSearchConfig()) },
-                            enabled = !ui.loading && settings.place.isNotBlank()
+                            onClick = {
+                                if (screen == Screen.PROVIDERS) vm.loadProviderRadar(force = true)
+                                else if (settings.place.isNotBlank()) vm.search(settings.toSearchConfig())
+                            },
+                            enabled = if (screen == Screen.PROVIDERS) !providerUi.loading
+                                else !ui.loading && settings.place.isNotBlank()
                         ) {
                             Icon(Icons.Default.Refresh, contentDescription = t(settings.language, "refresh"))
                         }
@@ -335,6 +344,7 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
             bottomBar = {
                 NavigationBar {
                     NavItem(Screen.DISCOVER, screen, Icons.Default.Search, t(settings.language, "discover")) { screen = it }
+                    NavItem(Screen.PROVIDERS, screen, Icons.Default.Hub, t(settings.language, "providers")) { screen = it }
                     NavItem(Screen.MAP, screen, Icons.Default.Map, t(settings.language, "map")) { screen = it }
                     NavItem(Screen.FAVORITES, screen, Icons.Default.Favorite, t(settings.language, "favorites")) { screen = it }
                     NavItem(Screen.SETTINGS, screen, Icons.Default.Settings, t(settings.language, "settings")) { screen = it }
@@ -366,6 +376,20 @@ private fun AIeventsRoot(vm: EventViewModel = viewModel()) {
                                 locationLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
                             }
                         },
+                        onFavorite = { event ->
+                            val selected = event.stableKey in settings.favorites
+                            val nextFavs = if (selected) settings.favorites - event.stableKey else settings.favorites + event.stableKey
+                            val nextEvents = if (selected) settings.favoriteEvents.filterNot { it.stableKey == event.stableKey }
+                            else (settings.favoriteEvents + event).distinctBy { it.stableKey }
+                            commit(settings.copy(favorites = nextFavs, favoriteEvents = nextEvents))
+                        }
+                    )
+                    Screen.PROVIDERS -> ProviderRadarScreen(
+                        ui = providerUi,
+                        settings = settings,
+                        onRefresh = { vm.loadProviderRadar(force = true) },
+                        onSearchProvider = { provider -> vm.searchProvider(provider, settings.language) },
+                        onClearProvider = { vm.clearProviderSelection() },
                         onFavorite = { event ->
                             val selected = event.stableKey in settings.favorites
                             val nextFavs = if (selected) settings.favorites - event.stableKey else settings.favorites + event.stableKey
