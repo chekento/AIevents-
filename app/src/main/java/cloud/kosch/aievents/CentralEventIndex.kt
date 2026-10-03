@@ -58,6 +58,7 @@ object CentralEventIndex {
                     event, now, zone, config.futureDays, config.includeUnverifiedDates
                 )
             ) return@mapNotNull null
+            if (event.officialProvider) return@mapNotNull null
             if (!config.includeOnline && event.online) return@mapNotNull null
             if (event.confidence < config.minConfidence) return@mapNotNull null
             if (config.officialOnly && !event.officialProvider) return@mapNotNull null
