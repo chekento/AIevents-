@@ -190,3 +190,16 @@ The Provider Radar was redesigned around the event feed:
 - narrow-screen bottom navigation uses shorter labels and smaller typography to avoid clipping.
 
 This is intended as the finishing UX pass for the current application architecture.
+
+
+## v0.5.3 — compact Discover search and long-tail communities
+
+- The large Discover search form is now a **collapsible search panel**.
+- Starting a search automatically collapses the panel so results receive most of the screen.
+- The collapsed header preserves a concise place / radius / keyword summary and can be reopened at any time.
+- Filters collapse together with the form after starting a search.
+- The results list explicitly owns the remaining screen height and scrolls independently.
+- Long-tail discovery now looks harder for **small AI meetups, Stammtische, local chapters, clubs, user groups, university/student groups, research labs, journal clubs, coworking/makerspace meetups, innovation hubs and informal community gatherings**.
+- Added discovery support for Humanitix, Ticket Tailor, Mobilizon, OpenCollective, Eventfrog, Eventfinda and publicly indexable Facebook Events.
+- Search-engine long-tail queries also target LinkedIn Events, Facebook Events and OpenCollective community pages.
+- Existing installations automatically receive the expanded source catalogue.
