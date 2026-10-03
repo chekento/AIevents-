@@ -437,7 +437,14 @@ private fun RowScope.NavItem(screen: Screen, selected: Screen, icon: androidx.co
         selected = screen == selected,
         onClick = { onSelect(screen) },
         icon = { Icon(icon, contentDescription = label) },
-        label = { Text(label, maxLines = 1) }
+        label = {
+            Text(
+                label,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
     )
 }
 
@@ -632,9 +639,12 @@ private fun ProviderRadarScreen(
     onClearProvider: () -> Unit,
     onFavorite: (EventItem) -> Unit
 ) {
-    var providerQuery by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf(ProviderCategory.ALL) }
-    var mode by remember { mutableStateOf(ProviderEventMode.ALL) }
+    var providerQuery by rememberSaveable { mutableStateOf("") }
+    var category by rememberSaveable { mutableStateOf(ProviderCategory.ALL) }
+    var mode by rememberSaveable { mutableStateOf(ProviderEventMode.ALL) }
+    var searchOpen by rememberSaveable { mutableStateOf(false) }
+    var filtersOpen by rememberSaveable { mutableStateOf(false) }
+    var directoryOpen by rememberSaveable { mutableStateOf(false) }
 
     val selectedProvider = ui.selectedProviderId?.let { id ->
         ProviderCatalog.providers.firstOrNull { it.id == id }
@@ -655,52 +665,134 @@ private fun ProviderRadarScreen(
         categoryOk && modeOk && queryOk
     }
 
+    val onlineCount = visibleEvents.count { it.online }
+    val inPersonCount = visibleEvents.size - onlineCount
+
     Column(Modifier.fillMaxSize()) {
-        ElevatedCard(
-            Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxWidth()
+        // Compact always-visible radar summary. The event list should own most of the screen.
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.surface
         ) {
-            Column(
-                Modifier.padding(14.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+            Row(
+                Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Surface(
-                        modifier = Modifier.size(44.dp),
-                        shape = MaterialTheme.shapes.large,
-                        color = MaterialTheme.colorScheme.primaryContainer
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(Icons.Default.Hub, null, tint = MaterialTheme.colorScheme.primary)
-                        }
-                    }
-                    Spacer(Modifier.width(10.dp))
-                    Column(Modifier.weight(1f)) {
-                        Text(
-                            t(settings.language, "provider_radar"),
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Black
+                Surface(
+                    modifier = Modifier.size(38.dp),
+                    shape = MaterialTheme.shapes.large,
+                    color = MaterialTheme.colorScheme.primaryContainer
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            Icons.Default.Hub,
+                            null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(23.dp)
                         )
-                        Text(
-                            ProviderCatalog.providers.size.toString() + " " +
-                                t(settings.language, "providers_monitored"),
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    }
-                    IconButton(onClick = onRefresh, enabled = !ui.loading) {
-                        Icon(Icons.Default.Refresh, contentDescription = t(settings.language, "refresh"))
                     }
                 }
+                Spacer(Modifier.width(10.dp))
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        t(settings.language, "provider_radar"),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Black
+                    )
+                    Text(
+                        ProviderCatalog.providers.size.toString() + " " +
+                            t(settings.language, "providers_monitored_short"),
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                if (selectedProvider != null) {
+                    AssistChip(
+                        onClick = onClearProvider,
+                        label = {
+                            Text(
+                                selectedProvider.name,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        },
+                        leadingIcon = { Icon(Icons.Default.Business, null, Modifier.size(15.dp)) }
+                    )
+                    Spacer(Modifier.width(4.dp))
+                }
+                IconButton(onClick = onRefresh, enabled = !ui.loading) {
+                    Icon(Icons.Default.Refresh, contentDescription = t(settings.language, "refresh"))
+                }
+            }
+        }
 
+        Column(
+            Modifier.padding(horizontal = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(5.dp)
+        ) {
+            CollapsibleRadarSection(
+                title = t(settings.language, "search_providers"),
+                summary = if (providerQuery.isBlank())
+                    t(settings.language, "search_provider_hint")
+                else providerQuery,
+                icon = Icons.Default.Search,
+                expanded = searchOpen,
+                onToggle = { searchOpen = !searchOpen }
+            ) {
                 OutlinedTextField(
                     value = providerQuery,
                     onValueChange = { providerQuery = it },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     leadingIcon = { Icon(Icons.Default.Search, null) },
-                    label = { Text(t(settings.language, "search_providers")) },
-                    placeholder = { Text("OpenAI, Zuno, MLOps, Langfuse…") }
+                    placeholder = { Text("OpenAI, Zuno, MLOps, Langfuse…") },
+                    trailingIcon = {
+                        if (providerQuery.isNotBlank()) {
+                            IconButton(onClick = { providerQuery = "" }) {
+                                Icon(Icons.Default.Clear, contentDescription = null)
+                            }
+                        }
+                    }
                 )
+                if (providerQuery.isNotBlank()) {
+                    Spacer(Modifier.height(6.dp))
+                    Row(
+                        Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        providers.take(16).forEach { provider ->
+                            ProviderDirectoryCard(
+                                provider = provider,
+                                selected = selectedProvider?.id == provider.id,
+                                onClick = {
+                                    onSearchProvider(provider)
+                                    providerQuery = provider.name
+                                    searchOpen = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
 
+            CollapsibleRadarSection(
+                title = t(settings.language, "provider_filters"),
+                summary = buildString {
+                    append(providerCategoryLabel(category, settings.language))
+                    append(" · ")
+                    append(
+                        when (mode) {
+                            ProviderEventMode.ALL -> t(settings.language, "all_events")
+                            ProviderEventMode.ONLINE -> t(settings.language, "online_events")
+                            ProviderEventMode.IN_PERSON -> t(settings.language, "in_person")
+                        }
+                    )
+                },
+                icon = Icons.Default.Tune,
+                expanded = filtersOpen,
+                onToggle = { filtersOpen = !filtersOpen }
+            ) {
                 Row(
                     Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -718,8 +810,11 @@ private fun ProviderRadarScreen(
                         )
                     }
                 }
-
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Spacer(Modifier.height(4.dp))
+                Row(
+                    Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
                     FilterChip(
                         selected = mode == ProviderEventMode.ALL,
                         onClick = { mode = ProviderEventMode.ALL },
@@ -728,40 +823,31 @@ private fun ProviderRadarScreen(
                     FilterChip(
                         selected = mode == ProviderEventMode.ONLINE,
                         onClick = { mode = ProviderEventMode.ONLINE },
-                        label = { Text(t(settings.language, "online_events")) }
+                        label = { Text(t(settings.language, "online_events") + " (" + onlineCount + ")") }
                     )
                     FilterChip(
                         selected = mode == ProviderEventMode.IN_PERSON,
                         onClick = { mode = ProviderEventMode.IN_PERSON },
-                        label = { Text(t(settings.language, "in_person")) }
-                    )
-                }
-
-                if (selectedProvider != null) {
-                    AssistChip(
-                        onClick = onClearProvider,
-                        label = {
-                            Text(
-                                t(settings.language, "selected_provider") +
-                                    ": " + selectedProvider.name + "  ×"
-                            )
-                        },
-                        leadingIcon = { Icon(Icons.Default.Business, null, Modifier.size(16.dp)) }
+                        label = { Text(t(settings.language, "in_person") + " (" + inPersonCount + ")") }
                     )
                 }
             }
-        }
 
-        if (providerQuery.isNotBlank() || selectedProvider == null) {
-            val directoryItems = providers.take(if (providerQuery.isBlank()) 12 else 40)
-            if (directoryItems.isNotEmpty()) {
-                Column(Modifier.padding(horizontal = 12.dp)) {
+            CollapsibleRadarSection(
+                title = t(settings.language, "provider_directory"),
+                summary = ProviderCatalog.providers.size.toString() + " " +
+                    t(settings.language, "providers_available"),
+                icon = Icons.Default.Business,
+                expanded = directoryOpen,
+                onToggle = { directoryOpen = !directoryOpen }
+            ) {
+                val directoryItems = providers.take(40)
+                if (directoryItems.isEmpty()) {
                     Text(
-                        t(settings.language, "provider_directory"),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 4.dp)
+                        t(settings.language, "no_providers_found"),
+                        style = MaterialTheme.typography.bodyMedium
                     )
+                } else {
                     Row(
                         Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -770,7 +856,10 @@ private fun ProviderRadarScreen(
                             ProviderDirectoryCard(
                                 provider = provider,
                                 selected = selectedProvider?.id == provider.id,
-                                onClick = { onSearchProvider(provider) }
+                                onClick = {
+                                    onSearchProvider(provider)
+                                    directoryOpen = false
+                                }
                             )
                         }
                     }
@@ -783,29 +872,42 @@ private fun ProviderRadarScreen(
                 it,
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 3.dp)
+                modifier = Modifier.padding(horizontal = 14.dp, vertical = 3.dp)
             )
         }
 
-        Row(
-            Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.background
         ) {
-            Column(Modifier.weight(1f)) {
-                Text(
-                    visibleEvents.size.toString() + " " + t(settings.language, "provider_events"),
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(
-                    t(settings.language, "provider_radar_note"),
-                    style = MaterialTheme.typography.labelSmall
-                )
+            Row(
+                Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        visibleEvents.size.toString() + " " + t(settings.language, "provider_events"),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Black
+                    )
+                    Text(
+                        onlineCount.toString() + " " + t(settings.language, "online_short") +
+                            " · " + inPersonCount + " " + t(settings.language, "in_person_short"),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                if (ui.loading) {
+                    CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
+                }
             }
-            if (ui.loading) CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
         }
 
         if (visibleEvents.isEmpty() && !ui.loading) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(
+                Modifier.fillMaxWidth().weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(
                     t(settings.language, "no_provider_events"),
                     modifier = Modifier.padding(24.dp)
@@ -813,7 +915,13 @@ private fun ProviderRadarScreen(
             }
         } else {
             LazyColumn(
-                contentPadding = PaddingValues(12.dp),
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                contentPadding = PaddingValues(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = 2.dp,
+                    bottom = 18.dp
+                ),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 items(visibleEvents, key = { "provider|" + it.stableKey }) { event ->
@@ -831,6 +939,64 @@ private fun ProviderRadarScreen(
 }
 
 @Composable
+private fun CollapsibleRadarSection(
+    title: String,
+    summary: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    ElevatedCard(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onToggle)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(Modifier.width(9.dp))
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        title,
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    if (!expanded && summary.isNotBlank()) {
+                        Text(
+                            summary,
+                            style = MaterialTheme.typography.labelSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null
+                )
+            }
+            if (expanded) {
+                HorizontalDivider()
+                Column(
+                    Modifier.padding(10.dp),
+                    content = content
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun ProviderDirectoryCard(
     provider: ProviderEntry,
     selected: Boolean,
@@ -840,16 +1006,19 @@ private fun ProviderDirectoryCard(
         "https://www.google.com/s2/favicons?domain=" + it + "&sz=128"
     }
     ElevatedCard(
-        modifier = Modifier.width(168.dp).clickable(onClick = onClick),
+        modifier = Modifier.width(152.dp).clickable(onClick = onClick),
         colors = CardDefaults.elevatedCardColors(
             containerColor = if (selected)
                 MaterialTheme.colorScheme.primaryContainer
             else MaterialTheme.colorScheme.surface
         )
     ) {
-        Column(Modifier.padding(12.dp)) {
+        Row(
+            Modifier.padding(10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Surface(
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(34.dp),
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.surfaceVariant
             ) {
@@ -857,26 +1026,33 @@ private fun ProviderDirectoryCard(
                     AsyncImage(
                         model = logoUrl,
                         contentDescription = provider.name,
-                        modifier = Modifier.padding(7.dp)
+                        modifier = Modifier.padding(6.dp)
                     )
                 } else {
                     Box(contentAlignment = Alignment.Center) {
-                        Text(provider.name.take(2).uppercase(), fontWeight = FontWeight.Black)
+                        Text(
+                            provider.name.take(2).uppercase(),
+                            fontWeight = FontWeight.Black,
+                            style = MaterialTheme.typography.labelMedium
+                        )
                     }
                 }
             }
-            Spacer(Modifier.height(8.dp))
-            Text(
-                provider.name,
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                provider.category.name.replace("_", " "),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.primary
-            )
+            Spacer(Modifier.width(8.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    provider.name,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    provider.category.name.replace("_", " "),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    maxLines = 1
+                )
+            }
         }
     }
 }
