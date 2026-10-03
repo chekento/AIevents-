@@ -60,6 +60,7 @@ class SettingsStore(private val context: Context) {
         val notificationHours = intPreferencesKey("notification_hours")
         val notifyOnlyNew = booleanPreferencesKey("notify_only_new")
         val sources = stringSetPreferencesKey("sources")
+        val sourceSchemaVersion = intPreferencesKey("source_schema_version")
         val legacyDefaultMigrated = booleanPreferencesKey("legacy_default_migrated")
         val favorites = stringSetPreferencesKey("favorites")
         val favoriteEvents = stringSetPreferencesKey("favorite_events")
@@ -94,7 +95,9 @@ class SettingsStore(private val context: Context) {
             notificationsEnabled = p[Keys.notifications] ?: false,
             notificationHours = p[Keys.notificationHours] ?: 12,
             notifyOnlyNew = p[Keys.notifyOnlyNew] ?: true,
-            enabledSources = p[Keys.sources] ?: SourceRegistry.sources.map { it.id }.toSet(),
+            enabledSources = if ((p[Keys.sourceSchemaVersion] ?: 0) < 2)
+                (p[Keys.sources] ?: emptySet()) + SourceRegistry.sources.map { it.id }.toSet()
+            else p[Keys.sources] ?: SourceRegistry.sources.map { it.id }.toSet(),
             favorites = p[Keys.favorites] ?: emptySet(),
             favoriteEvents = (p[Keys.favoriteEvents] ?: emptySet()).mapNotNull { raw -> decodeFavorite(raw) }
         )
@@ -125,6 +128,7 @@ class SettingsStore(private val context: Context) {
             p[Keys.notificationHours] = s.notificationHours
             p[Keys.notifyOnlyNew] = s.notifyOnlyNew
             p[Keys.sources] = s.enabledSources
+            p[Keys.sourceSchemaVersion] = 2
             p[Keys.favorites] = s.favorites
             p[Keys.favoriteEvents] = s.favoriteEvents.map { event -> encodeFavorite(event) }.toSet()
         }
