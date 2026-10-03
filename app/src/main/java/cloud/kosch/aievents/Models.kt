@@ -12,6 +12,7 @@ data class SearchConfig(
     val place: String,
     val radiusKm: Int,
     val language: String,
+    val countryCode: String = "",
     val includeOnline: Boolean = true,
     val futureDays: Int = 365,
     val includeUnverifiedDates: Boolean = false,
