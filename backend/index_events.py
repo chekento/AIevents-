@@ -566,6 +566,9 @@ def main():
             f'"{region}" AI artificial intelligence event meetup conference workshop webinar seminar',
             f'"{region}" AI agents LLM RAG MCP MLOps LLMOps meetup workshop webinar',
             f'"{region}" AI community user group networking tech talk symposium roundtable',
+            f'"{region}" AI Stammtisch local chapter club society association informal meetup',
+            f'"{region}" AI university student group research lab faculty colloquium journal club',
+            f'"{region}" AI coworking makerspace innovation hub startup hub community calendar',
             f'"{region}" AI summit congress expo hackathon datathon bootcamp masterclass demo day',
             f'"{region}" AI developer day roadshow showcase livestream register RSVP tickets attend'
         ]
