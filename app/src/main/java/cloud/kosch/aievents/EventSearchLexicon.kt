@@ -1,6 +1,25 @@
 package cloud.kosch.aievents
 
 object EventSearchLexicon {
+    private val countryLanguages = mapOf(
+        "DE" to listOf("de"), "AT" to listOf("de"), "CH" to listOf("de", "fr", "it"),
+        "FR" to listOf("fr"), "BE" to listOf("fr", "nl"), "ES" to listOf("es"),
+        "IT" to listOf("it"), "PT" to listOf("pt"), "BR" to listOf("pt"),
+        "NL" to listOf("nl"), "PL" to listOf("pl"), "CZ" to listOf("cs"),
+        "TR" to listOf("tr"), "SE" to listOf("sv"), "DK" to listOf("da"),
+        "FI" to listOf("fi"), "NO" to listOf("no"), "JP" to listOf("ja"),
+        "KR" to listOf("ko"), "CN" to listOf("zh"), "TW" to listOf("zh"),
+        "HK" to listOf("zh", "en"), "SG" to listOf("en", "zh"),
+        "AE" to listOf("ar", "en"), "SA" to listOf("ar"), "EG" to listOf("ar"),
+        "IN" to listOf("hi", "en"), "ID" to listOf("id"), "TH" to listOf("th"),
+        "VN" to listOf("vi"), "RU" to listOf("ru"),
+        "MX" to listOf("es"), "AR" to listOf("es"), "CL" to listOf("es"),
+        "CO" to listOf("es"), "PE" to listOf("es"),
+        "US" to listOf("en"), "CA" to listOf("en", "fr"),
+        "GB" to listOf("en"), "IE" to listOf("en"), "AU" to listOf("en"),
+        "NZ" to listOf("en"), "ZA" to listOf("en"), "KE" to listOf("en"),
+        "NG" to listOf("en")
+    )
     private val universalParticipation = listOf(
         "event", "meetup", "conference", "workshop", "webinar", "seminar",
         "symposium", "congress", "summit", "forum", "hackathon", "datathon",
@@ -78,6 +97,11 @@ object EventSearchLexicon {
         "sign up", "admission", "free entry", "book now", "reserve",
         "apply", "call for participants", "open to public"
     )
+
+    fun languagesFor(countryCode: String, appLanguage: String): List<String> =
+        (listOf("en", appLanguage) + countryLanguages[countryCode.uppercase()].orEmpty())
+            .filter { it.isNotBlank() }
+            .distinct()
 
     fun aiTerms(language: String): List<String> =
         (aiCore + localizedAi[language].orEmpty()).distinct()
