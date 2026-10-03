@@ -620,6 +620,283 @@ private fun DiscoverScreen(
 }
 
 @Composable
+private fun ProviderRadarScreen(
+    ui: ProviderUiState,
+    settings: AppSettings,
+    onRefresh: () -> Unit,
+    onSearchProvider: (ProviderEntry) -> Unit,
+    onClearProvider: () -> Unit,
+    onFavorite: (EventItem) -> Unit
+) {
+    var providerQuery by remember { mutableStateOf("") }
+    var category by remember { mutableStateOf(ProviderCategory.ALL) }
+    var mode by remember { mutableStateOf(ProviderEventMode.ALL) }
+
+    val selectedProvider = ui.selectedProviderId?.let { id ->
+        ProviderCatalog.providers.firstOrNull { it.id == id }
+    }
+    val providers = ProviderCatalog.find(providerQuery, category)
+    val visibleEvents = ui.events.filter { event ->
+        val provider = ProviderCatalog.detect(event)
+        val categoryOk = category == ProviderCategory.ALL || provider?.category == category
+        val modeOk = when (mode) {
+            ProviderEventMode.ALL -> true
+            ProviderEventMode.ONLINE -> event.online
+            ProviderEventMode.IN_PERSON -> !event.online
+        }
+        val queryOk = providerQuery.isBlank() ||
+            provider?.name?.contains(providerQuery, ignoreCase = true) == true ||
+            event.title.contains(providerQuery, ignoreCase = true) ||
+            event.description.contains(providerQuery, ignoreCase = true)
+        categoryOk && modeOk && queryOk
+    }
+
+    Column(Modifier.fillMaxSize()) {
+        ElevatedCard(
+            Modifier.padding(horizontal = 12.dp, vertical = 8.dp).fillMaxWidth()
+        ) {
+            Column(
+                Modifier.padding(14.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Surface(
+                        modifier = Modifier.size(44.dp),
+                        shape = MaterialTheme.shapes.large,
+                        color = MaterialTheme.colorScheme.primaryContainer
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(Icons.Default.Hub, null, tint = MaterialTheme.colorScheme.primary)
+                        }
+                    }
+                    Spacer(Modifier.width(10.dp))
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            t(settings.language, "provider_radar"),
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Black
+                        )
+                        Text(
+                            ProviderCatalog.providers.size.toString() + " " +
+                                t(settings.language, "providers_monitored"),
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                    }
+                    IconButton(onClick = onRefresh, enabled = !ui.loading) {
+                        Icon(Icons.Default.Refresh, contentDescription = t(settings.language, "refresh"))
+                    }
+                }
+
+                OutlinedTextField(
+                    value = providerQuery,
+                    onValueChange = { providerQuery = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    leadingIcon = { Icon(Icons.Default.Search, null) },
+                    label = { Text(t(settings.language, "search_providers")) },
+                    placeholder = { Text("OpenAI, Zuno, MLOps, Langfuse…") }
+                )
+
+                Row(
+                    Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    ProviderCategory.entries.forEach { item ->
+                        FilterChip(
+                            selected = category == item,
+                            onClick = { category = item },
+                            label = {
+                                Text(
+                                    providerCategoryLabel(item, settings.language) +
+                                        " (" + ProviderCatalog.countByCategory(item) + ")"
+                                )
+                            }
+                        )
+                    }
+                }
+
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    FilterChip(
+                        selected = mode == ProviderEventMode.ALL,
+                        onClick = { mode = ProviderEventMode.ALL },
+                        label = { Text(t(settings.language, "all_events")) }
+                    )
+                    FilterChip(
+                        selected = mode == ProviderEventMode.ONLINE,
+                        onClick = { mode = ProviderEventMode.ONLINE },
+                        label = { Text(t(settings.language, "online_events")) }
+                    )
+                    FilterChip(
+                        selected = mode == ProviderEventMode.IN_PERSON,
+                        onClick = { mode = ProviderEventMode.IN_PERSON },
+                        label = { Text(t(settings.language, "in_person")) }
+                    )
+                }
+
+                if (selectedProvider != null) {
+                    AssistChip(
+                        onClick = onClearProvider,
+                        label = {
+                            Text(
+                                t(settings.language, "selected_provider") +
+                                    ": " + selectedProvider.name + "  ×"
+                            )
+                        },
+                        leadingIcon = { Icon(Icons.Default.Business, null, Modifier.size(16.dp)) }
+                    )
+                }
+            }
+        }
+
+        if (providerQuery.isNotBlank() || selectedProvider == null) {
+            val directoryItems = providers.take(if (providerQuery.isBlank()) 12 else 40)
+            if (directoryItems.isNotEmpty()) {
+                Column(Modifier.padding(horizontal = 12.dp)) {
+                    Text(
+                        t(settings.language, "provider_directory"),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
+                    Row(
+                        Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        directoryItems.forEach { provider ->
+                            ProviderDirectoryCard(
+                                provider = provider,
+                                selected = selectedProvider?.id == provider.id,
+                                onClick = { onSearchProvider(provider) }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        ui.error?.let {
+            Text(
+                it,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 3.dp)
+            )
+        }
+
+        Row(
+            Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    visibleEvents.size.toString() + " " + t(settings.language, "provider_events"),
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    t(settings.language, "provider_radar_note"),
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
+            if (ui.loading) CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
+        }
+
+        if (visibleEvents.isEmpty() && !ui.loading) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    t(settings.language, "no_provider_events"),
+                    modifier = Modifier.padding(24.dp)
+                )
+            }
+        } else {
+            LazyColumn(
+                contentPadding = PaddingValues(12.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                items(visibleEvents, key = { "provider|" + it.stableKey }) { event ->
+                    EventCard(
+                        event = event,
+                        language = settings.language,
+                        compact = settings.compactCards,
+                        favorite = event.stableKey in settings.favorites,
+                        onFavorite = { onFavorite(event) }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ProviderDirectoryCard(
+    provider: ProviderEntry,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    val logoUrl = provider.domains.firstOrNull()?.let {
+        "https://www.google.com/s2/favicons?domain=" + it + "&sz=128"
+    }
+    ElevatedCard(
+        modifier = Modifier.width(168.dp).clickable(onClick = onClick),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = if (selected)
+                MaterialTheme.colorScheme.primaryContainer
+            else MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(Modifier.padding(12.dp)) {
+            Surface(
+                modifier = Modifier.size(40.dp),
+                shape = MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.surfaceVariant
+            ) {
+                if (logoUrl != null) {
+                    AsyncImage(
+                        model = logoUrl,
+                        contentDescription = provider.name,
+                        modifier = Modifier.padding(7.dp)
+                    )
+                } else {
+                    Box(contentAlignment = Alignment.Center) {
+                        Text(provider.name.take(2).uppercase(), fontWeight = FontWeight.Black)
+                    }
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            Text(
+                provider.name,
+                fontWeight = FontWeight.Bold,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                provider.category.name.replace("_", " "),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+    }
+}
+
+private fun providerCategoryLabel(category: ProviderCategory, language: String): String =
+    when (category) {
+        ProviderCategory.ALL -> t(language, "all_types")
+        ProviderCategory.MODEL -> "LLM / Models"
+        ProviderCategory.CLOUD -> "AI Cloud"
+        ProviderCategory.DEVTOOLS -> "Dev Tools"
+        ProviderCategory.AGENTS -> "Agents"
+        ProviderCategory.LLMOPS -> "LLMOps"
+        ProviderCategory.MLOPS -> "MLOps"
+        ProviderCategory.DATA -> "Data"
+        ProviderCategory.VECTOR -> "Vector DB"
+        ProviderCategory.VOICE -> "Voice / Audio"
+        ProviderCategory.IMAGE_VIDEO -> "Image / Video"
+        ProviderCategory.ENTERPRISE -> "Enterprise AI"
+        ProviderCategory.SAFETY -> "Safety / Evals"
+        ProviderCategory.COMMUNITY -> "Communities"
+        ProviderCategory.RESEARCH -> "Research"
+    }
+
+@Composable
 private fun FilterPanel(settings: AppSettings, onSettings: (AppSettings) -> Unit) {
     Text(t(settings.language, "radius") + ": " + settings.radiusKm + " km", fontWeight = FontWeight.SemiBold)
     Slider(
