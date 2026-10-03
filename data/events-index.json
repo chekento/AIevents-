@@ -1,48 +1,23 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-03T14:47:31.491427Z",
-  "cursor": 23,
+  "generated_at": "2026-10-03T15:20:53.023303Z",
+  "cursor": 35,
   "regions_processed": [
-    "Zurich, Switzerland",
-    "Amsterdam, Netherlands",
-    "Brussels, Belgium",
-    "Paris, France",
-    "London, United Kingdom",
-    "Dublin, Ireland",
-    "Madrid, Spain",
-    "Barcelona, Spain",
-    "Lisbon, Portugal",
-    "Milan, Italy",
-    "Rome, Italy",
-    "Stockholm, Sweden"
+    "Copenhagen, Denmark",
+    "Helsinki, Finland",
+    "Oslo, Norway",
+    "Warsaw, Poland",
+    "Prague, Czech Republic",
+    "Tallinn, Estonia",
+    "Bucharest, Romania",
+    "Athens, Greece",
+    "Istanbul, Turkey",
+    "New York, NY, USA",
+    "Boston, MA, USA",
+    "Washington, DC, USA"
   ],
-  "event_count": 48,
+  "event_count": 55,
   "events": [
-    {
-      "title": "Towards AI-native: Building the capabilities for the future of work",
-      "start": "2026-10-03T07:00:00Z",
-      "end": "2026-10-03T15:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "KI verändert, wie wir Wissen organisieren, Aufgaben delegieren und mit digitalen Systemen zusammenarbeiten. Chatten war der Anfang. Die nächste Generation von KI arbeitet mit unserem Wissen, kennt den Kontext unserer Projekte, nutzt Tools und übernimmt ganze Aufgaben. Damit verändert sich auch unsere Rolle: Wir müssen lernen, Wissen, Workflows und Arbeitsumgebungen so aufzubauen, dass Menschen und KI darin gemeinsam arbeiten können. AI-native ist eine Entwicklungsrichtung.",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/vm6wafyg",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.346043Z",
-      "key": "d0fdadeb73091a5cd63596ae"
-    },
     {
       "title": "Cofounder Speed Dating: Consumer and Prosumer AI",
       "start": "2026-10-04T09:00:00Z",
@@ -86,6 +61,28 @@
       ],
       "indexedAt": "2026-10-03T14:21:08.893910Z",
       "key": "d1ba6e8c0b5581bf439040e5"
+    },
+    {
+      "title": "Responsible%20AI%20for%20Teens",
+      "start": "2026-10-05T17:00:00.713000Z",
+      "end": "2026-10-05T19:00:00Z",
+      "venue": "OpenAI Office; 901 F St NW",
+      "locality": "OpenAI Office; 901 F St NW, OpenAI Office; 901 F St NW, Washington, DC, United States",
+      "description": "About%20the%20Talk:Join%20OpenAI%20at%20our%20Washington,%20D.C.%20office%20for%20a%20policy-focused%20convening%20on%20how%20AI%20can%20support%20teens%E2%80%99%20learning%20while%20promoting%20safe,%20healthy%20use.%20The%20program%20will%20feature%20an%20OpenAI%20Forum%20panel%20with%20experts%20in%20learning,%20adolescent%20mental%20health,%20and%20family%20and%20online%20safety.%20Arthur%20C.%20Evans%20Jr.,%20PhD,%20Chief%20Executive%20Officer%20of%20the%20American%20Psychological%20Association;%20Kate%20Ruane,%20Director%20of%20the%20Free%20Expression%20Project%20at%20the%20Center%20for%20Democracy%20&%20Technology;%20Mathilde%20Cerioli,%20Chief%20Scientist%20at%20everyoneAI;%20and%20Chuck%20Melley,%20SVP%20of%20Policy,%20Advocacy%20and%20Communities%20at%20CodeAI,%20will%20discuss%20what%20it%20means%20to%20design%20AI%20for%20teens,%20including%20how%20to%20support%20collaborative%20learning%20and%20build%20in%20age-appropriate%20safeguards.%20Chris%20Lehane,%20OpenAI%E2%80%99s%20Chief%20Global%20Affairs%20Officer,%20will%20moderate%20the%20conversation%20and%20share%20context%20on%20ChatGPT%20for%20Teens,%20a%20learning-first%20experience%20launched%20in%20August%20and%20d",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/public/events/responsible-ai-for-teens-hvzr4wbt49",
+      "eventUrl": "https://forum.openai.com/public/events/responsible-ai-for-teens-hvzr4wbt49",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:04.125416Z",
+      "key": "50c583c69cc1051bbe561197"
     },
     {
       "title": "AI Tinkerers - Columbus October Meetup",
@@ -174,6 +171,28 @@
       ],
       "indexedAt": "2026-10-03T14:21:11.565417Z",
       "key": "4e024e583909c081e102a290"
+    },
+    {
+      "title": "Polling%20Workshop:%20AI%20Tools%20for%20Election%20Surveys",
+      "start": "2026-10-06T15:40:00Z",
+      "end": "2026-10-06T17:30:00Z",
+      "venue": "901 F St NW",
+      "locality": "901 F St NW, 901 F St NW, Washington, DC 20004, United States",
+      "description": "Join%20the%20OpenAI%20Forum%20in%20OpenAI%E2%80%99s%20Washington%20D.C.%20Workshop%20to%20watch%20a%20demonstration%20of%20innovative%20tools%20in%20monitoring%20public%20opinion,%20and%20learn%20about%20the%20latest%20survey%20techniques.%20Lucas%20Stockslader%20from%20OpenAI%E2%80%99s%20Global%20Affairs%20team%20will%20introduce%20the%20AI%20Sentiment%20Tracker%20that%20he%20built%20with%20ChatGPT,%20showing%20how%20the%20team%20brings%20together%20public%20polling%20to%20follow%20changes%20in%20attitudes%20toward%20AI%20over%20time.%20After%20the%20demonstration,%20we%20will%20see%20how%20AI%20is%20transforming%20the%20field%20of%20research%20with%20Jon%20Cohen,%20founder%20and%20CEO%20of%20TrueDot.ai.%20With%20less%20than%20a%20month%20to%20go,%20Mark%20Murray,%20Editorial%20Director%20at%20OpenAI,%20Brent%20Buchanan,%20CEO%20&%20Founder%20of%20Cygnal,%20and%20Ilana%20Ron-Levey,%20Managing%20Director%20of%20Gallup,%20will%20discuss%20polling%20insights%20&%20innovation%20heading%20into%20the%20midterms.",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/public/events/polling-workshop-ai-tools-for-election-surveys-mafsraexek",
+      "eventUrl": "https://forum.openai.com/public/events/polling-workshop-ai-tools-for-election-surveys-mafsraexek",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:05.107676Z",
+      "key": "7fa5091894066c5901a2c094"
     },
     {
       "title": "Show & Tell",
@@ -502,6 +521,50 @@
       "key": "d485c07510234c0bb949793b"
     },
     {
+      "title": "In%20Person%20Event:%20Game%20Changers%20Summit:%20How%20AI%20Is%20Shaping%20the%20Future%20of%20Sports",
+      "start": "2026-10-13T20:30:00.120000Z",
+      "end": "2026-10-14T01:00:33.960000Z",
+      "venue": "OpenAI office; 1515 3rd St",
+      "locality": "OpenAI office; 1515 3rd St, OpenAI office; 1515 3rd St, San Francisco, CA",
+      "description": "About%20the%20Event:At%20the%20Game%20Changers%20Summit,%20we%E2%80%99ll%20explore%20how%20athletes,%20coaches,%20doctors,%20and%20teams%20can%20use%20AI%20to%20make%20better-informed%20decisions.%20From%20personalized%20athlete%20health%20and%20safer%20play%20to%20smarter%20operations%20and%20stronger%20fan%20connections.%20Speakers%20will%20focus%20on%20how%20AI%20is%20making%20sports%20healthier,%20more%20inventive,%20and%20more%20inclusive%20while%20preserving%20the%20judgment%20and%20authenticity%20at%20the%20heart%20of%20the%20game.Join%20us%20October%2013%20in%20San%20Francisco%20for%20a%20half-day%20program%20featuring%20two%20panels,%20five%20short%20Ignite%20talks,%20breakout%20discussions,%20a%20late%20lunch,%20happy%20hour,%20exciting%20product%20presentation,%20and%20time%20to%20connect%20with%20fellow%20attendees%20and%20the%20OpenAI%20team.%20This%20event%20is%20invite-only,%20please%20request%20an%20invitation%20to%20attend.%20The%20address%20will%20be%20shared%20with%20registered%20guests%20closer%20to%20the%20event,%20and%20the%20program%20will%20not%20be%20livestreamed.",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/public/events/in-person-event-game-changers-summit-how-ai-is-shaping-the-future-of-sports-zb3ayk280g",
+      "eventUrl": "https://forum.openai.com/public/events/in-person-event-game-changers-summit-how-ai-is-shaping-the-future-of-sports-zb3ayk280g",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:06.675567Z",
+      "key": "a8a41ac29148e860b29ec1bb"
+    },
+    {
+      "title": "In%20Person%20Event:%20Game%20Changers%20Summit:%20How%20AI%20Is%20Shaping%20the%20Future%20of%20Sports",
+      "start": "2026-10-13T20:30:00.120000Z",
+      "end": "2026-10-14T01:00:33.960000Z",
+      "venue": "OpenAI office; 1515 3rd St",
+      "locality": "OpenAI office; 1515 3rd St, OpenAI office; 1515 3rd St, San Francisco, CA",
+      "description": "About%20the%20Event:At%20the%20Game%20Changers%20Summit,%20we%E2%80%99ll%20explore%20how%20athletes,%20coaches,%20doctors,%20and%20teams%20can%20use%20AI%20to%20make%20better-informed%20decisions.%20From%20personalized%20athlete%20health%20and%20safer%20play%20to%20smarter%20operations%20and%20stronger%20fan%20connections.%20Speakers%20will%20focus%20on%20how%20AI%20is%20making%20sports%20healthier,%20more%20inventive,%20and%20more%20inclusive%20while%20preserving%20the%20judgment%20and%20authenticity%20at%20the%20heart%20of%20the%20game.Join%20us%20October%2013%20in%20San%20Francisco%20for%20a%20half-day%20program%20featuring%20two%20panels,%20five%20short%20Ignite%20talks,%20breakout%20discussions,%20a%20late%20lunch,%20happy%20hour,%20exciting%20product%20presentation,%20and%20time%20to%20connect%20with%20fellow%20attendees%20and%20the%20OpenAI%20team.%20This%20event%20is%20invite-only,%20please%20request%20an%20invitation%20to%20attend.%20The%20address%20will%20be%20shared%20with%20registered%20guests%20closer%20to%20the%20event,%20and%20the%20program%20will%20not%20be%20livestreamed.",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/home/events/in-person-event-game-changers-summit-how-ai-is-shaping-the-future-of-sports-zb3ayk280g?autoRsvp=true",
+      "eventUrl": "https://forum.openai.com/home/events/in-person-event-game-changers-summit-how-ai-is-shaping-the-future-of-sports-zb3ayk280g?autoRsvp=true",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:07.382761Z",
+      "key": "d658f720abf455fde41ea82f"
+    },
+    {
       "title": "robotics & physical ai CLUB",
       "start": "2026-10-14T16:00:00Z",
       "end": "2026-10-14T20:00:00Z",
@@ -662,6 +725,50 @@
       "key": "d19793323eaf718574af7846"
     },
     {
+      "title": "In-Person%20Event:%20Biodefense%20in%20the%20AI%20Age",
+      "start": "2026-10-19T17:00:00.615000Z",
+      "end": "2026-10-19T19:30:08.496000Z",
+      "venue": "901 F St NW Washington, DC 20004",
+      "locality": "901 F St NW Washington, DC 20004",
+      "description": "About%20the%20Talk:%20AI%20is%20opening%20new%20possibilities%20in%20biology%20while%20raising%20important%20questions%20about%20how%20the%20United%20States%20should%20prepare%20for%20increasingly%20capable%20systems.%20OpenAI%20will%20convene%20congressional%20policy%20leaders%20and%20staff,%20scientists,%20biosecurity%20experts,%20advocates,%20and%20practitioners%20in%20Washington%20for%20a%20discussion%20on%20responsible%20U.S.%20leadership%20in%20AI%20and%20biotechnology.%0A%0AThe%20program%20will%20examine%20how%20we%20can%20improve%20understanding%20of%20AI%E2%80%99s%20biological%20capabilities%20and%20risks;%20how%20safeguards%20such%20as%20gene-synthesis%20screening,%20trusted%20access,%20and%20model-level%20protections%20can%20work%20together;%20and%20how%20federal%20policy,%20legislation,%20investment,%20and%20public-private%20collaboration%20can%20prevent%20misuse%20while%20accelerating%20benefits%20for%20medicine%20and%20science.%0A%0AThe%20event%20will%20begin%20with%20a%20brief%20presentation%20on%20OpenAI%E2%80%99s%20latest%20work%20on%20bio%20capabilities%20and%20risks,%20followed%20by%20a%20moderated%20panel%20on%20the%20legislative%20landscape%20and%20the%20practi",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/public/events/in-person-event-biodefense-in-the-ai-age-yd1s8kqa1z",
+      "eventUrl": "https://forum.openai.com/public/events/in-person-event-biodefense-in-the-ai-age-yd1s8kqa1z",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:07.908436Z",
+      "key": "4b7f63fbf829a8ef73fd4ba2"
+    },
+    {
+      "title": "In-Person%20Event:%20Biodefense%20in%20the%20AI%20Age",
+      "start": "2026-10-19T17:00:00.615000Z",
+      "end": "2026-10-19T19:30:08.496000Z",
+      "venue": "901 F St NW Washington, DC 20004",
+      "locality": "901 F St NW Washington, DC 20004",
+      "description": "About%20the%20Talk:%20AI%20is%20opening%20new%20possibilities%20in%20biology%20while%20raising%20important%20questions%20about%20how%20the%20United%20States%20should%20prepare%20for%20increasingly%20capable%20systems.%20OpenAI%20will%20convene%20congressional%20policy%20leaders%20and%20staff,%20scientists,%20biosecurity%20experts,%20advocates,%20and%20practitioners%20in%20Washington%20for%20a%20discussion%20on%20responsible%20U.S.%20leadership%20in%20AI%20and%20biotechnology.%0A%0AThe%20program%20will%20examine%20how%20we%20can%20improve%20understanding%20of%20AI%E2%80%99s%20biological%20capabilities%20and%20risks;%20how%20safeguards%20such%20as%20gene-synthesis%20screening,%20trusted%20access,%20and%20model-level%20protections%20can%20work%20together;%20and%20how%20federal%20policy,%20legislation,%20investment,%20and%20public-private%20collaboration%20can%20prevent%20misuse%20while%20accelerating%20benefits%20for%20medicine%20and%20science.%0A%0AThe%20event%20will%20begin%20with%20a%20brief%20presentation%20on%20OpenAI%E2%80%99s%20latest%20work%20on%20bio%20capabilities%20and%20risks,%20followed%20by%20a%20moderated%20panel%20on%20the%20legislative%20landscape%20and%20the%20practi",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/home/events/in-person-event-biodefense-in-the-ai-age-yd1s8kqa1z?autoRsvp=true",
+      "eventUrl": "https://forum.openai.com/home/events/in-person-event-biodefense-in-the-ai-age-yd1s8kqa1z?autoRsvp=true",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:08.704852Z",
+      "key": "2295f0c3663e88bca076d2bd"
+    },
+    {
       "title": "Scaling Agentic AI with Cloud Run",
       "start": "2026-10-20T05:30:00Z",
       "end": "2026-10-20T06:30:00Z",
@@ -704,6 +811,50 @@
       ],
       "indexedAt": "2026-10-03T14:25:22.413023Z",
       "key": "7fb6b3a8ce910a3e5acf98fe"
+    },
+    {
+      "title": "In-Person%20Event:%20Strengthening%20Cybersecurity%20with%20AI:%20State,%20Local,%20and%20Critical%20Infrastructure",
+      "start": "2026-10-21T12:00:00.176000Z",
+      "end": "2026-10-21T15:00:29.039000Z",
+      "venue": "OpenAI's D.C. Workshop",
+      "locality": "OpenAI's D.C. Workshop, OpenAI's D.C. Workshop, Washington, DC",
+      "description": "About%20the%20Talk:How%20can%20AI%20help%20protect%20critical%20infrastructure%20that%20state%20and%20local%20governments%20rely%20on?%20OpenAI%20Forum%20will%20convene%20policymakers,%20cybersecurity%20experts,%20and%20government%20and%20industry%20leaders%20in%20Washington,%20DC%20to%20explore%20OpenAI%E2%80%99s%20Daybreak%20program%20and%20$1%20billion%20cybersecurity%20commitment.%20Discussions%20will%20highlight%20practical%20partnerships%20to%20strengthen%20state%20and%20local%20cybersecurity,%20protect%20critical%20infrastructure,%20and%20build%20collaboration%20across%20government,%20industry,%20and%20international%20partners.%0A%0ARegistration%20is%20invite%20only,%20please%20request%20an%20invite.%20Speakers%20will%20be%20announced%20soon.",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/public/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch",
+      "eventUrl": "https://forum.openai.com/public/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:09.263917Z",
+      "key": "b75fb66cba5438d1b30729cd"
+    },
+    {
+      "title": "In-Person%20Event:%20Strengthening%20Cybersecurity%20with%20AI:%20State,%20Local,%20and%20Critical%20Infrastructure",
+      "start": "2026-10-21T12:00:00.176000Z",
+      "end": "2026-10-21T15:00:29.039000Z",
+      "venue": "OpenAI's D.C. Workshop",
+      "locality": "OpenAI's D.C. Workshop, OpenAI's D.C. Workshop, Washington, DC",
+      "description": "About%20the%20Talk:How%20can%20AI%20help%20protect%20critical%20infrastructure%20that%20state%20and%20local%20governments%20rely%20on?%20OpenAI%20Forum%20will%20convene%20policymakers,%20cybersecurity%20experts,%20and%20government%20and%20industry%20leaders%20in%20Washington,%20DC%20to%20explore%20OpenAI%E2%80%99s%20Daybreak%20program%20and%20$1%20billion%20cybersecurity%20commitment.%20Discussions%20will%20highlight%20practical%20partnerships%20to%20strengthen%20state%20and%20local%20cybersecurity,%20protect%20critical%20infrastructure,%20and%20build%20collaboration%20across%20government,%20industry,%20and%20international%20partners.%0A%0ARegistration%20is%20invite%20only,%20please%20request%20an%20invite.%20Speakers%20will%20be%20announced%20soon.",
+      "organizer": "OpenAI Forum",
+      "sourceName": "forum.openai.com",
+      "sourceUrl": "https://forum.openai.com/home/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch?autoRsvp=true",
+      "eventUrl": "https://forum.openai.com/home/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch?autoRsvp=true",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T15:19:10.173203Z",
+      "key": "06d59e7690bf7a1182297ab2"
     },
     {
       "title": "Agentic AI Community Day 2026",
