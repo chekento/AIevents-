@@ -7,7 +7,7 @@ on:
       - 'backend/**'
       - '.github/workflows/index-events.yml'
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 */4 * * *'
   workflow_dispatch:
 
 permissions:
