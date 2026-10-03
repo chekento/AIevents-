@@ -1,0 +1,241 @@
+openai|OpenAI|openai.com;developers.openai.com;forum.openai.com;academy.openai.com|MODEL
+anthropic|Anthropic|anthropic.com|MODEL
+google-ai|Google AI / Gemini|ai.google;gemini.google.com;developers.google.com;deepmind.google|MODEL
+google-cloud-ai|Google Cloud Vertex AI|cloud.google.com|CLOUD
+microsoft-ai|Microsoft AI / Azure AI|microsoft.com;azure.microsoft.com;developer.microsoft.com|CLOUD
+meta-ai|Meta AI / Llama|ai.meta.com;meta.com|MODEL
+xai|xAI / Grok|x.ai|MODEL
+mistral|Mistral AI|mistral.ai|MODEL
+cohere|Cohere|cohere.com|MODEL
+ai21|AI21 Labs|ai21.com|MODEL
+aleph-alpha|Aleph Alpha|aleph-alpha.com|MODEL
+aws-ai|AWS AI / Bedrock|aws.amazon.com|CLOUD
+nvidia-ai|NVIDIA AI|nvidia.com|CLOUD
+ibm-watsonx|IBM watsonx|ibm.com|ENTERPRISE
+salesforce-ai|Salesforce AI|salesforce.com|ENTERPRISE
+oracle-ai|Oracle AI|oracle.com|ENTERPRISE
+sap-ai|SAP Business AI|sap.com|ENTERPRISE
+baidu-ai|Baidu AI / ERNIE|baidu.com|MODEL
+alibaba-qwen|Alibaba Qwen|qwen.ai;alibabacloud.com|MODEL
+tencent-hunyuan|Tencent Hunyuan|hunyuan.tencent.com|MODEL
+bytedance-doubao|ByteDance Doubao|doubao.com;bytedance.com|MODEL
+deepseek|DeepSeek|deepseek.com|MODEL
+zhipu|Zhipu AI / GLM|z.ai;zhipuai.cn|MODEL
+moonshot|Moonshot AI / Kimi|moonshot.cn;kimi.com|MODEL
+minimax|MiniMax|minimax.io|MODEL
+zeroone|01.AI|01.ai|MODEL
+baichuan|Baichuan AI|baichuan-ai.com|MODEL
+sensetime|SenseTime|sensetime.com|MODEL
+iflytek|iFlytek Spark|xfyun.cn|MODEL
+huawei-pangu|Huawei Pangu|huawei.com|MODEL
+naver|NAVER HyperCLOVA X|navercorp.com|MODEL
+kakao|Kakao Brain|kakaobrain.com|MODEL
+upstage|Upstage|upstage.ai|MODEL
+lg-ai|LG AI Research / EXAONE|lgresearch.ai|MODEL
+samsung-ai|Samsung Research AI|research.samsung.com|MODEL
+fujitsu-ai|Fujitsu Kozuchi|fujitsu.com|ENTERPRISE
+nec-ai|NEC AI|nec.com|ENTERPRISE
+rakuten-ai|Rakuten AI|rakuten.com|MODEL
+preferred-networks|Preferred Networks|preferred.jp|MODEL
+stability-ai|Stability AI|stability.ai|IMAGE_VIDEO
+black-forest-labs|Black Forest Labs|blackforestlabs.ai|IMAGE_VIDEO
+midjourney|Midjourney|midjourney.com|IMAGE_VIDEO
+runway|Runway|runwayml.com|IMAGE_VIDEO
+pika|Pika|pika.art|IMAGE_VIDEO
+luma-ai|Luma AI|lumalabs.ai|IMAGE_VIDEO
+ideogram|Ideogram|ideogram.ai|IMAGE_VIDEO
+leonardo|Leonardo AI|leonardo.ai|IMAGE_VIDEO
+recraft|Recraft|recraft.ai|IMAGE_VIDEO
+adobe-firefly|Adobe Firefly|adobe.com|IMAGE_VIDEO
+elevenlabs|ElevenLabs|elevenlabs.io|VOICE
+suno|Suno|suno.com|VOICE
+zuno|Zuno|zuno.ai|MODEL
+udio|Udio|udio.com|VOICE
+hume|Hume AI|hume.ai|VOICE
+cartesia|Cartesia|cartesia.ai|VOICE
+deepgram|Deepgram|deepgram.com|VOICE
+assemblyai|AssemblyAI|assemblyai.com|VOICE
+speechmatics|Speechmatics|speechmatics.com|VOICE
+resemble|Resemble AI|resemble.ai|VOICE
+playht|PlayHT|play.ht|VOICE
+synthesia|Synthesia|synthesia.io|IMAGE_VIDEO
+heygen|HeyGen|heygen.com|IMAGE_VIDEO
+character-ai|Character.AI|character.ai|MODEL
+inflection|Inflection AI|inflection.ai|MODEL
+perplexity|Perplexity|perplexity.ai|MODEL
+youcom|You.com|you.com|MODEL
+phind|Phind|phind.com|MODEL
+glean|Glean|glean.com|ENTERPRISE
+sierra|Sierra|sierra.ai|ENTERPRISE
+harvey|Harvey|harvey.ai|ENTERPRISE
+writer|Writer|writer.com|ENTERPRISE
+jasper|Jasper|jasper.ai|ENTERPRISE
+copyai|Copy.ai|copy.ai|ENTERPRISE
+typeface|Typeface|typeface.ai|ENTERPRISE
+together|Together AI|together.ai|CLOUD
+fireworks|Fireworks AI|fireworks.ai|CLOUD
+groq|Groq|groq.com|CLOUD
+cerebras|Cerebras|cerebras.ai|CLOUD
+sambanova|SambaNova|sambanova.ai|CLOUD
+lambda|Lambda|lambda.ai|CLOUD
+coreweave|CoreWeave|coreweave.com|CLOUD
+crusoe|Crusoe|crusoe.ai|CLOUD
+nebius|Nebius|nebius.com|CLOUD
+replicate|Replicate|replicate.com|CLOUD
+modal|Modal|modal.com|CLOUD
+baseten|Baseten|baseten.co|CLOUD
+bentoml|BentoML|bentoml.com|MLOPS
+anyscale|Anyscale|anyscale.com|CLOUD
+huggingface|Hugging Face|huggingface.co|MODEL
+modelscope|ModelScope|modelscope.cn|MODEL
+openrouter|OpenRouter|openrouter.ai|CLOUD
+litellm|LiteLLM|litellm.ai|LLMOPS
+vercel-ai|Vercel AI SDK|vercel.com|DEVTOOLS
+cloudflare-ai|Cloudflare Workers AI|cloudflare.com|CLOUD
+github-models|GitHub Models|github.com|DEVTOOLS
+azure-foundry|Azure AI Foundry|azure.microsoft.com|CLOUD
+langchain|LangChain|langchain.com|AGENTS
+llamaindex|LlamaIndex|llamaindex.ai|AGENTS
+haystack|deepset Haystack|deepset.ai|AGENTS
+semantic-kernel|Semantic Kernel|github.com/microsoft|AGENTS
+autogen|Microsoft AutoGen|microsoft.github.io|AGENTS
+crewai|CrewAI|crewai.com|AGENTS
+agno|Agno|agno.com|AGENTS
+pydantic-ai|PydanticAI|ai.pydantic.dev|AGENTS
+dspy|DSPy|dspy.ai|AGENTS
+guidance|Guidance|github.com/guidance-ai|DEVTOOLS
+outlines|Outlines|dottxt.ai|DEVTOOLS
+instructor|Instructor|python.useinstructor.com|DEVTOOLS
+guardrails-ai|Guardrails AI|guardrailsai.com|SAFETY
+nemo-guardrails|NVIDIA NeMo Guardrails|nvidia.com|SAFETY
+autogpt|AutoGPT|agpt.co|AGENTS
+composio|Composio|composio.dev|AGENTS
+langgraph|LangGraph|langchain.com|AGENTS
+mastra|Mastra|mastra.ai|AGENTS
+dify|Dify|dify.ai|AGENTS
+flowise|Flowise|flowiseai.com|AGENTS
+n8n|n8n AI|n8n.io|AGENTS
+zapier-ai|Zapier AI|zapier.com|AGENTS
+make-ai|Make AI|make.com|AGENTS
+gumloop|Gumloop|gumloop.com|AGENTS
+dust|Dust|dust.tt|AGENTS
+stack-ai|Stack AI|stack-ai.com|AGENTS
+relevance-ai|Relevance AI|relevanceai.com|AGENTS
+langsmith|LangSmith|smith.langchain.com|LLMOPS
+langfuse|Langfuse|langfuse.com|LLMOPS
+helicone|Helicone|helicone.ai|LLMOPS
+arize|Arize AI / Phoenix|arize.com;phoenix.arize.com|LLMOPS
+wandb-weave|Weights & Biases Weave|wandb.ai|LLMOPS
+braintrust|Braintrust|braintrust.dev|LLMOPS
+humanloop|Humanloop|humanloop.com|LLMOPS
+galileo|Galileo|galileo.ai|LLMOPS
+whylabs|WhyLabs|whylabs.ai|LLMOPS
+fiddler|Fiddler AI|fiddler.ai|SAFETY
+patronus|Patronus AI|patronus.ai|SAFETY
+arthur|Arthur AI|arthur.ai|SAFETY
+traceloop|Traceloop|traceloop.com|LLMOPS
+literal-ai|Literal AI|literalai.com|LLMOPS
+lunary|Lunary|lunary.ai|LLMOPS
+deepeval|DeepEval / Confident AI|confident-ai.com|LLMOPS
+maxim|Maxim AI|maxim.ai|LLMOPS
+evidently|Evidently AI|evidentlyai.com|MLOPS
+giskard|Giskard|giskard.ai|SAFETY
+lakera|Lakera|lakera.ai|SAFETY
+protect-ai|Protect AI|protectai.com|SAFETY
+hiddenlayer|HiddenLayer|hiddenlayer.com|SAFETY
+calypsoai|CalypsoAI|calypsoai.com|SAFETY
+promptlayer|PromptLayer|promptlayer.com|LLMOPS
+promptfoo|Promptfoo|promptfoo.dev|LLMOPS
+portkey|Portkey|portkey.ai|LLMOPS
+keywords-ai|Keywords AI|keywordsai.co|LLMOPS
+langwatch|LangWatch|langwatch.ai|LLMOPS
+openlit|OpenLIT|openlit.io|LLMOPS
+opik|Opik / Comet|comet.com|LLMOPS
+honeyhive|HoneyHive|honeyhive.ai|LLMOPS
+agentops|AgentOps|agentops.ai|LLMOPS
+parea|Parea AI|parea.ai|LLMOPS
+mlops-community|MLOps Community|mlops.community|MLOPS
+kubeflow|Kubeflow|kubeflow.org|MLOPS
+mlflow|MLflow|mlflow.org|MLOPS
+comet|Comet|comet.com|MLOPS
+clearml|ClearML|clear.ml|MLOPS
+neptune|Neptune.ai|neptune.ai|MLOPS
+dvc|DVC / Iterative|dvc.org|MLOPS
+metaflow|Metaflow|metaflow.org|MLOPS
+flyte|Flyte|flyte.org|MLOPS
+zenml|ZenML|zenml.io|MLOPS
+kedro|Kedro|kedro.org|MLOPS
+ray|Ray|ray.io|MLOPS
+prefect|Prefect|prefect.io|MLOPS
+dagster|Dagster|dagster.io|MLOPS
+airflow|Apache Airflow|airflow.apache.org|MLOPS
+feast|Feast|feast.dev|MLOPS
+tecton|Tecton|tecton.ai|MLOPS
+hopsworks|Hopsworks|hopsworks.ai|MLOPS
+seldon|Seldon|seldon.io|MLOPS
+kserve|KServe|kserve.github.io|MLOPS
+determined|Determined AI / HPE|determined.ai|MLOPS
+domino|Domino Data Lab|domino.ai|MLOPS
+datarobot|DataRobot|datarobot.com|MLOPS
+h2o|H2O.ai|h2o.ai|MLOPS
+dataiku|Dataiku|dataiku.com|MLOPS
+databricks|Databricks|databricks.com|DATA
+snowflake|Snowflake|snowflake.com|DATA
+dbt|dbt Labs|getdbt.com|DATA
+fivetran|Fivetran|fivetran.com|DATA
+confluent|Confluent|confluent.io|DATA
+mongodb|MongoDB|mongodb.com|DATA
+elastic|Elastic|elastic.co|DATA
+redis|Redis|redis.io|DATA
+clickhouse|ClickHouse|clickhouse.com|DATA
+pinecone|Pinecone|pinecone.io|VECTOR
+weaviate|Weaviate|weaviate.io|VECTOR
+qdrant|Qdrant|qdrant.tech|VECTOR
+zilliz|Zilliz / Milvus|zilliz.com;milvus.io|VECTOR
+chroma|Chroma|trychroma.com|VECTOR
+lancedb|LanceDB|lancedb.com|VECTOR
+vespa|Vespa|vespa.ai|VECTOR
+singlestore|SingleStore|singlestore.com|DATA
+neo4j|Neo4j|neo4j.com|DATA
+supabase|Supabase|supabase.com|DATA
+neon|Neon|neon.tech|DATA
+planetscale|PlanetScale|planetscale.com|DATA
+cockroach|Cockroach Labs|cockroachlabs.com|DATA
+scale-ai|Scale AI|scale.com|DATA
+labelbox|Labelbox|labelbox.com|DATA
+snorkel|Snorkel AI|snorkel.ai|DATA
+superannotate|SuperAnnotate|superannotate.com|DATA
+encord|Encord|encord.com|DATA
+human-signal|HumanSignal / Label Studio|humansignal.com;labelstud.io|DATA
+surge-ai|Surge AI|surgehq.ai|DATA
+toloka|Toloka|toloka.ai|DATA
+eleutherai|EleutherAI|eleuther.ai|RESEARCH
+laion|LAION|laion.ai|RESEARCH
+allen-ai|Allen Institute for AI|allenai.org|RESEARCH
+mlcommons|MLCommons|mlcommons.org|RESEARCH
+lf-ai-data|Linux Foundation AI & Data|lfaidata.foundation|COMMUNITY
+pytorch|PyTorch|pytorch.org|COMMUNITY
+tensorflow|TensorFlow|tensorflow.org|COMMUNITY
+jax|JAX|jax.readthedocs.io|COMMUNITY
+onnx|ONNX|onnx.ai|COMMUNITY
+openmmlab|OpenMMLab|openmmlab.com|COMMUNITY
+datatalksclub|DataTalksClub|datatalks.club|COMMUNITY
+ai-tinkerers|AI Tinkerers|aitinkerers.org|COMMUNITY
+global-ai-community|Global AI Community|globalai.community|COMMUNITY
+women-in-ai|Women in AI|womeninai.co|COMMUNITY
+deeplearning-ai|DeepLearning.AI|deeplearning.ai|COMMUNITY
+fastai|fast.ai|fast.ai|COMMUNITY
+fullstackdeeplearning|Full Stack Deep Learning|fullstackdeeplearning.com|COMMUNITY
+ai-engineer|AI Engineer|ai.engineer|COMMUNITY
+genai-collective|GenAI Collective|genaicollective.com|COMMUNITY
+mlops-world|MLOps World|mlopsworld.com|COMMUNITY
+ai-summit|The AI Summit|theaisummit.com|COMMUNITY
+odsc|ODSC|odsc.com|COMMUNITY
+neurips|NeurIPS|neurips.cc|RESEARCH
+icml|ICML|icml.cc|RESEARCH
+iclr|ICLR|iclr.cc|RESEARCH
+aaai|AAAI|aaai.org|RESEARCH
+acl|ACL|aclweb.org|RESEARCH
+emnlp|EMNLP|aclweb.org|RESEARCH
+kdd|KDD|kdd.org|RESEARCH
+cvpr|CVPR|thecvf.com|RESEARCH
