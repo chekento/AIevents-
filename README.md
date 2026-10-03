@@ -1,57 +1,69 @@
 # AIevents
 
-**AIevents** is a native Android app for discovering current AI events anywhere in the world.
+**AIevents** is a native, multilingual Android app for discovering current AI events, conferences, meetups and local community gatherings worldwide.
 
-## Current MVP
-- Global free-text location/region search
-- Radius filter from 5 to 300 km
-- Ahrensburg preset: 45 km, intended to cover southern Schleswig-Holstein and Hamburg
-- Live federated web discovery
-- Event discovery across general web results plus Meetup, Luma and Eventbrite-focused searches
-- JSON-LD / schema.org Event extraction where available
-- Heuristic fallback for event pages without structured metadata
-- Date, venue, organizer, price, online status and description
-- Source domain and direct original-event link
-- Coordinate-based radius filtering where event coordinates are published
-- Duplicate suppression and a visible data-confidence score
+## v0.2 highlights
+- Global place/region search and 5–500 km radius
+- Privacy-respecting **My location** helper
+- Ahrensburg preset remains a practical default for southern Schleswig-Holstein + Hamburg
+- Live federated web discovery instead of a bundled static catalogue
+- Search categories: Agents, GenAI, ML, Data, Robotics, Business, Governance, Developer, Research, Community
+- Keyword search plus date horizon, free-only, online, confidence and sorting filters
+- Sort by date, distance or source-data confidence
+- Persistent full event favourites
+- Internal OpenStreetMap view for events that publish coordinates
+- One-tap Android calendar insertion including source URL
+- Configurable periodic background event notifications
+- Per-source enable/disable controls
+- Compact or comfortable result cards
+- Light/dark system theme
 - UI languages: German, English, French, Spanish, Italian and Polish
-- Dark/light system theme
-- Automatic GitHub Actions APK build
+- GitHub Actions APK builds on every push to main
 
-## Freshness model
-AIevents searches the live web when the app starts and when the user taps refresh. It does not ship a stale hard-coded event catalogue.
+## Discovery sources
+The source registry currently targets:
+- Global AI Community
+- AI Tinkerers
+- MLOps Community
+- Meetup
+- Luma
+- Eventbrite
+- Sessionize
+- Pretalx
+- Google Developer Groups
+- Microsoft Reactor
+- AWS Events
+- NVIDIA Events
+- Hugging Face
+- IEEE
+- ACM
+- 10times
+- confs.tech
+- DEV Events
+- eventyay
+- general community / Stammtisch web discovery
 
-Some event websites block automated access or omit structured location/date data. AIevents therefore shows source attribution and a confidence score instead of pretending incomplete data is certain.
+AIevents uses public search discovery and parses schema.org/Event / JSON-LD when publishers provide it. A heuristic fallback can identify event pages with weaker metadata. Sources and original links remain visible.
 
-## APK
-Every push to `main` runs **Build Android APK** in GitHub Actions. Download the artifact named:
+## Freshness
+Searches run against the live web on demand. Optional periodic WorkManager jobs can refresh event discovery in the background when notifications are enabled.
 
-`AIevents-debug-apk`
+## Data quality
+Not every publisher provides precise date, venue, price or coordinates. AIevents shows a confidence score rather than silently treating incomplete metadata as certain. Radius filtering is exact for events with published coordinates; otherwise the original source remains available for verification.
 
-The APK inside is:
+## Calendar export
+Every event with a verified start date can be inserted into the user's Android calendar through the system calendar UI. AIevents does not require direct calendar-write permission.
 
-`app-debug.apk`
-
-## Architecture
-- Kotlin
-- Jetpack Compose / Material 3
-- OkHttp
-- Jsoup
-- schema.org / JSON-LD event parsing
-- OpenStreetMap Nominatim for resolving the search center
-
-## Planned next steps
-- Persistent favourites and saved searches
-- Background refresh + notifications
-- More source adapters and optional API-backed discovery providers
-- Calendar export (.ics)
-- Map view
-- More languages
-- Release signing and GitHub Releases
-- Better geocoding for event venues that do not publish coordinates
+## Notifications
+Users can enable or disable background checks and choose an interval between 1 and 168 hours. Android notification permission is requested only when notifications are enabled.
 
 ## Privacy
-The MVP does not require an account. Search terms are sent to public web/geocoding endpoints to perform discovery.
+AIevents requires no account. Search text and location names are sent to the public discovery/geocoding services necessary to perform the requested search. Device location permission is optional and only requested when the user taps **My location**.
 
----
-Created for the AIevents project.
+## APK
+The GitHub workflow **Build Android APK** builds and uploads:
+- artifact: `AIevents-debug-apk`
+- file: `app-debug.apk`
+
+## Stack
+Kotlin · Jetpack Compose · Material 3 · DataStore · WorkManager · OkHttp · Jsoup · schema.org/Event · JSON-LD · OpenStreetMap/osmdroid · Nominatim
