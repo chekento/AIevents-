@@ -3,6 +3,7 @@ package cloud.kosch.aievents
 import java.time.Instant
 
 enum class SortMode { DATE, DISTANCE, CONFIDENCE }
+enum class PriceMode { ANY, FREE, PAID }
 enum class EventCategory { ALL, AGENTS, GENAI, ML, DATA, ROBOTICS, BUSINESS, GOVERNANCE, DEVELOPER, RESEARCH, COMMUNITY }
 
 data class SearchConfig(
@@ -11,7 +12,7 @@ data class SearchConfig(
     val language: String,
     val includeOnline: Boolean = true,
     val futureDays: Int = 365,
-    val freeOnly: Boolean = false,
+    val priceMode: PriceMode = PriceMode.ANY,
     val minConfidence: Int = 0,
     val category: EventCategory = EventCategory.ALL,
     val keywords: String = "",
