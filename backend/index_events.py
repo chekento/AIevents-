@@ -14,7 +14,7 @@ REGIONS_PATH = ROOT / "backend" / "regions.json"
 INDEX_PATH = ROOT / "data" / "events-index.json"
 UA = "AIevents-indexer/0.3 (+https://github.com/chekento/AIevents-)"
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
-TIMEOUT = 18
+TIMEOUT = 10
 
 SOURCE_DOMAINS = [
     "globalai.community", "aitinkerers.org", "mlops.community", "meetup.com",
