@@ -505,9 +505,9 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
 
 @Composable
 private fun FavoritesScreen(events: List<EventItem>, language: String, onRemove: (EventItem) -> Unit) {
-    val today = java.time.LocalDate.now(ZoneId.systemDefault())
+    val now = java.time.Instant.now()
     val currentEvents = events.filter { event ->
-        EventDateRules.isCurrentSavedEvent(event, today, ZoneId.systemDefault())
+        EventDateRules.isCurrentSavedEvent(event, now, ZoneId.systemDefault())
     }
     if (currentEvents.isEmpty()) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
