@@ -478,6 +478,9 @@ private fun SettingsScreen(settings: AppSettings, onChange: (AppSettings) -> Uni
                 onChange(settings.copy(notificationsEnabled = it))
             }
             if (settings.notificationsEnabled) {
+                SettingsToggle(t(settings.language, "notify_only_new"), settings.notifyOnlyNew) {
+                    onChange(settings.copy(notifyOnlyNew = it))
+                }
                 Text(t(settings.language, "notification_interval") + ": " + settings.notificationHours + " h")
                 Slider(
                     value = settings.notificationHours.toFloat(),
@@ -571,7 +574,7 @@ private fun t(lang: String, key: String): String {
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
         "no_map" to "No coordinates are available for the current results.", "preferences" to "Preferences",
         "compact" to "Compact event cards", "notifications" to "Notifications", "notify_new" to "Periodic event alerts",
-        "notification_interval" to "Refresh interval", "sources" to "Event sources", "all_sources" to "Enable all sources",
+        "notification_interval" to "Refresh interval", "notify_only_new" to "Only notify for newly discovered events", "sources" to "Event sources", "all_sources" to "Enable all sources",
         "privacy_note" to "Search terms and location names are sent only to the public discovery/geocoding services required for the search.",
         "unknown_date" to "Date not verified"
     )
@@ -585,7 +588,7 @@ private fun t(lang: String, key: String): String {
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
         "no_map" to "Für die aktuellen Treffer liegen keine Koordinaten vor.", "preferences" to "Einstellungen",
         "compact" to "Kompakte Eventkarten", "notifications" to "Benachrichtigungen", "notify_new" to "Regelmäßig nach Events suchen",
-        "notification_interval" to "Aktualisierungsintervall", "sources" to "Eventquellen", "all_sources" to "Alle Quellen aktivieren",
+        "notification_interval" to "Aktualisierungsintervall", "notify_only_new" to "Nur neu entdeckte Events melden", "sources" to "Eventquellen", "all_sources" to "Alle Quellen aktivieren",
         "privacy_note" to "Suchbegriffe und Ortsnamen werden nur an die für Suche und Geocoding erforderlichen öffentlichen Dienste gesendet.",
         "unknown_date" to "Datum nicht verifiziert"
     )
