@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -704,6 +705,17 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
                     icon = { Icon(Icons.Default.Star, null, Modifier.size(16.dp)) }
                 )
                 Spacer(Modifier.height(4.dp))
+            }
+            if (!compact && event.imageUrl.isNotBlank()) {
+                AsyncImage(
+                    model = event.imageUrl,
+                    contentDescription = event.title,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(118.dp)
+                        .padding(bottom = 8.dp)
+                )
             }
             Row(verticalAlignment = Alignment.Top) {
                 EventSourceLogo(event)
