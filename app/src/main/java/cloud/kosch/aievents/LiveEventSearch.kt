@@ -59,7 +59,7 @@ object LiveEventSearch {
         val candidateLinks = links
             .filter { it.startsWith("https://") }
             .filterNot { it.contains("duckduckgo.com") }
-            .take(140)
+            .take(200)
 
         val semaphore = Semaphore(6)
         val events = coroutineScope {
@@ -161,8 +161,8 @@ object LiveEventSearch {
             }
         }
 
-        // Bing fallback materially improves Android/mobile-network reliability.
-        if (found.size < 8) runCatching {
+        // Bing is queried independently so one search engine cannot dominate the result set.
+        runCatching {
             val url = "https://www.bing.com/search?q=" + encoded + "&count=20"
             val doc = Jsoup.parse(get(url), url)
             doc.select("li.b_algo h2 a, a.tilk").forEach { a ->
@@ -170,8 +170,8 @@ object LiveEventSearch {
             }
         }
 
-        // Last-resort Google HTML path. Consent/CAPTCHA pages simply produce no links.
-        if (found.size < 5) runCatching {
+        // Google joins broad searches; for site-specific searches it is used when coverage is still thin.
+        if (!query.trimStart().startsWith("site:", ignoreCase = true) || found.size < 10) runCatching {
             val url = "https://www.google.com/search?q=" + encoded + "&num=20"
             val doc = Jsoup.parse(get(url), url)
             doc.select("div.yuRUbf a, a[jsname=UWckNb]").forEach { a ->
@@ -179,7 +179,7 @@ object LiveEventSearch {
             }
         }
 
-        return found.take(16)
+        return found.take(24)
     }
 
     private fun normalizeDdgUrl(href: String): String? {
