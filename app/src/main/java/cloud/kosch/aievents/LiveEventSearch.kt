@@ -42,6 +42,7 @@ object LiveEventSearch {
         if (center == null) warnings += "Center coordinates unavailable; location matching falls back to verified place text."
 
         val queries = SourceRegistry.queries(config)
+        var queryCount = queries.size
         val links = linkedSetOf<String>()
         val querySemaphore = Semaphore(4)
         coroutineScope {
@@ -54,6 +55,21 @@ object LiveEventSearch {
                     }
                 }
             }.awaitAll()
+        }
+
+        if (links.size < 24) {
+            val deepQueries = SourceRegistry.deepQueries(config).take(24)
+            queryCount += deepQueries.size
+            coroutineScope {
+                deepQueries.map { query ->
+                    async {
+                        querySemaphore.withPermit {
+                            runCatching { discover(query) }
+                                .onSuccess { found -> synchronized(links) { links += found } }
+                        }
+                    }
+                }.awaitAll()
+            }
         }
 
         val candidateLinks = links
@@ -132,7 +148,7 @@ object LiveEventSearch {
         SearchSnapshot(
             config = config,
             events = filtered,
-            searchedSources = queries.size,
+            searchedSources = queryCount,
             discoveredPages = candidateLinks.size,
             warnings = warnings.distinct(),
             featuredOfficialEvents = featuredOfficial
