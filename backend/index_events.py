@@ -475,7 +475,9 @@ def main():
 
     batch_size = max(1, min(int(config.get("batch_size", 8)), 20))
     cursor = int(state.get("cursor", 0)) % len(regions)
-    batch = [regions[(cursor + i) % len(regions)] for i in range(min(batch_size, len(regions)))]
+    rotating_batch = [regions[(cursor + i) % len(regions)] for i in range(min(batch_size, len(regions)))]
+    priority_regions = config.get("priority_regions", [])
+    batch = list(dict.fromkeys(priority_regions + rotating_batch))
 
     incoming = []
     incoming.extend(collect_direct_hubs(parse_page))
@@ -492,6 +494,12 @@ def main():
         source_offset = (cursor + idx) % len(SOURCE_DOMAINS)
         for d in [SOURCE_DOMAINS[source_offset], SOURCE_DOMAINS[(source_offset + 7) % len(SOURCE_DOMAINS)]]:
             queries.append(f'site:{d} "{region}" AI event')
+        if region in priority_regions:
+            queries.extend([
+                f'site:meetup.com "{region}" AI meetup',
+                f'site:lu.ma "{region}" AI LLM agents event',
+                f'site:eventbrite.com "{region}" artificial intelligence event'
+            ])
 
         links = []
         for q in queries:
@@ -510,7 +518,7 @@ def main():
             time.sleep(0.25)
 
     merged = merge_events(state.get("events", []), incoming)
-    next_cursor = (cursor + len(batch)) % len(regions)
+    next_cursor = (cursor + len(rotating_batch)) % len(regions)
     output = {
         "schema": 1,
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
