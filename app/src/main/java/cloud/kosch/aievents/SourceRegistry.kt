@@ -50,9 +50,27 @@ object SourceRegistry {
             EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
         }
         val extra = config.keywords.trim()
+        val localAi = when (config.language) {
+            "de" -> "KI Künstliche Intelligenz"
+            "fr" -> "IA intelligence artificielle"
+            "es" -> "IA inteligencia artificial"
+            "it" -> "IA intelligenza artificiale"
+            "pl" -> "AI sztuczna inteligencja"
+            "pt" -> "IA inteligência artificial"
+            "nl" -> "AI kunstmatige intelligentie"
+            "sv" -> "AI artificiell intelligens"
+            "da" -> "AI kunstig intelligens"
+            "fi" -> "AI tekoäly"
+            "tr" -> "AI yapay zeka"
+            "cs" -> "AI umělá inteligence"
+            "ja" -> "AI 人工知能"
+            "ko" -> "AI 인공지능"
+            "zh" -> "AI 人工智能"
+            else -> "AI artificial intelligence"
+        }
         val base = listOf(
             "\"" + place + "\" " + category + " event conference meetup workshop hackathon " + year + " " + extra,
-            "\"" + place + "\" KI Stammtisch KI Meetup AI Community " + year + " " + extra,
+            "\"" + place + "\" " + localAi + " meetup community user group Stammtisch " + year + " " + extra,
             "\"" + place + "\" LLM agents RAG MCP workshop meetup " + year + " " + extra
         )
         val siteQueries = sources
