@@ -1,36 +1,36 @@
 package cloud.kosch.aievents
 
-import java.time.LocalDate
+import java.time.Instant
 import java.time.ZoneId
 
 object EventDateRules {
     fun isVisible(
         event: EventItem,
-        today: LocalDate = LocalDate.now(),
+        now: Instant = Instant.now(),
         zone: ZoneId = ZoneId.systemDefault(),
         futureDays: Int,
         includeUnverifiedDates: Boolean
     ): Boolean {
-        val startDay = event.start?.atZone(zone)?.toLocalDate()
-        val endDay = event.end?.atZone(zone)?.toLocalDate()
-        val maxDay = today.plusDays(futureDays.toLong())
+        val start = event.start
+        val end = event.end
+        if (start == null) return includeUnverifiedDates
+
+        val max = now.plusSeconds(futureDays.toLong() * 24L * 60L * 60L)
+        if (start.isAfter(max)) return false
 
         return when {
-            startDay == null -> includeUnverifiedDates
-            endDay != null && !endDay.isBefore(today) ->
-                !startDay.isAfter(maxDay)
-            else ->
-                !startDay.isBefore(today) && !startDay.isAfter(maxDay)
+            end != null -> end.isAfter(now)
+            else -> !start.isBefore(now)
         }
     }
 
     fun isCurrentSavedEvent(
         event: EventItem,
-        today: LocalDate = LocalDate.now(),
+        now: Instant = Instant.now(),
         zone: ZoneId = ZoneId.systemDefault()
     ): Boolean {
-        val startDay = event.start?.atZone(zone)?.toLocalDate() ?: return false
-        val endDay = event.end?.atZone(zone)?.toLocalDate()
-        return if (endDay != null) !endDay.isBefore(today) else !startDay.isBefore(today)
+        val start = event.start ?: return false
+        val end = event.end
+        return if (end != null) end.isAfter(now) else !start.isBefore(now)
     }
 }
