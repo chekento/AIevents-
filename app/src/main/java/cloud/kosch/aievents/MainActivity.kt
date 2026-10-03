@@ -79,22 +79,31 @@ class EventViewModel : ViewModel() {
                         warnings = listOfNotNull(indexed.warning),
                         indexedEvents = indexed.indexedCount,
                         indexGeneratedAt = indexed.generatedAt,
-                        phase = "index"
+                        phase = "index",
+                        featuredOfficialEvents = indexed.featuredOfficialEvents
                     )
                 )
             }
 
             runCatching { LiveEventSearch.search(config) }
                 .onSuccess { live ->
-                    val merged = (indexed.events + live.events).distinctBy { it.stableKey }
+                    val merged = EventMerger.merge(indexed.events + live.events)
+                    val official = EventMerger.merge(
+                        indexed.featuredOfficialEvents + live.featuredOfficialEvents
+                    ).map { EventRanker.rank(it, config) }
+                        .sortedWith(
+                            compareByDescending<EventItem> { it.relevanceScore }
+                                .thenBy { it.start ?: java.time.Instant.MAX }
+                        ).take(12)
                     _state.value = UiState(
                         loading = false,
                         snapshot = live.copy(
-                            events = sortEvents(merged, config.sortMode),
+                            events = EventRanker.sort(merged, config),
                             warnings = (listOfNotNull(indexed.warning) + live.warnings).distinct(),
                             indexedEvents = indexed.indexedCount,
                             indexGeneratedAt = indexed.generatedAt,
-                            phase = "hybrid"
+                            phase = "hybrid",
+                            featuredOfficialEvents = official
                         )
                     )
                 }
@@ -113,16 +122,22 @@ class EventViewModel : ViewModel() {
         }
     }
 
-    private fun sortEvents(events: List<EventItem>, mode: SortMode): List<EventItem> = when (mode) {
-        SortMode.DISTANCE -> events.sortedWith(
-            compareBy<EventItem> { it.distanceKm == null }
-                .thenBy { it.distanceKm ?: Double.MAX_VALUE }
-                .thenBy { it.start ?: java.time.Instant.MAX }
-        )
-        SortMode.CONFIDENCE -> events.sortedWith(
-            compareByDescending<EventItem> { it.confidence }.thenBy { it.start ?: java.time.Instant.MAX }
-        )
-        SortMode.DATE -> events.sortedBy { it.start ?: java.time.Instant.MAX }
+    private fun sortEvents(events: List<EventItem>, mode: SortMode, config: SearchConfig? = null): List<EventItem> {
+        if (config != null) return EventRanker.sort(events, config)
+        return when (mode) {
+            SortMode.RELEVANCE -> events.sortedWith(
+                compareByDescending<EventItem> { it.relevanceScore }.thenBy { it.start ?: java.time.Instant.MAX }
+            )
+            SortMode.DISTANCE -> events.sortedWith(
+                compareBy<EventItem> { it.distanceKm == null }
+                    .thenBy { it.distanceKm ?: Double.MAX_VALUE }
+                    .thenBy { it.start ?: java.time.Instant.MAX }
+            )
+            SortMode.CONFIDENCE -> events.sortedWith(
+                compareByDescending<EventItem> { it.confidence }.thenBy { it.start ?: java.time.Instant.MAX }
+            )
+            SortMode.DATE -> events.sortedBy { it.start ?: java.time.Instant.MAX }
+        }
     }
 }
 
