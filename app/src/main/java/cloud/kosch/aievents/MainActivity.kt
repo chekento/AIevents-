@@ -12,6 +12,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -69,6 +71,8 @@ data class ProviderUiState(
     val selectedProviderId: String? = null,
     val error: String? = null
 )
+
+enum class ProviderEventMode { ALL, ONLINE, IN_PERSON }
 
 class EventViewModel : ViewModel() {
     private val _state = MutableStateFlow(UiState())
