@@ -63,9 +63,9 @@ object CentralEventIndex {
 
             val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
             val regionMatch = indexed.regions.any { region ->
-                strictPlaceTextMatch(region, config.place)
-            } || strictPlaceTextMatch(event.locality, config.place) ||
-                strictPlaceTextMatch(event.title, config.place)
+                LocationMatcher.textMatches(region, config.place)
+            } || LocationMatcher.textMatches(event.locality, config.place) ||
+                LocationMatcher.textMatches(event.title, config.place)
 
             val geographicallyRelevant = when {
                 d != null -> d <= config.radiusKm + 0.5
