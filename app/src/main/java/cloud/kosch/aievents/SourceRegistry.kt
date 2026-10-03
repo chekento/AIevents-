@@ -10,8 +10,8 @@ data class EventSource(
 object SourceRegistry {
     val sources = listOf(
         EventSource("globalai", "Global AI Community", "globalai.community"),
-        EventSource("houseofai", "House of AI", "house-of-ai.org"),
-        EventSource("aihamburg", "AI.HAMBURG", "ai.hamburg"),
+        EventSource("houseofai", "House of AI", "house-of-ai.org", directQuery = false),
+        EventSource("aihamburg", "AI.HAMBURG", "ai.hamburg", directQuery = false),
         EventSource("aitinkerers", "AI Tinkerers", "aitinkerers.org"),
         EventSource("mlops", "MLOps Community", "mlops.community"),
         EventSource("meetup", "Meetup", "meetup.com"),
@@ -54,7 +54,7 @@ object SourceRegistry {
         EventSource("odsc", "ODSC", "odsc.com"),
         EventSource("datasciencesalon", "Data Science Salon", "datascience.salon"),
         EventSource("mlconf", "MLconf", "mlconf.com"),
-        EventSource("pulse-nyc", "Pulse NYC / AI Week", "pulse.nyc"),
+        EventSource("pulse-nyc", "Pulse NYC / AI Week", "pulse.nyc", directQuery = false),
         EventSource("community", "Community / Stammtisch web", "", directQuery = false)
     )
 
@@ -63,57 +63,43 @@ object SourceRegistry {
     fun queries(config: SearchConfig): List<String> {
         val place = config.place.trim()
         val year = java.time.Year.now().value
-        val category = when (config.category) {
-            EventCategory.AGENTS -> "AI agents agentic MCP"
-            EventCategory.GENAI -> "generative AI LLM"
-            EventCategory.ML -> "machine learning ML"
-            EventCategory.DATA -> "data AI analytics"
-            EventCategory.ROBOTICS -> "robotics physical AI computer vision"
-            EventCategory.BUSINESS -> "AI business transformation enterprise"
-            EventCategory.GOVERNANCE -> "AI governance responsible AI regulation"
-            EventCategory.DEVELOPER -> "AI developer coding engineering"
-            EventCategory.RESEARCH -> "AI research conference"
-            EventCategory.COMMUNITY -> "AI meetup community Stammtisch user group"
-            EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
-        }
         val extra = config.keywords.trim()
+        val category = categoryTerms(config.category)
+        val languages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
         val aliases = LocationMatcher.searchAliases(place)
             .filter { it.length >= 3 && !it.equals(place.substringBefore(",").trim(), ignoreCase = true) }
-            .take(3)
-        val localAi = when (config.language) {
-            "de" -> "KI Künstliche Intelligenz"
-            "fr" -> "IA intelligence artificielle"
-            "es" -> "IA inteligencia artificial"
-            "it" -> "IA intelligenza artificiale"
-            "pl" -> "AI sztuczna inteligencja"
-            "pt" -> "IA inteligência artificial"
-            "nl" -> "AI kunstmatige intelligentie"
-            "sv" -> "AI artificiell intelligens"
-            "da" -> "AI kunstig intelligens"
-            "fi" -> "AI tekoäly"
-            "tr" -> "AI yapay zeka"
-            "cs" -> "AI umělá inteligence"
-            "ja" -> "AI 人工知能"
-            "ko" -> "AI 인공지능"
-            "zh" -> "AI 人工智能"
-            else -> "AI artificial intelligence"
+            .take(4)
+
+        val aiCore = EventSearchLexicon.aiTerms("en").take(10).joinToString(" ")
+        val participationCore = EventSearchLexicon.participationTerms("en").take(16).joinToString(" ")
+        val attendance = EventSearchLexicon.compactAttendance(7)
+
+        val base = mutableListOf(
+            "\"" + place + "\" " + aiCore + " " + participationCore + " " + year + " " + extra,
+            "\"" + place + "\" " + category + " register RSVP tickets attend join " + year + " " + extra,
+            "\"" + place + "\" AI community user group developer group tech talk seminar symposium roundtable networking " + year,
+            "\"" + place + "\" AI conference summit congress expo hackathon datathon bootcamp masterclass demo day roadshow " + year,
+            "\"" + place + "\" LLM GenAI agents RAG MCP LLMOps MLOps webinar workshop meetup " + year + " " + extra,
+            "\"" + place + "\" AI livestream online hybrid in-person event " + attendance + " " + year
+        )
+
+        languages.take(3).forEach { lang ->
+            val localAi = EventSearchLexicon.aiTerms(lang).takeLast(4).joinToString(" ")
+            val localParticipation = EventSearchLexicon.participationTerms(lang).takeLast(8).joinToString(" ")
+            if (localAi.isNotBlank() && localParticipation.isNotBlank()) {
+                base += "\"" + place + "\" " + localAi + " " + localParticipation + " " + year + " " + extra
+            }
         }
-        val base = listOf(
-            "\"" + place + "\" " + category + " event conference meetup workshop hackathon " + year + " " + extra,
-            "\"" + place + "\" " + localAi + " meetup community user group Stammtisch " + year + " " + extra,
-            "\"" + place + "\" LLM agents RAG MCP workshop meetup " + year + " " + extra,
-            "\"" + place + "\" AI events calendar upcoming " + year + " " + extra,
-            "\"" + place + "\" KI Veranstaltung Termine Stammtisch Konferenz Workshop " + year + " " + extra,
-            "\"" + place + "\" House of AI AI hub community events " + year + " " + extra
-        )
-        val aliasQueries = if (aliases.isEmpty()) emptyList() else listOf(
-            aliases.joinToString(" OR ") { "\"" + it + "\"" } +
-                " " + category + " meetup conference workshop event " + year + " " + extra
-        )
+
+        val aliasQueries = aliases.map { alias ->
+            "\"" + alias + "\" " + category +
+                " AI meetup conference workshop webinar seminar event " + year + " " + extra
+        }
+
         val eligible = eligibleSources(config)
-        val siteQueries = eligible.take(20).map { source ->
+        val siteQueries = eligible.take(22).map { source ->
             "site:" + source.domain + " \"" + place + "\" " + category +
-                " event meetup conference upcoming " + year + " " + extra
+                " event meetup webinar workshop conference register " + year + " " + extra
         }
         return (base + aliasQueries + siteQueries).distinct()
     }
@@ -121,39 +107,53 @@ object SourceRegistry {
     fun deepQueries(config: SearchConfig): List<String> {
         val place = config.place.trim()
         val year = java.time.Year.now().value
-        val category = when (config.category) {
-            EventCategory.AGENTS -> "AI agents agentic MCP"
-            EventCategory.GENAI -> "generative AI LLM"
-            EventCategory.ML -> "machine learning ML"
-            EventCategory.DATA -> "data AI analytics"
-            EventCategory.ROBOTICS -> "robotics physical AI computer vision"
-            EventCategory.BUSINESS -> "AI business transformation enterprise"
-            EventCategory.GOVERNANCE -> "AI governance responsible AI regulation"
-            EventCategory.DEVELOPER -> "AI developer coding engineering"
-            EventCategory.RESEARCH -> "AI research conference"
-            EventCategory.COMMUNITY -> "AI meetup community user group"
-            EventCategory.ALL -> "AI artificial intelligence generative AI machine learning"
-        }
-        return eligibleSources(config).drop(20).map { source ->
+        val category = categoryTerms(config.category)
+        val extra = config.keywords.trim()
+        val languages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
+
+        val sourceQueries = eligibleSources(config).drop(22).map { source ->
             "site:" + source.domain + " \"" + place + "\" " + category +
-                " event meetup webinar workshop conference " + year
+                " AI event meetup webinar workshop seminar conference hackathon register " + year
         }
+
+        val longTail = listOf(
+            "\"" + place + "\" AI research seminar colloquium lecture reading group study group " + year,
+            "\"" + place + "\" AI fireside chat panel roundtable networking open house community night " + year,
+            "\"" + place + "\" AI hands-on lab training course session office hours AMA " + year,
+            "\"" + place + "\" generative AI product launch launch event showcase developer day devday " + year,
+            "\"" + place + "\" AI breakfast meetup lunch and learn unconference festival fair " + year,
+            "\"" + place + "\" artificial intelligence call for participants apply attend RSVP " + year + " " + extra
+        )
+
+        val localized = languages.take(3).map { lang ->
+            "\"" + place + "\" " +
+                EventSearchLexicon.aiTerms(lang).take(6).joinToString(" ") + " " +
+                EventSearchLexicon.participationTerms(lang).take(10).joinToString(" ") +
+                " " + year
+        }
+
+        return (sourceQueries + longTail + localized).distinct()
     }
 
-    private fun eligibleSources(config: SearchConfig): List<EventSource> {
-        val p = config.place.lowercase()
-        return sources.filter { source ->
-            if (source.id !in config.enabledSourceIds || !source.directQuery || source.domain.isBlank()) {
-                false
-            } else {
-                when (source.id) {
-                    "houseofai", "aihamburg" ->
-                        "hamburg" in p || "ahrensburg" in p || "schleswig" in p
-                    "pulse-nyc" ->
-                        "new york" in p || "nyc" in p
-                    else -> true
-                }
-            }
-        }
+    private fun categoryTerms(category: EventCategory): String = when (category) {
+        EventCategory.AGENTS -> "AI agents agentic MCP"
+        EventCategory.GENAI -> "generative AI GenAI LLM"
+        EventCategory.ML -> "machine learning ML deep learning"
+        EventCategory.DATA -> "data AI analytics"
+        EventCategory.ROBOTICS -> "robotics physical AI computer vision"
+        EventCategory.BUSINESS -> "AI business transformation enterprise"
+        EventCategory.GOVERNANCE -> "AI governance responsible AI regulation ethics safety"
+        EventCategory.DEVELOPER -> "AI developer coding engineering"
+        EventCategory.RESEARCH -> "AI research paper seminar symposium conference"
+        EventCategory.COMMUNITY -> "AI meetup community user group networking"
+        EventCategory.ALL -> "AI artificial intelligence generative AI machine learning LLM"
     }
+
+    private fun eligibleSources(config: SearchConfig): List<EventSource> =
+        sources.filter { source ->
+            source.id in config.enabledSourceIds &&
+                source.directQuery &&
+                source.domain.isNotBlank()
+        }
+
 }
