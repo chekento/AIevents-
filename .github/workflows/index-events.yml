@@ -1,0 +1,62 @@
+name: Refresh Global AI Event Index
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aievents-index-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install indexer dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Refresh central event index
+        run: python backend/index_events.py
+
+      - name: Validate index JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/events-index.json")
+          d=json.loads(p.read_text("utf-8"))
+          assert d.get("schema") == 1
+          assert isinstance(d.get("events"), list)
+          for e in d["events"]:
+              assert e.get("start"), "Central index must not contain undated events"
+          print("Valid index:", d.get("event_count"), "events")
+          PY
+
+      - name: Commit updated index
+        run: |
+          if git diff --quiet -- data/events-index.json; then
+            echo "No index changes."
+            exit 0
+          fi
+          git config user.name "AIevents Index Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/events-index.json
+          git commit -m "chore(index): refresh global AI events"
+          git push
