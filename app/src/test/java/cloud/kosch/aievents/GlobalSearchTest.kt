@@ -33,6 +33,17 @@ class GlobalSearchTest {
         assertTrue(queries.any { "conference" in it || "meetup" in it || "webinar" in it })
     }
 
+    @Test fun nearby_city_names_expand_queries() {
+        val cfg = SearchConfig(
+            place = "Smalltown, Exampleland",
+            radiusKm = 50,
+            language = "en",
+            countryCode = "US"
+        )
+        val queries = SourceRegistry.queries(cfg, listOf("Nearby City"))
+        assertTrue(queries.any { "Nearby City" in it })
+    }
+
     @Test fun long_tail_participation_terms_are_present() {
         val terms = EventSearchLexicon.participationTerms("en")
         assertTrue("symposium" in terms)
