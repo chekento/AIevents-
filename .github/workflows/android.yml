@@ -5,6 +5,9 @@ on:
     branches: [ main ]
     paths-ignore:
       - 'data/events-index.json'
+      - 'backend/**'
+      - 'README.md'
+      - '.github/workflows/index-events.yml'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
