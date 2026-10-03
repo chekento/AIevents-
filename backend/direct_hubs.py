@@ -14,6 +14,10 @@ HUBS = [
     "https://developer.microsoft.com/en-us/reactor/events/"
 ]
 HINTS = ("event","events","meetup","conference","summit","workshop","hackathon","calendar","details")
+EXTERNAL_EVENT_HOSTS = (
+    "luma.com", "lu.ma", "meetup.com", "eventbrite.com",
+    "sessionize.com", "pretalx.com", "gdg.community.dev"
+)
 session = requests.Session()
 session.headers.update({"User-Agent": BROWSER_UA, "Accept-Language": "en,de;q=0.9,*;q=0.5"})
 
