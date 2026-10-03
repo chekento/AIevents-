@@ -241,7 +241,8 @@ object LiveEventSearch {
             val signal = (url + " " + label).lowercase()
             if (isLikelyEventPage(url) || listOf(
                     "event", "meetup", "conference", "summit", "workshop", "hackathon",
-                    "stammtisch", "community", "artificial intelligence", " ai ", " ki "
+                    "stammtisch", "user group", "chapter", "club", "community",
+                    "seminar", "colloquium", "artificial intelligence", " ai ", " ki "
                 ).any { it in signal }
             ) found += url
         }
@@ -295,7 +296,7 @@ object LiveEventSearch {
 
     private fun isLikelyEventPage(url: String): Boolean {
         val u = url.lowercase()
-        return listOf("meetup.", "luma.", "lu.ma", "eventbrite.", "partiful.", "bevy.", "sched.", "splashthat.", "allevents.", "globalai.", "aitinkerers.", "mlops.", "sessionize.", "pretalx.", "gdg.", "reactor.", "huggingface.", "/event", "/events", "conference", "summit", "meetup", "stammtisch", "workshop", "hackathon", "calendar", "community")
+        return listOf("meetup.", "luma.", "lu.ma", "eventbrite.", "partiful.", "bevy.", "sched.", "splashthat.", "allevents.", "humanitix.", "tickettailor.", "mobilizon.", "opencollective.", "eventfrog.", "eventfinda.", "facebook.", "globalai.", "aitinkerers.", "mlops.", "sessionize.", "pretalx.", "gdg.", "reactor.", "huggingface.", "/event", "/events", "conference", "summit", "meetup", "stammtisch", "workshop", "hackathon", "calendar", "community")
             .any { it in u }
     }
 
