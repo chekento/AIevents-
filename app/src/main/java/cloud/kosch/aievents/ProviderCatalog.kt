@@ -68,6 +68,10 @@ object ProviderCatalog {
         )
     }
 
+    fun logoDomain(providerName: String): String? =
+        providers.firstOrNull { it.name.equals(providerName, ignoreCase = true) }
+            ?.domains?.firstOrNull()
+
     fun countByCategory(category: ProviderCategory): Int =
         if (category == ProviderCategory.ALL) providers.size
         else providers.count { it.category == category }
