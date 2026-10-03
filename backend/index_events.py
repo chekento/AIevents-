@@ -1,0 +1,346 @@
+#!/usr/bin/env python3
+import json, os, re, sys, time, hashlib
+from datetime import datetime, timezone
+from urllib.parse import quote_plus, urlparse, parse_qs, unquote
+from pathlib import Path
+
+import requests
+from bs4 import BeautifulSoup
+from dateutil import parser as dtparser
+
+ROOT = Path(__file__).resolve().parents[1]
+REGIONS_PATH = ROOT / "backend" / "regions.json"
+INDEX_PATH = ROOT / "data" / "events-index.json"
+UA = "AIevents-indexer/0.3 (+https://github.com/chekento/AIevents-)"
+TIMEOUT = 18
+
+SOURCE_DOMAINS = [
+    "globalai.community", "aitinkerers.org", "mlops.community", "meetup.com",
+    "luma.com", "eventbrite.com", "sessionize.com", "pretalx.com",
+    "gdg.community.dev", "reactor.microsoft.com", "aws.amazon.com",
+    "nvidia.com", "huggingface.co", "ieee.org", "acm.org", "10times.com",
+    "confs.tech", "dev.events", "eventyay.com"
+]
+
+EVENT_HINTS = (
+    "event", "events", "meetup", "conference", "summit", "workshop",
+    "hackathon", "calendar", "community", "stammtisch"
+)
+
+session = requests.Session()
+session.headers.update({"User-Agent": UA, "Accept-Language": "en,de;q=0.9,*;q=0.5"})
+
+
+def load_json(path, default):
+    try:
+        return json.loads(path.read_text("utf-8"))
+    except Exception:
+        return default
+
+
+def save_json(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n", "utf-8")
+
+
+def normalize_ddg(href):
+    if not href:
+        return None
+    if href.startswith("//"):
+        href = "https:" + href
+    if href.startswith("/"):
+        href = "https://duckduckgo.com" + href
+    if "duckduckgo.com/l/" not in href:
+        return href if href.startswith("http") else None
+    try:
+        qs = parse_qs(urlparse(href).query)
+        return unquote(qs.get("uddg", [""])[0]) or None
+    except Exception:
+        return None
+
+
+def likely_event_url(url):
+    u = url.lower()
+    return any(h in u for h in EVENT_HINTS) or any(d in u for d in SOURCE_DOMAINS)
+
+
+def discover(query, limit=10):
+    url = "https://html.duckduckgo.com/html/?q=" + quote_plus(query)
+    r = session.get(url, timeout=TIMEOUT)
+    r.raise_for_status()
+    soup = BeautifulSoup(r.text, "html.parser")
+    out = []
+    for a in soup.select("a.result__a, a[data-testid='result-title-a']"):
+        u = normalize_ddg(a.get("href", ""))
+        if u and u.startswith("https://") and likely_event_url(u) and u not in out:
+            out.append(u)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def iter_nodes(node):
+    if isinstance(node, dict):
+        yield node
+        for value in node.values():
+            if isinstance(value, (dict, list)):
+                yield from iter_nodes(value)
+    elif isinstance(node, list):
+        for item in node:
+            yield from iter_nodes(item)
+
+
+def types_of(obj):
+    t = obj.get("@type", "")
+    if isinstance(t, list):
+        return [str(x) for x in t]
+    return [str(t)]
+
+
+def parse_dt(value):
+    if not value:
+        return None
+    try:
+        dt = dtparser.parse(str(value))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt
+    except Exception:
+        return None
+
+
+def current_or_future(start, end):
+    # Central index is intentionally strict: no undated events.
+    if start is None:
+        return False
+    today = datetime.now(timezone.utc).date()
+    if end is not None and end.date() >= today:
+        return True
+    return start.date() >= today
+
+
+def clean_text(value):
+    if not value:
+        return ""
+    return re.sub(r"\s+", " ", BeautifulSoup(str(value), "html.parser").get_text(" ", strip=True)).strip()
+
+
+def address_text(address):
+    if isinstance(address, str):
+        return address.strip()
+    if not isinstance(address, dict):
+        return ""
+    parts = [
+        address.get("streetAddress"), address.get("postalCode"),
+        address.get("addressLocality"), address.get("addressRegion"),
+        address.get("addressCountry")
+    ]
+    return ", ".join(str(x).strip() for x in parts if x and str(x).strip())
+
+
+def first_offer(offers):
+    if isinstance(offers, list):
+        return offers[0] if offers else {}
+    return offers if isinstance(offers, dict) else {}
+
+
+def price_text(offers):
+    o = first_offer(offers)
+    p = str(o.get("price", "")).strip()
+    c = str(o.get("priceCurrency", "")).strip()
+    if not p:
+        return ""
+    if p in {"0", "0.0", "0.00"}:
+        return "Free"
+    return (p + " " + c).strip()
+
+
+def parse_geo(location):
+    if not isinstance(location, dict):
+        return None
+    geo = location.get("geo")
+    if not isinstance(geo, dict):
+        return None
+    try:
+        lat = float(geo.get("latitude"))
+        lon = float(geo.get("longitude"))
+        if -90 <= lat <= 90 and -180 <= lon <= 180:
+            return {"lat": lat, "lon": lon}
+    except Exception:
+        pass
+    return None
+
+
+def organizer_name(value):
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, dict):
+        return str(value.get("name", "")).strip()
+    if isinstance(value, list):
+        names = [organizer_name(x) for x in value]
+        return ", ".join(x for x in names if x)
+    return ""
+
+
+def event_key(e):
+    day = (e.get("start") or "")[:10]
+    title = re.sub(r"\s+", " ", e.get("title", "").lower()).strip()
+    place = re.sub(r"\s+", " ", e.get("locality", "").lower()).strip()
+    return hashlib.sha256((title + "|" + day + "|" + place).encode()).hexdigest()[:24]
+
+
+def parse_page(url, region):
+    r = session.get(url, timeout=TIMEOUT)
+    if r.status_code >= 400:
+        return []
+    soup = BeautifulSoup(r.text, "html.parser")
+    events = []
+    for script in soup.select("script[type='application/ld+json']"):
+        raw = script.string or script.get_text()
+        if not raw:
+            continue
+        try:
+            data = json.loads(raw)
+        except Exception:
+            continue
+        for obj in iter_nodes(data):
+            if not any(t.lower().endswith("event") for t in types_of(obj)):
+                continue
+            status = str(obj.get("eventStatus", ""))
+            if "EventCancelled" in status or "EventCanceled" in status:
+                continue
+            title = str(obj.get("name", "")).strip()
+            if len(title) < 3:
+                continue
+            start = parse_dt(obj.get("startDate"))
+            end = parse_dt(obj.get("endDate"))
+            if not current_or_future(start, end):
+                continue
+            loc = obj.get("location")
+            venue = str(loc.get("name", "")).strip() if isinstance(loc, dict) else (str(loc).strip() if isinstance(loc, str) else "")
+            address = address_text(loc.get("address")) if isinstance(loc, dict) else ""
+            locality = ", ".join(dict.fromkeys(x for x in [venue, address] if x))
+            mode = str(obj.get("eventAttendanceMode", ""))
+            online = "Online" in mode or "virtual" in str(loc).lower() or "online" in locality.lower()
+            source_name = (urlparse(url).hostname or "web").removeprefix("www.")
+            event_url = str(obj.get("url", "")).strip()
+            if not event_url.startswith("http"):
+                event_url = url
+            confidence = 55 + 20
+            if locality or online: confidence += 10
+            org = organizer_name(obj.get("organizer"))
+            if org: confidence += 5
+            geo = parse_geo(loc)
+            if geo: confidence += 5
+            price = price_text(obj.get("offers"))
+            if price: confidence += 5
+            e = {
+                "title": title,
+                "start": start.astimezone(timezone.utc).isoformat().replace("+00:00", "Z") if start else None,
+                "end": end.astimezone(timezone.utc).isoformat().replace("+00:00", "Z") if end else None,
+                "venue": venue,
+                "locality": locality,
+                "description": clean_text(obj.get("description", ""))[:1200],
+                "organizer": org,
+                "sourceName": source_name,
+                "sourceUrl": url,
+                "eventUrl": event_url,
+                "price": price,
+                "language": str(obj.get("inLanguage", "")),
+                "online": bool(online),
+                "geo": geo,
+                "confidence": min(confidence, 100),
+                "regions": [region],
+                "indexedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+            }
+            e["key"] = event_key(e)
+            events.append(e)
+    return events
+
+
+def merge_events(existing, incoming):
+    merged = {}
+    for e in existing + incoming:
+        start = parse_dt(e.get("start"))
+        end = parse_dt(e.get("end"))
+        if not current_or_future(start, end):
+            continue
+        key = e.get("key") or event_key(e)
+        e["key"] = key
+        if key not in merged:
+            merged[key] = e
+        else:
+            old = merged[key]
+            old_regions = set(old.get("regions", []))
+            old_regions.update(e.get("regions", []))
+            # Prefer the richer record.
+            old_score = old.get("confidence", 0) + len(old.get("description", "")) / 100
+            new_score = e.get("confidence", 0) + len(e.get("description", "")) / 100
+            if new_score > old_score:
+                e["regions"] = sorted(old_regions)
+                merged[key] = e
+            else:
+                old["regions"] = sorted(old_regions)
+    return sorted(
+        merged.values(),
+        key=lambda e: (e.get("start") is None, e.get("start") or "9999", e.get("title", "").lower())
+    )
+
+
+def main():
+    config = load_json(REGIONS_PATH, {"regions": [], "batch_size": 8})
+    state = load_json(INDEX_PATH, {"cursor": 0, "events": []})
+    regions = config.get("regions", [])
+    if not regions:
+        print("No regions configured")
+        return 1
+
+    batch_size = max(1, min(int(config.get("batch_size", 8)), 20))
+    cursor = int(state.get("cursor", 0)) % len(regions)
+    batch = [regions[(cursor + i) % len(regions)] for i in range(min(batch_size, len(regions)))]
+
+    incoming = []
+    for idx, region in enumerate(batch):
+        print(f"[{idx+1}/{len(batch)}] {region}")
+        queries = [
+            f'"{region}" AI artificial intelligence event meetup conference workshop',
+            f'"{region}" AI agents LLM RAG MCP meetup',
+            f'"{region}" AI community user group Stammtisch'
+        ]
+        # Rotate a small source subset to keep each run bounded.
+        source_offset = (cursor + idx) % len(SOURCE_DOMAINS)
+        for d in [SOURCE_DOMAINS[source_offset], SOURCE_DOMAINS[(source_offset + 7) % len(SOURCE_DOMAINS)]]:
+            queries.append(f'site:{d} "{region}" AI event')
+
+        links = []
+        for q in queries:
+            try:
+                links.extend(discover(q, limit=8))
+            except Exception as exc:
+                print(" discovery failed:", exc)
+            time.sleep(0.6)
+        links = list(dict.fromkeys(links))[:24]
+
+        for url in links:
+            try:
+                incoming.extend(parse_page(url, region))
+            except Exception as exc:
+                print(" page failed:", url, exc)
+            time.sleep(0.25)
+
+    merged = merge_events(state.get("events", []), incoming)
+    next_cursor = (cursor + len(batch)) % len(regions)
+    output = {
+        "schema": 1,
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "cursor": next_cursor,
+        "regions_processed": batch,
+        "event_count": len(merged),
+        "events": merged
+    }
+    save_json(INDEX_PATH, output)
+    print(f"Indexed {len(incoming)} discovered records; central index now has {len(merged)} current events.")
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
