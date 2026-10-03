@@ -1006,7 +1006,8 @@ private fun SortMenu(value: SortMode, language: String, onChange: (SortMode) -> 
 private fun EventSourceLogo(event: EventItem) {
     val domain = when {
         event.officialProvider && event.providerName.isNotBlank() ->
-            OfficialProviders.logoDomain(event.providerName)
+            ProviderCatalog.logoDomain(event.providerName)
+                ?: OfficialProviders.logoDomain(event.providerName)
         event.sourceName.contains(".") -> event.sourceName
         else -> null
     }
