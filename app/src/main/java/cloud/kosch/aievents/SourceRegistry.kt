@@ -44,6 +44,12 @@ object SourceRegistry {
         EventSource("confs", "confs.tech", "confs.tech"),
         EventSource("dev-events", "DEV Events", "dev.events"),
         EventSource("eventyay", "eventyay", "eventyay.com"),
+        EventSource("aicamp", "AI Camp", "aicamp.ai"),
+        EventSource("aisummit", "The AI Summit", "theaisummit.com"),
+        EventSource("odsc", "ODSC", "odsc.com"),
+        EventSource("datasciencesalon", "Data Science Salon", "datascience.salon"),
+        EventSource("mlconf", "MLconf", "mlconf.com"),
+        EventSource("pulse-nyc", "Pulse NYC / AI Week", "pulse.nyc"),
         EventSource("community", "Community / Stammtisch web", "", directQuery = false)
     )
 
