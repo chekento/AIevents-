@@ -20,8 +20,12 @@ class EventRefreshWorker(
         if (!settings.notificationsEnabled) return Result.success()
         return runCatching {
             val snapshot = LiveEventSearch.search(settings.toSearchConfig())
-            val count = snapshot.events.size
-            if (count > 0) notify(count, snapshot.events.first().title)
+            val prefs = applicationContext.getSharedPreferences("notification_state", Context.MODE_PRIVATE)
+            val seen = prefs.getStringSet("seen_keys", emptySet()) ?: emptySet()
+            val currentKeys = snapshot.events.map { it.stableKey }.toSet()
+            val relevant = if (settings.notifyOnlyNew) snapshot.events.filter { it.stableKey !in seen } else snapshot.events
+            if (relevant.isNotEmpty()) notify(relevant.size, relevant.first().title)
+            prefs.edit().putStringSet("seen_keys", (seen + currentKeys).takeLast(1000).toSet()).apply()
             Result.success()
         }.getOrElse { Result.retry() }
     }
