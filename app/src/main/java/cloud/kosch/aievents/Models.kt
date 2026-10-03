@@ -3,7 +3,7 @@ package cloud.kosch.aievents
 import java.time.Instant
 import java.net.URI
 
-enum class SortMode { DATE, DISTANCE, CONFIDENCE }
+enum class SortMode { RELEVANCE, DATE, DISTANCE, CONFIDENCE }
 enum class PriceMode { ANY, FREE, PAID }
 enum class EventCategory { ALL, AGENTS, GENAI, ML, DATA, ROBOTICS, BUSINESS, GOVERNANCE, DEVELOPER, RESEARCH, COMMUNITY }
 
@@ -18,7 +18,8 @@ data class SearchConfig(
     val minConfidence: Int = 0,
     val category: EventCategory = EventCategory.ALL,
     val keywords: String = "",
-    val sortMode: SortMode = SortMode.DATE,
+    val sortMode: SortMode = SortMode.RELEVANCE,
+    val center: GeoPoint? = null,
     val enabledSourceIds: Set<String> = SourceRegistry.sources.map { it.id }.toSet()
 )
 
@@ -41,6 +42,10 @@ data class EventItem(
     val geo: GeoPoint?,
     val distanceKm: Double?,
     val confidence: Int,
+    val officialProvider: Boolean = false,
+    val providerName: String = "",
+    val relevanceScore: Int = 0,
+    val sourceCount: Int = 1,
     val discoveredAt: Instant = Instant.now()
 ) {
     val stableKey: String
