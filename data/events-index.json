@@ -1,24 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-03T15:37:39.717433Z",
-  "cursor": 71,
-  "regions_processed": [
-    "New York, NY, USA",
-    "Hamburg, Germany",
-    "Kuala Lumpur, Malaysia",
-    "Bangkok, Thailand",
-    "Jakarta, Indonesia",
-    "Hong Kong",
-    "Taipei, Taiwan",
-    "Seoul, South Korea",
-    "Tokyo, Japan",
-    "Osaka, Japan",
-    "Beijing, China",
-    "Shanghai, China",
-    "Shenzhen, China",
-    "Sydney, Australia"
+  "generated_at": "2026-10-03T17:20:25.913932Z",
+  "cursor": 85,
+  "provider_cursor": 12,
+  "providers_processed": [
+    "openai",
+    "anthropic",
+    "google-ai",
+    "google-cloud-ai",
+    "microsoft-ai",
+    "meta-ai",
+    "xai",
+    "mistral",
+    "cohere",
+    "ai21",
+    "aleph-alpha",
+    "aws-ai"
   ],
-  "event_count": 52,
+  "regions_processed": [
+    "Auckland, New Zealand",
+    "Reykjavík, Iceland",
+    "Riga, Latvia",
+    "Vilnius, Lithuania",
+    "Bratislava, Slovakia",
+    "Budapest, Hungary",
+    "Ljubljana, Slovenia",
+    "Zagreb, Croatia",
+    "Belgrade, Serbia",
+    "Sofia, Bulgaria",
+    "Geneva, Switzerland",
+    "Luxembourg, Luxembourg",
+    "Valletta, Malta",
+    "Kyiv, Ukraine"
+  ],
+  "event_count": 66,
   "events": [
     {
       "title": "Cofounder Speed Dating: Consumer and Prosumer AI",
@@ -63,6 +78,32 @@
       ],
       "indexedAt": "2026-10-03T14:21:08.893910Z",
       "key": "d1ba6e8c0b5581bf439040e5"
+    },
+    {
+      "title": "LangChain Meetup with Harrison Chase and Pigment (Paris)",
+      "start": "2026-10-05T16:15:00Z",
+      "end": "2026-10-05T19:15:00Z",
+      "venue": "Paris, France",
+      "locality": "Paris, France, Paris, Île-de-France, FR",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Nadim Bahsoun",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/vngzhjjh",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 48.872406528159274,
+        "lon": 2.344431734976215
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/qy/68afb350-9fd1-4c72-9c96-e61d4976143d.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:01.806332Z",
+      "key": "4a974cb46991ad2fab0bb27a"
     },
     {
       "title": "Responsible AI for Teens",
@@ -153,6 +194,29 @@
       "key": "769f139be177f42cc36893cb"
     },
     {
+      "title": "MongoDB.local Mumbai",
+      "start": "2026-10-06T03:30:00Z",
+      "end": "2026-10-06T11:30:00Z",
+      "venue": "Mumbai",
+      "locality": "Mumbai, Mumbai, Maharashtra, IN",
+      "description": "Join MongoDB.local Mumbai for hands-on learning, customer stories, Expo showcases, and expert insights to build and scale modern apps with confidence.",
+      "organizer": "MongoDB",
+      "sourceName": "mongodb.com",
+      "sourceUrl": "https://www.mongodb.com/events/mongodb-local/mumbai",
+      "eventUrl": "https://www.mongodb.com/events/mongodb-local/mumbai",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://webimages.mongodb.com/_com_assets/cms/mmw2aifc5m8a29p4x-Meta_Generic.png?auto=format%252Ccompress",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:16.325528Z",
+      "key": "75875eb665ea09af565614fd"
+    },
+    {
       "title": "Discover and Build with Kiro",
       "start": "2026-10-06T10:30:00Z",
       "end": "2026-10-06T13:30:00Z",
@@ -195,6 +259,32 @@
       ],
       "indexedAt": "2026-10-03T15:19:05.107676Z",
       "key": "7fa5091894066c5901a2c094"
+    },
+    {
+      "title": "Agent Harnesses and Managed Agents 101 - Meetup w/ Harrison Chase (Amsterdam)",
+      "start": "2026-10-06T16:00:00Z",
+      "end": "2026-10-06T19:00:00Z",
+      "venue": "Amsterdam, Netherlands",
+      "locality": "Amsterdam, Netherlands, Amsterdam, Noord-Holland, NL",
+      "description": "Meet LangChain customers and our CEO Harrison Chase in Amsterdam. Is your company exploring ways to build AI solutions? Join us to learn how other companies have successfully leveraged the LangChain ecosystem, and hear directly from our founder Harrison Chase about the latest developments. Agenda 18:00 - 18:20: Walk-in, Welcome & Introductions 18:20 - 19.00: Harrison Chase: \"Building Great Agents\" 19.00 - 19.20: Mohamed Elkady (System Architect – Data & AI @ Philips Hue - Signify): \"Building Reliable AI Systems with Graphs and Agents: Lessons from Philips Hue\" 19:20 - 19:40: Q&A 19:40 - 21:00: Networking Drinks & Bites About Signify's talk: Building agentic applications is easy. Building ones that are reliable in production is much harder. In this session, Mohamed shares practical lessons from designing and operating AI systems at Philips Hue, showing how combining structured graph-based workflows with autonomous agents creates solutions that are both flexible and dependable. Due to high interest and limited capacity, we're unable to approve all requests to attend, and we sincerely apologise that we can't accommodate everyone. Please don't be discouraged, we encourage you to contin",
+      "organizer": "LangChain Events, Maurice Hoekstra",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/wvxw9eve",
+      "eventUrl": "https://luma.com/wvxw9eve",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 52.352128755555064,
+        "lon": 4.915025243743988
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/91/9e3037a2-ca3f-4700-9afc-523f2ac8d1fe.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:05.374290Z",
+      "key": "d89fe674db83c782ee178c03"
     },
     {
       "title": "Show & Tell",
@@ -289,6 +379,32 @@
       ],
       "indexedAt": "2026-10-03T14:25:18.338204Z",
       "key": "952283305d134888a4a995f6"
+    },
+    {
+      "title": "Agents in Amsterdam: A Tasting Tour",
+      "start": "2026-10-07T15:30:00Z",
+      "end": "2026-10-07T19:00:00Z",
+      "venue": "Zaandam, Netherlands",
+      "locality": "Zaandam, Netherlands, Zaandam, Noord-Holland, NL",
+      "description": "",
+      "organizer": "LangChain Events, LangChain Events, Susanne Björkman",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/20qfqog2",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 52.42286648703845,
+        "lon": 4.837456692945165
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ta/23490c38-ef61-449e-9167-9f806ea04a2b.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:01.806852Z",
+      "key": "2f161231a38bd4ae7281584b"
     },
     {
       "title": "AI Builders Hamburg • Oct 7",
@@ -523,6 +639,32 @@
       "key": "d485c07510234c0bb949793b"
     },
     {
+      "title": "Interrupt London, The Agent Conference by LangChain",
+      "start": "2026-10-13T08:30:00Z",
+      "end": "2026-10-13T17:30:00Z",
+      "venue": "Outernet London",
+      "locality": "Outernet London, Outernet London, London, England, GB",
+      "description": "",
+      "organizer": "LangChain",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://interrupt.langchain.com/london",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 51.515612700000005,
+        "lon": -0.1299262
+      },
+      "confidence": 95,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1200,height=630/calendar-cover-images/xc/4938f117-c37a-48ac-ad0c-ccdc33e7f7e1.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:01.807210Z",
+      "key": "567bcd9d87b2c774567924ad"
+    },
+    {
       "title": "In Person Event: Game Changers Summit: How AI Is Shaping the Future of Sports",
       "start": "2026-10-13T20:30:00.120000Z",
       "end": "2026-10-14T01:00:33.960000Z",
@@ -543,6 +685,29 @@
       ],
       "indexedAt": "2026-10-03T15:19:06.675567Z",
       "key": "a8a41ac29148e860b29ec1bb"
+    },
+    {
+      "title": "MongoDB.local Dallas",
+      "start": "2026-10-14T14:00:00Z",
+      "end": "2026-10-15T00:00:00Z",
+      "venue": "Irving, TX",
+      "locality": "Irving, TX, Irving, TX, US",
+      "description": "Join us at MongoDB.local Dallas to explore how teams are building and scaling modern applications today, with practical insights, expert guidance, and real-world technical perspectives.",
+      "organizer": "MongoDB",
+      "sourceName": "mongodb.com",
+      "sourceUrl": "https://www.mongodb.com/events/mongodb-local/dallas",
+      "eventUrl": "https://www.mongodb.com/events/mongodb-local/dallas",
+      "price": "100 USD",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://webimages.mongodb.com/_com_assets/cms/mmw2aifc5m8a29p4x-Meta_Generic.png?auto=format%252Ccompress",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:17.095619Z",
+      "key": "bc82558fd6be17d4ebbe7c60"
     },
     {
       "title": "robotics & physical ai CLUB",
@@ -749,6 +914,29 @@
       "key": "7a22fd7d621f448b1cb86e29"
     },
     {
+      "title": "NVDIA GTC Berlin",
+      "start": "2026-10-20T08:00:00Z",
+      "end": "2026-10-22T17:00:00Z",
+      "venue": "",
+      "locality": "Luckenwalder Str. 4–6, 10963 Berlin, Germany, Berlin, Germany",
+      "description": "NVIDIA GTC (GPU Technology Conference) is a premier global AI and accelerated computing event for developers, researchers, and tech leaders",
+      "organizer": "",
+      "sourceName": "cohere.com",
+      "sourceUrl": "https://cohere.com/events/nvdia-gtc-berlin-2026-10-20t08-00-00-000z",
+      "eventUrl": "https://cohere.com/events/nvdia-gtc-berlin-2026-10-20t08-00-00-000z",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 85,
+      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/e7c39cf1eeef163a2cb217e3dd93b4c0201727fc-1200x630.jpg?w=1920&q=80&fit=max&auto=format",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:11.339286Z",
+      "key": "1c702ea0b9cef8e6942e66b5"
+    },
+    {
       "title": "AI Tour Germany: Community Warm-Up (Hamburg)",
       "start": "2026-10-20T11:00:00Z",
       "end": "2026-10-20T16:00:00Z",
@@ -769,6 +957,32 @@
       ],
       "indexedAt": "2026-10-03T14:25:22.413023Z",
       "key": "7fb6b3a8ce910a3e5acf98fe"
+    },
+    {
+      "title": "Architecting Flexible Agentic AI on Amazon EKS, with NVIDIA and LangChain (Singapore)",
+      "start": "2026-10-21T01:00:00Z",
+      "end": "2026-10-21T08:00:00Z",
+      "venue": "Singapore",
+      "locality": "Singapore, Singapore, SG",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/hcrnvpir",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 1.2817984458085316,
+        "lon": 103.851223346074
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/j0/b24b3a34-eea7-4d86-8a71-7bf32eece135.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:01.807451Z",
+      "key": "5a8bdacad65e213f3a19febe"
     },
     {
       "title": "In-Person Event: Strengthening Cybersecurity with AI: State, Local, and Critical Infrastructure",
@@ -953,6 +1167,29 @@
       "key": "296a2ad7e73bb87955881d98"
     },
     {
+      "title": "EMNLP 2026",
+      "start": "2026-10-24T16:00:00Z",
+      "end": "2026-10-29T19:16:00Z",
+      "venue": "",
+      "locality": "Hungexpo, Budapest, Hungary",
+      "description": "The 2026 Conference on Empirical Methods in Natural Language Processing",
+      "organizer": "",
+      "sourceName": "cohere.com",
+      "sourceUrl": "https://cohere.com/events/emnlp-2026-2026-10-24t16-00-00-000z",
+      "eventUrl": "https://cohere.com/events/emnlp-2026-2026-10-24t16-00-00-000z",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 85,
+      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/29d3d23464376ea90341fa1fc19b73d24850e180-1920x1080.png?w=1920&q=80&fit=max&auto=format",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:11.696349Z",
+      "key": "836898d56d99d9283315bbab"
+    },
+    {
       "title": "power plat conf build a thon",
       "start": "2026-10-26T15:00:00Z",
       "end": "2026-10-26T22:00:00Z",
@@ -997,6 +1234,32 @@
       "key": "7be7872d1285020c047694ff"
     },
     {
+      "title": "LangChain x Data Reply Hackathon: Building with Agent Harnesses (Munich)",
+      "start": "2026-10-27T16:00:00Z",
+      "end": "2026-10-27T20:00:00Z",
+      "venue": "München, Germany",
+      "locality": "München, Germany, München, Bayern, DE",
+      "description": "This hackathon is about building with agent harnesses, hands-on, alongside the people building the tools. We're teaming up with LangChain Ambassador Zamal Babar and Data Reply to host an evening of talks and hacking in Munich. You'll form small groups, build a deep agent from scratch, and demo it to a panel of judges by the end of the night. What you'll build The theme is agent harnesses — the scaffolding that turns a model into a system that can plan, use tools, and recover from its own mistakes. Steffen Hausmann will kick things off with two short talks: one on deep agents, and one on managed deep agents. Then you'll put it into practice. A few days before the event, we'll send out a prompt so you can come with an idea already in mind. Use the time before the hackathon to think through your approach — you'll want it once the clock starts. What to bring Your laptop and a group to hack with (we'll help you form one if you don't have one) Your own API keys for any models or tools you plan to use Questions for Steffen, Zamal, and the Data Reply team — they'll be around all night We'll provide LangSmith credits to every attendee for the event, so you can trace and debug your agent as ",
+      "organizer": "LangChain Events, Amada Echeverria, Zamal, Sinan Ezer, Leo Friederich, Steffen Hausmann",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/g6kvvori",
+      "eventUrl": "https://luma.com/g6kvvori",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 48.14650190304115,
+        "lon": 11.540233180314168
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x3/1720a115-3623-4c9b-8c15-57810c2cb7ba.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:03.024823Z",
+      "key": "4a002f16092c2d0f1db11349"
+    },
+    {
       "title": "SG Agentic Nights - Exclusive Hands on Labs with Docker",
       "start": "2026-10-29T08:00:00Z",
       "end": "2026-10-29T11:30:00Z",
@@ -1017,6 +1280,29 @@
       ],
       "indexedAt": "2026-10-03T14:25:26.141579Z",
       "key": "7f46089e978775af6bb6ae35"
+    },
+    {
+      "title": "MongoDB.local Tel Aviv",
+      "start": "2026-11-02T00:00:00Z",
+      "end": "2026-11-02T00:00:00Z",
+      "venue": "Tel Aviv",
+      "locality": "Tel Aviv, Tel Aviv, IL",
+      "description": "Join AI builders, founders, and technology leaders in Tel Aviv to move AI from experimentation to production with a secure, scalable data foundation.",
+      "organizer": "MongoDB",
+      "sourceName": "mongodb.com",
+      "sourceUrl": "https://www.mongodb.com/events/mongodb-local/tel-aviv",
+      "eventUrl": "https://www.mongodb.com/events/mongodb-local/tel-aviv",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://webimages.mongodb.com/_com_assets/cms/mmw2aifc5m8a29p4x-Meta_Generic.png?auto=format%252Ccompress",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:17.658165Z",
+      "key": "68d09bf01340ba4283dd4316"
     },
     {
       "title": "Global AI night November",
@@ -1135,6 +1421,52 @@
       "key": "8f3a2aae4a18402fcf0795aa"
     },
     {
+      "title": "Microsoft Ignite",
+      "start": "2026-11-17T14:00:00Z",
+      "end": "2026-11-20T22:00:00Z",
+      "venue": "",
+      "locality": "Moscone Center, San Francisco, CA",
+      "description": "Cohere is a Strategic Partner at Microsoft Ignite 2026, Microsoft's premier developer conference in San Francisco.",
+      "organizer": "",
+      "sourceName": "cohere.com",
+      "sourceUrl": "https://cohere.com/events/microsoft-ignite-2026",
+      "eventUrl": "https://cohere.com/events/microsoft-ignite-2026",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 85,
+      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/13f9f8c35d819c761b728066334c00c545a667cb-1200x630.png?w=1920&q=80&fit=max&auto=format",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:12.084653Z",
+      "key": "dff014981e668d4f35c63f54"
+    },
+    {
+      "title": "MongoDB.local Toronto",
+      "start": "2026-11-19T14:00:00Z",
+      "end": "2026-11-20T00:00:00Z",
+      "venue": "Toronto",
+      "locality": "Toronto, Toronto, ON, CA",
+      "description": "Join us at MongoDB.local Toronto to explore how teams are building and scaling modern applications today, with practical insights, expert guidance, and real-world technical perspectives.",
+      "organizer": "MongoDB",
+      "sourceName": "mongodb.com",
+      "sourceUrl": "https://www.mongodb.com/events/mongodb-local/toronto",
+      "eventUrl": "https://www.mongodb.com/events/mongodb-local/toronto",
+      "price": "100 CAD",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://webimages.mongodb.com/_com_assets/cms/mmw2aifc5m8a29p4x-Meta_Generic.png?auto=format%252Ccompress",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:18.243394Z",
+      "key": "2df159558190853773258c36"
+    },
+    {
       "title": "Wunder Mobility Meetup: AI in Fleet Management",
       "start": "2026-11-19T17:00:00Z",
       "end": "2026-11-19T23:00:00Z",
@@ -1183,6 +1515,29 @@
       ],
       "indexedAt": "2026-10-03T14:40:36.681490Z",
       "key": "2b3a159d5f11cdf5caedac95"
+    },
+    {
+      "title": "AWS re:Invent",
+      "start": "2026-11-30T14:00:00Z",
+      "end": "2026-12-04T22:00:00Z",
+      "venue": "",
+      "locality": "The Venetian, Las Vegas, NV",
+      "description": "Cohere is a Strategic Partner at AWS re:Invent, one of the world's largest cloud computing and AI conferences.",
+      "organizer": "",
+      "sourceName": "cohere.com",
+      "sourceUrl": "https://cohere.com/events/aws-re-invent-2026",
+      "eventUrl": "https://cohere.com/events/aws-re-invent-2026",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 85,
+      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/001c8f1b00b48dcbf8413eaefb45a69ce461e524-682x384.jpg?w=1920&q=80&fit=max&auto=format",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-03T16:57:12.568281Z",
+      "key": "e2afb0dab16c3bd2e7287d9e"
     },
     {
       "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
