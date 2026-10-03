@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
+import coil.compose.AsyncImage
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -631,6 +632,40 @@ private fun SortMenu(value: SortMode, language: String, onChange: (SortMode) -> 
 }
 
 @Composable
+private fun EventSourceLogo(event: EventItem) {
+    val domain = when {
+        event.officialProvider && event.providerName.isNotBlank() ->
+            OfficialProviders.logoDomain(event.providerName)
+        event.sourceName.contains(".") -> event.sourceName
+        else -> null
+    }
+    val logoUrl = domain?.let {
+        "https://www.google.com/s2/favicons?domain=" + it + "&sz=128"
+    }
+    Surface(
+        modifier = Modifier.size(42.dp),
+        shape = MaterialTheme.shapes.medium,
+        tonalElevation = 2.dp
+    ) {
+        if (logoUrl != null) {
+            AsyncImage(
+                model = logoUrl,
+                contentDescription = event.providerName.ifBlank { event.sourceName },
+                modifier = Modifier.padding(7.dp)
+            )
+        } else {
+            Box(contentAlignment = Alignment.Center) {
+                Text(
+                    (event.providerName.ifBlank { event.sourceName }).take(2).uppercase(),
+                    fontWeight = FontWeight.Black,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun EventCard(event: EventItem, language: String, compact: Boolean, favorite: Boolean, onFavorite: () -> Unit) {
     val context = LocalContext.current
     ElevatedCard(
@@ -656,6 +691,8 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
                 Spacer(Modifier.height(4.dp))
             }
             Row(verticalAlignment = Alignment.Top) {
+                EventSourceLogo(event)
+                Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
                     Text(event.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                     Text(formatDate(event, language), color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.SemiBold)
