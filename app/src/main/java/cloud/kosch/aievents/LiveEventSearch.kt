@@ -34,7 +34,7 @@ object LiveEventSearch {
         .followRedirects(true)
         .build()
 
-    private const val UA = "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36 AIevents/0.2"
+    private const val UA = "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36 AIevents/0.3"
 
     suspend fun search(config: SearchConfig): SearchSnapshot = withContext(Dispatchers.IO) {
         val warnings = mutableListOf<String>()
@@ -348,7 +348,7 @@ object LiveEventSearch {
     private fun geocode(place: String): GeoPoint? {
         val q = URLEncoder.encode(place, StandardCharsets.UTF_8.toString())
         val url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=" + q
-        val arr = JSONArray(get(url, "AIevents/0.2 github.com/chekento/AIevents-"))
+        val arr = JSONArray(get(url, "AIevents/0.3 github.com/chekento/AIevents-"))
         val obj = arr.optJSONObject(0) ?: return null
         return GeoPoint(obj.getString("lat").toDouble(), obj.getString("lon").toDouble())
     }
