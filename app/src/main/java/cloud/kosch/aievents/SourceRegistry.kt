@@ -60,7 +60,7 @@ object SourceRegistry {
 
     fun byId(id: String) = sources.firstOrNull { source -> source.id == id }
 
-    fun queries(config: SearchConfig): List<String> {
+    fun queries(config: SearchConfig, nearbyPlaces: List<String> = emptyList()): List<String> {
         val place = config.place.trim()
         val year = java.time.Year.now().value
         val extra = config.keywords.trim()
@@ -95,21 +95,37 @@ object SourceRegistry {
             "\"" + alias + "\" " + category +
                 " AI meetup conference workshop webinar seminar event " + year + " " + extra
         }
+        val nearbyQueries = nearbyPlaces
+            .filter { it.isNotBlank() && !it.equals(place.substringBefore(",").trim(), ignoreCase = true) }
+            .take(6)
+            .flatMap { nearby ->
+                listOf(
+                    "\"" + nearby + "\" " + category + " AI meetup conference workshop webinar event " + year,
+                    "\"" + nearby + "\" LLM GenAI agents MLOps LLMOps seminar networking hackathon " + year
+                )
+            }
 
         val eligible = eligibleSources(config)
         val siteQueries = eligible.take(22).map { source ->
             "site:" + source.domain + " \"" + place + "\" " + category +
                 " event meetup webinar workshop conference register " + year + " " + extra
         }
-        return (base + aliasQueries + siteQueries).distinct()
+        return (base + aliasQueries + nearbyQueries + siteQueries).distinct()
     }
 
-    fun deepQueries(config: SearchConfig): List<String> {
+    fun deepQueries(config: SearchConfig, nearbyPlaces: List<String> = emptyList()): List<String> {
         val place = config.place.trim()
         val year = java.time.Year.now().value
         val category = categoryTerms(config.category)
         val extra = config.keywords.trim()
         val languages = EventSearchLexicon.languagesFor(config.countryCode, config.language)
+
+        val nearbyDeep = nearbyPlaces
+            .filter { it.isNotBlank() && !it.equals(place.substringBefore(",").trim(), ignoreCase = true) }
+            .take(8)
+            .map { nearby ->
+                "\"" + nearby + "\" AI artificial intelligence meetup conference workshop seminar webinar " + year
+            }
 
         val sourceQueries = eligibleSources(config).drop(22).map { source ->
             "site:" + source.domain + " \"" + place + "\" " + category +
@@ -132,7 +148,7 @@ object SourceRegistry {
                 " " + year
         }
 
-        return (sourceQueries + longTail + localized).distinct()
+        return (sourceQueries + nearbyDeep + longTail + localized).distinct()
     }
 
     private fun categoryTerms(category: EventCategory): String = when (category) {
