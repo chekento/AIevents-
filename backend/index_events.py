@@ -7,6 +7,7 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as dtparser
+from direct_hubs import collect as collect_direct_hubs
 
 ROOT = Path(__file__).resolve().parents[1]
 REGIONS_PATH = ROOT / "backend" / "regions.json"
@@ -353,6 +354,9 @@ def main():
     batch = [regions[(cursor + i) % len(regions)] for i in range(min(batch_size, len(regions)))]
 
     incoming = []
+    incoming.extend(collect_direct_hubs(parse_page))
+    print("Direct hub discovered records:", len(incoming))
+
     for idx, region in enumerate(batch):
         print(f"[{idx+1}/{len(batch)}] {region}")
         queries = [
