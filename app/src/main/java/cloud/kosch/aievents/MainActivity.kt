@@ -566,7 +566,7 @@ private fun DiscoverScreen(
             Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
         }
         ui.snapshot?.let { snap ->
-            val allVisible = EventMerger.merge(snap.events + snap.featuredOfficialEvents)
+            val allVisible = snap.events
             val sourceCount = allVisible.map { it.sourceName }.filter { it.isNotBlank() }.distinct().size
             val placeLabel = settings.place.substringBefore(",").ifBlank { t(settings.language, "worldwide") }
             Column(Modifier.padding(horizontal = 16.dp, vertical = 5.dp)) {
@@ -588,10 +588,7 @@ private fun DiscoverScreen(
         }
 
         val events = ui.snapshot?.events.orEmpty()
-        val featured = ui.snapshot?.featuredOfficialEvents.orEmpty()
-        val featuredKeys = featured.map { it.stableKey }.toSet()
-        val localEvents = events.filterNot { it.stableKey in featuredKeys }
-        if (events.isEmpty() && featured.isEmpty() && !ui.loading) {
+        if (events.isEmpty() && !ui.loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
                     if (settings.place.isBlank()) t(settings.language, "choose_place")
@@ -604,45 +601,7 @@ private fun DiscoverScreen(
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(if (settings.compactCards) 6.dp else 10.dp)
             ) {
-                if (featured.isNotEmpty()) {
-                    item {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Default.Star, null, tint = MaterialTheme.colorScheme.primary)
-                            Spacer(Modifier.width(8.dp))
-                            Column {
-                                Text(
-                                    t(settings.language, "official_events"),
-                                    style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Black
-                                )
-                                Text(
-                                    t(settings.language, "official_events_sub"),
-                                    style = MaterialTheme.typography.labelMedium
-                                )
-                            }
-                        }
-                    }
-                    items(featured, key = { "official|" + it.stableKey }) { event ->
-                        EventCard(
-                            event = event,
-                            language = settings.language,
-                            compact = settings.compactCards,
-                            favorite = event.stableKey in settings.favorites,
-                            onFavorite = { onFavorite(event) }
-                        )
-                    }
-                    if (localEvents.isNotEmpty()) {
-                        item {
-                            Text(
-                                t(settings.language, "local_results"),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(top = 6.dp)
-                            )
-                        }
-                    }
-                }
-                items(localEvents, key = { it.stableKey }) { event ->
+                items(events, key = { it.stableKey }) { event ->
                     EventCard(
                         event = event,
                         language = settings.language,
