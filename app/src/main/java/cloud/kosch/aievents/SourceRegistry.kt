@@ -49,6 +49,13 @@ object SourceRegistry {
         EventSource("ringcentral-events", "RingCentral Events", "events.ringcentral.com"),
         EventSource("swapcard", "Swapcard", "swapcard.com"),
         EventSource("brella", "Brella", "brella.io"),
+        EventSource("humanitix", "Humanitix", "humanitix.com"),
+        EventSource("tickettailor", "Ticket Tailor", "tickettailor.com"),
+        EventSource("mobilizon", "Mobilizon", "mobilizon.org"),
+        EventSource("opencollective", "OpenCollective", "opencollective.com"),
+        EventSource("eventfrog", "Eventfrog", "eventfrog.ch"),
+        EventSource("eventfinda", "Eventfinda", "eventfinda.com"),
+        EventSource("facebook-events", "Facebook Events", "facebook.com"),
         EventSource("aicamp", "AI Camp", "aicamp.ai"),
         EventSource("aisummit", "The AI Summit", "theaisummit.com"),
         EventSource("odsc", "ODSC", "odsc.com"),
@@ -78,6 +85,9 @@ object SourceRegistry {
             "\"" + place + "\" " + aiCore + " " + participationCore + " " + year + " " + extra,
             "\"" + place + "\" " + category + " register RSVP tickets attend join " + year + " " + extra,
             "\"" + place + "\" AI community user group developer group tech talk seminar symposium roundtable networking " + year,
+            "\"" + place + "\" AI Stammtisch local chapter club society association community calendar " + year,
+            "\"" + place + "\" AI university student group research lab faculty institute colloquium " + year,
+            "\"" + place + "\" AI coworking makerspace innovation hub startup hub tech hub informal meetup " + year,
             "\"" + place + "\" AI conference summit congress expo hackathon datathon bootcamp masterclass demo day roadshow " + year,
             "\"" + place + "\" LLM GenAI agents RAG MCP LLMOps MLOps webinar workshop meetup " + year + " " + extra,
             "\"" + place + "\" AI livestream online hybrid in-person event " + attendance + " " + year
@@ -138,6 +148,12 @@ object SourceRegistry {
             "\"" + place + "\" AI hands-on lab training course session office hours AMA " + year,
             "\"" + place + "\" generative AI product launch launch event showcase developer day devday " + year,
             "\"" + place + "\" AI breakfast meetup lunch and learn unconference festival fair " + year,
+            "\"" + place + "\" AI Stammtisch regulars table local group chapter club society association " + year,
+            "\"" + place + "\" AI university lab student society faculty seminar colloquium journal club " + year,
+            "\"" + place + "\" AI coworking makerspace community calendar tech hub innovation hub informal meetup " + year,
+            "site:facebook.com/events \"" + place + "\" AI meetup community " + year,
+            "site:linkedin.com/events \"" + place + "\" AI meetup community " + year,
+            "site:opencollective.com \"" + place + "\" AI community event " + year,
             "\"" + place + "\" artificial intelligence call for participants apply attend RSVP " + year + " " + extra
         )
 
