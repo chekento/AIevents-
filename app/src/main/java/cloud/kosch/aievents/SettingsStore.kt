@@ -26,7 +26,7 @@ data class AppSettings(
     val futureDays: Int = 365,
     val includeUnverifiedDates: Boolean = false,
     val category: EventCategory = EventCategory.ALL,
-    val sortMode: SortMode = SortMode.DATE,
+    val sortMode: SortMode = SortMode.RELEVANCE,
     val keywords: String = "",
     val compactCards: Boolean = false,
     val notificationsEnabled: Boolean = false,
