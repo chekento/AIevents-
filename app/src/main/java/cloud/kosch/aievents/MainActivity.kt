@@ -453,7 +453,10 @@ private fun DiscoverScreen(
         }
 
         val events = ui.snapshot?.events.orEmpty()
-        if (events.isEmpty() && !ui.loading) {
+        val featured = ui.snapshot?.featuredOfficialEvents.orEmpty()
+        val featuredKeys = featured.map { it.stableKey }.toSet()
+        val localEvents = events.filterNot { it.stableKey in featuredKeys }
+        if (events.isEmpty() && featured.isEmpty() && !ui.loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
                     if (settings.place.isBlank()) t(settings.language, "choose_place")
@@ -466,7 +469,45 @@ private fun DiscoverScreen(
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(if (settings.compactCards) 6.dp else 10.dp)
             ) {
-                items(events, key = { it.stableKey }) { event ->
+                if (featured.isNotEmpty()) {
+                    item {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Star, null, tint = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.width(8.dp))
+                            Column {
+                                Text(
+                                    t(settings.language, "official_events"),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Black
+                                )
+                                Text(
+                                    t(settings.language, "official_events_sub"),
+                                    style = MaterialTheme.typography.labelMedium
+                                )
+                            }
+                        }
+                    }
+                    items(featured, key = { "official|" + it.stableKey }) { event ->
+                        EventCard(
+                            event = event,
+                            language = settings.language,
+                            compact = settings.compactCards,
+                            favorite = event.stableKey in settings.favorites,
+                            onFavorite = { onFavorite(event) }
+                        )
+                    }
+                    if (localEvents.isNotEmpty()) {
+                        item {
+                            Text(
+                                t(settings.language, "local_results"),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(top = 6.dp)
+                            )
+                        }
+                    }
+                }
+                items(localEvents, key = { it.stableKey }) { event ->
                     EventCard(
                         event = event,
                         language = settings.language,
@@ -488,6 +529,21 @@ private fun FilterPanel(settings: AppSettings, onSettings: (AppSettings) -> Unit
         onValueChange = { onSettings(settings.copy(radiusKm = it.toInt())) },
         valueRange = 5f..500f
     )
+    Text(t(settings.language, "event_type"), fontWeight = FontWeight.SemiBold)
+    EventType.entries.chunked(3).forEach { rowTypes ->
+        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            rowTypes.forEach { type ->
+                FilterChip(
+                    selected = settings.eventType == type,
+                    onClick = { onSettings(settings.copy(eventType = type)) },
+                    label = { Text(eventTypeLabel(type, settings.language)) }
+                )
+            }
+        }
+    }
+    SettingsToggle(t(settings.language, "official_only"), settings.officialOnly) {
+        onSettings(settings.copy(officialOnly = it))
+    }
     Text(t(settings.language, "category"), fontWeight = FontWeight.SemiBold)
     CategoryMenu(settings.category, settings.language) { onSettings(settings.copy(category = it)) }
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -577,8 +633,28 @@ private fun SortMenu(value: SortMode, language: String, onChange: (SortMode) -> 
 @Composable
 private fun EventCard(event: EventItem, language: String, compact: Boolean, favorite: Boolean, onFavorite: () -> Unit) {
     val context = LocalContext.current
-    ElevatedCard(Modifier.fillMaxWidth()) {
+    ElevatedCard(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = if (event.officialProvider)
+                MaterialTheme.colorScheme.primaryContainer
+            else MaterialTheme.colorScheme.surface
+        )
+    ) {
         Column(Modifier.padding(if (compact) 12.dp else 16.dp)) {
+            if (event.officialProvider) {
+                SuggestionChip(
+                    onClick = {},
+                    label = {
+                        Text(
+                            t(language, "official_badge") +
+                                if (event.providerName.isNotBlank()) " · " + event.providerName else ""
+                        )
+                    },
+                    icon = { Icon(Icons.Default.Star, null, Modifier.size(16.dp)) }
+                )
+                Spacer(Modifier.height(4.dp))
+            }
             Row(verticalAlignment = Alignment.Top) {
                 Column(Modifier.weight(1f)) {
                     Text(event.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
@@ -595,6 +671,8 @@ private fun EventCard(event: EventItem, language: String, compact: Boolean, favo
                 if (event.price.isNotBlank()) add(event.price)
                 event.distanceKm?.let { add(String.format(Locale.getDefault(), "%.1f km", it)) }
                 add(event.confidence.toString() + "%")
+                if (event.relevanceScore > 0) add("★ " + event.relevanceScore)
+                if (event.sourceCount > 1) add(event.sourceCount.toString() + " sources")
             }
             if (chips.isNotEmpty()) {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(vertical = 5.dp)) {
@@ -774,6 +852,14 @@ private fun LanguageMenu(language: String, onChange: (String) -> Unit) {
     }
 }
 
+private fun eventTypeLabel(type: EventType, language: String): String = when (type) {
+    EventType.ALL -> t(language, "all_types")
+    EventType.CONFERENCE -> t(language, "conference")
+    EventType.MEETUP -> t(language, "meetup")
+    EventType.WORKSHOP -> t(language, "workshop")
+    EventType.HACKATHON -> t(language, "hackathon")
+}
+
 private fun formatDate(event: EventItem, language: String): String {
     val start = event.start ?: return t(language, "unknown_date")
     return start.atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("EEE, dd MMM yyyy · HH:mm"))
@@ -798,7 +884,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Live AI events worldwide", "place_hint" to "e.g. Hamburg, Tokyo, New York", "choose_place" to "Enter a place or use My location to start.", "discover" to "Discover", "map" to "Map", "favorites" to "Saved",
         "settings" to "Settings", "refresh" to "Refresh", "place" to "Place / region", "my_location" to "My location",
         "filters" to "Filters", "keywords" to "Keywords", "search" to "Search live web", "searching" to "Searching…",
-        "events" to "events", "updated" to "updated", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
+        "events" to "events", "updated" to "updated", "event_type" to "Event type", "official_only" to "Official providers only", "all_types" to "All", "conference" to "Conference", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Major official AI events", "official_events_sub" to "Independently discovered from AI and LLM providers", "official_badge" to "Official AI Provider Event", "local_results" to "Events for your selected area", "indexed" to "indexed", "index_loading" to "index loaded; live supplement", "no_events" to "No matching AI events found.", "radius" to "Radius", "category" to "Category",
         "online" to "Online", "price" to "Price", "any" to "Any", "free" to "Free", "paid" to "Paid", "today" to "Today", "week" to "Week", "month" to "Month", "time_horizon" to "Time horizon", "confidence" to "Data quality", "unverified_dates" to "Show events with unverified date",
         "sort" to "Sort", "source" to "Source", "calendar" to "Calendar", "favorite" to "Favorite",
         "no_favorites" to "No saved events yet.", "mapped_events" to "events with map coordinates",
@@ -812,7 +898,7 @@ private fun t(lang: String, key: String): String {
         "tagline" to "Aktuelle KI-Events weltweit", "place_hint" to "z. B. Hamburg, Tokio, New York", "choose_place" to "Ort eingeben oder „Mein Standort“ verwenden.", "discover" to "Entdecken", "map" to "Karte", "favorites" to "Gespeichert",
         "settings" to "Einstellungen", "refresh" to "Aktualisieren", "place" to "Ort / Region", "my_location" to "Mein Standort",
         "filters" to "Filter", "keywords" to "Stichwörter", "search" to "Web live durchsuchen", "searching" to "Suche…",
-        "events" to "Events", "updated" to "aktualisiert", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
+        "events" to "Events", "updated" to "aktualisiert", "event_type" to "Eventtyp", "official_only" to "Nur offizielle Anbieter", "all_types" to "Alle", "conference" to "Konferenz", "meetup" to "Meetup", "workshop" to "Workshop", "hackathon" to "Hackathon", "official_events" to "Wichtige offizielle KI-Events", "official_events_sub" to "Unabhängig bei KI- und LLM-Anbietern gefunden", "official_badge" to "Offizielles KI-Anbieter-Event", "local_results" to "Events im gewählten Gebiet", "indexed" to "im Index", "index_loading" to "Index geladen; Live-Ergänzung", "no_events" to "Keine passenden KI-Events gefunden.", "radius" to "Radius", "category" to "Kategorie",
         "online" to "Online", "price" to "Preis", "any" to "Alle", "free" to "Kostenlos", "paid" to "Kostenpflichtig", "today" to "Heute", "week" to "Woche", "month" to "Monat", "time_horizon" to "Zeitraum", "confidence" to "Datenqualität", "unverified_dates" to "Events ohne verifiziertes Datum anzeigen",
         "sort" to "Sortierung", "source" to "Quelle", "calendar" to "Kalender", "favorite" to "Favorit",
         "no_favorites" to "Noch keine Events gespeichert.", "mapped_events" to "Events mit Kartenkoordinaten",
