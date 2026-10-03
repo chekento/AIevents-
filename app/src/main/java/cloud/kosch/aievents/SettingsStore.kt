@@ -16,6 +16,7 @@ data class AppSettings(
     val placeLat: Double? = null,
     val placeLon: Double? = null,
     val placeId: String = "",
+    val placeCountryCode: String = "",
     val language: String = "de",
     val includeOnline: Boolean = true,
     val priceMode: PriceMode = PriceMode.ANY,
@@ -43,6 +44,7 @@ class SettingsStore(private val context: Context) {
         val placeLat = doublePreferencesKey("place_lat")
         val placeLon = doublePreferencesKey("place_lon")
         val placeId = stringPreferencesKey("place_id")
+        val placeCountryCode = stringPreferencesKey("place_country_code")
         val language = stringPreferencesKey("language")
         val online = booleanPreferencesKey("online")
         val priceMode = stringPreferencesKey("price_mode")
@@ -76,6 +78,7 @@ class SettingsStore(private val context: Context) {
             placeLat = p[Keys.placeLat],
             placeLon = p[Keys.placeLon],
             placeId = p[Keys.placeId] ?: "",
+            placeCountryCode = p[Keys.placeCountryCode] ?: "",
             language = p[Keys.language] ?: "de",
             includeOnline = p[Keys.online] ?: true,
             priceMode = runCatching { PriceMode.valueOf(p[Keys.priceMode] ?: "ANY") }.getOrDefault(PriceMode.ANY),
@@ -111,6 +114,7 @@ class SettingsStore(private val context: Context) {
             if (s.placeLat != null) p[Keys.placeLat] = s.placeLat else p.remove(Keys.placeLat)
             if (s.placeLon != null) p[Keys.placeLon] = s.placeLon else p.remove(Keys.placeLon)
             p[Keys.placeId] = s.placeId
+            p[Keys.placeCountryCode] = s.placeCountryCode
             p[Keys.language] = s.language
             p[Keys.online] = s.includeOnline
             p[Keys.priceMode] = s.priceMode.name
