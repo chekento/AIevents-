@@ -12,10 +12,15 @@ from direct_hubs import collect as collect_direct_hubs
 
 ROOT = Path(__file__).resolve().parents[1]
 REGIONS_PATH = ROOT / "backend" / "regions.json"
+PROVIDERS_PATH = ROOT / "backend" / "providers.tsv"
 INDEX_PATH = ROOT / "data" / "events-index.json"
 UA = "AIevents-indexer/0.3 (+https://github.com/chekento/AIevents-)"
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 TIMEOUT = 10
+
+SOCIAL_EVENT_DOMAINS = [
+    "linkedin.com", "x.com", "youtube.com", "discord.com", "discord.gg"
+]
 
 SOURCE_DOMAINS = [
     "globalai.community", "aitinkerers.org", "mlops.community", "meetup.com",
@@ -46,6 +51,27 @@ def save_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n", "utf-8")
 
 
+def load_providers():
+    providers = []
+    try:
+        lines = PROVIDERS_PATH.read_text("utf-8").splitlines()
+    except Exception:
+        return providers
+    for line in lines:
+        if not line.strip():
+            continue
+        parts = line.split("|")
+        if len(parts) < 4:
+            continue
+        providers.append({
+            "id": parts[0].strip(),
+            "name": parts[1].strip(),
+            "domains": [x.strip() for x in parts[2].split(";") if x.strip()],
+            "category": parts[3].strip()
+        })
+    return providers
+
+
 def normalize_ddg(href):
     if not href:
         return None
@@ -64,7 +90,11 @@ def normalize_ddg(href):
 
 def likely_event_url(url):
     u = url.lower()
-    return any(h in u for h in EVENT_HINTS) or any(d in u for d in SOURCE_DOMAINS)
+    return (
+        any(h in u for h in EVENT_HINTS)
+        or any(d in u for d in SOURCE_DOMAINS)
+        or any(d in u for d in SOCIAL_EVENT_DOMAINS)
+    )
 
 
 def _collect_links(soup, selector, normalizer=lambda x: x, limit=10):
@@ -483,6 +513,52 @@ def main():
     incoming.extend(collect_direct_hubs(parse_page))
     print("Direct hub discovered records:", len(incoming))
 
+    providers = load_providers()
+    provider_batch_size = 12
+    provider_cursor = int(state.get("provider_cursor", 0))
+    provider_batch = []
+    if providers:
+        provider_cursor %= len(providers)
+        provider_batch = [
+            providers[(provider_cursor + i) % len(providers)]
+            for i in range(min(provider_batch_size, len(providers)))
+        ]
+
+    for pidx, provider in enumerate(provider_batch):
+        print(f"[provider {pidx+1}/{len(provider_batch)}] {provider['name']} ({provider['category']})")
+        pname = provider["name"]
+        queries = [
+            f'"{pname}" event webinar conference meetup workshop livestream',
+            f'"{pname}" online event webinar livestream',
+            f'site:linkedin.com/events "{pname}"',
+            f'site:x.com "{pname}" event webinar',
+            f'site:youtube.com "{pname}" livestream event'
+        ]
+        for domain in provider["domains"][:2]:
+            queries.append(
+                f'site:{domain} event webinar conference meetup workshop livestream'
+            )
+        queries.extend([
+            f'site:meetup.com "{pname}" event',
+            f'site:lu.ma "{pname}" event'
+        ])
+
+        links = []
+        for q in queries:
+            try:
+                links.extend(discover(q, limit=5))
+            except Exception as exc:
+                print(" provider discovery failed:", pname, exc)
+            time.sleep(0.25)
+        links = list(dict.fromkeys(links))[:20]
+
+        for url in links:
+            try:
+                incoming.extend(parse_page(url, "Provider:" + provider["id"]))
+            except Exception as exc:
+                print(" provider page failed:", pname, url, exc)
+            time.sleep(0.12)
+
     for idx, region in enumerate(batch):
         print(f"[{idx+1}/{len(batch)}] {region}")
         queries = [
@@ -519,10 +595,16 @@ def main():
 
     merged = merge_events(state.get("events", []), incoming)
     next_cursor = (cursor + len(rotating_batch)) % len(regions)
+    next_provider_cursor = (
+        (provider_cursor + len(provider_batch)) % len(providers)
+        if providers else 0
+    )
     output = {
         "schema": 1,
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "cursor": next_cursor,
+        "provider_cursor": next_provider_cursor,
+        "providers_processed": [p["id"] for p in provider_batch],
         "regions_processed": batch,
         "event_count": len(merged),
         "events": merged
