@@ -7,6 +7,7 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as dtparser
+from ftfy import fix_text
 from direct_hubs import collect as collect_direct_hubs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -176,12 +177,7 @@ def current_or_future(start, end):
 def repair_text(value):
     if not isinstance(value, str):
         return value
-    if any(marker in value for marker in ("Ã", "Â", "â", "ð")):
-        try:
-            return value.encode("latin1").decode("utf-8")
-        except Exception:
-            return value
-    return value
+    return fix_text(value)
 
 
 def clean_text(value):
@@ -248,10 +244,16 @@ def organizer_name(value):
 
 
 def event_key(e):
-    day = (e.get("start") or "")[:10]
+    event_url = str(e.get("eventUrl") or "").strip()
+    if event_url.startswith("http"):
+        parsed = urlparse(event_url)
+        canonical = (parsed.hostname or "").lower().removeprefix("www.") + parsed.path.rstrip("/").lower()
+        if canonical:
+            return hashlib.sha256(("url|" + canonical).encode()).hexdigest()[:24]
+    start = e.get("start") or ""
     title = re.sub(r"\s+", " ", e.get("title", "").lower()).strip()
     place = re.sub(r"\s+", " ", e.get("locality", "").lower()).strip()
-    return hashlib.sha256((title + "|" + day + "|" + place).encode()).hexdigest()[:24]
+    return hashlib.sha256((title + "|" + start + "|" + place).encode()).hexdigest()[:24]
 
 
 def parse_html_event_fallback(soup, url, region):
