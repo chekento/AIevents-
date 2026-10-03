@@ -67,8 +67,8 @@ object CentralEventIndex {
             }
 
             val geographicallyRelevant = when {
-                event.online -> true
                 d != null -> d <= config.radiusKm + 0.5
+                event.online -> regionMatch
                 else -> regionMatch
             }
             if (!geographicallyRelevant) return@mapNotNull null
