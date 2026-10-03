@@ -1,0 +1,346 @@
+package cloud.kosch.aievents
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONArray
+import org.json.JSONObject
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import java.net.URI
+import java.net.URLDecoder
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
+import java.time.*
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import java.util.concurrent.TimeUnit
+import kotlin.math.*
+
+object LiveEventSearch {
+    private val http = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .callTimeout(25, TimeUnit.SECONDS)
+        .followRedirects(true)
+        .build()
+
+    private const val UA = "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36 AIevents/0.1"
+
+    suspend fun search(config: SearchConfig): SearchSnapshot = withContext(Dispatchers.IO) {
+        val warnings = mutableListOf<String>()
+        val center = runCatching { geocode(config.place) }.getOrNull()
+        if (center == null) warnings += "Center coordinates unavailable; strict radius filtering is only possible for events with coordinates."
+
+        val queries = buildQueries(config)
+        val links = linkedSetOf<String>()
+        for (query in queries) {
+            runCatching { discover(query) }
+                .onSuccess { links += it }
+                .onFailure { warnings += "A discovery query failed: " + (it.message ?: "network error") }
+        }
+
+        val candidateLinks = links
+            .filter { it.startsWith("https://") }
+            .filterNot { it.contains("duckduckgo.com") }
+            .take(80)
+
+        val semaphore = Semaphore(6)
+        val events = coroutineScope {
+            candidateLinks.map { url ->
+                async {
+                    semaphore.withPermit {
+                        runCatching { extractEvents(url) }.getOrDefault(emptyList())
+                    }
+                }
+            }.awaitAll().flatten()
+        }
+
+        val now = Instant.now().minus(Duration.ofHours(18))
+        val maxDate = Instant.now().plus(Duration.ofDays(config.futureDays.toLong()))
+
+        val filtered = events.map { event ->
+            val d = if (center != null && event.geo != null) distanceKm(center, event.geo) else null
+            event.copy(distanceKm = d)
+        }.filter { config.includeOnline || !it.online }
+            .filter { it.start == null || (it.start.isAfter(now) && it.start.isBefore(maxDate)) }
+            .filter { it.distanceKm == null || it.online || it.distanceKm <= config.radiusKm + 0.5 }
+            .distinctBy { it.stableKey }
+            .sortedWith(compareBy<EventItem> { it.start == null }.thenBy { it.start ?: Instant.MAX }.thenByDescending { it.confidence })
+
+        SearchSnapshot(config, filtered, queries.size, candidateLinks.size, warnings.distinct())
+    }
+
+    private fun buildQueries(config: SearchConfig): List<String> {
+        val p = config.place.trim()
+        val year = Year.now().value
+        val localized = when (config.language) {
+            "de" -> "\"Künstliche Intelligenz\" OR KI"
+            "fr" -> "\"intelligence artificielle\""
+            "es" -> "\"inteligencia artificial\""
+            "it" -> "\"intelligenza artificiale\""
+            "pl" -> "\"sztuczna inteligencja\""
+            else -> "\"artificial intelligence\""
+        }
+        return listOf(
+            "\"AI\" OR \"artificial intelligence\" OR \"generative AI\" event \"$p\" $year",
+            "$localized event OR meetup OR conference \"$p\"",
+            "site:meetup.com AI \"$p\" event",
+            "site:luma.com AI \"$p\"",
+            "site:eventbrite.com AI \"$p\"",
+            "AI summit workshop hackathon agents RAG LLM \"$p\""
+        )
+    }
+
+    private fun discover(query: String): List<String> {
+        val encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.toString())
+        val url = "https://html.duckduckgo.com/html/?q=" + encoded
+        val doc = Jsoup.parse(get(url), url)
+        return doc.select("a.result__a")
+            .mapNotNull { normalizeDdgUrl(it.attr("href")) }
+            .filter { isLikelyEventPage(it) }
+            .distinct()
+            .take(20)
+    }
+
+    private fun normalizeDdgUrl(href: String): String? {
+        if (href.isBlank()) return null
+        val absolute = when {
+            href.startsWith("//") -> "https:" + href
+            href.startsWith("/") -> "https://duckduckgo.com" + href
+            else -> href
+        }
+        if (!absolute.contains("duckduckgo.com/l/")) return absolute.takeIf { it.startsWith("http") }
+        return runCatching {
+            val query = URI(absolute).rawQuery ?: return@runCatching null
+            query.split("&").mapNotNull {
+                val pair = it.split("=", limit = 2)
+                if (pair.size == 2 && pair[0] == "uddg") URLDecoder.decode(pair[1], StandardCharsets.UTF_8.toString()) else null
+            }.firstOrNull()
+        }.getOrNull()
+    }
+
+    private fun isLikelyEventPage(url: String): Boolean {
+        val u = url.lowercase()
+        return listOf("meetup.", "luma.", "eventbrite.", "/event", "/events", "conference", "summit", "meetup", "workshop", "hackathon", "calendar")
+            .any { it in u }
+    }
+
+    private fun extractEvents(url: String): List<EventItem> {
+        val doc = Jsoup.parse(get(url), url)
+        val structured = mutableListOf<EventItem>()
+        for (script in doc.select("script[type=application/ld+json]")) {
+            val raw = script.data().ifBlank { script.html() }.trim()
+            if (raw.isBlank()) continue
+            runCatching {
+                val node: Any = if (raw.startsWith("[")) JSONArray(raw) else JSONObject(raw)
+                collectEventObjects(node).forEach { obj ->
+                    parseEventObject(obj, doc, url)?.let { structured += it }
+                }
+            }
+        }
+        if (structured.isNotEmpty()) return structured.distinctBy { it.stableKey }
+        return heuristicEvent(doc, url)?.let { listOf(it) } ?: emptyList()
+    }
+
+    private fun collectEventObjects(node: Any?): List<JSONObject> {
+        val out = mutableListOf<JSONObject>()
+        when (node) {
+            is JSONObject -> {
+                val type = node.opt("@type")
+                val types = when (type) {
+                    is JSONArray -> (0 until type.length()).map { type.optString(it) }
+                    else -> listOf(type?.toString().orEmpty())
+                }
+                if (types.any { it.equals("Event", true) || it.endsWith("Event", true) }) out += node
+                node.keys().forEach { key ->
+                    val child = node.opt(key)
+                    if (child is JSONObject || child is JSONArray) out += collectEventObjects(child)
+                }
+            }
+            is JSONArray -> for (i in 0 until node.length()) out += collectEventObjects(node.opt(i))
+        }
+        return out.distinctBy { it.toString() }
+    }
+
+    private fun parseEventObject(obj: JSONObject, doc: Document, sourceUrl: String): EventItem? {
+        val title = obj.optString("name").ifBlank { meta(doc, "og:title") }.trim()
+        if (title.length < 3) return null
+
+        val start = parseInstant(obj.optString("startDate"))
+        val end = parseInstant(obj.optString("endDate"))
+        val location = obj.opt("location")
+        val venue = when (location) {
+            is JSONObject -> location.optString("name")
+            is String -> location
+            else -> ""
+        }.trim()
+        val address = if (location is JSONObject) addressText(location.opt("address")) else ""
+        val locality = listOf(venue, address).filter { it.isNotBlank() }.distinct().joinToString(", ")
+        val geo = if (location is JSONObject) parseGeo(location.optJSONObject("geo")) else null
+
+        val organizerValue = obj.opt("organizer")
+        val organizer = when (organizerValue) {
+            is JSONObject -> organizerValue.optString("name")
+            is JSONArray -> (0 until organizerValue.length()).mapNotNull {
+                organizerValue.optJSONObject(it)?.optString("name")?.takeIf { name -> name.isNotBlank() }
+            }.joinToString(", ")
+            is String -> organizerValue
+            else -> ""
+        }
+
+        val description = cleanText(
+            obj.optString("description").ifBlank {
+                meta(doc, "description").ifBlank { meta(doc, "og:description") }
+            }
+        ).take(1200)
+
+        val eventUrl = obj.optString("url").takeIf { it.startsWith("http") } ?: sourceUrl
+        val mode = obj.optString("eventAttendanceMode")
+        val online = mode.contains("Online", true) || locality.contains("Online", true) ||
+            (obj.opt("location")?.toString()?.contains("VirtualLocation", true) == true)
+        val price = priceText(obj.opt("offers"))
+        val language = obj.optString("inLanguage")
+        val domain = runCatching { URI(sourceUrl).host.removePrefix("www.") }.getOrDefault("web")
+
+        var confidence = 55
+        if (start != null) confidence += 20
+        if (locality.isNotBlank() || online) confidence += 10
+        if (organizer.isNotBlank()) confidence += 5
+        if (geo != null) confidence += 5
+        if (price.isNotBlank()) confidence += 5
+
+        return EventItem(
+            title, start, end, venue, locality, description, organizer, domain,
+            sourceUrl, eventUrl, price, language, online, geo, null, confidence.coerceAtMost(100)
+        )
+    }
+
+    private fun heuristicEvent(doc: Document, url: String): EventItem? {
+        val title = meta(doc, "og:title").ifBlank { doc.title() }.trim()
+        if (title.length < 4) return null
+        val haystack = (title + " " + meta(doc, "description") + " " + url).lowercase()
+        val signals = listOf("event", "meetup", "conference", "summit", "workshop", "hackathon", "ai ", "artificial intelligence")
+            .count { it in haystack }
+        if (signals < 2) return null
+        val startRaw = doc.selectFirst("meta[itemprop=startDate]")?.attr("content")
+            ?: doc.selectFirst("time[datetime]")?.attr("datetime")
+        val start = parseInstant(startRaw.orEmpty())
+        val domain = runCatching { URI(url).host.removePrefix("www.") }.getOrDefault("web")
+        return EventItem(
+            title = title,
+            start = start,
+            end = null,
+            venue = "",
+            locality = "",
+            description = cleanText(meta(doc, "description").ifBlank { meta(doc, "og:description") }).take(900),
+            organizer = "",
+            sourceName = domain,
+            sourceUrl = url,
+            eventUrl = url,
+            price = "",
+            language = doc.selectFirst("html")?.attr("lang").orEmpty(),
+            online = haystack.contains("online event") || haystack.contains("virtual event"),
+            geo = null,
+            distanceKm = null,
+            confidence = if (start != null) 55 else 35
+        )
+    }
+
+    private fun addressText(value: Any?): String = when (value) {
+        is String -> value
+        is JSONObject -> listOf(
+            value.optString("streetAddress"),
+            value.optString("postalCode"),
+            value.optString("addressLocality"),
+            value.optString("addressRegion"),
+            value.optString("addressCountry")
+        ).filter { it.isNotBlank() }.distinct().joinToString(", ")
+        else -> ""
+    }
+
+    private fun parseGeo(obj: JSONObject?): GeoPoint? {
+        if (obj == null) return null
+        val lat = obj.optDouble("latitude", Double.NaN)
+        val lon = obj.optDouble("longitude", Double.NaN)
+        return if (lat.isFinite() && lon.isFinite()) GeoPoint(lat, lon) else null
+    }
+
+    private fun priceText(value: Any?): String {
+        val offer = when (value) {
+            is JSONObject -> value
+            is JSONArray -> value.optJSONObject(0)
+            else -> null
+        } ?: return ""
+        val price = offer.optString("price")
+        val currency = offer.optString("priceCurrency")
+        return when {
+            price.isBlank() -> ""
+            price == "0" || price == "0.0" -> "Free"
+            currency.isBlank() -> price
+            else -> price + " " + currency
+        }
+    }
+
+    private fun meta(doc: Document, key: String): String =
+        doc.selectFirst("meta[property=$key]")?.attr("content")
+            ?: doc.selectFirst("meta[name=$key]")?.attr("content")
+            ?: ""
+
+    private fun cleanText(value: String): String =
+        Jsoup.parse(value).text().replace(Regex("\\s+"), " ").trim()
+
+    private fun parseInstant(raw: String): Instant? {
+        val s = raw.trim()
+        if (s.isBlank()) return null
+        val parsers = listOf<() -> Instant?>(
+            { Instant.parse(s) },
+            { OffsetDateTime.parse(s).toInstant() },
+            { ZonedDateTime.parse(s).toInstant() },
+            { LocalDateTime.parse(s).atZone(ZoneId.systemDefault()).toInstant() },
+            { LocalDate.parse(s).atStartOfDay(ZoneId.systemDefault()).toInstant() },
+            {
+                LocalDate.parse(s.take(10), DateTimeFormatter.ISO_LOCAL_DATE)
+                    .atStartOfDay(ZoneId.systemDefault()).toInstant()
+            }
+        )
+        return parsers.firstNotNullOfOrNull { runCatching { it() }.getOrNull() }
+    }
+
+    private fun geocode(place: String): GeoPoint? {
+        val q = URLEncoder.encode(place, StandardCharsets.UTF_8.toString())
+        val url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=" + q
+        val arr = JSONArray(get(url, "AIevents/0.1 github.com/chekento/AIevents-"))
+        val obj = arr.optJSONObject(0) ?: return null
+        return GeoPoint(obj.getString("lat").toDouble(), obj.getString("lon").toDouble())
+    }
+
+    private fun get(url: String, userAgent: String = UA): String {
+        val request = Request.Builder()
+            .url(url)
+            .header("User-Agent", userAgent)
+            .header("Accept-Language", Locale.getDefault().toLanguageTag())
+            .get()
+            .build()
+        http.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) error("HTTP " + response.code)
+            return response.body?.string() ?: ""
+        }
+    }
+
+    private fun distanceKm(a: GeoPoint, b: GeoPoint): Double {
+        val earthRadius = 6371.0088
+        val dLat = Math.toRadians(b.lat - a.lat)
+        val dLon = Math.toRadians(b.lon - a.lon)
+        val la1 = Math.toRadians(a.lat)
+        val la2 = Math.toRadians(b.lat)
+        val h = sin(dLat / 2).pow(2) + cos(la1) * cos(la2) * sin(dLon / 2).pow(2)
+        return 2 * earthRadius * asin(sqrt(h))
+    }
+}
