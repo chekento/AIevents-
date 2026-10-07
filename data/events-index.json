@@ -1,135 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-07T16:03:42.666820Z",
-  "cursor": 113,
-  "provider_cursor": 180,
+  "generated_at": "2026-10-07T21:48:24.231479Z",
+  "cursor": 127,
+  "provider_cursor": 192,
   "providers_processed": [
-    "prefect",
-    "dagster",
-    "airflow",
-    "feast",
-    "tecton",
-    "hopsworks",
-    "seldon",
-    "kserve",
-    "determined",
-    "domino",
-    "datarobot",
-    "h2o"
+    "dataiku",
+    "databricks",
+    "snowflake",
+    "dbt",
+    "fivetran",
+    "confluent",
+    "mongodb",
+    "elastic",
+    "redis",
+    "clickhouse",
+    "pinecone",
+    "weaviate"
   ],
   "regions_processed": [
-    "Doha, Qatar",
-    "Abu Dhabi, United Arab Emirates",
-    "Manama, Bahrain",
-    "Kuwait City, Kuwait",
-    "Amman, Jordan",
-    "Beirut, Lebanon",
-    "Karachi, Pakistan",
-    "Lahore, Pakistan",
-    "Dhaka, Bangladesh",
-    "Colombo, Sri Lanka",
-    "Kathmandu, Nepal",
-    "Hyderabad, India",
-    "Chennai, India",
-    "Pune, India"
+    "Gurugram, India",
+    "Ho Chi Minh City, Vietnam",
+    "Hanoi, Vietnam",
+    "Manila, Philippines",
+    "Surabaya, Indonesia",
+    "Phnom Penh, Cambodia",
+    "Yangon, Myanmar",
+    "Macau",
+    "Guangzhou, China",
+    "Chengdu, China",
+    "Hangzhou, China",
+    "Nanjing, China",
+    "Wuhan, China",
+    "Fukuoka, Japan"
   ],
-  "event_count": 53,
+  "event_count": 50,
   "events": [
-    {
-      "title": "Agents in Amsterdam: A Tasting Tour",
-      "start": "2026-10-07T15:30:00Z",
-      "end": "2026-10-07T19:00:00Z",
-      "venue": "Zaandam, Netherlands",
-      "locality": "Zaandam, Netherlands, Zaandam, Noord-Holland, NL",
-      "description": "",
-      "organizer": "LangChain Events, LangChain Events, Susanne Björkman",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/20qfqog2",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 52.42286648703845,
-        "lon": 4.837456692945165
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ta/23490c38-ef61-449e-9167-9f806ea04a2b.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T16:57:01.806852Z",
-      "key": "2f161231a38bd4ae7281584b"
-    },
-    {
-      "title": "AI Builders Hamburg • Oct 7",
-      "start": "2026-10-07T16:00:00Z",
-      "end": "2026-10-07T19:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "Join our informal meetup for the biggest AI nerds! We share the latest insights about: AI dev tools, Agent frameworks, RAG, vibe coding, OpenClaw, Claude Code and more! // FOR WHO ✅ Devs, Product peeps, Data lovers, ML engineers, Founders ✅ Anyone building with AI ⚠️ Some LLM knowledge required!* // FORMAT 🎤 Innovative AI Demos — from EU + Silicon Valley leaders 💻 Builder Tool Demos — ship fast, explain faster 🤝 🍻 A LOT of time for informal networking 🍕 Yummy Pizza &",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/ham-oct7",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:46:17.482384Z",
-      "key": "7ff5311d9d1407ebd67479a2"
-    },
-    {
-      "title": "AI Tinkerers Antwerp: Agentic Knowledge Management",
-      "start": "2026-10-07T16:00:00Z",
-      "end": "2026-10-07T19:00:00Z",
-      "venue": "Kipdorpbrug 1",
-      "locality": "Kipdorpbrug 1, 1 Kipdorpbrug, 2000, Antwerpen, Vlaanderen, Belgium",
-      "description": "Following the successful editions of our recent gatherings in Brussels, Ghent, and Antwerp, AI Tinkerers is coming back to Antwerp! On 7 October 2026, AI Tinkerers is gathering at Brain Embassy Antwerp to explore how agents capture, structure, and improve the ...",
-      "organizer": "AI Tinkerers - Belgium",
-      "sourceName": "belgium.aitinkerers.org",
-      "sourceUrl": "https://belgium.aitinkerers.org/p/ai-tinkerers-antwerp-agentic-knowledge-management",
-      "eventUrl": "https://belgium.aitinkerers.org/p/ai-tinkerers-antwerp-agentic-knowledge-management",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 95,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:21:12.689135Z",
-      "key": "4cb9b14e407e9f3b0b2af898"
-    },
-    {
-      "title": "AI Tinkerers: Prague - October Builders Meetup",
-      "start": "2026-10-07T16:00:00Z",
-      "end": "2026-10-07T19:00:00Z",
-      "venue": "Private venue",
-      "locality": "Private venue, 13 Karlovo náměstí, 120 00, Prague, Hlavní město Praha, Czechia",
-      "description": "🛠️ AI Tinkerers Prague Meetup — October 2026 The evenings are getting shorter, but the build list keeps growing. Join us on October 7th for the next AI Tinkerers Prague meetup — fresh demos, curious minds, and a room full of ...",
-      "organizer": "AI Tinkerers - Prague",
-      "sourceName": "prague.aitinkerers.org",
-      "sourceUrl": "https://prague.aitinkerers.org/p/ai-tinkerers-prague-october-builders-meetup-oct-8-2026",
-      "eventUrl": "https://prague.aitinkerers.org/p/ai-tinkerers-prague-october-builders-meetup-oct-8-2026",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 95,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:21:13.175245Z",
-      "key": "86246cd444f911e60fa24aad"
-    },
     {
       "title": "Global AI Tallahassee - Monthly MeetUp",
       "start": "2026-10-07T22:00:00Z",
@@ -1100,6 +1005,32 @@
       ],
       "indexedAt": "2026-10-03T14:40:34.814416Z",
       "key": "8f3a2aae4a18402fcf0795aa"
+    },
+    {
+      "title": "Agents in the Sandboxes — LangChain Community London × Focused.io",
+      "start": "2026-11-12T18:30:00Z",
+      "end": "2026-11-12T21:30:00Z",
+      "venue": "Fora - Chancery House",
+      "locality": "Fora - Chancery House, Fora - Chancery House, London, England, GB",
+      "description": "",
+      "organizer": "Sudip kandel, Sudip kandel, Tanmaiyii Rao, Amada Echeverria, Marta Stangierska",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/po68337t",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 51.5174586,
+        "lon": -0.1129066
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/wf/140b45e1-27b5-4f34-a42d-7c00dffa3ea8.jpg",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-07T21:18:09.193641Z",
+      "key": "a17aefb2ef8753bf9c16ba36"
     },
     {
       "title": "Microsoft Ignite",
