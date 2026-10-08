@@ -1,65 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-08T16:06:23.465767Z",
-  "cursor": 155,
-  "provider_cursor": 216,
+  "generated_at": "2026-10-08T21:49:33.035410Z",
+  "cursor": 1,
+  "provider_cursor": 228,
   "providers_processed": [
-    "labelbox",
-    "snorkel",
-    "superannotate",
-    "encord",
-    "human-signal",
-    "surge-ai",
-    "toloka",
-    "eleutherai",
-    "laion",
-    "allen-ai",
-    "mlcommons",
-    "lf-ai-data"
+    "pytorch",
+    "tensorflow",
+    "jax",
+    "onnx",
+    "openmmlab",
+    "datatalksclub",
+    "ai-tinkerers",
+    "global-ai-community",
+    "women-in-ai",
+    "deeplearning-ai",
+    "fastai",
+    "fullstackdeeplearning"
   ],
   "regions_processed": [
-    "Minneapolis, MN, USA",
-    "Philadelphia, PA, USA",
-    "Detroit, MI, USA",
-    "Raleigh, NC, USA",
-    "Charlotte, NC, USA",
-    "Pittsburgh, PA, USA",
-    "Nashville, TN, USA",
-    "Salt Lake City, UT, USA",
-    "Ottawa, Canada",
-    "Calgary, Canada",
-    "Edmonton, Canada",
-    "Guadalajara, Mexico",
-    "Monterrey, Mexico",
-    "Lima, Peru"
+    "Quito, Ecuador",
+    "Montevideo, Uruguay",
+    "Panama City, Panama",
+    "San José, Costa Rica",
+    "Santo Domingo, Dominican Republic",
+    "San Juan, Puerto Rico",
+    "Brasília, Brazil",
+    "Rio de Janeiro, Brazil",
+    "Belo Horizonte, Brazil",
+    "Porto Alegre, Brazil",
+    "Recife, Brazil",
+    "Córdoba, Argentina",
+    "Medellín, Colombia",
+    "Hamburg, Germany"
   ],
-  "event_count": 49,
+  "event_count": 50,
   "events": [
-    {
-      "title": "Happy Hour",
-      "start": "2026-10-08T16:00:00Z",
-      "end": "2026-10-08T18:30:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "🍹 House of AI Community Happy Hour Time to kick back and unwind at House of AI Hamburg! Grab a drink, settle into a comfy corner, and enjoy a relaxed evening away from screens and schedules. Whether you're catching up with familiar faces or meeting new ones, this is the perfect chance to slow down and just chat. We'll have a nice mix of drinks on hand, both alcoholic and non-alcoholic, so there's something for everyone. There's no agenda to follow and nothing you need to",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/y4fkm62i",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:38:03.346653Z",
-      "key": "0c42e1b592e8a093f8fd2ed8"
-    },
     {
       "title": "GitHub Copilot Dev Day 2026",
       "start": "2026-10-08T21:00:00Z",
@@ -846,6 +821,32 @@
       "key": "85bd2336f1f06c87275f7435"
     },
     {
+      "title": "MEXICO CITY: Agents In Production | Langchain Meetup",
+      "start": "2026-10-29T23:00:00Z",
+      "end": "2026-10-30T01:00:00Z",
+      "venue": "Barcelona 26",
+      "locality": "Barcelona 26, Barcelona 26, Ciudad de México, Ciudad de México, MX",
+      "description": "",
+      "organizer": "Semantiks, Mexico Tech Week, Pedro Rojas, Adrian Sanchez Castro, Amada Echeverria, Javier De La Torre Silva",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/mxtw-e354f23b",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 19.428089699999997,
+        "lon": -99.1547532
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/dp/4ee991d1-16fb-4b94-b84d-e8db18e701f5.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-08T21:19:01.926610Z",
+      "key": "769b75bda37f1549b493ee9e"
+    },
+    {
       "title": "MongoDB.local Tel Aviv",
       "start": "2026-11-02T00:00:00Z",
       "end": "2026-11-02T00:00:00Z",
@@ -933,6 +934,32 @@
       ],
       "indexedAt": "2026-10-03T14:25:27.717820Z",
       "key": "1186b3e1c23adca84f565f30"
+    },
+    {
+      "title": "LangChain Meetup: Future of AI: Owning Your Intelligence with Open-weight Models (Toronto)",
+      "start": "2026-11-05T02:00:00Z",
+      "end": "2026-11-05T05:00:00Z",
+      "venue": "Toronto, ON",
+      "locality": "Toronto, ON, Toronto, Ontario, CA",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Scott Raino, Haider Zaidi",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/htp51nvv",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 43.66164468161116,
+        "lon": -79.39100643818719
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/9o/accdb613-e0e5-498a-8606-49421f8e5920.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-08T21:19:01.926853Z",
+      "key": "488f9c918faba05964acfc87"
     },
     {
       "title": "Vue.js Hamburg Meetup #23",
