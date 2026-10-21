@@ -1,37 +1,37 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-21T14:17:33.996767Z",
-  "cursor": 141,
-  "provider_cursor": 57,
+  "generated_at": "2026-10-21T20:40:43.605814Z",
+  "cursor": 155,
+  "provider_cursor": 69,
   "providers_processed": [
-    "ideogram",
-    "leonardo",
-    "recraft",
-    "adobe-firefly",
-    "elevenlabs",
-    "suno",
-    "zuno",
-    "udio",
-    "hume",
-    "cartesia",
-    "deepgram",
-    "assemblyai"
+    "speechmatics",
+    "resemble",
+    "playht",
+    "synthesia",
+    "heygen",
+    "character-ai",
+    "inflection",
+    "perplexity",
+    "youcom",
+    "phind",
+    "glean",
+    "sierra"
   ],
   "regions_processed": [
-    "Nagoya, Japan",
-    "Busan, South Korea",
-    "Perth, Australia",
-    "Brisbane, Australia",
-    "Adelaide, Australia",
-    "Wellington, New Zealand",
-    "Honolulu, HI, USA",
-    "San Diego, CA, USA",
-    "Denver, CO, USA",
-    "Portland, OR, USA",
-    "Atlanta, GA, USA",
-    "Dallas, TX, USA",
-    "Houston, TX, USA",
-    "Phoenix, AZ, USA"
+    "Minneapolis, MN, USA",
+    "Philadelphia, PA, USA",
+    "Detroit, MI, USA",
+    "Raleigh, NC, USA",
+    "Charlotte, NC, USA",
+    "Pittsburgh, PA, USA",
+    "Nashville, TN, USA",
+    "Salt Lake City, UT, USA",
+    "Ottawa, Canada",
+    "Calgary, Canada",
+    "Edmonton, Canada",
+    "Guadalajara, Mexico",
+    "Monterrey, Mexico",
+    "Lima, Peru"
   ],
   "event_count": 38,
   "events": [
@@ -57,51 +57,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:11.339286Z",
       "key": "1c702ea0b9cef8e6942e66b5"
-    },
-    {
-      "title": "In-Person Event: Strengthening Cybersecurity with AI: State, Local, and Critical Infrastructure",
-      "start": "2026-10-21T12:00:00.176000Z",
-      "end": "2026-10-21T15:00:29.039000Z",
-      "venue": "OpenAI's D.C. Workshop",
-      "locality": "OpenAI's D.C. Workshop, OpenAI's D.C. Workshop, Washington, DC",
-      "description": "About the Talk:How can AI help protect critical infrastructure that state and local governments rely on? OpenAI Forum will convene policymakers, cybersecurity experts, and government and industry leaders in Washington, DC to explore OpenAI's Daybreak program and $1 billion cybersecurity commitment. Discussions will highlight practical partnerships to strengthen state and local cybersecurity, protect critical infrastructure, and build collaboration across government, industry, and international partners.\n\nRegistration is invite only, please request an invite.\n\nAbout the Speakers:Anjelica Dortch is Vice President of Operational Risk and Cybersecurity Policy at the Independent Community Bankers of America (ICBA). She advocates for cybersecurity, AI, and operational risk legislation and regulations on behalf of the nation's community banks. She previously held technology policy leadership roles at SAP, IBM, and the Executive",
-      "organizer": "OpenAI Forum",
-      "sourceName": "forum.openai.com",
-      "sourceUrl": "https://forum.openai.com/public/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch",
-      "eventUrl": "https://forum.openai.com/public/events/in-person-event-strengthening-cybersecurity-with-ai-state-local-and-critical-infrastructure-j6va7v38ch",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 95,
-      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/openai/10-21-26-Event-Card-20bc3843-84d3-4ca6-9820-4b69a27a4167-1792104769369.jpeg?fit=scale-down&width=1200",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-15T23:04:55.317763Z",
-      "key": "b75fb66cba5438d1b30729cd"
-    },
-    {
-      "title": "Agentic AI Community Day 2026",
-      "start": "2026-10-21T16:00:00Z",
-      "end": "2026-10-21T20:00:00Z",
-      "venue": "",
-      "locality": "",
-      "description": "Agentic AI Community Day 2026",
-      "organizer": "Global AI Cologne",
-      "sourceName": "globalai.community",
-      "sourceUrl": "https://globalai.community/e/pzjk06sf",
-      "eventUrl": "https://globalai.community/e/pzjk06sf",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 68,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:25:22.837699Z",
-      "key": "849fcf8b0d68019b6691a5bc"
     },
     {
       "title": "Fly with Copilot: Munich",
@@ -619,6 +574,32 @@
       "key": "488f9c918faba05964acfc87"
     },
     {
+      "title": "LangChain SF Meetup: Judgment Calls",
+      "start": "2026-11-06T02:00:00Z",
+      "end": "2026-11-06T04:30:00Z",
+      "venue": "San Francisco, CA",
+      "locality": "San Francisco, CA, San Francisco, California, US",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Sydney Runkle, sean",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/iuc3ostf",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 37.78426739018519,
+        "lon": -122.39417148713738
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/oh/15d1315e-5606-485c-87b0-756195c45483.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-21T20:09:29.038652Z",
+      "key": "b102d38e281f1ad47a54384c"
+    },
+    {
       "title": "Vue.js Hamburg Meetup #23",
       "start": "2026-11-11T17:30:00Z",
       "end": "2026-11-11T21:00:00Z",
@@ -693,6 +674,32 @@
       ],
       "indexedAt": "2026-10-07T21:18:09.193641Z",
       "key": "a17aefb2ef8753bf9c16ba36"
+    },
+    {
+      "title": "LangChain Boston Meetup: Building and Getting Agents Into Production",
+      "start": "2026-11-12T23:00:00Z",
+      "end": "2026-11-13T01:30:00Z",
+      "venue": "Cambridge, MA",
+      "locality": "Cambridge, MA, Cambridge, Massachusetts, US",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Mason Daugherty",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/x2d94ihu",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 42.37124691411126,
+        "lon": -71.1220034593317
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/aw/ffd9bf9e-b4b7-4378-9530-bcfe9597d122.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-21T20:09:29.039147Z",
+      "key": "49a2bd8b09496567b52a9cba"
     },
     {
       "title": "Microsoft Ignite",
