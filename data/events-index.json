@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-20T23:42:15.471386Z",
-  "cursor": 113,
-  "provider_cursor": 33,
+  "generated_at": "2026-10-21T05:14:45.941301Z",
+  "cursor": 127,
+  "provider_cursor": 45,
   "providers_processed": [
-    "deepseek",
-    "zhipu",
-    "moonshot",
-    "minimax",
-    "zeroone",
-    "baichuan",
-    "sensetime",
-    "iflytek",
-    "huawei-pangu",
-    "naver",
-    "kakao",
-    "upstage"
+    "lg-ai",
+    "samsung-ai",
+    "fujitsu-ai",
+    "nec-ai",
+    "rakuten-ai",
+    "preferred-networks",
+    "stability-ai",
+    "black-forest-labs",
+    "midjourney",
+    "runway",
+    "pika",
+    "luma-ai"
   ],
   "regions_processed": [
-    "Doha, Qatar",
-    "Abu Dhabi, United Arab Emirates",
-    "Manama, Bahrain",
-    "Kuwait City, Kuwait",
-    "Amman, Jordan",
-    "Beirut, Lebanon",
-    "Karachi, Pakistan",
-    "Lahore, Pakistan",
-    "Dhaka, Bangladesh",
-    "Colombo, Sri Lanka",
-    "Kathmandu, Nepal",
-    "Hyderabad, India",
-    "Chennai, India",
-    "Pune, India"
+    "Gurugram, India",
+    "Ho Chi Minh City, Vietnam",
+    "Hanoi, Vietnam",
+    "Manila, Philippines",
+    "Surabaya, Indonesia",
+    "Phnom Penh, Cambodia",
+    "Yangon, Myanmar",
+    "Macau",
+    "Guangzhou, China",
+    "Chengdu, China",
+    "Hangzhou, China",
+    "Nanjing, China",
+    "Wuhan, China",
+    "Fukuoka, Japan"
   ],
-  "event_count": 36,
+  "event_count": 37,
   "events": [
     {
       "title": "NVDIA GTC Berlin",
@@ -718,6 +718,32 @@
       "key": "dff014981e668d4f35c63f54"
     },
     {
+      "title": "LangChain Seattle Meetup: An Evening with Harrison Chase & Xavi Amatriain",
+      "start": "2026-11-19T01:45:00Z",
+      "end": "2026-11-19T04:00:00Z",
+      "venue": "Seattle, WA",
+      "locality": "Seattle, WA, Seattle, Washington, US",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Jake Hongladarom",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/h3w0aaol",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 47.62736609022369,
+        "lon": -122.37329526678393
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/lm/3f8b15b0-9a73-4311-ae9f-87ae5d1e8703.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-21T04:43:54.156720Z",
+      "key": "0ac132acb9aa2c520d1993f2"
+    },
+    {
       "title": "MongoDB.local Toronto",
       "start": "2026-11-19T14:00:00Z",
       "end": "2026-11-20T00:00:00Z",
@@ -817,26 +843,26 @@
       "title": "LangChain x hackers&wizards Hackathon: Building with Agent Harnesses (Hamburg)",
       "start": "2026-12-04T16:00:00Z",
       "end": "2026-12-04T20:00:00Z",
-      "venue": "München, Germany",
-      "locality": "München, Germany, München, Bayern, DE",
-      "description": "",
-      "organizer": "LangChain Events, Amada Echeverria",
+      "venue": "Hamburg, Germany",
+      "locality": "Hamburg, Germany, Hamburg, Hamburg, DE",
+      "description": "This hackathon is about building with agent harnesses, hands-on, alongside the people building the tools. We're teaming up with hackers&wizards to host an evening of talks and hacking in Hamburg. You'll form small groups, build a deep agent from scratch, and demo it to a panel of judges by the end of the night. What you'll build The theme is agent harnesses — the scaffolding that turns a model into a system that can plan, use tools, and recover from its own mistakes. Steffen Hausmann will kick things off with two short talks: one on deep agents, and one on managed deep agents. Then you'll put it into practice. A few days before the event, we'll send out a prompt so you can come with an idea already in mind. Use the time before the hackathon to think through your approach — you'll want it once the clock starts. What to bring Your laptop and a group to hack with (we'll help you form one if you don't have one) Your own API keys for any models or tools you plan to use Questions for Steffen, and the hackers&wizards team — they'll be around all night We'll provide LangSmith credits to every attendee for the event, so you can trace and debug your agent as you build. 🏆 Prizes 1st place: $3",
+      "organizer": "LangChain Events, Amada Echeverria, Andreas Pabst, Benedikt Stemmildt, Sinan Ezer, Leo Friederich, Merlin O'Doherty",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
+      "sourceUrl": "https://luma.com/s77skh49",
       "eventUrl": "https://luma.com/s77skh49",
       "price": "Free",
       "language": "",
       "online": false,
       "geo": {
-        "lat": 48.14437696060523,
-        "lon": 11.536221272829867
+        "lat": 53.55586656566259,
+        "lon": 9.980791752135927
       },
       "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x3/1720a115-3623-4c9b-8c15-57810c2cb7ba.png",
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8o/7ff89ac8-e719-4161-93f4-91276c456cb1.png",
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-20T13:33:25.380825Z",
+      "indexedAt": "2026-10-21T04:43:54.991555Z",
       "key": "cde2f8ec13f6ed0ed26f5547"
     },
     {
