@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-21T05:14:45.941301Z",
-  "cursor": 127,
-  "provider_cursor": 45,
+  "generated_at": "2026-10-21T14:17:33.996767Z",
+  "cursor": 141,
+  "provider_cursor": 57,
   "providers_processed": [
-    "lg-ai",
-    "samsung-ai",
-    "fujitsu-ai",
-    "nec-ai",
-    "rakuten-ai",
-    "preferred-networks",
-    "stability-ai",
-    "black-forest-labs",
-    "midjourney",
-    "runway",
-    "pika",
-    "luma-ai"
+    "ideogram",
+    "leonardo",
+    "recraft",
+    "adobe-firefly",
+    "elevenlabs",
+    "suno",
+    "zuno",
+    "udio",
+    "hume",
+    "cartesia",
+    "deepgram",
+    "assemblyai"
   ],
   "regions_processed": [
-    "Gurugram, India",
-    "Ho Chi Minh City, Vietnam",
-    "Hanoi, Vietnam",
-    "Manila, Philippines",
-    "Surabaya, Indonesia",
-    "Phnom Penh, Cambodia",
-    "Yangon, Myanmar",
-    "Macau",
-    "Guangzhou, China",
-    "Chengdu, China",
-    "Hangzhou, China",
-    "Nanjing, China",
-    "Wuhan, China",
-    "Fukuoka, Japan"
+    "Nagoya, Japan",
+    "Busan, South Korea",
+    "Perth, Australia",
+    "Brisbane, Australia",
+    "Adelaide, Australia",
+    "Wellington, New Zealand",
+    "Honolulu, HI, USA",
+    "San Diego, CA, USA",
+    "Denver, CO, USA",
+    "Portland, OR, USA",
+    "Atlanta, GA, USA",
+    "Dallas, TX, USA",
+    "Houston, TX, USA",
+    "Phoenix, AZ, USA"
   ],
-  "event_count": 37,
+  "event_count": 38,
   "events": [
     {
       "title": "NVDIA GTC Berlin",
@@ -57,32 +57,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:11.339286Z",
       "key": "1c702ea0b9cef8e6942e66b5"
-    },
-    {
-      "title": "Architecting Flexible Agentic AI on Amazon EKS, with NVIDIA and LangChain (Singapore)",
-      "start": "2026-10-21T01:00:00Z",
-      "end": "2026-10-21T08:00:00Z",
-      "venue": "Singapore",
-      "locality": "Singapore, Singapore, SG",
-      "description": "",
-      "organizer": "LangChain Events, Amada Echeverria",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/hcrnvpir",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 1.2817984458085316,
-        "lon": 103.851223346074
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/j0/b24b3a34-eea7-4d86-8a71-7bf32eece135.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T16:57:01.807451Z",
-      "key": "5a8bdacad65e213f3a19febe"
     },
     {
       "title": "In-Person Event: Strengthening Cybersecurity with AI: State, Local, and Critical Infrastructure",
@@ -481,6 +455,32 @@
       "key": "b62583747f3de40e8f2ec818"
     },
     {
+      "title": "Dubai LangChain Meetup 2026",
+      "start": "2026-10-31T05:30:00Z",
+      "end": "2026-10-31T11:30:00Z",
+      "venue": "Middlesex University Dubai - Main Campus",
+      "locality": "Middlesex University Dubai - Main Campus, Middlesex University Dubai - Main Campus, دبي, دبي, AE",
+      "description": "",
+      "organizer": "Ivan Reznikov, Ivan Reznikov, Amada Echeverria",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/kdnln3uw",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 25.1034297,
+        "lon": 55.164335799999996
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/xu/b551d77a-7422-4eb3-b367-e2a44c27fcac.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-21T13:46:47.133882Z",
+      "key": "f9c2cf44e0cfd4710009d02e"
+    },
+    {
       "title": "MongoDB.local Tel Aviv",
       "start": "2026-11-02T00:00:00Z",
       "end": "2026-11-02T00:00:00Z",
@@ -815,6 +815,32 @@
       ],
       "indexedAt": "2026-10-03T14:40:36.681490Z",
       "key": "2b3a159d5f11cdf5caedac95"
+    },
+    {
+      "title": "LangChain Meetup - Day in the life of a token in the European cloud: AI on sovereign infrastructure",
+      "start": "2026-11-25T16:30:00Z",
+      "end": "2026-11-25T20:00:00Z",
+      "venue": "evroc",
+      "locality": "evroc, evroc, Stockholm, Stockholms län, SE",
+      "description": "",
+      "organizer": "Gustaf G, Gustaf G, Amada Echeverria, evroc",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/9dni7s4o",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 59.319262499999994,
+        "lon": 18.0740402
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/w1/87234c93-08d4-42b3-97ba-ec84a29fb1fe.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-21T13:46:47.134455Z",
+      "key": "8e0586974dcd167d57ac738d"
     },
     {
       "title": "AWS re:Invent",
