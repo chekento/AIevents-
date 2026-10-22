@@ -1,37 +1,37 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-21T23:48:28.504328Z",
-  "cursor": 1,
-  "provider_cursor": 81,
+  "generated_at": "2026-10-22T05:12:11.535574Z",
+  "cursor": 15,
+  "provider_cursor": 93,
   "providers_processed": [
-    "harvey",
-    "writer",
-    "jasper",
-    "copyai",
-    "typeface",
-    "together",
-    "fireworks",
-    "groq",
-    "cerebras",
-    "sambanova",
-    "lambda",
-    "coreweave"
+    "crusoe",
+    "nebius",
+    "replicate",
+    "modal",
+    "baseten",
+    "bentoml",
+    "anyscale",
+    "huggingface",
+    "modelscope",
+    "openrouter",
+    "litellm",
+    "vercel-ai"
   ],
   "regions_processed": [
-    "Quito, Ecuador",
-    "Montevideo, Uruguay",
-    "Panama City, Panama",
-    "San José, Costa Rica",
-    "Santo Domingo, Dominican Republic",
-    "San Juan, Puerto Rico",
-    "Brasília, Brazil",
-    "Rio de Janeiro, Brazil",
-    "Belo Horizonte, Brazil",
-    "Porto Alegre, Brazil",
-    "Recife, Brazil",
-    "Córdoba, Argentina",
-    "Medellín, Colombia",
-    "Hamburg, Germany"
+    "Kiel, Germany",
+    "Lübeck, Germany",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Frankfurt, Germany",
+    "Cologne, Germany",
+    "Düsseldorf, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria",
+    "Zurich, Switzerland",
+    "Amsterdam, Netherlands",
+    "Brussels, Belgium",
+    "Paris, France",
+    "London, United Kingdom"
   ],
   "event_count": 38,
   "events": [
@@ -579,10 +579,10 @@
       "end": "2026-11-06T04:30:00Z",
       "venue": "San Francisco, CA",
       "locality": "San Francisco, CA, San Francisco, California, US",
-      "description": "",
+      "description": "Join us in San Francisco (SoMa) for a night of talks on building with decision models and using them to evaluate agents. Sydney Runkle, a Product Manager on our OSS team, will show how to pair Jev with traditional LLMs to build effective agents. Seán Roche, an Education Engineer, will cover Jev as a judge for agent evals. 🎤 Talk 1: Decision Models and LangGraph with Sydney Most agents send every judgment call to a frontier LLM. That covers which model to route to, which tools to load, whether an action is safe and whether the work is good enough, so each step is slower and more expensive than it needs to be. Decision models like TypeSafe AI's Jev are built for these calls. They don't generate text. They answer typed questions about an agent's state with calibrated probabilities. In this talk, we cover how decision models work, where they fit in an agent harness, and why getting good answers from them is still a context engineering problem. We'll close with a pattern for pairing them with LLMs: cheap by default, frontier on exception. 🎤 Talk 2: Jev as a judge with Seán Code-based evals are fast but narrow, and LLM judges are flexible but slow, expensive, and inconsistent. We tested ",
       "organizer": "LangChain Events, Amada Echeverria, Sydney Runkle, sean",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
+      "sourceUrl": "https://luma.com/iuc3ostf",
       "eventUrl": "https://luma.com/iuc3ostf",
       "price": "Free",
       "language": "",
@@ -596,7 +596,7 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-21T20:09:29.038652Z",
+      "indexedAt": "2026-10-22T04:41:50.075722Z",
       "key": "b102d38e281f1ad47a54384c"
     },
     {
@@ -681,10 +681,10 @@
       "end": "2026-11-13T01:30:00Z",
       "venue": "Cambridge, MA",
       "locality": "Cambridge, MA, Cambridge, Massachusetts, US",
-      "description": "",
+      "description": "Join the LangChain team in Boston (Harvard Square) for an evening of three talks on what it takes to move from prototype to production. You'll hear from Mason Daugherty on the OSS team, and from Eugene Liu and Michael Dik on our Deployed Engineering team, who work with teams on getting agents into production. 🎤 Talk 1: From Prototype to Production: The architectural foundation of production agents with Michael Explore the common themes and challenges when moving AI agents from prototype to production. Learn how to navigate critical considerations like identity, guardrails, evaluations, tool access, and memory to build reliable, secure, and scalable agents. 🎤 Talk 2: Building a Coding Agent Your Team Owns with Mason Mason will walk us through his team's experience building Open SWE and unique challenges in building a coding agent. 🎤 Talk 3: Making Agent Memory Grounded, Traceable, and Useful with Eugene Agents can retrieve facts, but answering complex questions across disconnected sources means remembering how sources connect—and showing the evidence behind what they say. This talk explores how compiled wikis and evidence graphs make agent memory more grounded, traceable, and useful",
       "organizer": "LangChain Events, Amada Echeverria, Mason Daugherty",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
+      "sourceUrl": "https://luma.com/x2d94ihu",
       "eventUrl": "https://luma.com/x2d94ihu",
       "price": "Free",
       "language": "",
@@ -698,7 +698,7 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-21T20:09:29.039147Z",
+      "indexedAt": "2026-10-22T04:41:49.801629Z",
       "key": "49a2bd8b09496567b52a9cba"
     },
     {
@@ -730,10 +730,10 @@
       "end": "2026-11-19T04:00:00Z",
       "venue": "Seattle, WA",
       "locality": "Seattle, WA, Seattle, Washington, US",
-      "description": "",
+      "description": "Join us for the first-ever LangChain Seattle Meetup, hosted by our friends at Expedia Group at their HQ campus in Seattle. We'll kick things off with Mani Najmabadi, Director of Applied Science at Expedia Group, as he shares the latest on the state of agents at Expedia. Next, LangChain CEO and Co-Founder Harrison Chase will present on the topic of continuously improving agents. And finally, Harrison will sit down with Xavi Amatriain, Expedia Group's Chief AI and Data Officer, to talk about what it takes to build and run agents in production at scale. A short Q&A session will follow. 5:45 PM: Welcome | Food & Drinks 6:20 PM: Agent Trends and Trajectory in Travel; Expedia's Agentic Journey (Mani) 6:35 PM: Building Agents that Improve Over Time (Harrison) 7:00 PM: Conversation between Harrison & Xavi 7:25 PM: Q&A Session with Harrison & Xavi 7:45 PM: Networking 8:30 PM: Event Ends About the host: LangChain enables every company to own their intelligence. LangChain's open, model-agnostic harnesses give teams choice and control over how they build their agent architecture. LangSmith brings testing, deployment, and monitoring together so teams can continuously improve their agents, compo",
       "organizer": "LangChain Events, Amada Echeverria, Jake Hongladarom",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
+      "sourceUrl": "https://luma.com/h3w0aaol",
       "eventUrl": "https://luma.com/h3w0aaol",
       "price": "Free",
       "language": "",
@@ -743,11 +743,11 @@
         "lon": -122.37329526678393
       },
       "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/lm/3f8b15b0-9a73-4311-ae9f-87ae5d1e8703.png",
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x5/0527718c-7801-4ff8-8bbb-92cd435dbc4b.png",
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-21T04:43:54.156720Z",
+      "indexedAt": "2026-10-22T04:41:49.503573Z",
       "key": "0ac132acb9aa2c520d1993f2"
     },
     {
