@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-27T15:01:00.567209Z",
-  "cursor": 113,
-  "provider_cursor": 80,
+  "generated_at": "2026-10-28T06:00:50.443633Z",
+  "cursor": 127,
+  "provider_cursor": 92,
   "providers_processed": [
-    "sierra",
-    "harvey",
-    "writer",
-    "jasper",
-    "copyai",
-    "typeface",
-    "together",
-    "fireworks",
-    "groq",
-    "cerebras",
-    "sambanova",
-    "lambda"
+    "coreweave",
+    "crusoe",
+    "nebius",
+    "replicate",
+    "modal",
+    "baseten",
+    "bentoml",
+    "anyscale",
+    "huggingface",
+    "modelscope",
+    "openrouter",
+    "litellm"
   ],
   "regions_processed": [
-    "Doha, Qatar",
-    "Abu Dhabi, United Arab Emirates",
-    "Manama, Bahrain",
-    "Kuwait City, Kuwait",
-    "Amman, Jordan",
-    "Beirut, Lebanon",
-    "Karachi, Pakistan",
-    "Lahore, Pakistan",
-    "Dhaka, Bangladesh",
-    "Colombo, Sri Lanka",
-    "Kathmandu, Nepal",
-    "Hyderabad, India",
-    "Chennai, India",
-    "Pune, India"
+    "Gurugram, India",
+    "Ho Chi Minh City, Vietnam",
+    "Hanoi, Vietnam",
+    "Manila, Philippines",
+    "Surabaya, Indonesia",
+    "Phnom Penh, Cambodia",
+    "Yangon, Myanmar",
+    "Macau",
+    "Guangzhou, China",
+    "Chengdu, China",
+    "Hangzhou, China",
+    "Nanjing, China",
+    "Wuhan, China",
+    "Fukuoka, Japan"
   ],
-  "event_count": 32,
+  "event_count": 33,
   "events": [
     {
       "title": "EMNLP 2026",
@@ -57,55 +57,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:11.696349Z",
       "key": "836898d56d99d9283315bbab"
-    },
-    {
-      "title": "LangChain x Data Reply Hackathon: Building with Agent Harnesses (Munich)",
-      "start": "2026-10-27T16:00:00Z",
-      "end": "2026-10-27T20:00:00Z",
-      "venue": "München, Germany",
-      "locality": "München, Germany, München, Bayern, DE",
-      "description": "This hackathon is about building with agent harnesses, hands-on, alongside the people building the tools. We're teaming up with LangChain Ambassador Zamal Babar and Data Reply to host an evening of talks and hacking in Munich. You'll form small groups, build a deep agent from scratch, and demo it to a panel of judges by the end of the night. What you'll build The theme is agent harnesses — the scaffolding that turns a model into a system that can plan, use tools, and recover from its own mistakes. Steffen Hausmann will kick things off with two short talks: one on deep agents, and one on managed deep agents. Then you'll put it into practice. A few days before the event, we'll send out a prompt so you can come with an idea already in mind. Use the time before the hackathon to think through your approach — you'll want it once the clock starts. What to bring Your laptop and a group to hack with (we'll help you form one if you don't have one) Your own API keys for any models or tools you plan to use Questions for Steffen, Zamal, and the Data Reply team — they'll be around all night We'll provide LangSmith credits to every attendee for the event, so you can trace and debug your agent as ",
-      "organizer": "LangChain Events, Amada Echeverria, Zamal, Sinan Ezer, Leo Friederich, Steffen Hausmann",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/g6kvvori",
-      "eventUrl": "https://luma.com/g6kvvori",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 48.14650190304115,
-        "lon": 11.540233180314168
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x3/1720a115-3623-4c9b-8c15-57810c2cb7ba.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T16:57:03.024823Z",
-      "key": "4a002f16092c2d0f1db11349"
-    },
-    {
-      "title": "Meet Your Quota: An SDR Recruiting Social at LangChain",
-      "start": "2026-10-28T01:00:00Z",
-      "end": "2026-10-28T03:30:00Z",
-      "venue": "",
-      "locality": "",
-      "description": "",
-      "organizer": "LangChain Events, LangChain Events",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/ubhnxwnu",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 85,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/15/66101cfc-1958-44c4-bcff-eadda4d956e1.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-19T21:03:01.302768Z",
-      "key": "4ebc5adb47082541d42b86e8"
     },
     {
       "title": "SG Agentic Nights - Exclusive Hands on Labs with Docker",
@@ -443,6 +394,29 @@
       "key": "bf9e91c7102c085f29e2fd75"
     },
     {
+      "title": "ChatGPT for what's next - St. Louis, MO",
+      "start": "2026-11-12T14:30:00.477000Z",
+      "end": "2026-11-12T18:00:57.016000Z",
+      "venue": "The Post Building",
+      "locality": "The Post Building, The Post Building, St. Louis, MO, US",
+      "description": "Use ChatGPT to move one real thing forward.Whether you're looking for your next job, thinking about school, starting a business, or just trying to make everyday tasks easier, this workshop is built to help you take a practical next step.Join OpenAI Academy and NPower for a hands-on session for veterans, military spouses, and military-connected community members. You'll watch practical examples, try ChatGPT on a task that matters to you, and leave with one thing improved and a clearer sense of how AI can support whatever comes next.No prior AI experience is required.How it works\n• Watch a practical example\n• Try it on a real task\n• Share what worked and leave with a next stepWhat you'll do\n• Write clearer prompts that produce more useful results\n• Research and organize information more effectively\n• Turn a rough idea or task into a%2",
+      "organizer": "OpenAI Academy",
+      "sourceName": "academy.openai.com",
+      "sourceUrl": "https://academy.openai.com/public/events/chatgpt-for-whats-next-st-louis-mo-0khw38ivta",
+      "eventUrl": "https://academy.openai.com/public/events/chatgpt-for-whats-next-st-louis-mo-0khw38ivta",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/OpenAI-Academy-Event-Card-Templates-1--b5416281-aa2b-465e-9421-18bf7d467568-1789160757668.jpeg?fit=scale-down&width=1200",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-28T05:41:04.083064Z",
+      "key": "65fa20ead447016f27b7faed"
+    },
+    {
       "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
       "start": "2026-11-12T17:30:00Z",
       "end": "2026-11-12T21:00:00Z",
@@ -543,12 +517,35 @@
       "key": "ec218651b096bae82652480b"
     },
     {
+      "title": "ChatGPT for veterans - Nashville, TN",
+      "start": "2026-11-14T14:30:00.025000Z",
+      "end": "2026-11-14T19:00:38.632000Z",
+      "venue": "Operation Stand Down Tennessee",
+      "locality": "Operation Stand Down Tennessee, Operation Stand Down Tennessee, Nashville, Tennessee, United States",
+      "description": "Join OpenAI Academy, Veterans Forge, and Wounded Warrior Project for a hands-on workshop helping veterans and transitioning service members build confidence with AI. Explore tools for career development, writing, research, and everyday productivity through guided instruction and exercises. We'll begin together with opening remarks and a brief orientation. Participants will then divide into two learning tracks based on experience, with demonstrations, real-world exercises, and support as they try the tools themselves.Build reusable prompts and repeatable workflows, and explore ideas for applying AI to your next chapter. We'll close with key takeaways and questions, followed by an optional lunch and networking.Who should attend: Veterans and transitioning service members who want hands-on experience with AI. No advanced technical background is required. Advance registration is required. Lunch is provided.Eligible partici",
+      "organizer": "OpenAI Academy",
+      "sourceName": "academy.openai.com",
+      "sourceUrl": "https://academy.openai.com/public/events/chatgpt-for-veterans-nashville-tn-dix3h7movo",
+      "eventUrl": "https://academy.openai.com/public/events/chatgpt-for-veterans-nashville-tn-dix3h7movo",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/nashville-approved-card-latest-5b5139f0-0673-41e7-bbb2-650dc2c18b39-1793128983846.jpeg?fit=scale-down&width=1200",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-28T05:41:06.167969Z",
+      "key": "5d2e332a48d9bdbe60dda97b"
+    },
+    {
       "title": "Protecting Children Online: Harnessing AI tools to fight against child exploitation",
       "start": "2026-11-16T14:30:00.579000Z",
       "end": "2026-11-16T19:00:34.277000Z",
       "venue": "901 F St NW",
       "locality": "901 F St NW, 901 F St NW, Washington, DC 20004, Washington, DC",
-      "description": "About the Event:How can AI help protect children online and support the investigators working to keep them safe? The OpenAI Forum will convene policymakers, law enforcement, technology leaders, and child-safety organizations for a morning discussion exploring how practical tools and cross-sector collaboration can help prevent, detect, and respond to child exploitation. Following lunch, a training session exclusively for law enforcement child-safety investigators will focus on using AI responsibly to support investigative work. This invitation-only, in-person event will take place in Washington, DC, with the address shared upon RSVP confirmation. More speakers will be announced soon.",
+      "description": "About the Event: How can AI help protect children online and support the investigators working to keep them safe? The OpenAI Forum will convene policymakers, law enforcement, technology leaders, and child-safety organizations for a morning discussion exploring how practical tools and cross-sector collaboration can help prevent, detect, and respond to child exploitation. Following lunch, a training session exclusively for law enforcement child-safety investigators will focus on using AI responsibly to support investigative work. This invitation-only, in-person event will take place in Washington, DC, with the address shared upon RSVP confirmation. More speakers will be announced soon. About the Speakers: Melissa Stroebel is Vice President of Business Development & Strategic Impact at Thorn, a nonprofit dedicated to transforming how children are protected from sexual abuse and exploitation in the digital age. With nearly two",
       "organizer": "OpenAI Forum",
       "sourceName": "forum.openai.com",
       "sourceUrl": "https://forum.openai.com/public/events/protecting-children-online-harnessing-ai-tools-to-fight-against-child-exploitation-gfxwhfvkjb",
@@ -562,7 +559,7 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-26T21:01:09.225653Z",
+      "indexedAt": "2026-10-28T05:40:58.199532Z",
       "key": "62d06f11d92cae47081c4560"
     },
     {
@@ -784,6 +781,29 @@
       ],
       "indexedAt": "2026-10-06T18:21:47.155003Z",
       "key": "473b5f65eecaeb5f4f0cc224"
+    },
+    {
+      "title": "Building & Governing Banking Agents with Managed Deep Agents & Arcade.dev",
+      "start": "2026-12-09T08:00:00Z",
+      "end": null,
+      "venue": "",
+      "locality": "",
+      "description": "Getting an agent to work in a demo is the easy part. Getting it through a security review is harder. In this virtual workshop, learn how to build a loan-processing agent and take it from first run to a governed, observable deployment.",
+      "organizer": "LangChain",
+      "sourceName": "langchain.com",
+      "sourceUrl": "https://langchain.com/events",
+      "eventUrl": "https://langchain.com/events",
+      "price": "",
+      "language": "",
+      "online": true,
+      "geo": null,
+      "confidence": 90,
+      "imageUrl": "https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/69dec21b434f80e164c20e9d_events.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-10-28T05:40:12.531358Z",
+      "key": "f80885bc90c95b9a96643bc7"
     },
     {
       "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
