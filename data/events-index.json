@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-02T18:50:51.482035Z",
-  "cursor": 29,
-  "provider_cursor": 55,
+  "generated_at": "2026-11-03T02:48:39.019370Z",
+  "cursor": 43,
+  "provider_cursor": 67,
   "providers_processed": [
-    "pika",
-    "luma-ai",
-    "ideogram",
-    "leonardo",
-    "recraft",
-    "adobe-firefly",
-    "elevenlabs",
-    "suno",
-    "zuno",
-    "udio",
-    "hume",
-    "cartesia"
+    "deepgram",
+    "assemblyai",
+    "speechmatics",
+    "resemble",
+    "playht",
+    "synthesia",
+    "heygen",
+    "character-ai",
+    "inflection",
+    "perplexity",
+    "youcom",
+    "phind"
   ],
   "regions_processed": [
-    "Dublin, Ireland",
-    "Madrid, Spain",
-    "Barcelona, Spain",
-    "Lisbon, Portugal",
-    "Milan, Italy",
-    "Rome, Italy",
-    "Stockholm, Sweden",
-    "Copenhagen, Denmark",
-    "Helsinki, Finland",
-    "Oslo, Norway",
-    "Warsaw, Poland",
-    "Prague, Czech Republic",
-    "Tallinn, Estonia",
-    "Bucharest, Romania"
+    "Athens, Greece",
+    "Istanbul, Turkey",
+    "New York, NY, USA",
+    "Boston, MA, USA",
+    "Washington, DC, USA",
+    "Miami, FL, USA",
+    "Austin, TX, USA",
+    "Chicago, IL, USA",
+    "Seattle, WA, USA",
+    "San Francisco, CA, USA",
+    "Los Angeles, CA, USA",
+    "Toronto, Canada",
+    "Montreal, Canada",
+    "Vancouver, Canada"
   ],
-  "event_count": 32,
+  "event_count": 33,
   "events": [
     {
       "title": "Building & Governing Banking Agents w/ Arcade.dev & LangSmith Deep Agents",
@@ -149,6 +149,29 @@
       ],
       "indexedAt": "2026-10-09T06:06:50.327957Z",
       "key": "488f9c918faba05964acfc87"
+    },
+    {
+      "title": "ChatGPT for nonprofits and small businesses: Port Washington, WI",
+      "start": "2026-11-05T14:30:00Z",
+      "end": "2026-11-05T18:00:00Z",
+      "venue": "Ozaukee Nonprofit Center",
+      "locality": "Ozaukee Nonprofit Center, Ozaukee Nonprofit Center, Grafton, Wisconsin, United States",
+      "description": "A morning workshop for local teams across Ozaukee County.Join OpenAI Academy and the Ozaukee Nonprofit Center for a free, hands-on morning designed for nonprofit and small business staff and leaders in Port Washington and across Ozaukee County. Explore how ChatGPT can support your work: developing ideas, drafting communications, researching questions, and turning recurring tasks into more manageable workflows.Through guided demonstrations and time to try things yourself, you'll practice giving ChatGPT clearer instructions, refining its responses, and checking its work. Come on your own or bring colleagues so you can learn together and discuss where these skills could help your organization.What you'll explore\n• Writing and refining prompts for everyday nonprofit work\n• Brainstorming, drafting, and researching with ChatGPT\n• Building repeatable approaches to recurring tasks\n• Reviewing ",
+      "organizer": "OpenAI Academy",
+      "sourceName": "academy.openai.com",
+      "sourceUrl": "https://academy.openai.com/public/events/chatgpt-for-nonprofits-and-small-businesses-port-washington-wi-umyoyasrk4",
+      "eventUrl": "https://academy.openai.com/public/events/chatgpt-for-nonprofits-and-small-businesses-port-washington-wi-umyoyasrk4",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/2026-11-05-Port-Washington-Academy-event-covers-956a889e-50b5-4256-983f-29779bf570f1-1793650303822.jpeg?fit=scale-down&width=1200",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-03T02:18:31.150045Z",
+      "key": "37a418ea50416c554592d64c"
     },
     {
       "title": "ChatGPT for nonprofits: Port Washington",
@@ -468,7 +491,7 @@
       "end": "2026-11-16T19:00:34.277000Z",
       "venue": "901 F St NW",
       "locality": "901 F St NW, 901 F St NW, Washington, DC 20004, Washington, DC",
-      "description": "About the Event: How can AI help protect children online and support the investigators working to keep them safe? The OpenAI Forum will convene policymakers, law enforcement, technology leaders, and child-safety organizations for a morning discussion exploring how practical tools and cross-sector collaboration can help prevent, detect, and respond to child exploitation. Following lunch, a training session exclusively for law enforcement child-safety investigators will focus on using AI responsibly to support investigative work. This invitation-only, in-person event will take place in Washington, DC, with the address shared upon RSVP confirmation. More speakers will be announced soon. About the Speakers: Melissa Stroebel is Vice President of Business Development & Strategic Impact at Thorn, a nonprofit dedicated to transforming how children are protected from sexual abuse and exploitation in the digital age. With nearly two",
+      "description": "About the Event: How can AI help protect children online and support the investigators working to keep them safe? The OpenAI Forum will convene policymakers, law enforcement, technology leaders, and child-safety organizations for a morning discussion exploring how practical tools and cross-sector collaboration can help prevent, detect, and respond to child exploitation. Following lunch, a training session exclusively for law enforcement child-safety investigators will focus on using AI responsibly to support investigative work. This invitation-only, in-person event will take place in Washington, DC, with the address shared upon RSVP confirmation. More speakers will be announced soon.About the Speakers: Jason Kwon is Chief Strategy Officer at OpenAI, overseeing policy, legal, risk, social impact research, international, marketing, and communications. He previously served as general counsel of Y Combinator Continuity, assistant gene",
       "organizer": "OpenAI Forum",
       "sourceName": "forum.openai.com",
       "sourceUrl": "https://forum.openai.com/public/events/protecting-children-online-harnessing-ai-tools-to-fight-against-child-exploitation-gfxwhfvkjb",
@@ -482,7 +505,7 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-28T05:40:58.199532Z",
+      "indexedAt": "2026-11-03T02:18:27.651578Z",
       "key": "62d06f11d92cae47081c4560"
     },
     {
