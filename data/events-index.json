@@ -1,62 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-04T12:37:08.580106Z",
-  "cursor": 99,
-  "provider_cursor": 115,
+  "generated_at": "2026-11-04T20:15:06.716138Z",
+  "cursor": 113,
+  "provider_cursor": 127,
   "providers_processed": [
-    "pydantic-ai",
-    "dspy",
-    "guidance",
-    "outlines",
-    "instructor",
-    "guardrails-ai",
-    "nemo-guardrails",
-    "autogpt",
-    "composio",
-    "langgraph",
-    "mastra",
-    "dify"
+    "flowise",
+    "n8n",
+    "zapier-ai",
+    "make-ai",
+    "gumloop",
+    "dust",
+    "stack-ai",
+    "relevance-ai",
+    "langsmith",
+    "langfuse",
+    "helicone",
+    "arize"
   ],
   "regions_processed": [
-    "Tbilisi, Georgia",
-    "Yerevan, Armenia",
-    "Baku, Azerbaijan",
-    "Cairo, Egypt",
-    "Casablanca, Morocco",
-    "Tunis, Tunisia",
-    "Accra, Ghana",
-    "Addis Ababa, Ethiopia",
-    "Kigali, Rwanda",
-    "Dar es Salaam, Tanzania",
-    "Kampala, Uganda",
-    "Abidjan, Côte d’Ivoire",
-    "Dakar, Senegal",
-    "Riyadh, Saudi Arabia"
+    "Doha, Qatar",
+    "Abu Dhabi, United Arab Emirates",
+    "Manama, Bahrain",
+    "Kuwait City, Kuwait",
+    "Amman, Jordan",
+    "Beirut, Lebanon",
+    "Karachi, Pakistan",
+    "Lahore, Pakistan",
+    "Dhaka, Bangladesh",
+    "Colombo, Sri Lanka",
+    "Kathmandu, Nepal",
+    "Hyderabad, India",
+    "Chennai, India",
+    "Pune, India"
   ],
-  "event_count": 31,
+  "event_count": 32,
   "events": [
-    {
-      "title": "Women in AI - Interview with Cassie",
-      "start": "2026-11-04T15:00:00Z",
-      "end": "2026-11-04T16:00:00Z",
-      "venue": "",
-      "locality": "",
-      "description": "Women in AI - Interview with Cassie",
-      "organizer": "Global AI Budapest",
-      "sourceName": "globalai.community",
-      "sourceUrl": "https://globalai.community/e/0vqa0fic",
-      "eventUrl": "https://globalai.community/e/0vqa0fic",
-      "price": "",
-      "language": "",
-      "online": true,
-      "geo": null,
-      "confidence": 68,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:25:27.146011Z",
-      "key": "dc2bcfb063bc78118158c6f9"
-    },
     {
       "title": "Global AI Tallahassee - Monthly MeetUp",
       "start": "2026-11-04T22:00:00Z",
@@ -510,6 +488,32 @@
       "key": "dff014981e668d4f35c63f54"
     },
     {
+      "title": "Friends of LangChain Party (New York)",
+      "start": "2026-11-17T23:00:00Z",
+      "end": "2026-11-18T02:00:00Z",
+      "venue": "New York, NY",
+      "locality": "New York, NY, New York, New York, US",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/6zsv3ps6",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 40.740798586402185,
+        "lon": -74.00076995963335
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/d8/789b0e17-30e3-4b16-8352-291dfcecc6eb.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-04T19:44:05.983385Z",
+      "key": "0f3dbc87326e73781932fd94"
+    },
+    {
       "title": "LangChain Seattle Meetup: An Evening with Harrison Chase & Xavi Amatriain",
       "start": "2026-11-19T01:45:00Z",
       "end": "2026-11-19T04:00:00Z",
@@ -630,6 +634,32 @@
       ],
       "indexedAt": "2026-10-03T14:40:36.681490Z",
       "key": "2b3a159d5f11cdf5caedac95"
+    },
+    {
+      "title": "KRAKÓW: Own Your AI Intelligence | LangChain Meetup",
+      "start": "2026-11-24T17:00:00Z",
+      "end": "2026-11-24T21:00:00Z",
+      "venue": "HEVRE | Bar & Restaurant",
+      "locality": "HEVRE | Bar & Restaurant, HEVRE | Bar & Restaurant, Kraków, Województwo małopolskie, PL",
+      "description": "",
+      "organizer": "Simon Budziak, Simon Budziak, Amada Echeverria, Bart Ludera",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain?k=c",
+      "eventUrl": "https://luma.com/3cajjgml",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 50.0511833,
+        "lon": 19.9434319
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/pk/c6fc8c3b-4a66-4174-ad2a-2766748d0526.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-04T19:44:05.983898Z",
+      "key": "ad8509bc2f2c246ff3f36622"
     },
     {
       "title": "LangChain Meetup - Day in the life of a token in the European cloud: AI on sovereign infrastructure",
