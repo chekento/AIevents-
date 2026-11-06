@@ -1,88 +1,117 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-05T22:30:12.040963Z",
-  "cursor": 141,
-  "provider_cursor": 151,
+  "generated_at": "2026-11-06T07:10:57.994277Z",
+  "cursor": 155,
+  "provider_cursor": 163,
   "providers_processed": [
-    "maxim",
-    "evidently",
-    "giskard",
-    "lakera",
-    "protect-ai",
-    "hiddenlayer",
-    "calypsoai",
-    "promptlayer",
-    "promptfoo",
-    "portkey",
-    "keywords-ai",
-    "langwatch"
+    "openlit",
+    "opik",
+    "honeyhive",
+    "agentops",
+    "parea",
+    "llmops-space",
+    "kubeflow",
+    "mlflow",
+    "comet",
+    "clearml",
+    "neptune",
+    "dvc"
   ],
   "regions_processed": [
-    "Nagoya, Japan",
-    "Busan, South Korea",
-    "Perth, Australia",
-    "Brisbane, Australia",
-    "Adelaide, Australia",
-    "Wellington, New Zealand",
-    "Honolulu, HI, USA",
-    "San Diego, CA, USA",
-    "Denver, CO, USA",
-    "Portland, OR, USA",
-    "Atlanta, GA, USA",
-    "Dallas, TX, USA",
-    "Houston, TX, USA",
-    "Phoenix, AZ, USA"
+    "Minneapolis, MN, USA",
+    "Philadelphia, PA, USA",
+    "Detroit, MI, USA",
+    "Raleigh, NC, USA",
+    "Charlotte, NC, USA",
+    "Pittsburgh, PA, USA",
+    "Nashville, TN, USA",
+    "Salt Lake City, UT, USA",
+    "Ottawa, Canada",
+    "Calgary, Canada",
+    "Edmonton, Canada",
+    "Guadalajara, Mexico",
+    "Monterrey, Mexico",
+    "Lima, Peru"
   ],
-  "event_count": 28,
+  "event_count": 45,
   "events": [
     {
-      "title": "ChatGPT for small business: Port Washington, WI",
-      "start": "2026-11-05T20:30:00Z",
-      "end": "2026-11-06T00:00:00Z",
-      "venue": "Ozaukee Nonprofit Center",
-      "locality": "Ozaukee Nonprofit Center, Ozaukee Nonprofit Center, Grafton, Wisconsin, United States",
-      "description": "Step away from the day-to-day and invest an afternoon in skills you can bring back to your business.Join OpenAI Academy for a free, hands-on workshop for small-business owners, operators, and teams in Port Washington and across Ozaukee County. Explore how ChatGPT can help you develop ideas, draft marketing and customer communications, research questions, and tackle recurring work with greater confidence.You'll see guided demonstrations, try the tools yourself, and practice turning a real business question into a useful starting point. This is professional development built around the work you already do with time to learn alongside other local businesspeople and consider where AI can fit in your own business.What you'll explore:\n• Giving ChatGPT clearer instructions and refining its responses\n• Brainstorming ideas and drafting content for your business\n• Researching questions and developing%",
-      "organizer": "Small Business",
-      "sourceName": "academy.openai.com",
-      "sourceUrl": "https://academy.openai.com/public/clubs/small-business-ipf4m/events/chatgpt-for-small-business-port-washington-wi-8flncnxbye",
-      "eventUrl": "https://academy.openai.com/public/clubs/small-business-ipf4m/events/chatgpt-for-small-business-port-washington-wi-8flncnxbye",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 95,
-      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/OpenAI-Academy-Event-Card-Templates-3--7325a95a-dd9c-4b3d-a201-6f0992fc3b5f-1792787097964.jpeg?fit=scale-down&width=1200",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-26T21:01:15.321826Z",
-      "key": "98b18c0666b487ccf8e8363c"
-    },
-    {
-      "title": "LangChain SF Meetup: Judgment Calls",
-      "start": "2026-11-06T02:00:00Z",
-      "end": "2026-11-06T04:30:00Z",
-      "venue": "San Francisco, CA",
-      "locality": "San Francisco, CA, San Francisco, California, US",
-      "description": "Join us in San Francisco (SoMa) for a night of talks on building with decision models and using them to evaluate agents. Sydney Runkle, a Product Manager on our OSS team, will show how to pair Jev with traditional LLMs to build effective agents. Seán Roche, an Education Engineer, will cover Jev as a judge for agent evals. 🎤 Talk 1: Decision Models and LangGraph with Sydney Most agents send every judgment call to a frontier LLM. That covers which model to route to, which tools to load, whether an action is safe and whether the work is good enough, so each step is slower and more expensive than it needs to be. Decision models like TypeSafe AI's Jev are built for these calls. They don't generate text. They answer typed questions about an agent's state with calibrated probabilities. In this talk, we cover how decision models work, where they fit in an agent harness, and why getting good answers from them is still a context engineering problem. We'll close with a pattern for pairing them with LLMs: cheap by default, frontier on exception. 🎤 Talk 2: Jev as a judge with Seán Code-based evals are fast but narrow, and LLM judges are flexible but slow, expensive, and inconsistent. We tested ",
-      "organizer": "LangChain Events, Amada Echeverria, Sydney Runkle, sean",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/iuc3ostf",
-      "eventUrl": "https://luma.com/iuc3ostf",
-      "price": "Free",
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-11-06T15:00:00Z",
+      "end": "2026-11-06T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/di6fyfdo",
+      "price": "",
       "language": "",
       "online": false,
       "geo": {
-        "lat": 37.78426739018519,
-        "lon": -122.39417148713738
+        "lat": 53.542888,
+        "lon": 10.000975
       },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/oh/15d1315e-5606-485c-87b0-756195c45483.png",
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-22T04:41:50.075722Z",
-      "key": "b102d38e281f1ad47a54384c"
+      "indexedAt": "2026-11-06T06:41:12.368303Z",
+      "key": "acd7b254c516d83886ef5141"
+    },
+    {
+      "title": "agentic coding studio",
+      "start": "2026-11-07T09:00:00Z",
+      "end": "2026-11-07T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/m1doh0e1",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/b5/41ccda86-b2df-4db9-a77f-83105590c8b4.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.368417Z",
+      "key": "2a5074bdd893003323a4b5e1"
+    },
+    {
+      "title": "Community Lunch",
+      "start": "2026-11-11T11:30:00Z",
+      "end": "2026-11-11T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/3nnik58j",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.368507Z",
+      "key": "779ae16bac9b839395ce164e"
     },
     {
       "title": "Vue.js Hamburg Meetup #23",
@@ -397,6 +426,110 @@
       "key": "0f3dbc87326e73781932fd94"
     },
     {
+      "title": "LLMday Hamburg 2026 Q4",
+      "start": "2026-11-18T08:00:00Z",
+      "end": "2026-11-18T16:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/llmday-2026-hamburg-q4",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/event-covers/nx/cc3dc1ae-e391-4db0-b0f8-cec028e647dd.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.368772Z",
+      "key": "2fd3a88fe4dbed890c5f968d"
+    },
+    {
+      "title": "Show & Tell",
+      "start": "2026-11-18T10:30:00Z",
+      "end": "2026-11-18T11:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/lwbhbr8s",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwyMHx8d29ya3Nob3B8ZW58MHx8fHwxNzgyMjUxNjAyfDI&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.368908Z",
+      "key": "3fc56454471917da42eeaf2f"
+    },
+    {
+      "title": "Community Lunch",
+      "start": "2026-11-18T11:30:00Z",
+      "end": "2026-11-18T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/g89i2zi5",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.368995Z",
+      "key": "9815ecf94837755820f521c5"
+    },
+    {
+      "title": "AI & Robotic-Circle Hamburg: One Afternoon in the Future",
+      "start": "2026-11-18T16:45:00Z",
+      "end": "2026-11-18T20:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/b006ejf9",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/3v/c47e8d1f-1d32-4a09-aab7-d3947c11a0ac.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369078Z",
+      "key": "d95c7cad4fdf0fd851e500d3"
+    },
+    {
       "title": "LangChain Seattle Meetup: An Evening with Harrison Chase & Xavi Amatriain",
       "start": "2026-11-19T01:45:00Z",
       "end": "2026-11-19T04:00:00Z",
@@ -568,6 +701,32 @@
       "key": "ad8509bc2f2c246ff3f36622"
     },
     {
+      "title": "Community Lunch",
+      "start": "2026-11-25T11:30:00Z",
+      "end": "2026-11-25T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/3r8yuy46",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369324Z",
+      "key": "e705c9c264704509a9e37593"
+    },
+    {
       "title": "LangChain Meetup - Day in the life of a token in the European cloud: AI on sovereign infrastructure",
       "start": "2026-11-25T16:30:00Z",
       "end": "2026-11-25T20:00:00Z",
@@ -594,6 +753,58 @@
       "key": "8e0586974dcd167d57ac738d"
     },
     {
+      "title": "Hamburg Music & Tech Meetup | #2",
+      "start": "2026-11-25T17:00:00Z",
+      "end": "2026-11-25T21:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/yg74ht1c",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/qr/d0942daf-5b79-41a5-8a7a-98da41f0361e.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369404Z",
+      "key": "4ca752d81f8ff82ae0967645"
+    },
+    {
+      "title": "the scene 002 - art x AI",
+      "start": "2026-11-28T17:00:00Z",
+      "end": "2026-11-28T21:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/t9cmyj7j",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/bc/bdfafb2b-200e-4225-a77d-34b64fc48e3e.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369484Z",
+      "key": "d2d786721f4ba78259d992aa"
+    },
+    {
       "title": "AWS re:Invent",
       "start": "2026-11-30T14:00:00Z",
       "end": "2026-12-04T22:00:00Z",
@@ -615,6 +826,84 @@
       ],
       "indexedAt": "2026-10-03T16:57:12.568281Z",
       "key": "e2afb0dab16c3bd2e7287d9e"
+    },
+    {
+      "title": "Show & Tell",
+      "start": "2026-12-02T10:30:00Z",
+      "end": "2026-12-02T11:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/utq0svsl",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwyMHx8d29ya3Nob3B8ZW58MHx8fHwxNzgyMjUxNjAyfDI&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369565Z",
+      "key": "2634e2d707dced45fcfaf159"
+    },
+    {
+      "title": "Community Lunch",
+      "start": "2026-12-02T11:30:00Z",
+      "end": "2026-12-02T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/4qzs6a0d",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369644Z",
+      "key": "7cd924f7adc1504ffb8adbed"
+    },
+    {
+      "title": "AI Builders Hamburg - Dec 3",
+      "start": "2026-12-03T17:30:00Z",
+      "end": "2026-12-03T21:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/hamburg-dec3",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/api-uploads/pj/29f71359-3a3a-46f6-89c3-1f450144c159.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369724Z",
+      "key": "072f6a09d6e55bed9a7968ff"
     },
     {
       "title": "LangChain x hackers&wizards Hackathon: Building with Agent Harnesses (Hamburg)",
@@ -689,6 +978,136 @@
       "key": "f80885bc90c95b9a96643bc7"
     },
     {
+      "title": "Community Lunch",
+      "start": "2026-12-09T11:30:00Z",
+      "end": "2026-12-09T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/ci9e1u4o",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369905Z",
+      "key": "b89e1696e8fa18c26e71c4b3"
+    },
+    {
+      "title": "12MIN.ME | HAMBURG | IGNITE #124",
+      "start": "2026-12-10T18:12:00Z",
+      "end": "2026-12-10T21:12:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/rea3jxs2",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/la/657be44b-f178-450d-b4f6-fd2cbe960a00.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.369987Z",
+      "key": "1f5f759ed812a1ab5db01e11"
+    },
+    {
+      "title": "Show & Tell",
+      "start": "2026-12-16T10:30:00Z",
+      "end": "2026-12-16T11:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/yxrzh6hp",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwyMHx8d29ya3Nob3B8ZW58MHx8fHwxNzgyMjUxNjAyfDI&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.370069Z",
+      "key": "faea7d45d3e63660d32c654a"
+    },
+    {
+      "title": "Community Lunch",
+      "start": "2026-12-16T11:30:00Z",
+      "end": "2026-12-16T12:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/8btsrgml",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.370148Z",
+      "key": "3569ac5a082b6a722040aa75"
+    },
+    {
+      "title": "Happy Hour (X-Mas Edition)",
+      "start": "2026-12-17T17:00:00Z",
+      "end": "2026-12-17T19:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/kly3g2u2",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/0u/4603b970-f7ee-46c9-9045-82ceeafc8004.jpg",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.370229Z",
+      "key": "8df37ff6c8c9fc11fd580732"
+    },
+    {
       "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
       "start": "2027-01-27T17:00:00Z",
       "end": "2027-01-27T20:30:00Z",
@@ -712,6 +1131,32 @@
       ],
       "indexedAt": "2026-10-03T14:38:03.347781Z",
       "key": "aead90a6b887c658fe9af77c"
+    },
+    {
+      "title": "Future of AI Dinner · Hamburg nach Davos",
+      "start": "2027-02-03T17:30:00Z",
+      "end": "2027-02-03T20:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/gqxe1in3",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1755947119859-f78c06beab23?w=1080&h=1080&fit=crop&crop=focalpoint&fp-x=0.68&fp-y=0.5&q=85",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-06T06:41:12.370394Z",
+      "key": "a96d714a4d199da546c0871b"
     }
   ]
 }
