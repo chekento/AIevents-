@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-10T22:19:19.105098Z",
-  "cursor": 1,
-  "provider_cursor": 78,
+  "generated_at": "2026-11-11T06:44:29.865007Z",
+  "cursor": 15,
+  "provider_cursor": 90,
   "providers_processed": [
-    "phind",
-    "glean",
-    "sierra",
-    "harvey",
-    "writer",
-    "jasper",
-    "copyai",
-    "typeface",
-    "together",
-    "fireworks",
-    "groq",
-    "cerebras"
+    "sambanova",
+    "lambda",
+    "coreweave",
+    "crusoe",
+    "nebius",
+    "replicate",
+    "modal",
+    "baseten",
+    "bentoml",
+    "anyscale",
+    "huggingface",
+    "modelscope"
   ],
   "regions_processed": [
-    "Quito, Ecuador",
-    "Montevideo, Uruguay",
-    "Panama City, Panama",
-    "San José, Costa Rica",
-    "Santo Domingo, Dominican Republic",
-    "San Juan, Puerto Rico",
-    "Brasília, Brazil",
-    "Rio de Janeiro, Brazil",
-    "Belo Horizonte, Brazil",
-    "Porto Alegre, Brazil",
-    "Recife, Brazil",
-    "Córdoba, Argentina",
-    "Medellín, Colombia",
-    "Hamburg, Germany"
+    "Kiel, Germany",
+    "Lübeck, Germany",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Frankfurt, Germany",
+    "Cologne, Germany",
+    "Düsseldorf, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria",
+    "Zurich, Switzerland",
+    "Amsterdam, Netherlands",
+    "Brussels, Belgium",
+    "Paris, France",
+    "London, United Kingdom"
   ],
-  "event_count": 46,
+  "event_count": 47,
   "events": [
     {
       "title": "Community Lunch",
@@ -397,6 +397,32 @@
       "key": "0f3dbc87326e73781932fd94"
     },
     {
+      "title": "Build and Deploy an Agent with Managed Deep Agents",
+      "start": "2026-11-18T01:30:00Z",
+      "end": "2026-11-18T04:45:00Z",
+      "venue": "San Francisco",
+      "locality": "San Francisco, San Francisco, San Francisco, California, US",
+      "description": "",
+      "organizer": "LangChain",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain",
+      "eventUrl": "https://fieldevents.langchain.com/buildanddeployanagentwithmanag",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 37.7749295,
+        "lon": -122.41941550000001
+      },
+      "confidence": 95,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1200,height=630/calendar-cover-images/xc/4938f117-c37a-48ac-ad0c-ccdc33e7f7e1.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-11T06:13:14.580474Z",
+      "key": "684e07616a7dc4ede58fc5a8"
+    },
+    {
       "title": "LLMday Hamburg 2026 Q4",
       "start": "2026-11-18T08:00:00Z",
       "end": "2026-11-18T16:30:00Z",
@@ -700,10 +726,10 @@
       "end": "2026-11-25T09:00:00Z",
       "venue": "Sydney, NSW",
       "locality": "Sydney, NSW, Sydney, New South Wales, AU",
-      "description": "",
+      "description": "Join us for an evening in Sydney with engineers and developers from LangChain, MYOB and MongoDB, where we will discuss deep diving into deep agents! 🎤 Talk 1: How to Build Agents that Improve Over Time with Lisa Shipping the agent is the easy part. LangChain's North Star is making it easier to improve these systems continuously. In this talk we'll explore how teams can accelerate improvements, across the model, the harness and the context using real production data to fuel improvements. 🎤 Talk 2: Building Stateful Agents: Managing Memory and Context in LangGraph with John Most voice agents can't teach Mandarin tones. They turn speech into text, so the pitch is gone and the model can't tell whether you said wǒ or wō. And every session starts from zero. In this lightning talk, we will show a personal project aimed at solving both. Using LangGraph to orchestrate a multi-stage flow for audio and state processing and MongoDB to store what each learner keeps getting wrong, so the coach remembers it across sessions. 🎤 Talk 3: Most agent demos stop at \"it answered the question.\" MYOB's started there with Akshay In this session MYOB will share their journey from a first LangGraph experiment",
       "organizer": "LangChain Events, Amada Echeverria, Lisa Sherin",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain",
+      "sourceUrl": "https://luma.com/jfvvcvtk",
       "eventUrl": "https://luma.com/jfvvcvtk",
       "price": "Free",
       "language": "",
@@ -717,7 +743,7 @@
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-11-10T21:48:18.395892Z",
+      "indexedAt": "2026-11-11T06:13:16.541530Z",
       "key": "3dd6abf3a8335e151d57e170"
     },
     {
