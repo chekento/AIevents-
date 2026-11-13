@@ -1,162 +1,65 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-12T17:19:03.173157Z",
-  "cursor": 71,
-  "provider_cursor": 138,
+  "generated_at": "2026-11-13T01:34:38.557318Z",
+  "cursor": 85,
+  "provider_cursor": 150,
   "providers_processed": [
-    "arize",
-    "wandb-weave",
-    "braintrust",
-    "humanloop",
-    "galileo",
-    "whylabs",
-    "fiddler",
-    "patronus",
-    "arthur",
-    "traceloop",
-    "literal-ai",
-    "lunary"
+    "deepeval",
+    "maxim",
+    "evidently",
+    "giskard",
+    "lakera",
+    "protect-ai",
+    "hiddenlayer",
+    "calypsoai",
+    "promptlayer",
+    "promptfoo",
+    "portkey",
+    "keywords-ai"
   ],
   "regions_processed": [
-    "Singapore",
-    "Kuala Lumpur, Malaysia",
-    "Bangkok, Thailand",
-    "Jakarta, Indonesia",
-    "Hong Kong",
-    "Taipei, Taiwan",
-    "Seoul, South Korea",
-    "Tokyo, Japan",
-    "Osaka, Japan",
-    "Beijing, China",
-    "Shanghai, China",
-    "Shenzhen, China",
-    "Sydney, Australia",
-    "Melbourne, Australia"
+    "Auckland, New Zealand",
+    "Reykjavík, Iceland",
+    "Riga, Latvia",
+    "Vilnius, Lithuania",
+    "Bratislava, Slovakia",
+    "Budapest, Hungary",
+    "Ljubljana, Slovenia",
+    "Zagreb, Croatia",
+    "Belgrade, Serbia",
+    "Sofia, Bulgaria",
+    "Geneva, Switzerland",
+    "Luxembourg, Luxembourg",
+    "Valletta, Malta",
+    "Kyiv, Ukraine"
   ],
-  "event_count": 45,
+  "event_count": 47,
   "events": [
     {
-      "title": "ChatGPT for what's next - St. Louis, MO",
-      "start": "2026-11-12T14:30:00.477000Z",
-      "end": "2026-11-12T18:00:57.016000Z",
-      "venue": "The Post Building",
-      "locality": "The Post Building, The Post Building, St. Louis, MO, US",
-      "description": "Use ChatGPT to move one real thing forward.Whether you're looking for your next job, thinking about school, starting a business, or just trying to make everyday tasks easier, this workshop is built to help you take a practical next step.Join OpenAI Academy and NPower for a hands-on session for veterans, military spouses, and military-connected community members. You'll watch practical examples, try ChatGPT on a task that matters to you, and leave with one thing improved and a clearer sense of how AI can support whatever comes next.No prior AI experience is required.How it works\n• Watch a practical example\n• Try it on a real task\n• Share what worked and leave with a next stepWhat you'll do\n• Write clearer prompts that produce more useful results\n• Research and organize information more effectively\n• Turn a rough idea or task into a%2",
-      "organizer": "OpenAI Academy",
-      "sourceName": "academy.openai.com",
-      "sourceUrl": "https://academy.openai.com/public/events/chatgpt-for-whats-next-st-louis-mo-0khw38ivta",
-      "eventUrl": "https://academy.openai.com/public/events/chatgpt-for-whats-next-st-louis-mo-0khw38ivta",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 95,
-      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/OpenAI-Academy-Event-Card-Templates-1--b5416281-aa2b-465e-9421-18bf7d467568-1789160757668.jpeg?fit=scale-down&width=1200",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-28T05:41:04.083064Z",
-      "key": "65fa20ead447016f27b7faed"
-    },
-    {
-      "title": "Autonomous Driving Meetup: End-to-End AI Models - Opportunities and Challenges",
-      "start": "2026-11-12T17:30:00Z",
-      "end": "2026-11-12T21:00:00Z",
-      "venue": "Hamburg, Germany",
-      "locality": "Hamburg, Germany, Hamburg, Hamburg, DE",
-      "description": "The future is now. Autonomous driving is approaching fast and will transform mobility for good. Artificial intelligence, growing connectivity, ever more powerful sensors, and new model architectures are all evolving at once, together pushing the field forward. Tonight we put the spotlight on one of the most exciting developments among them. Join us for an evening on: End-to-End AI Models - Challenges and Opportunities This edition of the Autonomous Driving Meetup brings together engineers, researchers, and industry voices to explore what these models change, where they already deliver, and which problems remain open. You'll hear perspectives from companies and academia, across both the technical and business sides, followed by open discussion and time to connect over drinks and food. Come for the talks, stay for the conversations. ____ Agenda ____ 18:30 Doors Open – Drinks & Mingle 19:00 Talks & Q&A 20:15 Get together, Food & Drinks Speakers Status Quo of E2E Models for Autonomous Driving __ Prof. Dr. Andreas Look, Hochschule Coburg How to Ensure Safety for End-to-End Models in Autonomous Cars __ Dr. Ulrich Wurstbauer, Capgemini Engineering & Founder of QuanIT __ Critiquing End-to-",
-      "organizer": "House of AI Hamburg, Miriam, Maks, Tin",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/i7am4yom",
-      "eventUrl": "https://luma.com/i7am4yom",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.54097318136013,
-        "lon": 9.999650005700754
-      },
-      "confidence": 100,
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T14:40:34.814416Z",
-      "key": "8f3a2aae4a18402fcf0795aa"
-    },
-    {
-      "title": "Agents in the Sandboxes — LangChain Community London × Focused.io",
-      "start": "2026-11-12T18:30:00Z",
-      "end": "2026-11-12T21:30:00Z",
-      "venue": "Fora - Chancery House",
-      "locality": "Fora - Chancery House, Fora - Chancery House, London, England, GB",
-      "description": "",
-      "organizer": "Sudip kandel, Sudip kandel, Tanmaiyii Rao, Amada Echeverria, Marta Stangierska",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/po68337t",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 51.5174586,
-        "lon": -0.1129066
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/wf/140b45e1-27b5-4f34-a42d-7c00dffa3ea8.jpg",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-07T21:18:09.193641Z",
-      "key": "a17aefb2ef8753bf9c16ba36"
-    },
-    {
-      "title": "LangChain Boston Meetup: Building and Getting Agents Into Production",
+      "title": "LangChain Boston Meetup: Friends of LangChain",
       "start": "2026-11-12T23:00:00Z",
-      "end": "2026-11-13T01:30:00Z",
+      "end": "2026-11-13T02:00:00Z",
       "venue": "Cambridge, MA",
       "locality": "Cambridge, MA, Cambridge, Massachusetts, US",
-      "description": "Join the LangChain team in Boston (Harvard Square) for an evening of three talks on what it takes to move from prototype to production. You'll hear from Mason Daugherty on the OSS team, and from Eugene Liu and Michael Dik on our Deployed Engineering team, who work with teams on getting agents into production. 🎤 Talk 1: From Prototype to Production: The architectural foundation of production agents with Michael Explore the common themes and challenges when moving AI agents from prototype to production. Learn how to navigate critical considerations like identity, guardrails, evaluations, tool access, and memory to build reliable, secure, and scalable agents. 🎤 Talk 2: Building a Coding Agent Your Team Owns with Mason Mason will walk us through his team's experience building Open SWE and unique challenges in building a coding agent. 🎤 Talk 3: Making Agent Memory Grounded, Traceable, and Useful with Eugene Agents can retrieve facts, but answering complex questions across disconnected sources means remembering how sources connect—and showing the evidence behind what they say. This talk explores how compiled wikis and evidence graphs make agent memory more grounded, traceable, and useful",
-      "organizer": "LangChain Events, Amada Echeverria, Mason Daugherty",
+      "description": "",
+      "organizer": "LangChain Events, Amada Echeverria, Mason Daugherty, Brian Coons, Eugene Liu, Stephen McDonough, Sofia Fosdick, Lauren Quilty, Bailey Everitt",
       "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/x2d94ihu",
+      "sourceUrl": "https://luma.com/langchain",
       "eventUrl": "https://luma.com/x2d94ihu",
       "price": "Free",
       "language": "",
       "online": false,
       "geo": {
-        "lat": 42.37124691411126,
-        "lon": -71.1220034593317
+        "lat": 42.3618036054942,
+        "lon": -71.08900562852779
       },
       "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/aw/ffd9bf9e-b4b7-4378-9530-bcfe9597d122.png",
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/rt/cf6a9c59-2351-46dd-b5f5-2bf93a7907d9.png",
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-10-22T04:41:49.801629Z",
+      "indexedAt": "2026-11-13T01:04:06.155229Z",
       "key": "49a2bd8b09496567b52a9cba"
-    },
-    {
-      "title": "Meet Your Quota: An SDR Recruiting Social at LangChain - NYC",
-      "start": "2026-11-12T23:00:00Z",
-      "end": "2026-11-13T01:30:00Z",
-      "venue": "",
-      "locality": "",
-      "description": "",
-      "organizer": "LangChain Events, Jess Ou, Janani Siva, Ashley Rule, Tiff Bell, McElla, AJ Devera, Riley Nichols, Ken Amar",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/langchain-np4d",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 85,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/pr/eab2a485-ad1f-4dd5-b612-3a5698235c32.gif",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-29T05:45:58.282443Z",
-      "key": "1c46e995f35257198e6c4d02"
     },
     {
       "title": "LangChain Office-Warming Party",
@@ -180,6 +83,32 @@
       ],
       "indexedAt": "2026-10-29T05:45:58.282868Z",
       "key": "c81668bfc18fc2edbf0be887"
+    },
+    {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-11-13T15:00:00Z",
+      "end": "2026-11-13T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/ik20i4nx",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:43.744890Z",
+      "key": "b819b2f6e5f89d64f198168f"
     },
     {
       "title": "ChatGPT for small business: Santa Barbara, CA",
@@ -249,6 +178,32 @@
       ],
       "indexedAt": "2026-11-03T02:18:27.651578Z",
       "key": "62d06f11d92cae47081c4560"
+    },
+    {
+      "title": "AI day-to-day: Ecommerce",
+      "start": "2026-11-16T17:00:00Z",
+      "end": "2026-11-16T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/kh3zrw8w",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/f9/8374b8d8-a66f-4217-8157-4c85b1cad203.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:43.745107Z",
+      "key": "93665488f359fc684a17e628"
     },
     {
       "title": "FIMA 2026",
@@ -621,6 +576,32 @@
       "key": "2b3a159d5f11cdf5caedac95"
     },
     {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-11-20T15:00:00Z",
+      "end": "2026-11-20T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/ordnrqbu",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:43.746100Z",
+      "key": "2f0c893de96d23bd2a1cd9ef"
+    },
+    {
       "title": "ChatGPT for what's next - San Antonio, TX",
       "start": "2026-11-21T14:30:00Z",
       "end": "2026-11-21T18:00:00Z",
@@ -642,6 +623,32 @@
       ],
       "indexedAt": "2026-11-09T18:47:25.113000Z",
       "key": "3433024163d8542def36e23a"
+    },
+    {
+      "title": "Future of Software",
+      "start": "2026-11-23T17:00:00Z",
+      "end": "2026-11-23T21:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/u93cveoa",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/hz/e2f5477f-5dc0-4736-bc4e-7570a091bea9.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:43.746314Z",
+      "key": "1b4b97c9a8d1cd3f6ec860ba"
     },
     {
       "title": "KRAKÓW: Own Your AI Intelligence | LangChain Meetup",
@@ -800,6 +807,29 @@
       "key": "d2d786721f4ba78259d992aa"
     },
     {
+      "title": "Melbourne originals: after closing",
+      "start": "2026-11-30T07:00:00.680000Z",
+      "end": "2026-11-30T09:30:21.805000Z",
+      "venue": "Builders Arms Hotel - 211 Gertrude St, Fitzroy",
+      "locality": "Builders Arms Hotel - 211 Gertrude St, Fitzroy, Builders Arms Hotel - 211 Gertrude St, Fitzroy, Melbourne, Victoria, Australia",
+      "description": "Spend less time on tasks, more time on your craft.OpenAI is bringing local business owners and operators together for a hands-on workshop exploring how ChatGPT can help with the everyday tasks of running a business, making more time for customers and craft.\nFrom the market stalls along the Esplanade to the cafés, restaurants, boutiques and studios that give our neighbourhoods their character, small businesses are part of the cultural fabric of Melbourne. Behind every independent label, design studio, neighbourhood shop or café is work that carries on after closing: answering enquiries, preparing proposals, coordinating suppliers and planning what comes next.Join us for an evening of practical learning and conversation with other local businesses in the lead-up to the busy Christmas trading period. Whether you're new to ChatGPT or already using it, you'll leave with ideas and skills you%2",
+      "organizer": "OpenAI Academy",
+      "sourceName": "academy.openai.com",
+      "sourceUrl": "https://academy.openai.com/public/events/melbourne-originals-after-closing-613ja3bl1q",
+      "eventUrl": "https://academy.openai.com/public/events/melbourne-originals-after-closing-613ja3bl1q",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Melbourne-OAI-Event-Card-1200x628-cb2d538f-cc74-41e1-8c31-62de1e318286-1793327551596.jpeg?fit=scale-down&width=1200",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:38.781894Z",
+      "key": "72189b571842d0f9b6f08995"
+    },
+    {
       "title": "AWS re:Invent",
       "start": "2026-11-30T14:00:00Z",
       "end": "2026-12-04T22:00:00Z",
@@ -948,6 +978,32 @@
       ],
       "indexedAt": "2026-10-06T18:21:47.155003Z",
       "key": "473b5f65eecaeb5f4f0cc224"
+    },
+    {
+      "title": "ElevenCreative Session: Hamburg",
+      "start": "2026-12-07T17:00:00Z",
+      "end": "2026-12-07T20:30:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/958swowk",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/g5/44ae7253-122b-4f7d-96b5-74f73bf5b451.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-13T01:04:43.747844Z",
+      "key": "b4697d676c4676dd2e0e0d6d"
     },
     {
       "title": "Building & Governing Banking Agents with Managed Deep Agents & Arcade.dev",
