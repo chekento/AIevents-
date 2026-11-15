@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-15T00:14:01.306878Z",
-  "cursor": 1,
-  "provider_cursor": 222,
+  "generated_at": "2026-11-15T06:56:52.733588Z",
+  "cursor": 15,
+  "provider_cursor": 234,
   "providers_processed": [
-    "toloka",
-    "eleutherai",
-    "laion",
-    "allen-ai",
-    "mlcommons",
-    "lf-ai-data",
-    "pytorch",
-    "tensorflow",
-    "jax",
-    "onnx",
-    "openmmlab",
-    "datatalksclub"
+    "ai-tinkerers",
+    "global-ai-community",
+    "women-in-ai",
+    "deeplearning-ai",
+    "fastai",
+    "fullstackdeeplearning",
+    "ai-engineer",
+    "genai-collective",
+    "mlops-world",
+    "ai-summit",
+    "odsc",
+    "neurips"
   ],
   "regions_processed": [
-    "Quito, Ecuador",
-    "Montevideo, Uruguay",
-    "Panama City, Panama",
-    "San José, Costa Rica",
-    "Santo Domingo, Dominican Republic",
-    "San Juan, Puerto Rico",
-    "Brasília, Brazil",
-    "Rio de Janeiro, Brazil",
-    "Belo Horizonte, Brazil",
-    "Porto Alegre, Brazil",
-    "Recife, Brazil",
-    "Córdoba, Argentina",
-    "Medellín, Colombia",
-    "Hamburg, Germany"
+    "Kiel, Germany",
+    "Lübeck, Germany",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Frankfurt, Germany",
+    "Cologne, Germany",
+    "Düsseldorf, Germany",
+    "Stuttgart, Germany",
+    "Vienna, Austria",
+    "Zurich, Switzerland",
+    "Amsterdam, Netherlands",
+    "Brussels, Belgium",
+    "Paris, France",
+    "London, United Kingdom"
   ],
-  "event_count": 42,
+  "event_count": 52,
   "events": [
     {
       "title": "Protecting Children Online: Harnessing AI tools to fight against child exploitation",
@@ -660,6 +660,32 @@
       "key": "4ca752d81f8ff82ae0967645"
     },
     {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-11-27T15:00:00Z",
+      "end": "2026-11-27T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/slqhor8n",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.637769Z",
+      "key": "5b4fa680cebaca6018677688"
+    },
+    {
       "title": "the scene 002 - art x AI",
       "start": "2026-11-28T17:00:00Z",
       "end": "2026-11-28T21:00:00Z",
@@ -808,6 +834,32 @@
       ],
       "indexedAt": "2026-11-06T06:41:12.369724Z",
       "key": "072f6a09d6e55bed9a7968ff"
+    },
+    {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-12-04T15:00:00Z",
+      "end": "2026-12-04T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/im1j1sxv",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.638311Z",
+      "key": "b6803411d400005945b5add3"
     },
     {
       "title": "LangChain x hackers&wizards Hackathon: Building with Agent Harnesses (Hamburg)",
@@ -960,6 +1012,32 @@
       "key": "1f5f759ed812a1ab5db01e11"
     },
     {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-12-11T15:00:00Z",
+      "end": "2026-12-11T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/9360j3r0",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.638747Z",
+      "key": "19f52740bb1e5cacc867fdd4"
+    },
+    {
       "title": "Show & Tell",
       "start": "2026-12-16T10:30:00Z",
       "end": "2026-12-16T11:30:00Z",
@@ -1038,6 +1116,110 @@
       "key": "8df37ff6c8c9fc11fd580732"
     },
     {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2026-12-18T15:00:00Z",
+      "end": "2026-12-18T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/vabaysdt",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639075Z",
+      "key": "4f85f11657f403d4dce004e9"
+    },
+    {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2027-01-08T15:00:00Z",
+      "end": "2027-01-08T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/ndirn43t",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639155Z",
+      "key": "2de0d48677118e07edf97cf1"
+    },
+    {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2027-01-15T15:00:00Z",
+      "end": "2027-01-15T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/fs2no7n2",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639240Z",
+      "key": "7e6ffe2b9c6440d76a698923"
+    },
+    {
+      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
+      "start": "2027-01-22T15:00:00Z",
+      "end": "2027-01-22T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/9g6898ci",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639322Z",
+      "key": "a9cf6ac9339b6aac24f447b9"
+    },
+    {
       "title": "AI Mavericks #2 — Wo KI-Transformation ehrlich verhandelt wird (House of AI × etribes)",
       "start": "2027-01-27T17:00:00Z",
       "end": "2027-01-27T20:30:00Z",
@@ -1087,6 +1269,84 @@
       ],
       "indexedAt": "2026-11-06T06:41:12.370394Z",
       "key": "a96d714a4d199da546c0871b"
+    },
+    {
+      "title": "Wunder Mobility Meetup: Station-Based Car Sharing That Pays",
+      "start": "2027-03-25T17:00:00Z",
+      "end": "2027-03-25T23:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/gf16i6lc",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1617886322207-6f504e7472c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwxOHx8ZWxlY3RyaWMlMjBjYXIlMjBjaGFyZ2luZyUyMHN0YXRpb258ZW58MXx8fHwxNzk0NDk1ODA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639629Z",
+      "key": "79629ed3880479cdb0daeff2"
+    },
+    {
+      "title": "Wunder Mobility Meetup: Sharing as Part of Public Transport",
+      "start": "2027-06-17T16:00:00Z",
+      "end": "2027-06-17T22:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/cvh6q8dj",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1765988804945-87038fae96dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxiaWtlJTIwc2hhcmluZyUyMHN0YXRpb258ZW58MXx8fHwxNzk0NDk1Mzk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639714Z",
+      "key": "ac9d81cae4b6d73bb201a416"
+    },
+    {
+      "title": "Wunder Mobility Meetup: AI in Shared-Mobility Operations, One Year On",
+      "start": "2027-11-18T17:00:00Z",
+      "end": "2027-11-18T23:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/qba5pm4b",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.unsplash.com/photo-1472146936668-d987bf0a6e38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwxfHxjaXR5JTIwdHJhZmZpYyUyMG5pZ2h0JTIwYWVyaWFsfGVufDF8fHx8MTc5NDQ5NTQ2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-15T06:27:07.639796Z",
+      "key": "c5216a873cedac82fd651ab8"
     }
   ]
 }
