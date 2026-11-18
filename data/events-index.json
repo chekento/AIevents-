@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-18T00:02:42.666068Z",
-  "cursor": 113,
-  "provider_cursor": 77,
+  "generated_at": "2026-11-18T07:55:58.677530Z",
+  "cursor": 127,
+  "provider_cursor": 89,
   "providers_processed": [
-    "youcom",
-    "phind",
-    "glean",
-    "sierra",
-    "harvey",
-    "writer",
-    "jasper",
-    "copyai",
-    "typeface",
-    "together",
-    "fireworks",
-    "groq"
+    "cerebras",
+    "sambanova",
+    "lambda",
+    "coreweave",
+    "crusoe",
+    "nebius",
+    "replicate",
+    "modal",
+    "baseten",
+    "bentoml",
+    "anyscale",
+    "huggingface"
   ],
   "regions_processed": [
-    "Doha, Qatar",
-    "Abu Dhabi, United Arab Emirates",
-    "Manama, Bahrain",
-    "Kuwait City, Kuwait",
-    "Amman, Jordan",
-    "Beirut, Lebanon",
-    "Karachi, Pakistan",
-    "Lahore, Pakistan",
-    "Dhaka, Bangladesh",
-    "Colombo, Sri Lanka",
-    "Kathmandu, Nepal",
-    "Hyderabad, India",
-    "Chennai, India",
-    "Pune, India"
+    "Gurugram, India",
+    "Ho Chi Minh City, Vietnam",
+    "Hanoi, Vietnam",
+    "Manila, Philippines",
+    "Surabaya, Indonesia",
+    "Phnom Penh, Cambodia",
+    "Yangon, Myanmar",
+    "Macau",
+    "Guangzhou, China",
+    "Chengdu, China",
+    "Hangzhou, China",
+    "Nanjing, China",
+    "Wuhan, China",
+    "Fukuoka, Japan"
   ],
-  "event_count": 51,
+  "event_count": 49,
   "events": [
     {
       "title": "FIMA 2026",
@@ -80,58 +80,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:12.084653Z",
       "key": "dff014981e668d4f35c63f54"
-    },
-    {
-      "title": "Friends of LangChain Party (New York)",
-      "start": "2026-11-17T23:00:00Z",
-      "end": "2026-11-18T02:00:00Z",
-      "venue": "New York, NY",
-      "locality": "New York, NY, New York, New York, US",
-      "description": "",
-      "organizer": "LangChain Events, Amada Echeverria",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/6zsv3ps6",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 40.740798586402185,
-        "lon": -74.00076995963335
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/d8/789b0e17-30e3-4b16-8352-291dfcecc6eb.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-04T19:44:05.983385Z",
-      "key": "0f3dbc87326e73781932fd94"
-    },
-    {
-      "title": "Build and Deploy an Agent with Managed Deep Agents",
-      "start": "2026-11-18T01:30:00Z",
-      "end": "2026-11-18T04:45:00Z",
-      "venue": "San Francisco",
-      "locality": "San Francisco, San Francisco, San Francisco, California, US",
-      "description": "",
-      "organizer": "LangChain",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain",
-      "eventUrl": "https://fieldevents.langchain.com/buildanddeployanagentwithmanag",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 37.7749295,
-        "lon": -122.41941550000001
-      },
-      "confidence": 95,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1200,height=630/calendar-cover-images/xc/4938f117-c37a-48ac-ad0c-ccdc33e7f7e1.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-11T06:13:14.580474Z",
-      "key": "684e07616a7dc4ede58fc5a8"
     },
     {
       "title": "LLMday Hamburg 2026 Q4",
