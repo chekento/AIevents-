@@ -1,63 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-18T07:55:58.677530Z",
-  "cursor": 127,
-  "provider_cursor": 89,
+  "generated_at": "2026-11-18T17:45:24.408034Z",
+  "cursor": 141,
+  "provider_cursor": 101,
   "providers_processed": [
-    "cerebras",
-    "sambanova",
-    "lambda",
-    "coreweave",
-    "crusoe",
-    "nebius",
-    "replicate",
-    "modal",
-    "baseten",
-    "bentoml",
-    "anyscale",
-    "huggingface"
+    "modelscope",
+    "openrouter",
+    "litellm",
+    "vercel-ai",
+    "cloudflare-ai",
+    "github-models",
+    "azure-foundry",
+    "langchain",
+    "llamaindex",
+    "haystack",
+    "semantic-kernel",
+    "autogen"
   ],
   "regions_processed": [
-    "Gurugram, India",
-    "Ho Chi Minh City, Vietnam",
-    "Hanoi, Vietnam",
-    "Manila, Philippines",
-    "Surabaya, Indonesia",
-    "Phnom Penh, Cambodia",
-    "Yangon, Myanmar",
-    "Macau",
-    "Guangzhou, China",
-    "Chengdu, China",
-    "Hangzhou, China",
-    "Nanjing, China",
-    "Wuhan, China",
-    "Fukuoka, Japan"
+    "Nagoya, Japan",
+    "Busan, South Korea",
+    "Perth, Australia",
+    "Brisbane, Australia",
+    "Adelaide, Australia",
+    "Wellington, New Zealand",
+    "Honolulu, HI, USA",
+    "San Diego, CA, USA",
+    "Denver, CO, USA",
+    "Portland, OR, USA",
+    "Atlanta, GA, USA",
+    "Dallas, TX, USA",
+    "Houston, TX, USA",
+    "Phoenix, AZ, USA"
   ],
-  "event_count": 49,
+  "event_count": 45,
   "events": [
-    {
-      "title": "FIMA 2026",
-      "start": "2026-11-17T09:00:00Z",
-      "end": "2026-11-18T17:00:00Z",
-      "venue": "",
-      "locality": "St Katharine's Way, London E1W 1LD, London",
-      "description": "FIMA: Premier EU finance data/tech/AI event. Covers data lifecycle, governance, architectures & responsible AI at scale.",
-      "organizer": "",
-      "sourceName": "cohere.com",
-      "sourceUrl": "https://cohere.com/events/fima-2026-2026-11-17t09-00-00-000z",
-      "eventUrl": "https://cohere.com/events/fima-2026-2026-11-17t09-00-00-000z",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 85,
-      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/2cc8ad16d1e32b39d08354b454aa743d9f87c91a-990x640.jpg?w=1920&q=80&fit=max&auto=format",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-28T15:06:15.898936Z",
-      "key": "809871c6b9cfdb15f6b38b30"
-    },
     {
       "title": "Microsoft Ignite",
       "start": "2026-11-17T14:00:00Z",
@@ -80,84 +57,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:12.084653Z",
       "key": "dff014981e668d4f35c63f54"
-    },
-    {
-      "title": "LLMday Hamburg 2026 Q4",
-      "start": "2026-11-18T08:00:00Z",
-      "end": "2026-11-18T16:30:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/llmday-2026-hamburg-q4",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "imageUrl": "https://images.lumacdn.com/event-covers/nx/cc3dc1ae-e391-4db0-b0f8-cec028e647dd.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-06T06:41:12.368772Z",
-      "key": "2fd3a88fe4dbed890c5f968d"
-    },
-    {
-      "title": "Show & Tell",
-      "start": "2026-11-18T10:30:00Z",
-      "end": "2026-11-18T11:30:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/lwbhbr8s",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwyMHx8d29ya3Nob3B8ZW58MHx8fHwxNzgyMjUxNjAyfDI&ixlib=rb-4.1.0&q=80&w=1080",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-06T06:41:12.368908Z",
-      "key": "3fc56454471917da42eeaf2f"
-    },
-    {
-      "title": "Community Lunch",
-      "start": "2026-11-18T11:30:00Z",
-      "end": "2026-11-18T12:30:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/g89i2zi5",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "imageUrl": "https://images.unsplash.com/photo-1576867757603-05b134ebc379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxsdW5jaHxlbnwwfHx8fDE3ODIyMDQwOTN8Mg&ixlib=rb-4.1.0&q=80&w=1080",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-06T06:41:12.368995Z",
-      "key": "9815ecf94837755820f521c5"
     },
     {
       "title": "AI & Robotic-Circle Hamburg: One Afternoon in the Future",
