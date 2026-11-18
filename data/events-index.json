@@ -1,39 +1,39 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-17T13:53:05.920832Z",
-  "cursor": 99,
-  "provider_cursor": 65,
+  "generated_at": "2026-11-18T00:02:42.666068Z",
+  "cursor": 113,
+  "provider_cursor": 77,
   "providers_processed": [
-    "hume",
-    "cartesia",
-    "deepgram",
-    "assemblyai",
-    "speechmatics",
-    "resemble",
-    "playht",
-    "synthesia",
-    "heygen",
-    "character-ai",
-    "inflection",
-    "perplexity"
+    "youcom",
+    "phind",
+    "glean",
+    "sierra",
+    "harvey",
+    "writer",
+    "jasper",
+    "copyai",
+    "typeface",
+    "together",
+    "fireworks",
+    "groq"
   ],
   "regions_processed": [
-    "Tbilisi, Georgia",
-    "Yerevan, Armenia",
-    "Baku, Azerbaijan",
-    "Cairo, Egypt",
-    "Casablanca, Morocco",
-    "Tunis, Tunisia",
-    "Accra, Ghana",
-    "Addis Ababa, Ethiopia",
-    "Kigali, Rwanda",
-    "Dar es Salaam, Tanzania",
-    "Kampala, Uganda",
-    "Abidjan, Côte d’Ivoire",
-    "Dakar, Senegal",
-    "Riyadh, Saudi Arabia"
+    "Doha, Qatar",
+    "Abu Dhabi, United Arab Emirates",
+    "Manama, Bahrain",
+    "Kuwait City, Kuwait",
+    "Amman, Jordan",
+    "Beirut, Lebanon",
+    "Karachi, Pakistan",
+    "Lahore, Pakistan",
+    "Dhaka, Bangladesh",
+    "Colombo, Sri Lanka",
+    "Kathmandu, Nepal",
+    "Hyderabad, India",
+    "Chennai, India",
+    "Pune, India"
   ],
-  "event_count": 50,
+  "event_count": 51,
   "events": [
     {
       "title": "FIMA 2026",
@@ -80,29 +80,6 @@
       ],
       "indexedAt": "2026-10-03T16:57:12.084653Z",
       "key": "dff014981e668d4f35c63f54"
-    },
-    {
-      "title": "IDC x AWS x Cohere Webinar: Scaling AI Without Losing Control",
-      "start": "2026-11-17T17:00:00Z",
-      "end": "2026-11-17T20:00:00Z",
-      "venue": "online",
-      "locality": "online",
-      "description": "Join IDC, Amazon Web Services (AWS), and Cohere for a conversation about how enterprises can innovate with AI while maintaining choice and control.",
-      "organizer": "",
-      "sourceName": "cohere.com",
-      "sourceUrl": "https://cohere.com/events/idc-x-aws-x-cohere-webinar-scaling-ai-without-losing-control-2026-11-17t17-00-00-000z",
-      "eventUrl": "https://cohere.com/events/idc-x-aws-x-cohere-webinar-scaling-ai-without-losing-control-2026-11-17t17-00-00-000z",
-      "price": "",
-      "language": "",
-      "online": true,
-      "geo": null,
-      "confidence": 85,
-      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/1ecd00629474001ca91268812f2fd76eb0bcb892-1626x990.png?w=1920&q=80&fit=max&auto=format",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-06T21:29:56.420550Z",
-      "key": "d1ce200a09940759078f1ebd"
     },
     {
       "title": "Friends of LangChain Party (New York)",
@@ -590,25 +567,25 @@
       "start": "2026-11-25T17:00:00Z",
       "end": "2026-11-25T21:00:00Z",
       "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "locality": "House of AI Hamburg, House of AI Hamburg, Hamburg, Hamburg, DE",
+      "description": "Our first edition brought over 40 people together, so we're doing it again at House of AI Hamburg in the Hafencity. This one is for people who work in music and sound: musicians, producers, DJs, engineers, labels, music hardware makers, developers building audio software, music tech startups, and anyone else in the industry. It's informal and relaxed. Share what you're working on, swap tools and ideas, and meet people from both the creative and the business side of Hamburg's music scene. The exact format is still open. If you have ideas for what would make the evening worth your time, like short talks, demos, or something else entirely, let me know. I'm happy to hear them. Free entry, limited spots, please RSVP.",
+      "organizer": "Jannik, Jannik",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/yg74ht1c",
       "eventUrl": "https://luma.com/yg74ht1c",
-      "price": "",
+      "price": "Free",
       "language": "",
       "online": false,
       "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
+        "lat": 53.5429119,
+        "lon": 10.000962699999999
       },
-      "confidence": 90,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/qr/d0942daf-5b79-41a5-8a7a-98da41f0361e.png",
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/2v/0d4805ba-5df8-4c43-9212-e98d45bb0b7b.png",
       "regions": [
         "Global"
       ],
-      "indexedAt": "2026-11-06T06:41:12.369404Z",
+      "indexedAt": "2026-11-17T23:31:32.365134Z",
       "key": "4ca752d81f8ff82ae0967645"
     },
     {
@@ -662,6 +639,29 @@
       ],
       "indexedAt": "2026-11-06T06:41:12.369484Z",
       "key": "d2d786721f4ba78259d992aa"
+    },
+    {
+      "title": "MongoDB at AWS re:Invent 2026",
+      "start": "2026-11-30T00:00:00Z",
+      "end": "2026-12-03T00:00:00Z",
+      "venue": "",
+      "locality": "",
+      "description": "",
+      "organizer": "MongoDB",
+      "sourceName": "mongodb.com",
+      "sourceUrl": "https://www.mongodb.com/events/aws-reinvent",
+      "eventUrl": "https://www.mongodb.com/events/aws-reinvent",
+      "price": "",
+      "language": "",
+      "online": true,
+      "geo": null,
+      "confidence": 90,
+      "imageUrl": "https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt9fd9c13b749c8a4a/654cfe6f1d4362040ac4fd03/reinvent_2023.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-17T23:30:24.714249Z",
+      "key": "15afe3abc03a651851fdbb4f"
     },
     {
       "title": "Melbourne originals: after closing",
@@ -887,6 +887,29 @@
       ],
       "indexedAt": "2026-11-13T01:04:43.747844Z",
       "key": "b4697d676c4676dd2e0e0d6d"
+    },
+    {
+      "title": "Own Your Intelligence Exploratorium",
+      "start": "2026-12-09T02:00:00Z",
+      "end": "2026-12-09T05:00:00Z",
+      "venue": "Online Event",
+      "locality": "Online Event",
+      "description": "",
+      "organizer": "LangChain",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain",
+      "eventUrl": "https://www.langchain.com/own-your-intelligence-exploratorium",
+      "price": "",
+      "language": "",
+      "online": true,
+      "geo": null,
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1200,height=630/calendar-cover-images/xc/4938f117-c37a-48ac-ad0c-ccdc33e7f7e1.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-17T23:30:15.063704Z",
+      "key": "aa3b229799695e40da7bc80b"
     },
     {
       "title": "Building & Governing Banking Agents with Managed Deep Agents & Arcade.dev",
