@@ -1,89 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-20T17:27:59.470545Z",
-  "cursor": 43,
-  "provider_cursor": 161,
+  "generated_at": "2026-11-21T02:01:18.096927Z",
+  "cursor": 57,
+  "provider_cursor": 173,
   "providers_processed": [
-    "keywords-ai",
-    "langwatch",
-    "openlit",
-    "opik",
-    "honeyhive",
-    "agentops",
-    "parea",
-    "llmops-space",
-    "kubeflow",
-    "mlflow",
-    "comet",
-    "clearml"
+    "neptune",
+    "dvc",
+    "metaflow",
+    "flyte",
+    "zenml",
+    "kedro",
+    "ray",
+    "prefect",
+    "dagster",
+    "airflow",
+    "feast",
+    "tecton"
   ],
   "regions_processed": [
-    "Athens, Greece",
-    "Istanbul, Turkey",
-    "New York, NY, USA",
-    "Boston, MA, USA",
-    "Washington, DC, USA",
-    "Miami, FL, USA",
-    "Austin, TX, USA",
-    "Chicago, IL, USA",
-    "Seattle, WA, USA",
-    "San Francisco, CA, USA",
-    "Los Angeles, CA, USA",
-    "Toronto, Canada",
-    "Montreal, Canada",
-    "Vancouver, Canada"
+    "Mexico City, Mexico",
+    "São Paulo, Brazil",
+    "Buenos Aires, Argentina",
+    "Santiago, Chile",
+    "Bogotá, Colombia",
+    "Cape Town, South Africa",
+    "Johannesburg, South Africa",
+    "Nairobi, Kenya",
+    "Lagos, Nigeria",
+    "Dubai, United Arab Emirates",
+    "Tel Aviv, Israel",
+    "Bengaluru, India",
+    "Mumbai, India",
+    "Delhi, India"
   ],
   "event_count": 38,
   "events": [
-    {
-      "title": "Microsoft Ignite",
-      "start": "2026-11-17T14:00:00Z",
-      "end": "2026-11-20T22:00:00Z",
-      "venue": "",
-      "locality": "Moscone Center, San Francisco, CA",
-      "description": "Cohere is a Strategic Partner at Microsoft Ignite 2026, Microsoft's premier developer conference in San Francisco.",
-      "organizer": "",
-      "sourceName": "cohere.com",
-      "sourceUrl": "https://cohere.com/events/microsoft-ignite-2026",
-      "eventUrl": "https://cohere.com/events/microsoft-ignite-2026",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": null,
-      "confidence": 85,
-      "imageUrl": "https://cdn.sanity.io/images/rjtqmwfu/web3-prod/13f9f8c35d819c761b728066334c00c545a667cb-1200x630.png?w=1920&q=80&fit=max&auto=format",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-03T16:57:12.084653Z",
-      "key": "dff014981e668d4f35c63f54"
-    },
-    {
-      "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
-      "start": "2026-11-20T15:00:00Z",
-      "end": "2026-11-20T22:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
-      "description": "",
-      "organizer": "",
-      "sourceName": "house-of-ai.org",
-      "sourceUrl": "https://house-of-ai.org/de/events/",
-      "eventUrl": "https://luma.com/ordnrqbu",
-      "price": "",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.542888,
-        "lon": 10.000975
-      },
-      "confidence": 90,
-      "imageUrl": "https://images.lumacdn.com/uploads/ol/d7625be6-4576-4fa6-964f-efd005529979.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-13T01:04:43.746100Z",
-      "key": "2f0c893de96d23bd2a1cd9ef"
-    },
     {
       "title": "ChatGPT for what's next - San Antonio, TX",
       "start": "2026-11-21T14:30:00Z",
@@ -636,6 +587,32 @@
       "key": "b89e1696e8fa18c26e71c4b3"
     },
     {
+      "title": "Port of Entry: Building AI in Hamburg",
+      "start": "2026-12-09T17:00:00Z",
+      "end": "2026-12-09T20:00:00Z",
+      "venue": "House of AI Hamburg",
+      "locality": "House of AI Hamburg, Hongkongstraße 2–4, 20457, Hamburg, Hamburg, DE",
+      "description": "",
+      "organizer": "",
+      "sourceName": "house-of-ai.org",
+      "sourceUrl": "https://house-of-ai.org/de/events/",
+      "eventUrl": "https://luma.com/aination-if41",
+      "price": "",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 53.542888,
+        "lon": 10.000975
+      },
+      "confidence": 90,
+      "imageUrl": "https://images.lumacdn.com/uploads/4q/560813f5-bcf6-4d4e-b991-99eb5c871da1.png",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-21T01:31:33.421792Z",
+      "key": "66b1833773dc4d25c31c8e2a"
+    },
+    {
       "title": "12MIN.ME | HAMBURG | IGNITE #124",
       "start": "2026-12-10T18:12:00Z",
       "end": "2026-12-10T21:12:00Z",
@@ -660,6 +637,29 @@
       ],
       "indexedAt": "2026-11-06T06:41:12.369987Z",
       "key": "1f5f759ed812a1ab5db01e11"
+    },
+    {
+      "title": "ChatGPT para pequeños negocios - Los Ángeles, CA",
+      "start": "2026-12-10T18:30:00.467000Z",
+      "end": "2026-12-10T22:00:00.467000Z",
+      "venue": "Give Hope Studios",
+      "locality": "Give Hope Studios, Give Hope Studios, Los Ángeles, California",
+      "description": "OpenAI Academy, California Governor's Office of the Small Business Advocate, y Centro SBDC te invitan a la sesión de pequeños negocios: California, un encuentro para explorar ChatGPT, intercambiar ideas y aprender junto a otras personas que dirigen pequeños negocios en tu comunidad.En este taller presencial en español, verás ejemplos de cómo ChatGPT puede apoyar el trabajo diario de tu negocio y probarás distintas formas de usarlo en una tarea propia.Trae tu compu o tablet, tus preguntas y algo en lo que estés trabajando: redactar un mensaje, organizar información o desarrollar una idea.Habrá tiempo para hacer preguntas, comparar formas de trabajar y aprender de las experiencias de otras personas. Ven con ganas de participar y de compartir tu perspectiva.Lo que haremos juntos:Ver ejemplos de uso de ChatGPT para tareas cotidianas de un negocio.Probar distintas mane",
+      "organizer": "OpenAI Academy",
+      "sourceName": "academy.openai.com",
+      "sourceUrl": "https://academy.openai.com/public/clubs/small-business-ipf4m/events/chatgpt-para-pequenos-negocios-los-angeles-ca-49y2rzy56e",
+      "eventUrl": "https://academy.openai.com/public/clubs/small-business-ipf4m/events/chatgpt-para-pequenos-negocios-los-angeles-ca-49y2rzy56e",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": null,
+      "confidence": 95,
+      "imageUrl": "https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Los-Angeles-event-card-e7a70931-c240-4626-be77-ae6bf57cc000-1793227282574.jpeg?fit=scale-down&width=1200",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-21T01:31:29.053315Z",
+      "key": "6f700dd4f683cb7146bb40e9"
     },
     {
       "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
