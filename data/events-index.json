@@ -1,92 +1,40 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-25T14:50:58.559672Z",
-  "cursor": 43,
-  "provider_cursor": 64,
+  "generated_at": "2026-11-26T14:24:40.254269Z",
+  "cursor": 57,
+  "provider_cursor": 76,
   "providers_processed": [
-    "udio",
-    "hume",
-    "cartesia",
-    "deepgram",
-    "assemblyai",
-    "speechmatics",
-    "resemble",
-    "playht",
-    "synthesia",
-    "heygen",
-    "character-ai",
-    "inflection"
+    "perplexity",
+    "youcom",
+    "phind",
+    "glean",
+    "sierra",
+    "harvey",
+    "writer",
+    "jasper",
+    "copyai",
+    "typeface",
+    "together",
+    "fireworks"
   ],
   "regions_processed": [
-    "Athens, Greece",
-    "Istanbul, Turkey",
-    "New York, NY, USA",
-    "Boston, MA, USA",
-    "Washington, DC, USA",
-    "Miami, FL, USA",
-    "Austin, TX, USA",
-    "Chicago, IL, USA",
-    "Seattle, WA, USA",
-    "San Francisco, CA, USA",
-    "Los Angeles, CA, USA",
-    "Toronto, Canada",
-    "Montreal, Canada",
-    "Vancouver, Canada"
+    "Mexico City, Mexico",
+    "São Paulo, Brazil",
+    "Buenos Aires, Argentina",
+    "Santiago, Chile",
+    "Bogotá, Colombia",
+    "Cape Town, South Africa",
+    "Johannesburg, South Africa",
+    "Nairobi, Kenya",
+    "Lagos, Nigeria",
+    "Dubai, United Arab Emirates",
+    "Tel Aviv, Israel",
+    "Bengaluru, India",
+    "Mumbai, India",
+    "Delhi, India"
   ],
-  "event_count": 34,
+  "event_count": 33,
   "events": [
-    {
-      "title": "LangChain Meetup - Day in the life of a token in the European cloud: AI on sovereign infrastructure",
-      "start": "2026-11-25T16:30:00Z",
-      "end": "2026-11-25T20:00:00Z",
-      "venue": "evroc",
-      "locality": "evroc, evroc, Stockholm, Stockholms län, SE",
-      "description": "",
-      "organizer": "Gustaf G, Gustaf G, Amada Echeverria, evroc",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/langchain?k=c",
-      "eventUrl": "https://luma.com/9dni7s4o",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 59.319262499999994,
-        "lon": 18.0740402
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/w1/87234c93-08d4-42b3-97ba-ec84a29fb1fe.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-10-21T13:46:47.134455Z",
-      "key": "8e0586974dcd167d57ac738d"
-    },
-    {
-      "title": "Hamburg Music & Tech Meetup | #2",
-      "start": "2026-11-25T17:00:00Z",
-      "end": "2026-11-25T21:00:00Z",
-      "venue": "House of AI Hamburg",
-      "locality": "House of AI Hamburg, House of AI Hamburg, Hamburg, Hamburg, DE",
-      "description": "Our first edition brought over 40 people together, so we're doing it again at House of AI Hamburg in the Hafencity. This one is for people who work in music and sound: musicians, producers, DJs, engineers, labels, music hardware makers, developers building audio software, music tech startups, and anyone else in the industry. It's informal and relaxed. Share what you're working on, swap tools and ideas, and meet people from both the creative and the business side of Hamburg's music scene. The exact format is still open. If you have ideas for what would make the evening worth your time, like short talks, demos, or something else entirely, let me know. I'm happy to hear them. Free entry, limited spots, please RSVP.",
-      "organizer": "Jannik, Jannik",
-      "sourceName": "luma.com",
-      "sourceUrl": "https://luma.com/yg74ht1c",
-      "eventUrl": "https://luma.com/yg74ht1c",
-      "price": "Free",
-      "language": "",
-      "online": false,
-      "geo": {
-        "lat": 53.5429119,
-        "lon": 10.000962699999999
-      },
-      "confidence": 100,
-      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/2v/0d4805ba-5df8-4c43-9212-e98d45bb0b7b.png",
-      "regions": [
-        "Global"
-      ],
-      "indexedAt": "2026-11-17T23:31:32.365134Z",
-      "key": "4ca752d81f8ff82ae0967645"
-    },
     {
       "title": "build fridays hamburg - work on your startup alongside others (bring laptop)",
       "start": "2026-11-27T15:00:00Z",
@@ -409,6 +357,32 @@
       ],
       "indexedAt": "2026-11-13T01:04:43.747844Z",
       "key": "b4697d676c4676dd2e0e0d6d"
+    },
+    {
+      "title": "LangChain Presents: Engineering Persistent Agents",
+      "start": "2026-12-09T02:00:00Z",
+      "end": "2026-12-09T05:00:00Z",
+      "venue": "Exploratorium",
+      "locality": "Exploratorium, Exploratorium, San Francisco, California, US",
+      "description": "",
+      "organizer": "LangChain Events, Candy Moreno-Garcia",
+      "sourceName": "luma.com",
+      "sourceUrl": "https://luma.com/langchain",
+      "eventUrl": "https://luma.com/213ppkvj",
+      "price": "Free",
+      "language": "",
+      "online": false,
+      "geo": {
+        "lat": 37.8016649,
+        "lon": -122.397348
+      },
+      "confidence": 100,
+      "imageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x5/cd1537ee-e279-42d0-83b1-3007e0d596c7.gif",
+      "regions": [
+        "Global"
+      ],
+      "indexedAt": "2026-11-26T13:52:37.388407Z",
+      "key": "06b0be6cd6d9094a32205d68"
     },
     {
       "title": "Own Your Intelligence Exploratorium",
